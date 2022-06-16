@@ -1,4 +1,4 @@
-import { CardState } from './card';
+import { Card, CardState } from './card';
 
 export enum DuelPlace {
 	Deck,
@@ -20,10 +20,14 @@ export interface PlayerState {
 	health: number;
 }
 
+export type PlayerStatePair = [PlayerState, PlayerState];
+export type CardStatePair = [CardState[], CardState[]];
+
 export type DuelState = Omit<DuelSetup, 'deck' | 'player'> & {
-	player: [PlayerState, PlayerState];
-	deck: [CardState[], CardState[]];
-	hand: [CardState[], CardState[]];
-	ground: [CardState[], CardState[]];
-	grave: [CardState[], CardState[]];
+	cardMap: Record<string, Card>;
+	player: PlayerStatePair;
+	deck: CardStatePair;
+	hand: CardStatePair;
+	ground: CardStatePair;
+	grave: CardStatePair;
 };

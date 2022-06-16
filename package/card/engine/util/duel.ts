@@ -1,6 +1,8 @@
 import {
 	Card,
 	CardState,
+	CardStatePair,
+	DuelPlace,
 	DuelSetup,
 	DuelState,
 	GameMeta,
@@ -23,6 +25,7 @@ export const getInitialSnapshot = (
 
 	return {
 		version,
+		cardMap: map,
 		firstMover,
 		player: [firstPlayer, secondPlayer],
 		deck: [firstDeck, secondDeck],
@@ -47,4 +50,28 @@ const cardStateFromId = (
 		health,
 		cooldown,
 	};
+};
+
+interface CloneDuelResult {
+	key: string;
+	source: CardStatePair;
+}
+
+export const cloneDuelSource = (
+	snapshot: DuelState,
+	place: DuelPlace,
+): CloneDuelResult => {
+	const key = placeMap[place];
+
+	return {
+		key,
+		source: [...snapshot[key]] as CardStatePair,
+	};
+};
+
+const placeMap = {
+	[DuelPlace.Deck]: 'deck',
+	[DuelPlace.Hand]: 'hand',
+	[DuelPlace.Ground]: 'ground',
+	[DuelPlace.Grave]: 'grave',
 };

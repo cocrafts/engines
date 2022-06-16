@@ -13,6 +13,7 @@ export enum SpellTurn {
 export enum CardClass {
 	None,
 	Tanker,
+	Knight,
 	Summoner,
 	SpellCaster,
 	Assassin,

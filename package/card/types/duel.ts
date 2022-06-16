@@ -11,11 +11,17 @@ export enum DuelPlace {
 export interface DuelSetup {
 	version?: string;
 	firstMover?: string;
-	players?: [string, string];
+	player?: [string, string];
 	deck?: [string[], string[]];
 }
 
-export type DuelState = Omit<DuelSetup, 'deck'> & {
+export interface PlayerState {
+	id: string;
+	health: number;
+}
+
+export type DuelState = Omit<DuelSetup, 'deck' | 'player'> & {
+	player: [PlayerState, PlayerState];
 	deck: [CardState[], CardState[]];
 	hand: [CardState[], CardState[]];
 	ground: [CardState[], CardState[]];

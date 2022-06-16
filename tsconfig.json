@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"jsx": "react-native",
+		"baseUrl": ".",
+		"paths": {
+			"@cocrafts/card": ["package/card"]
+		}
+	},
+	"exclude": [
+		"node_modules"
+	]
+}

@@ -1,0 +1,10 @@
+# OSX
+#
+.DS_Store
+selfsigned.*
+
+.idea
+
+node_modules
+npm-debug.log
+yarn-error.log

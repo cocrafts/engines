@@ -22,7 +22,7 @@ export interface DuelCommand {
 	payload?: CardAttributes;
 }
 
-export type CreateCommandPayload = DuelCommand & {
+export type CreateCommandPayload = Omit<DuelCommand, 'type'> & {
 	snapshot: DuelState;
 };
 

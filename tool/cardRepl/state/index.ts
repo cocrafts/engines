@@ -1,5 +1,7 @@
 import {
+	commandCreators,
 	DuelCommand,
+	DuelPlace,
 	DuelSetup,
 	DuelState,
 	fetchGameMeta,
@@ -50,8 +52,30 @@ const replayDuel = async () => {
 
 	for (let i = 0; i < drawCommands.length; i += 1) {
 		runCommands([drawCommands[i]] as DuelCommand[]);
-		await sleep(1000);
+		await sleep(200);
 	}
+
+	await sleep(500);
+
+	runCommands(
+		commandCreators.move({
+			creator: 'A',
+			snapshot: game,
+			from: [DuelPlace.Hand, game.hand[0][0].id, 0],
+			target: [DuelPlace.Ground],
+		}),
+	);
+
+	await sleep(500);
+
+	runCommands(
+		commandCreators.move({
+			creator: 'B',
+			snapshot: game,
+			from: [DuelPlace.Hand, game.hand[1][1].id, 1],
+			target: [DuelPlace.Ground],
+		}),
+	);
 };
 
 replayDuel();

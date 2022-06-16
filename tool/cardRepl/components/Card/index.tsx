@@ -19,7 +19,7 @@ export const Card: FC<Props> = ({ color, item }) => {
 			borderColor="#333333"
 		>
 			<Text color={color}>{item.id.substring(2, 4)}</Text>
-			<Box padding={1} height={9} alignItems="flex-end">
+			<Box paddingLeft={1} paddingRight={1} flexGrow={1} alignItems="flex-end">
 				<Text color="#888888">{item.base.skill?.desc || ''}</Text>
 			</Box>
 			<Box>

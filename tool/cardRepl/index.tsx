@@ -1,5 +1,5 @@
 import { render } from 'ink';
 
-import Card from './components/Card';
+import Duel from './Duel';
 
-render(<Card />);
+render(<Duel />);

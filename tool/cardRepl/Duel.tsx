@@ -4,7 +4,7 @@ import { Box } from 'ink';
 import { useSnapshot } from 'valtio';
 
 import Card from './components/Card';
-import CardDeck from './components/CardDeck';
+import Deck from './components/Deck';
 import Player from './components/Player';
 import { game } from './state';
 
@@ -22,7 +22,7 @@ export const Duel: FC = () => {
 					<Card color={secondColor} item={card} key={i} />
 				))}
 			</Box>
-			<CardDeck color={secondColor} deck={secondDeck as CardState[]} />
+			<Deck color={secondColor} deck={secondDeck as CardState[]} />
 			<Box justifyContent="center">
 				{firstDeck.slice(0, 11).map((card, i) => (
 					<Card color={secondColor} item={card} key={i} />
@@ -33,7 +33,7 @@ export const Duel: FC = () => {
 					<Card color={firstColor} item={card} key={i} />
 				))}
 			</Box>
-			<CardDeck color={firstColor} deck={firstDeck as CardState[]} />
+			<Deck color={firstColor} deck={firstDeck as CardState[]} />
 			<Box justifyContent="center">
 				{firstDeck.slice(11, 15).map((card, i) => (
 					<Card color={firstColor} item={card} key={i} />

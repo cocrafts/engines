@@ -18,8 +18,8 @@ export const Card: FC<Props> = ({ color, item }) => {
 			alignItems="center"
 			borderColor="#333333"
 		>
-			<Text color={color}>{item.id.substring(2, 5)}</Text>
-			<Box padding={1} height={8}>
+			<Text color={color}>{item.id.substring(2, 4)}</Text>
+			<Box padding={1} height={9} alignItems="flex-end">
 				<Text color="#888888">{item.base.skill?.desc || ''}</Text>
 			</Box>
 			<Box>

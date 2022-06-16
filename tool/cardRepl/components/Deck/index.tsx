@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { CardState } from '@cocrafts/card';
 import { Box, Text } from 'ink';
 
+import DeckCard from './DeckCard';
+
 interface Props {
 	color?: string;
 	deck: CardState[];
@@ -15,10 +17,9 @@ export const CardDeck: FC<Props> = ({ color, deck }) => {
 			borderStyle="round"
 			borderColor="#333333"
 		>
-			{deck.map(({ id }, i) => (
-				<Box key={id} marginLeft={1}>
-					<Text color={i % 2 ? 'gray' : color}>{id.substring(2, 5)}</Text>
-				</Box>
+			<Text color="#323232"> • </Text>
+			{deck.map((item, i) => (
+				<DeckCard key={item.id} item={item} color={color} index={i} />
 			))}
 		</Box>
 	);

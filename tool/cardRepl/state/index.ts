@@ -1,8 +1,10 @@
 import {
+	DuelCommand,
 	DuelSetup,
 	DuelState,
 	fetchGameMeta,
 	getInitialSnapshot,
+	runCommand,
 } from '@cocrafts/card';
 import { proxy } from 'valtio';
 
@@ -10,6 +12,46 @@ const rawSetup = `{"version":"jun0422","firstMover":"A", "player": ["A", "B"], "
 const setup: DuelSetup = JSON.parse(rawSetup);
 
 const defaultMeta = fetchGameMeta('jun0422');
-const initial: DuelState = getInitialSnapshot(defaultMeta, setup);
+export const initialState: DuelState = getInitialSnapshot(defaultMeta, setup);
 
-export const game = proxy(initial);
+export const game = proxy<DuelState>(initialState);
+
+export const runCommands = (commands: DuelCommand[]) => {
+	commands.forEach((command) => {
+		const changes = runCommand({ snapshot: game, command });
+
+		Object.keys(changes).forEach((key) => {
+			game[key] = changes[key];
+		});
+	});
+};
+
+const sleep = (amount: number) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(true);
+		}, amount);
+	});
+};
+
+const replayDuel = async () => {
+	const drawCommands = [
+		{ creator: 'A', type: 1, from: [0, '00550000', 24], target: [1] },
+		{ creator: 'B', type: 1, from: [0, '00220000', 11], target: [1] },
+		{ creator: 'A', type: 1, from: [0, '00700000', 33], target: [1] },
+		{ creator: 'B', type: 1, from: [0, '00720000', 34], target: [1] },
+		{ creator: 'A', type: 1, from: [0, '00670000', 31], target: [1] },
+		{ creator: 'B', type: 1, from: [0, '00700000', 33], target: [1] },
+		{ creator: 'A', type: 1, from: [0, '00450000', 17], target: [1] },
+		{ creator: 'B', type: 1, from: [0, '00290000', 14], target: [1] },
+		{ creator: 'A', type: 1, from: [0, '00560000', 23], target: [1] },
+		{ creator: 'B', type: 1, from: [0, '00570000', 21], target: [1] },
+	];
+
+	for (let i = 0; i < drawCommands.length; i += 1) {
+		runCommands([drawCommands[i]] as DuelCommand[]);
+		await sleep(1000);
+	}
+};
+
+replayDuel();

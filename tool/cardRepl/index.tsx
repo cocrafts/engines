@@ -1,11 +1,18 @@
 import { render } from 'ink';
-import { subscribe } from 'valtio';
 
 import Duel from './Duel';
-import { game } from './state';
+import { broadcast, game, replay, subscribe } from './state';
 
-render(<Duel game={game} />);
+const { rerender } = render(<Duel game={game} />);
 
-subscribe(game, () => {
-	render(<Duel game={game} />);
+subscribe((snapshot) => {
+	rerender(<Duel game={snapshot} />);
+});
+
+replay().then(({ snapshot }) => {
+	Object.keys(snapshot).forEach((key) => {
+		game[key] = snapshot[key];
+	});
+
+	broadcast();
 });

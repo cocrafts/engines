@@ -11,7 +11,7 @@ interface Props {
 export const Player: FC<Props> = ({ state }) => {
 	return (
 		<Box justifyContent="center">
-			<Gradient name="rainbow">
+			<Gradient name="pastel">
 				<BigText text={String(state.health)} />
 			</Gradient>
 		</Box>

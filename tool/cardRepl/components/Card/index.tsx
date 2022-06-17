@@ -3,16 +3,23 @@ import { CardState } from '@cocrafts/card';
 import { Box, Text } from 'ink';
 
 import Attribute from './Attribute';
+import EmptyCard from './Empty';
 
 interface Props {
 	color?: string;
 	item: CardState;
+	index?: number;
+	width?: number;
 }
 
-export const Card: FC<Props> = ({ color, item }) => {
+export const Card: FC<Props> = ({ color, item, index, width }) => {
+	if (!item) {
+		return <EmptyCard width={width} index={index} />;
+	}
+
 	return (
 		<Box
-			width={20}
+			width={width}
 			flexDirection="column"
 			borderStyle="round"
 			alignItems="center"
@@ -48,6 +55,7 @@ export const Card: FC<Props> = ({ color, item }) => {
 
 Card.defaultProps = {
 	color: '#ffffff',
+	width: 20,
 };
 
 export default Card;

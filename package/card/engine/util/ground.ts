@@ -11,7 +11,7 @@ interface GroundSize {
 export const addToGround = (
 	card: CardState,
 	ground: CardState[],
-	side: SummonSide = SummonSide.Left,
+	side: SummonSide = SummonSide.Right,
 ): boolean => {
 	const sizes = getGroundSizes(ground);
 

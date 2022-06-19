@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { CardState, DuelState } from '@cocrafts/card';
-import { Box } from 'ink';
+import { Box, Text, useInput } from 'ink';
 
 import Card from './components/Card';
 import Deck from './components/Deck';
@@ -14,6 +14,7 @@ interface Props {
 }
 
 export const Duel: FC<Props> = ({ game }) => {
+	const [round, setRound] = useState(0);
 	const { player, deck, hand, ground } = game;
 	const [firstColor, secondColor] = ['blue', 'red'];
 	const [firstPlayer, secondPlayer] = player;
@@ -21,6 +22,16 @@ export const Duel: FC<Props> = ({ game }) => {
 	const [startedFirstDeck, startedSecondDeck] = initialState.deck;
 	const [firstHand, secondHand] = hand;
 	const [firstGround, secondGround] = ground;
+
+	useInput((input, key) => {
+		if (input === 'r') {
+			setRound(0);
+		} else if (key.leftArrow) {
+			setRound(round - 1);
+		} else if (key.rightArrow) {
+			setRound(round + 1);
+		}
+	});
 
 	return (
 		<Box flexDirection="column">
@@ -37,12 +48,12 @@ export const Duel: FC<Props> = ({ game }) => {
 			/>
 			<Box justifyContent="center" height={cardHeight}>
 				{secondGround.map((card, i) => (
-					<Card color={secondColor} item={card} key={i} />
+					<Card color={secondColor} item={card} key={i} index={i} />
 				))}
 			</Box>
 			<Box justifyContent="center" height={cardHeight}>
 				{firstGround.map((card, i) => (
-					<Card color={firstColor} item={card} key={i} />
+					<Card color={firstColor} item={card} key={i} index={i} />
 				))}
 			</Box>
 			<Deck
@@ -56,6 +67,11 @@ export const Duel: FC<Props> = ({ game }) => {
 				))}
 			</Box>
 			<Player state={firstPlayer} />
+			<Box justifyContent="center">
+				<Text color="#323232">(</Text>
+				<Text>{round}</Text>
+				<Text color="#323232">)</Text>
+			</Box>
 		</Box>
 	);
 };

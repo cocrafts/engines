@@ -20,7 +20,7 @@ export type CardIdentifier = [
 ];
 
 export interface DuelCommand {
-	creator: string;
+	creator?: string;
 	type: CommandType;
 	from?: CardIdentifier;
 	target?: CardIdentifier;

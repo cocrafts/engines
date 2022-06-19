@@ -1,11 +1,13 @@
 import { CommandType, DuelState, RunCommandPayload } from '../../types';
 
+import combatCommand from './combat';
 import drawCommand from './draw';
 import moveCommand from './move';
 
 export const commandCreators = {
 	draw: drawCommand.create,
 	move: moveCommand.create,
+	combat: combatCommand.create,
 };
 
 export const runCommand = (payload: RunCommandPayload): DuelState => {

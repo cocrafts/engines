@@ -3,8 +3,8 @@ import {
 	CreateCommandPayload,
 	DuelCommand,
 	DuelPlace,
-} from '../../types';
-import { getPlayerOrder } from '../util';
+} from '../../../types';
+import { getPlayerOrder } from '../../util';
 
 export const create = ({
 	creator,

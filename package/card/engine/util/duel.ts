@@ -3,6 +3,7 @@ import {
 	CardState,
 	CardStatePair,
 	DuelPlace,
+	DuelSetting,
 	DuelSetup,
 	DuelState,
 	GameMeta,
@@ -16,21 +17,31 @@ export const getInitialSnapshot = (
 	{ player, firstMover, deck }: DuelSetup,
 ): DuelState => {
 	const [A, B] = player;
+	const handSize = 9;
+	const groundSize = 11;
+	const setting: DuelSetting = { handSize, groundSize };
 	const firstPlayer: PlayerState = { id: A, health: initialHealth };
 	const secondPlayer: PlayerState = { id: B, health: initialHealth };
 	const [firstIdentifiers, secondIdentifiers] = deck;
 	const idToCard = (id: string) => cardStateFromId(map, id);
 	const firstDeck: CardState[] = firstIdentifiers.map(idToCard);
 	const secondDeck: CardState[] = secondIdentifiers.map(idToCard);
+	const ground: CardStatePair = [[], []];
+
+	for (let i = 0; i < groundSize; i += 1) {
+		ground[0].push(null);
+		ground[1].push(null);
+	}
 
 	return {
 		version,
-		cardMap: map,
+		setting,
 		firstMover,
+		cardMap: map,
 		player: [firstPlayer, secondPlayer],
 		deck: [firstDeck, secondDeck],
 		hand: [[], []],
-		ground: [[], []],
+		ground,
 		grave: [[], []],
 	};
 };

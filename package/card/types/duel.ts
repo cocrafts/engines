@@ -23,8 +23,14 @@ export interface PlayerState {
 export type PlayerStatePair = [PlayerState, PlayerState];
 export type CardStatePair = [CardState[], CardState[]];
 
+export interface DuelSetting {
+	handSize: number;
+	groundSize: number;
+}
+
 export type DuelState = Omit<DuelSetup, 'deck' | 'player'> & {
 	cardMap: Record<string, Card>;
+	setting: DuelSetting;
 	player: PlayerStatePair;
 	deck: CardStatePair;
 	hand: CardStatePair;

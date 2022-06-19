@@ -8,6 +8,11 @@ export enum CommandType {
 	Dust,
 }
 
+export enum SummonSide {
+	Left,
+	Right,
+}
+
 export type CardIdentifier = [
 	source: DuelPlace,
 	id?: string,
@@ -19,6 +24,7 @@ export interface DuelCommand {
 	type: CommandType;
 	from?: CardIdentifier;
 	target?: CardIdentifier;
+	side?: SummonSide;
 	payload?: CardAttributes;
 }
 

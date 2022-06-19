@@ -4,6 +4,7 @@ import {
 	DuelPlace,
 	DuelState,
 	runCommand,
+	SummonSide,
 } from '@cocrafts/card';
 import clone from 'lodash/cloneDeep';
 
@@ -34,6 +35,25 @@ export const replay = async () => {
 	// }
 
 	drawCommands.forEach((batch) => runBatch(batch as never));
+
+	runBatch(
+		commandCreators.move({
+			creator: 'A',
+			snapshot,
+			from: [DuelPlace.Hand, snapshot.hand[0][0].id, 0],
+			target: [DuelPlace.Ground],
+		}),
+	);
+
+	runBatch(
+		commandCreators.move({
+			creator: 'A',
+			snapshot,
+			from: [DuelPlace.Hand, snapshot.hand[0][0].id, 0],
+			target: [DuelPlace.Ground],
+			side: SummonSide.Left,
+		}),
+	);
 
 	runBatch(
 		commandCreators.move({

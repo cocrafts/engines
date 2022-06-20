@@ -1,4 +1,4 @@
-import { Card, CardState } from './card';
+import { Card, CardAttributes, CardState } from './card';
 
 export enum DuelPlace {
 	Deck,
@@ -6,6 +6,7 @@ export enum DuelPlace {
 	Ground,
 	Grave,
 	Ability,
+	Player,
 }
 
 export interface DuelSetup {
@@ -15,10 +16,9 @@ export interface DuelSetup {
 	deck?: [string[], string[]];
 }
 
-export interface PlayerState {
+export type PlayerState = CardAttributes & {
 	id: string;
-	health: number;
-}
+};
 
 export type PlayerStatePair = [PlayerState, PlayerState];
 export type CardStatePair = [CardState[], CardState[]];

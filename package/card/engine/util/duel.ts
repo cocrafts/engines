@@ -63,21 +63,19 @@ const cardStateFromId = (
 	};
 };
 
-interface CloneDuelResult {
+type CloneDuelResult<T> = {
 	key: string;
-	source: CardStatePair;
-}
+	source: T;
+};
 
-export const cloneDuelSource = (
+export const cloneDuelSource = <T = CardStatePair>(
 	snapshot: DuelState,
 	place: DuelPlace,
-): CloneDuelResult => {
+): CloneDuelResult<T> => {
 	const key = placeMap[place];
+	const source = snapshot[key] as T;
 
-	return {
-		key,
-		source: [...snapshot[key]] as CardStatePair,
-	};
+	return { key, source };
 };
 
 const placeMap = {
@@ -85,4 +83,5 @@ const placeMap = {
 	[DuelPlace.Hand]: 'hand',
 	[DuelPlace.Ground]: 'ground',
 	[DuelPlace.Grave]: 'grave',
+	[DuelPlace.Player]: 'player',
 };

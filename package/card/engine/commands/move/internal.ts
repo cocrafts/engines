@@ -3,8 +3,8 @@ import { cloneDuelSource, getPlayerOrder } from '../../util';
 
 export const move = ({ command, snapshot }: RunCommandPayload): DuelState => {
 	const { player, cardMap } = snapshot;
-	const { creator, from, target } = command;
-	const order = getPlayerOrder(player, creator);
+	const { owner, from, target } = command;
+	const order = getPlayerOrder(player, owner);
 	const [fromPlace, fromId, fromIndex] = from;
 	const [targetPlace] = target;
 	const targetClone = cloneDuelSource(snapshot, targetPlace);

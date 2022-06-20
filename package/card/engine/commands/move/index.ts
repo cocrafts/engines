@@ -12,7 +12,7 @@ import { move } from './internal';
 import { handleSummon } from './summon';
 
 export const create = ({
-	creator,
+	owner,
 	snapshot,
 	from,
 	target,
@@ -20,11 +20,11 @@ export const create = ({
 }: CreateCommandPayload): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
 	const { player, hand } = snapshot;
-	const order = getPlayerOrder(player, creator);
+	const order = getPlayerOrder(player, owner);
 	const [targetSource] = target;
 
 	commands.push({
-		creator,
+		owner,
 		type: CommandType.Move,
 		from,
 		target,

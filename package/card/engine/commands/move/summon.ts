@@ -6,8 +6,8 @@ export const handleSummon = ({
 	command,
 }: RunCommandPayload): DuelState => {
 	const { player, cardMap } = snapshot;
-	const { creator, from, side } = command;
-	const order = getPlayerOrder(player, creator);
+	const { owner, from, side } = command;
+	const order = getPlayerOrder(player, owner);
 	const [fromPlace, fromId, fromIndex] = from;
 	const groundClone = cloneDuelSource(snapshot, DuelPlace.Ground);
 	const currentGround = groundClone.source[order];

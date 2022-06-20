@@ -1,6 +1,9 @@
 import { CreateCommandPayload, DuelCommand } from '../../../types';
 
-export const create = ({ snapshot }: CreateCommandPayload): DuelCommand[] => {
+import { attack, combat } from './internal';
+
+export const create = (payload: CreateCommandPayload): DuelCommand[] => {
+	const { snapshot } = payload;
 	const { ground, setting } = snapshot;
 	const [firstGround, secondGround] = ground;
 
@@ -9,9 +12,9 @@ export const create = ({ snapshot }: CreateCommandPayload): DuelCommand[] => {
 		const secondCard = secondGround[i];
 
 		if (!!firstCard && !!secondCard) {
-			console.log('COMBAT');
+			return combat(payload, i);
 		} else if (!!firstCard || !!secondCard) {
-			console.log('ATTACK');
+			return attack(payload, i);
 		}
 	}
 };

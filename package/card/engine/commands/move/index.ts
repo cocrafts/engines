@@ -8,6 +8,7 @@ import {
 } from '../../../types';
 import { getPlayerOrder } from '../../util';
 
+import { handleDestroy } from './destroy';
 import { move } from './internal';
 import { handleSummon } from './summon';
 
@@ -46,10 +47,15 @@ export const create = ({
 };
 
 export const run = (payload: RunCommandPayload): DuelState => {
-	const { target } = payload.command;
+	const { from, target } = payload.command;
+	const [fromPlace] = from;
 	const [targetPlace] = target;
 
-	if (targetPlace == DuelPlace.Ground) {
+	if (fromPlace === DuelPlace.Ground) {
+		/* <- Remove from Ground */
+		return handleDestroy(payload);
+	} else if (targetPlace == DuelPlace.Ground) {
+		/* <- Add to Ground */
 		return handleSummon(payload);
 	}
 

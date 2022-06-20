@@ -22,18 +22,19 @@ export const combat = (
 	const firstCI: CardIdentifier = [DuelPlace.Ground, firstCard.id, position];
 	const secondCI: CardIdentifier = [DuelPlace.Ground, secondCard.id, position];
 
-	if (firstHealth > 0) {
-		mutateCommand
-			.create({
-				owner: firstPlayer.id,
-				snapshot,
-				from: secondCI,
-				target: firstCI,
-				payload: { health: -secondCard.attack },
-			})
-			.forEach(registerCommand);
-	} else {
+	mutateCommand
+		.create({
+			owner: firstPlayer.id,
+			snapshot,
+			from: secondCI,
+			target: firstCI,
+			payload: { health: -secondCard.attack },
+		})
+		.forEach(registerCommand);
+
+	if (firstHealth <= 0) {
 		const target: CardIdentifier = [DuelPlace.Grave];
+
 		moveCommand
 			.create({
 				owner: firstPlayer.id,
@@ -44,18 +45,19 @@ export const combat = (
 			.forEach(registerCommand);
 	}
 
-	if (secondHealth > 0) {
-		mutateCommand
-			.create({
-				owner: secondPlayer.id,
-				snapshot,
-				from: firstCI,
-				target: secondCI,
-				payload: { health: -firstCard.attack },
-			})
-			.forEach(registerCommand);
-	} else {
+	mutateCommand
+		.create({
+			owner: secondPlayer.id,
+			snapshot,
+			from: firstCI,
+			target: secondCI,
+			payload: { health: -firstCard.attack },
+		})
+		.forEach(registerCommand);
+
+	if (secondHealth <= 0) {
 		const target: CardIdentifier = [DuelPlace.Grave];
+
 		moveCommand
 			.create({
 				owner: secondPlayer.id,

@@ -34,7 +34,7 @@ export const create = ({
 	if (targetSource === DuelPlace.Ground) {
 		/* <- Simulate ability */
 		commands.push({
-			creator,
+			owner,
 			type: CommandType.Move,
 			from: [DuelPlace.Ability, '0002'],
 			target: [DuelPlace.Ground, null, hand[order].length + 1],

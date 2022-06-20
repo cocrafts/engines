@@ -3,6 +3,8 @@ import { CreateCommandPayload, DuelCommand } from '../../../types';
 import { attack, combat } from './internal';
 
 export const create = (payload: CreateCommandPayload): DuelCommand[] => {
+	const commands: DuelCommand[] = [];
+	const registerCommand = (i: DuelCommand) => commands.push(i);
 	const { snapshot } = payload;
 	const { ground, setting } = snapshot;
 	const [firstGround, secondGround] = ground;
@@ -11,12 +13,14 @@ export const create = (payload: CreateCommandPayload): DuelCommand[] => {
 		const firstCard = firstGround[i];
 		const secondCard = secondGround[i];
 
-		if (!!firstCard && !!secondCard) {
-			return combat(payload, i);
-		} else if (!!firstCard || !!secondCard) {
-			return attack(payload, i);
+		if (firstCard && secondCard) {
+			combat(payload, i).forEach(registerCommand);
+		} else if (firstCard || secondCard) {
+			attack(payload, i).forEach(registerCommand);
 		}
 	}
+
+	return commands;
 };
 
 export const combatCommand = {

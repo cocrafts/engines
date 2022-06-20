@@ -33,14 +33,12 @@ export const combat = (
 		.forEach(registerCommand);
 
 	if (firstHealth <= 0) {
-		const target: CardIdentifier = [DuelPlace.Grave];
-
 		moveCommand
 			.create({
 				owner: firstPlayer.id,
 				snapshot,
 				from: firstCI,
-				target,
+				target: [DuelPlace.Grave],
 			})
 			.forEach(registerCommand);
 	}
@@ -56,14 +54,12 @@ export const combat = (
 		.forEach(registerCommand);
 
 	if (secondHealth <= 0) {
-		const target: CardIdentifier = [DuelPlace.Grave];
-
 		moveCommand
 			.create({
 				owner: secondPlayer.id,
 				snapshot,
 				from: secondCI,
-				target,
+				target: [DuelPlace.Grave],
 			})
 			.forEach(registerCommand);
 	}
@@ -71,6 +67,28 @@ export const combat = (
 	return commands;
 };
 
-export const attack = (): DuelCommand[] => {
-	return [];
+export const attack = (
+	{ snapshot }: CreateCommandPayload,
+	position: number,
+): DuelCommand[] => {
+	const commands: DuelCommand[] = [];
+	const registerCommand = (i: DuelCommand) => commands.push(i);
+	const { player, ground } = snapshot;
+	const [firstPlayer, secondPlayer] = player;
+	const [firstGround, secondGround] = ground;
+	const firstUnit = firstGround[position];
+	const secondUnit = secondGround[position];
+	const activeUnit = firstUnit || secondUnit;
+
+	mutateCommand
+		.create({
+			owner: firstUnit ? firstPlayer.id : secondPlayer.id,
+			snapshot,
+			from: [DuelPlace.Ground, activeUnit?.id, position],
+			target: [DuelPlace.Player, firstUnit ? secondPlayer.id : firstPlayer.id],
+			payload: { health: -activeUnit.attack },
+		})
+		.forEach(registerCommand);
+
+	return commands;
 };

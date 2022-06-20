@@ -2,10 +2,13 @@ import {
 	CommandType,
 	CreateCommandPayload,
 	DuelCommand,
+	DuelPlace,
 	DuelState,
 	RunCommandPayload,
 } from '../../../types';
-import { cloneDuelSource, getPlayerOrder } from '../../util';
+
+import { mutateCard } from './card';
+import { mutatePlayer } from './player';
 
 export const create = ({
 	owner,
@@ -26,23 +29,15 @@ export const create = ({
 	return commands;
 };
 
-export const run = ({ command, snapshot }: RunCommandPayload): DuelState => {
-	const { player } = snapshot;
-	const { owner, target, payload } = command;
-	const order = getPlayerOrder(player, owner);
-	const [targetPlace, targetId, targetIndex] = target;
-	const targetClone = cloneDuelSource(snapshot, targetPlace);
-	const currentTarget = targetClone.source[order];
-	const targetInstance = currentTarget[targetIndex];
-	if (targetInstance?.id !== targetId) return {} as DuelState;
+export const run = (runPayload: RunCommandPayload): DuelState => {
+	const { target } = runPayload.command;
+	const [targetPlace] = target;
 
-	Object.keys(payload).forEach((key) => {
-		targetInstance[key] = targetInstance[key] + payload[key];
-	});
-
-	return {
-		[targetClone.key]: targetClone.source as unknown,
-	} as DuelState;
+	if (targetPlace === DuelPlace.Player) {
+		return mutatePlayer(runPayload);
+	} else {
+		return mutateCard(runPayload);
+	}
 };
 
 export const mutateCommand = {

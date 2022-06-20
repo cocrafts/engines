@@ -1,5 +1,5 @@
 import { PlayerStatePair } from '../../types';
 
-export const getPlayerOrder = (players: PlayerStatePair, currentId: string) => {
-	return players.findIndex((i) => i.id === currentId);
+export const getPlayerOrder = (players: PlayerStatePair, ownerId: string) => {
+	return players.findIndex((i) => i.id === ownerId);
 };

@@ -37,25 +37,16 @@ export const replay = async () => {
 
 	runBatch(
 		commandCreators.move({
-			creator: 'A',
+			owner: 'A',
 			snapshot,
-			from: [DuelPlace.Hand, snapshot.hand[0][0].id, 0],
+			from: [DuelPlace.Hand, snapshot.hand[0][1].id, 1],
 			target: [DuelPlace.Ground],
 		}),
 	);
 
 	runBatch(
 		commandCreators.move({
-			creator: 'A',
-			snapshot,
-			from: [DuelPlace.Hand, snapshot.hand[0][0].id, 0],
-			target: [DuelPlace.Ground],
-		}),
-	);
-
-	runBatch(
-		commandCreators.move({
-			creator: 'B',
+			owner: 'B',
 			snapshot,
 			from: [DuelPlace.Hand, snapshot.hand[1][1].id, 1],
 			target: [DuelPlace.Ground],

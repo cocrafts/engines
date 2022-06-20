@@ -4,17 +4,14 @@ import { Box, Text } from 'ink';
 
 interface Props {
 	item: CardState;
-	index: number;
-	color?: string;
 }
 
-export const DeckCard: FC<Props> = ({ item, index, color }) => {
-	const dimColor = index % 2 === 0;
+export const GraveCard: FC<Props> = ({ item }) => {
 	const isSpell = item.base.type === CardType.Spell;
 
 	return (
 		<Box>
-			<Text dimColor={dimColor} color={color}>
+			<Text color="#323232">
 				{item.id.substring(2, 4)}
 				{isSpell ? '✧' : ''}
 			</Text>
@@ -23,8 +20,4 @@ export const DeckCard: FC<Props> = ({ item, index, color }) => {
 	);
 };
 
-DeckCard.defaultProps = {
-	color: '#ffffff',
-};
-
-export default DeckCard;
+export default GraveCard;

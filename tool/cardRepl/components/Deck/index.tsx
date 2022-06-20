@@ -6,30 +6,15 @@ import DeckCard from './DeckCard';
 
 interface Props {
 	color?: string;
-	startedDeck: CardState[];
-	deck: CardState[];
+	cards: CardState[];
 }
 
-export const CardDeck: FC<Props> = ({ color, deck, startedDeck }) => {
+export const CardDeck: FC<Props> = ({ color, cards }) => {
 	return (
-		<Box
-			alignSelf="center"
-			justifyContent="center"
-			borderStyle="round"
-			borderColor="#333333"
-		>
+		<Box borderStyle="round" borderColor="#333333">
 			<Text color="#323232"> • </Text>
-			{startedDeck.map((item, i) => {
-				const used = deck.findIndex((i) => i.id === item.id) < 0;
-				return (
-					<DeckCard
-						used={used}
-						key={item.id}
-						item={item}
-						index={i}
-						color={color}
-					/>
-				);
+			{cards.map((item, i) => {
+				return <DeckCard key={item.id} item={item} index={i} color={color} />;
 			})}
 		</Box>
 	);

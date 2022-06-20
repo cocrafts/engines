@@ -4,8 +4,8 @@ import { Box, Text, useInput } from 'ink';
 
 import Card from './components/Card';
 import Deck from './components/Deck';
+import GraveYard from './components/GraveYard';
 import Player from './components/Player';
-import { initialState } from './state';
 
 const cardHeight = 13;
 
@@ -15,13 +15,13 @@ interface Props {
 
 export const Duel: FC<Props> = ({ game }) => {
 	const [round, setRound] = useState(0);
-	const { player, deck, hand, ground } = game;
+	const { player, deck, hand, ground, grave } = game;
 	const [firstColor, secondColor] = ['blue', 'red'];
 	const [firstPlayer, secondPlayer] = player;
 	const [firstDeck, secondDeck] = deck;
-	const [startedFirstDeck, startedSecondDeck] = initialState.deck;
 	const [firstHand, secondHand] = hand;
 	const [firstGround, secondGround] = ground;
+	const [firstGrave, secondGrave] = grave;
 
 	useInput((input, key) => {
 		if (input === 'r') {
@@ -41,11 +41,10 @@ export const Duel: FC<Props> = ({ game }) => {
 					<Card color={secondColor} item={card} key={i} />
 				))}
 			</Box>
-			<Deck
-				color={secondColor}
-				deck={secondDeck as CardState[]}
-				startedDeck={startedSecondDeck}
-			/>
+			<Box alignSelf="center">
+				<GraveYard cards={secondGrave} />
+				<Deck color={secondColor} cards={secondDeck as CardState[]} />
+			</Box>
 			<Box justifyContent="center" height={cardHeight}>
 				{secondGround.map((card, i) => (
 					<Card color={secondColor} item={card} key={i} index={i} />
@@ -56,11 +55,10 @@ export const Duel: FC<Props> = ({ game }) => {
 					<Card color={firstColor} item={card} key={i} index={i} />
 				))}
 			</Box>
-			<Deck
-				color={firstColor}
-				deck={firstDeck as CardState[]}
-				startedDeck={startedFirstDeck}
-			/>
+			<Box alignSelf="center">
+				<Deck color={firstColor} cards={firstDeck as CardState[]} />
+				<GraveYard cards={firstGrave} />
+			</Box>
 			<Box justifyContent="center" height={cardHeight}>
 				{firstHand.map((card, i) => (
 					<Card color={firstColor} item={card} key={i} />

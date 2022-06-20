@@ -1,7 +1,7 @@
 import { DuelPlace, DuelState, RunCommandPayload } from '../../../types';
 import { addToGround, cloneDuelSource, getPlayerOrder } from '../../util';
 
-export const handleSummon = ({
+export const summonMove = ({
 	snapshot,
 	command,
 }: RunCommandPayload): DuelState => {

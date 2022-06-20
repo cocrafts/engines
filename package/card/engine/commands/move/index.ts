@@ -5,12 +5,13 @@ import {
 	DuelPlace,
 	DuelState,
 	RunCommandPayload,
+	SummonSide,
 } from '../../../types';
 import { getPlayerOrder } from '../../util';
 
-import { handleDestroy } from './destroy';
+import { destroyMove } from './destroy';
 import { move } from './internal';
-import { handleSummon } from './summon';
+import { summonMove } from './summon';
 
 export const create = ({
 	owner,
@@ -39,27 +40,25 @@ export const create = ({
 			type: CommandType.Move,
 			from: [DuelPlace.Ability, '0002'],
 			target: [DuelPlace.Ground, null, hand[order].length + 1],
-			side: Math.floor(Math.random() * 2),
+			side: SummonSide.Right,
 		});
 	}
 
 	return commands;
 };
 
-export const run = (payload: RunCommandPayload): DuelState => {
-	const { from, target } = payload.command;
+export const run = (runPayload: RunCommandPayload): DuelState => {
+	const { from, target } = runPayload.command;
 	const [fromPlace] = from;
 	const [targetPlace] = target;
 
 	if (fromPlace === DuelPlace.Ground) {
-		/* <- Remove from Ground */
-		return handleDestroy(payload);
+		return destroyMove(runPayload);
 	} else if (targetPlace == DuelPlace.Ground) {
-		/* <- Add to Ground */
-		return handleSummon(payload);
+		return summonMove(runPayload);
 	}
 
-	return move(payload);
+	return move(runPayload);
 };
 
 export const moveCommand = {

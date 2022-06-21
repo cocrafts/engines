@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { CardState, DuelState } from '@cocrafts/card';
+import { CardState, DuelCommand, DuelState } from '@cocrafts/card';
 import { Box, Text, useInput } from 'ink';
 
 import Card from './components/Card';
@@ -12,12 +12,14 @@ const cardHeight = 13;
 
 interface Props {
 	game: DuelState;
+	history?: Array<DuelCommand[]>;
 }
 
-export const Duel: FC<Props> = ({ game }) => {
+export const Duel: FC<Props> = ({ game, history }) => {
 	const [round, setRound] = useState(0);
 	const { player, deck, hand, ground, grave } = game;
-	const [firstColor, secondColor] = ['blue', 'yellow'];
+	const playerColors: [string, string] = ['blue', 'green'];
+	const [firstColor, secondColor] = playerColors;
 	const [firstPlayer, secondPlayer] = player;
 	const [firstDeck, secondDeck] = deck;
 	const [firstHand, secondHand] = hand;
@@ -36,7 +38,7 @@ export const Duel: FC<Props> = ({ game }) => {
 
 	return (
 		<Box>
-			<History />
+			<History history={history} players={game.player} colors={playerColors} />
 			<Box flexGrow={1} flexDirection="column">
 				<Player state={secondPlayer} />
 				<Box justifyContent="center" height={cardHeight}>
@@ -76,6 +78,10 @@ export const Duel: FC<Props> = ({ game }) => {
 			</Box>
 		</Box>
 	);
+};
+
+Duel.defaultProps = {
+	history: [],
 };
 
 export default Duel;

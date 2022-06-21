@@ -1,18 +1,16 @@
 import { render } from 'ink';
 
 import Duel from './Duel';
-import { broadcast, game, replay, subscribe } from './state';
+import { game, replay } from './state';
 
 const { rerender } = render(<Duel game={game} />);
 
-subscribe((snapshot) => {
-	rerender(<Duel game={snapshot} />);
-});
+replay().then(({ snapshot, history }) => {
+	const slicedHistory = history.slice(10);
 
-replay().then(({ snapshot }) => {
 	Object.keys(snapshot).forEach((key) => {
 		game[key] = snapshot[key];
 	});
 
-	broadcast();
+	rerender(<Duel game={snapshot} history={slicedHistory} />);
 });

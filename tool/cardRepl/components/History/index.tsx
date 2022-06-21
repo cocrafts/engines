@@ -1,11 +1,17 @@
 import { FC } from 'react';
-import { Box } from 'ink';
+import { DuelCommand, getPlayerOrder, PlayerStatePair } from '@cocrafts/card';
+import { Box, Text } from 'ink';
+
+import { getCommandInfo } from './internal';
 
 interface Props {
 	size?: number;
+	colors: [string, string];
+	players?: PlayerStatePair;
+	history: Array<DuelCommand[]>;
 }
 
-export const History: FC<Props> = ({ size }) => {
+export const History: FC<Props> = ({ size, players, colors, history }) => {
 	return (
 		<Box
 			width={size}
@@ -13,12 +19,38 @@ export const History: FC<Props> = ({ size }) => {
 			justifyContent="flex-start"
 			borderStyle="round"
 			borderColor="#323232"
-		></Box>
+		>
+			{history.map((chunk, i) => {
+				return (
+					<Box
+						key={i}
+						borderColor="#282828"
+						borderStyle="round"
+						flexDirection="column"
+						alignItems="center"
+					>
+						{chunk.map((command, z) => {
+							const { id, icon, iconColor } = getCommandInfo(command);
+							const order = getPlayerOrder(players, command.owner);
+							const playerColor = colors[order];
+
+							return (
+								<Box key={z}>
+									<Text color="#323232">{id}</Text>
+									<Text color={playerColor}>•</Text>
+									<Text color={iconColor || playerColor}>{icon}</Text>
+								</Box>
+							);
+						})}
+					</Box>
+				);
+			})}
+		</Box>
 	);
 };
 
 History.defaultProps = {
-	size: 8,
+	size: 10,
 };
 
 export default History;

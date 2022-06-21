@@ -12,10 +12,10 @@ interface Props {
 export const GraveYard: FC<Props> = ({ color, cards }) => {
 	return (
 		<Box alignSelf="center" borderStyle="round" borderColor="#323232">
-			<Text color={color}> • </Text>
 			{cards.map((item, i) => {
 				return <GraveCard item={item} key={i} />;
 			})}
+			<Text color={color}> • </Text>
 		</Box>
 	);
 };

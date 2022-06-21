@@ -8,14 +8,12 @@ interface Props {
 
 export const GraveCard: FC<Props> = ({ item }) => {
 	const isSpell = item.base.type === CardType.Spell;
+	const dotColor = isSpell ? 'green' : '#282828';
 
 	return (
 		<Box>
-			<Text color="#323232">
-				{item.id.substring(2, 4)}
-				{isSpell ? '✧' : ''}
-			</Text>
-			<Text color="#282828"> • </Text>
+			<Text color={dotColor}> • </Text>
+			<Text color="#323232">{item.id.substring(2, 4)}</Text>
 		</Box>
 	);
 };

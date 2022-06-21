@@ -11,14 +11,14 @@ interface Props {
 export const DeckCard: FC<Props> = ({ item, index, color }) => {
 	const dimColor = index % 2 === 0;
 	const isSpell = item.base.type === CardType.Spell;
+	const dotColor = isSpell ? 'green' : '#282828';
 
 	return (
 		<Box>
+			<Text color={dotColor}> • </Text>
 			<Text dimColor={dimColor} color={color}>
 				{item.id.substring(2, 4)}
-				{isSpell ? '✧' : ''}
 			</Text>
-			<Text color="#282828"> • </Text>
 		</Box>
 	);
 };

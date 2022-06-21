@@ -12,10 +12,10 @@ interface Props {
 export const CardDeck: FC<Props> = ({ color, cards }) => {
 	return (
 		<Box borderStyle="round" borderColor="#333333">
-			<Text color="#323232"> • </Text>
 			{cards.map((item, i) => {
 				return <DeckCard key={item.id} item={item} index={i} color={color} />;
 			})}
+			<Text color="#323232"> • </Text>
 		</Box>
 	);
 };

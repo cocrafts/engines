@@ -54,6 +54,9 @@ export const replay = async () => {
 	);
 
 	runBatch(commandCreators.combat({ snapshot }));
+	runBatch(commandCreators.combat({ snapshot }));
+	runBatch(commandCreators.combat({ snapshot }));
+	runBatch(commandCreators.combat({ snapshot }));
 
 	return {
 		snapshot,

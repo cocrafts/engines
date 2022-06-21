@@ -3,6 +3,7 @@ import { CommandType, DuelCommand, DuelPlace } from '@cocrafts/card';
 interface CommandInfo {
 	id: string;
 	icon: string;
+	idColor?: string;
 	iconColor?: string;
 }
 
@@ -29,10 +30,16 @@ export const getCommandInfo = ({
 			result.icon = '﬷';
 		} else if (targetPlace === DuelPlace.Grave) {
 			result.icon = '';
+			result.iconColor = 'magenta';
 		}
 	} else if (type === CommandType.Mutate) {
-		result.icon = payload?.health > 0 ? '' : '';
+		if (targetPlace === DuelPlace.Player) {
+			result.id = '';
+			result.idColor = '#555555';
+		}
+
 		result.iconColor = payload?.health > 0 ? 'green' : 'red';
+		result.icon = payload?.health > 0 ? '' : '';
 	}
 
 	return result;

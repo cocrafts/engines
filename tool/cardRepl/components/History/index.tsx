@@ -30,13 +30,13 @@ export const History: FC<Props> = ({ size, players, colors, history }) => {
 						alignItems="center"
 					>
 						{chunk.map((command, z) => {
-							const { id, icon, iconColor } = getCommandInfo(command);
+							const { id, icon, idColor, iconColor } = getCommandInfo(command);
 							const order = getPlayerOrder(players, command.owner);
 							const playerColor = colors[order];
 
 							return (
 								<Box key={z}>
-									<Text color="#323232">{id}</Text>
+									<Text color={idColor || '#323232'}>{id}</Text>
 									<Text color={playerColor}>•</Text>
 									<Text color={iconColor || playerColor}>{icon}</Text>
 								</Box>

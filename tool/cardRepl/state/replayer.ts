@@ -39,8 +39,14 @@ export const replay = async () => {
 		commandCreators.move({
 			owner: 'A',
 			snapshot,
-			from: [DuelPlace.Hand, snapshot.hand[0][1].id, 1],
-			target: [DuelPlace.Ground],
+			from: {
+				id: snapshot.hand[0][1].id,
+				position: 1,
+				place: DuelPlace.Hand,
+			},
+			target: {
+				place: DuelPlace.Ground,
+			},
 		}),
 	);
 
@@ -48,14 +54,17 @@ export const replay = async () => {
 		commandCreators.move({
 			owner: 'B',
 			snapshot,
-			from: [DuelPlace.Hand, snapshot.hand[1][1].id, 1],
-			target: [DuelPlace.Ground],
+			from: {
+				id: snapshot.hand[1][1].id,
+				position: 1,
+				place: DuelPlace.Hand,
+			},
+			target: {
+				place: DuelPlace.Ground,
+			},
 		}),
 	);
 
-	runBatch(commandCreators.combat({ snapshot }));
-	runBatch(commandCreators.combat({ snapshot }));
-	runBatch(commandCreators.combat({ snapshot }));
 	runBatch(commandCreators.combat({ snapshot }));
 
 	return {

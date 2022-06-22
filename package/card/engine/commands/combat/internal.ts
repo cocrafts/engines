@@ -1,11 +1,10 @@
-import { getPlayerOrder } from '@cocrafts/card';
-
 import {
 	CardIdentifier,
 	CreateCommandPayload,
 	DuelCommand,
 	DuelPlace,
 } from '../../../types';
+import { getPlayerOrder } from '../../util';
 import moveCommand from '../move';
 import mutateCommand from '../mutate';
 
@@ -21,8 +20,16 @@ export const combat = (
 	const secondCard = ground[1][position];
 	const firstHealth = firstCard.health - secondCard.attack;
 	const secondHealth = secondCard.health - firstCard.attack;
-	const firstCI: CardIdentifier = [DuelPlace.Ground, firstCard.id, position];
-	const secondCI: CardIdentifier = [DuelPlace.Ground, secondCard.id, position];
+	const firstCI: CardIdentifier = {
+		id: firstCard.id,
+		position,
+		place: DuelPlace.Ground,
+	};
+	const secondCI: CardIdentifier = {
+		id: secondCard.id,
+		position,
+		place: DuelPlace.Ground,
+	};
 
 	mutateCommand
 		.create({
@@ -40,7 +47,7 @@ export const combat = (
 				owner: firstPlayer.id,
 				snapshot,
 				from: firstCI,
-				target: [DuelPlace.Grave],
+				target: { place: DuelPlace.Grave },
 			})
 			.forEach(registerCommand);
 	}
@@ -61,7 +68,7 @@ export const combat = (
 				owner: secondPlayer.id,
 				snapshot,
 				from: secondCI,
-				target: [DuelPlace.Grave],
+				target: { place: DuelPlace.Grave },
 			})
 			.forEach(registerCommand);
 	}
@@ -75,21 +82,20 @@ export const attack = (
 ): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
 	const registerCommand = (i: DuelCommand) => commands.push(i);
-	const [, fromId, fromPos, fromPlayer] = from;
 	const { player, ground } = snapshot;
-	const order = getPlayerOrder(player, fromPlayer);
+	const order = getPlayerOrder(player, from.owner);
 	const opponentOrder = order === 0 ? 1 : 0;
 	const opponent = player[opponentOrder];
 	const currentGround = ground[order];
-	const currentUnit = currentGround[fromPos];
-	if (currentUnit?.id !== fromId) return [];
+	const currentUnit = currentGround[from.position];
+	if (currentUnit?.id !== from.id) return [];
 
 	mutateCommand
 		.create({
-			owner: fromPlayer,
+			owner: from.owner,
 			snapshot,
 			from,
-			target: [DuelPlace.Player, null, null, opponent.id],
+			target: { owner: opponent.id, place: DuelPlace.Player },
 			payload: { health: -currentUnit.attack },
 		})
 		.forEach(registerCommand);

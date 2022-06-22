@@ -12,8 +12,7 @@ export const mutatePlayer = ({
 }: RunCommandPayload): DuelState => {
 	const { player } = snapshot;
 	const { payload, target } = command;
-	const [, , , targetPlayer] = target;
-	const order = getPlayerOrder(player, targetPlayer);
+	const order = getPlayerOrder(player, target.owner);
 	const playerClone = cloneDuelSource<PlayerStatePair>(
 		snapshot,
 		DuelPlace.Player,

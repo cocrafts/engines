@@ -13,12 +13,12 @@ export enum SummonSide {
 	Right,
 }
 
-export type CardIdentifier = [
-	source: DuelPlace,
-	id?: string,
-	position?: number,
-	owner?: string,
-];
+export interface CardIdentifier {
+	id?: string;
+	owner?: string;
+	position?: number;
+	place: DuelPlace;
+}
 
 export interface DuelCommand {
 	owner?: string;

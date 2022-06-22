@@ -31,9 +31,8 @@ export const create = ({
 
 export const run = (runPayload: RunCommandPayload): DuelState => {
 	const { target } = runPayload.command;
-	const [targetPlace] = target;
 
-	if (targetPlace === DuelPlace.Player) {
+	if (target.place === DuelPlace.Player) {
 		return mutatePlayer(runPayload);
 	} else {
 		return mutateCard(runPayload);

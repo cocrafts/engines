@@ -17,19 +17,19 @@ export const create = (payload: CreateCommandPayload): DuelCommand[] => {
 		if (firstCard && secondCard) {
 			combat(payload, i).forEach(registerCommand);
 		} else if (firstCard) {
-			attack(payload, [
-				DuelPlace.Ground,
-				firstCard.id,
-				i,
-				firstPlayer.id,
-			]).forEach(registerCommand);
+			attack(payload, {
+				id: firstCard.id,
+				owner: firstPlayer.id,
+				position: i,
+				place: DuelPlace.Ground,
+			}).forEach(registerCommand);
 		} else if (secondCard) {
-			attack(payload, [
-				DuelPlace.Ground,
-				secondCard.id,
-				i,
-				secondPlayer.id,
-			]).forEach(registerCommand);
+			attack(payload, {
+				id: secondCard.id,
+				owner: secondPlayer.id,
+				position: i,
+				place: DuelPlace.Ground,
+			}).forEach(registerCommand);
 		}
 	}
 

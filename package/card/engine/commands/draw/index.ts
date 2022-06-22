@@ -19,8 +19,14 @@ export const create = ({
 	const drawCommand = {
 		owner,
 		type: CommandType.Move,
-		from: [DuelPlace.Deck, selectedCard.id, selectedPosition],
-		target: [DuelPlace.Hand],
+		from: {
+			id: selectedCard.id,
+			position: selectedPosition,
+			place: DuelPlace.Deck,
+		},
+		target: {
+			place: DuelPlace.Hand,
+		},
 	} as DuelCommand;
 
 	return [drawCommand];

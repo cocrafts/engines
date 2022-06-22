@@ -23,7 +23,6 @@ export const create = ({
 	const commands: DuelCommand[] = [];
 	const { player, hand } = snapshot;
 	const order = getPlayerOrder(player, owner);
-	const [targetSource] = target;
 
 	commands.push({
 		owner,
@@ -33,13 +32,19 @@ export const create = ({
 		side,
 	});
 
-	if (targetSource === DuelPlace.Ground) {
+	if (target.place === DuelPlace.Ground) {
 		/* <- Simulate ability */
 		commands.push({
 			owner,
 			type: CommandType.Move,
-			from: [DuelPlace.Ability, '0002'],
-			target: [DuelPlace.Ground, null, hand[order].length + 1],
+			from: {
+				id: '0002',
+				place: DuelPlace.Ability,
+			},
+			target: {
+				position: hand[order].length + 1,
+				place: DuelPlace.Ground,
+			},
 			side: SummonSide.Right,
 		});
 	}
@@ -49,12 +54,10 @@ export const create = ({
 
 export const run = (runPayload: RunCommandPayload): DuelState => {
 	const { from, target } = runPayload.command;
-	const [fromPlace] = from;
-	const [targetPlace] = target;
 
-	if (fromPlace === DuelPlace.Ground) {
+	if (from.place === DuelPlace.Ground) {
 		return destroyMove(runPayload);
-	} else if (targetPlace == DuelPlace.Ground) {
+	} else if (target.place == DuelPlace.Ground) {
 		return summonMove(runPayload);
 	}
 

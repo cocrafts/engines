@@ -8,12 +8,11 @@ export const mutateCard = ({
 	const { player } = snapshot;
 	const { owner, target, payload } = command;
 	const order = getPlayerOrder(player, owner);
-	const [targetPlace, targetId, targetIndex] = target;
 
-	const targetClone = cloneDuelSource(snapshot, targetPlace);
+	const targetClone = cloneDuelSource(snapshot, target.place);
 	const currentTarget = targetClone.source[order];
-	const targetInstance = currentTarget[targetIndex];
-	if (targetInstance?.id !== targetId) return {} as DuelState;
+	const targetInstance = currentTarget[target.position];
+	if (targetInstance?.id !== target.id) return {} as DuelState;
 
 	Object.keys(payload).forEach((key) => {
 		targetInstance[key] = targetInstance[key] + payload[key];

@@ -1,7 +1,7 @@
 import {
-	CardIdentifier,
 	CreateCommandPayload,
 	DuelCommand,
+	DuelIdentifier,
 	DuelPlace,
 } from '../../../types';
 import { getPlayerOrder } from '../../util';
@@ -20,12 +20,12 @@ export const combat = (
 	const secondCard = ground[1][position];
 	const firstHealth = firstCard.health - secondCard.attack;
 	const secondHealth = secondCard.health - firstCard.attack;
-	const firstCI: CardIdentifier = {
+	const firstCI: DuelIdentifier = {
 		id: firstCard.id,
 		position,
 		place: DuelPlace.Ground,
 	};
-	const secondCI: CardIdentifier = {
+	const secondCI: DuelIdentifier = {
 		id: secondCard.id,
 		position,
 		place: DuelPlace.Ground,
@@ -78,7 +78,7 @@ export const combat = (
 
 export const attack = (
 	{ snapshot }: CreateCommandPayload,
-	from: CardIdentifier,
+	from: DuelIdentifier,
 ): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
 	const registerCommand = (i: DuelCommand) => commands.push(i);

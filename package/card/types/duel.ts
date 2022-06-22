@@ -1,4 +1,5 @@
-import { Card, CardAttributes, CardState } from './card';
+import { Card, CardState } from './card';
+import { UnitAttributes } from './internal';
 
 export enum DuelPlace {
 	Deck,
@@ -16,7 +17,7 @@ export interface DuelSetup {
 	deck?: [string[], string[]];
 }
 
-export type PlayerState = CardAttributes & {
+export type PlayerState = UnitAttributes & {
 	id: string;
 };
 
@@ -26,6 +27,7 @@ export type CardStatePair = [CardState[], CardState[]];
 export interface DuelSetting {
 	handSize: number;
 	groundSize: number;
+	maxAttachment: number;
 }
 
 export type DuelState = Omit<DuelSetup, 'deck' | 'player'> & {

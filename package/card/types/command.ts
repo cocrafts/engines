@@ -1,5 +1,5 @@
-import { CardAttributes } from './card';
 import { DuelPlace, DuelState } from './duel';
+import { UnitAttributes } from './internal';
 
 export enum CommandType {
 	Summon /* <- create from nowhere */,
@@ -13,7 +13,7 @@ export enum SummonSide {
 	Right,
 }
 
-export interface CardIdentifier {
+export interface DuelIdentifier {
 	id?: string;
 	owner?: string;
 	position?: number;
@@ -23,15 +23,19 @@ export interface CardIdentifier {
 export interface DuelCommand {
 	owner?: string;
 	type: CommandType;
-	from?: CardIdentifier;
-	target?: CardIdentifier;
+	from?: DuelIdentifier;
+	target?: DuelIdentifier;
 	side?: SummonSide;
-	payload?: CardAttributes;
+	payload?: UnitAttributes;
 }
 
 export type CreateCommandPayload = Omit<DuelCommand, 'type'> & {
 	snapshot: DuelState;
 };
+
+export type CommandCreator<T = CreateCommandPayload> = (
+	payload: T,
+) => DuelCommand[];
 
 export interface RunCommandPayload {
 	snapshot: DuelState;

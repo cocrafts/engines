@@ -17,6 +17,7 @@ export type CardIdentifier = [
 	source: DuelPlace,
 	id?: string,
 	position?: number,
+	owner?: string,
 ];
 
 export interface DuelCommand {

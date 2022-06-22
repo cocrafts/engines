@@ -1,3 +1,5 @@
+import { getPlayerOrder } from '@cocrafts/card';
+
 import {
 	CardIdentifier,
 	CreateCommandPayload,
@@ -69,24 +71,26 @@ export const combat = (
 
 export const attack = (
 	{ snapshot }: CreateCommandPayload,
-	position: number,
+	from: CardIdentifier,
 ): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
 	const registerCommand = (i: DuelCommand) => commands.push(i);
+	const [, fromId, fromPos, fromPlayer] = from;
 	const { player, ground } = snapshot;
-	const [firstPlayer, secondPlayer] = player;
-	const [firstGround, secondGround] = ground;
-	const firstUnit = firstGround[position];
-	const secondUnit = secondGround[position];
-	const activeUnit = firstUnit || secondUnit;
+	const order = getPlayerOrder(player, fromPlayer);
+	const opponentOrder = order === 0 ? 1 : 0;
+	const opponent = player[opponentOrder];
+	const currentGround = ground[order];
+	const currentUnit = currentGround[fromPos];
+	if (currentUnit?.id !== fromId) return [];
 
 	mutateCommand
 		.create({
-			owner: firstUnit ? firstPlayer.id : secondPlayer.id,
+			owner: fromPlayer,
 			snapshot,
-			from: [DuelPlace.Ground, activeUnit?.id, position],
-			target: [DuelPlace.Player, firstUnit ? secondPlayer.id : firstPlayer.id],
-			payload: { health: -activeUnit.attack },
+			from,
+			target: [DuelPlace.Player, null, null, opponent.id],
+			payload: { health: -currentUnit.attack },
 		})
 		.forEach(registerCommand);
 

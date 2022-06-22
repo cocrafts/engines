@@ -1,15 +1,12 @@
 import {
+	CommandCreator,
 	CommandType,
-	CreateCommandPayload,
 	DuelCommand,
 	DuelPlace,
 } from '../../../types';
 import { getPlayerOrder } from '../../util';
 
-export const create = ({
-	owner,
-	snapshot,
-}: CreateCommandPayload): DuelCommand[] => {
+export const create: CommandCreator = ({ owner, snapshot }) => {
 	const { player, deck } = snapshot;
 	const order = getPlayerOrder(player, owner);
 	const currentDeck = deck[order];

@@ -1,10 +1,9 @@
 import {
+	CommandCreator,
+	CommandRunner,
 	CommandType,
-	CreateCommandPayload,
 	DuelCommand,
 	DuelPlace,
-	DuelState,
-	RunCommandPayload,
 	SummonSide,
 } from '../../../types';
 import { getPlayerOrder } from '../../util';
@@ -13,13 +12,13 @@ import { destroyMove } from './destroy';
 import { move } from './internal';
 import { summonMove } from './summon';
 
-export const create = ({
+export const create: CommandCreator = ({
 	owner,
 	snapshot,
 	from,
 	target,
 	side,
-}: CreateCommandPayload): DuelCommand[] => {
+}) => {
 	const commands: DuelCommand[] = [];
 	const { player, hand } = snapshot;
 	const order = getPlayerOrder(player, owner);
@@ -52,7 +51,7 @@ export const create = ({
 	return commands;
 };
 
-export const run = (runPayload: RunCommandPayload): DuelState => {
+export const run: CommandRunner = (runPayload) => {
 	const { from, target } = runPayload.command;
 
 	if (from.place === DuelPlace.Ground) {

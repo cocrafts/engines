@@ -1,8 +1,8 @@
-import { CreateCommandPayload, DuelCommand, DuelPlace } from '../../../types';
+import { CommandCreator, DuelCommand, DuelPlace } from '../../../types';
 
 import { attack, combat } from './internal';
 
-export const create = (payload: CreateCommandPayload): DuelCommand[] => {
+export const create: CommandCreator = (payload) => {
 	const commands: DuelCommand[] = [];
 	const registerCommand = (i: DuelCommand) => commands.push(i);
 	const { snapshot } = payload;

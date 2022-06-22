@@ -41,3 +41,5 @@ export interface RunCommandPayload {
 	snapshot: DuelState;
 	command: DuelCommand;
 }
+
+export type CommandRunner<T = RunCommandPayload> = (payload: T) => DuelState;

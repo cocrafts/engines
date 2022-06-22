@@ -1,10 +1,7 @@
-import { DuelPlace, DuelState, RunCommandPayload } from '../../../types';
+import { CommandRunner, DuelPlace, DuelState } from '../../../types';
 import { cloneDuelSource, getPlayerOrder } from '../../util';
 
-export const destroyMove = ({
-	snapshot,
-	command,
-}: RunCommandPayload): DuelState => {
+export const destroyMove: CommandRunner = ({ snapshot, command }) => {
 	const { player } = snapshot;
 	const { owner, from } = command;
 	const order = getPlayerOrder(player, owner);

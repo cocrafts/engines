@@ -1,6 +1,6 @@
 import {
+	CommandCreator,
 	CommandType,
-	CreateCommandPayload,
 	DuelCommand,
 	DuelPlace,
 	DuelState,
@@ -10,12 +10,7 @@ import {
 import { mutateCard } from './card';
 import { mutatePlayer } from './player';
 
-export const create = ({
-	owner,
-	from,
-	target,
-	payload,
-}: CreateCommandPayload): DuelCommand[] => {
+export const create: CommandCreator = ({ owner, from, target, payload }) => {
 	const commands: DuelCommand[] = [];
 
 	commands.push({

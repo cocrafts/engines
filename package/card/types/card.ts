@@ -1,3 +1,5 @@
+import { UnitAttributes } from './internal';
+
 export enum CardType {
 	Troop,
 	Hero,
@@ -50,13 +52,6 @@ type RarityPowers = [
 	immortal?: number,
 ];
 
-export interface CardAttributes {
-	attack?: number;
-	defense?: number;
-	health?: number;
-	cooldown?: number;
-}
-
 export interface CardConfig {
 	id: string;
 	name?: string;
@@ -80,9 +75,9 @@ export type Card = Omit<
 	CardConfig,
 	'attack' | 'defense' | 'health' | 'cooldown'
 > &
-	CardAttributes;
+	UnitAttributes;
 
-export type CardState = CardAttributes & {
+export type CardState = UnitAttributes & {
 	id: string;
 	base: Card;
 };

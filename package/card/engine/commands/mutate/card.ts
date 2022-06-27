@@ -3,9 +3,8 @@ import { cloneDuelSource, getPlayerOrder } from '../../util';
 
 export const mutateCard: CommandRunner = ({ snapshot, command }) => {
 	const { player } = snapshot;
-	const { owner, target, payload } = command;
-	const order = getPlayerOrder(player, owner);
-
+	const { target, payload } = command;
+	const order = getPlayerOrder(player, target.owner);
 	const targetClone = cloneDuelSource(snapshot, target.place);
 	const currentTarget = targetClone.source[order];
 	const targetInstance = currentTarget[target.position];

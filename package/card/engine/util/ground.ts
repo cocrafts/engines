@@ -58,3 +58,56 @@ export const getGroundSizes = (ground: CardState[]) => {
 
 	return size;
 };
+
+export const reinforceArray = <T = CardState>(items: T[]): T[] => {
+	const result: T[] = [...items];
+	const sideLength = Math.floor(result.length / 2);
+	const leftItems = result.slice(0, sideLength);
+	const rightItems = result.slice(sideLength, result.length);
+	const leftWeight = leftItems.filter((i) => !!i).length;
+	const rightWeight = rightItems.filter((i) => !!i).length;
+
+	const reinforceLeft = () => {
+		const relocate = (offset: number): void => {
+			if (!result[offset]) return;
+
+			for (let i = sideLength; i >= offset; i -= 1) {
+				if (!result[i]) {
+					result[i] = result[offset];
+					result[offset] = null;
+				}
+			}
+		};
+
+		for (let i = sideLength - 1; i >= 0; i -= 1) {
+			relocate(i);
+		}
+	};
+
+	const reinforceRight = () => {
+		const relocate = (offset: number): void => {
+			if (!result[offset]) return;
+
+			for (let i = sideLength; i < offset; i += 1) {
+				if (!result[i]) {
+					result[i] = result[offset];
+					result[offset] = null;
+				}
+			}
+		};
+
+		for (let i = sideLength + 1; i < items.length; i += 1) {
+			relocate(i);
+		}
+	};
+
+	if (leftWeight > rightWeight) {
+		reinforceLeft();
+		reinforceRight();
+	} else {
+		reinforceRight();
+		reinforceLeft();
+	}
+
+	return result;
+};

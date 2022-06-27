@@ -22,11 +22,13 @@ export const combat = (
 	const secondHealth = secondCard.health - firstCard.attack;
 	const firstCI: DuelIdentifier = {
 		id: firstCard.id,
+		owner: firstPlayer.id,
 		position,
 		place: DuelPlace.Ground,
 	};
 	const secondCI: DuelIdentifier = {
 		id: secondCard.id,
+		owner: secondPlayer.id,
 		position,
 		place: DuelPlace.Ground,
 	};

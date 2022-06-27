@@ -10,6 +10,7 @@ import { getPlayerOrder } from '../../util';
 
 import { destroyMove } from './destroy';
 import { move } from './internal';
+import { relocateMove } from './relocate';
 import { summonMove } from './summon';
 
 export const create: CommandCreator = ({
@@ -53,10 +54,15 @@ export const create: CommandCreator = ({
 
 export const run: CommandRunner = (runPayload) => {
 	const { from, target } = runPayload.command;
+	const fromGround = from.place === DuelPlace.Ground;
+	const toGround = target.place === DuelPlace.Ground;
+	const toGrave = target.place === DuelPlace.Grave;
 
-	if (from.place === DuelPlace.Ground) {
+	if (fromGround && toGround) {
+		return relocateMove(runPayload);
+	} else if (fromGround && toGrave) {
 		return destroyMove(runPayload);
-	} else if (target.place == DuelPlace.Ground) {
+	} else if (toGround) {
 		return summonMove(runPayload);
 	}
 

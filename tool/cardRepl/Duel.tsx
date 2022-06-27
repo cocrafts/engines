@@ -39,7 +39,7 @@ export const Duel: FC<Props> = ({ game, history }) => {
 	return (
 		<Box>
 			<History history={history} players={game.player} colors={playerColors} />
-			<Box flexGrow={1} flexDirection="column">
+			<Box flexGrow={1} flexDirection="column" paddingRight={1}>
 				<Player state={secondPlayer} />
 				<Box justifyContent="center" height={cardHeight}>
 					{secondHand.map((card, i) => (

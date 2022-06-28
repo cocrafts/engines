@@ -1,7 +1,5 @@
-import { DuelPlace, DuelState, getPlayerOrder } from '@cocrafts/card';
-
-import { CommandRunner } from '../../../types';
-import { cloneDuelSource } from '../../util';
+import { CommandRunner, DuelPlace, DuelState } from '../../../types';
+import { cloneDuelSource, getPlayerOrder } from '../../util';
 
 export const relocateMove: CommandRunner = ({ snapshot, command }) => {
 	const { player } = snapshot;

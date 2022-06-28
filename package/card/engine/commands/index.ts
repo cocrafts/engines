@@ -1,11 +1,12 @@
 import { CommandType, DuelState, RunCommandPayload } from '../../types';
 
-import combatCommand from './combat';
+import cleanupCommand from './board/cleanup';
+import combatCommand from './board/combat';
+import reinforceCommand from './board/reinforce';
+import skillCommand from './board/skill';
 import drawCommand from './draw';
 import moveCommand from './move';
 import mutateCommand from './mutate';
-import reinforceCommand from './reinforce';
-import skillCommand from './skill';
 
 export const commandCreators = {
 	draw: drawCommand.create,
@@ -14,6 +15,7 @@ export const commandCreators = {
 	mutate: mutateCommand.create,
 	skill: skillCommand.create,
 	reinforce: reinforceCommand.create,
+	cleanup: cleanupCommand.create,
 };
 
 export const runCommand = (payload: RunCommandPayload): DuelState => {

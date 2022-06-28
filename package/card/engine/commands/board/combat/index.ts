@@ -1,4 +1,4 @@
-import { CommandCreator, DuelCommand, DuelPlace } from '../../../types';
+import { CommandCreator, DuelCommand, DuelPlace } from '../../../../types';
 
 import { attack, combat } from './internal';
 

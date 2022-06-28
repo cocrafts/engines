@@ -3,10 +3,10 @@ import {
 	DuelCommand,
 	DuelIdentifier,
 	DuelPlace,
-} from '../../../types';
-import { getPlayerOrder } from '../../util';
-import moveCommand from '../move';
-import mutateCommand from '../mutate';
+} from '../../../../types';
+import { getPlayerOrder } from '../../../util';
+import moveCommand from '../../move';
+import mutateCommand from '../../mutate';
 
 export const combat = (
 	{ snapshot }: CreateCommandPayload,

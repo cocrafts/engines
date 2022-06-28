@@ -2,9 +2,9 @@ import {
 	CreateCommandPayload,
 	DuelCommand,
 	DuelIdentifier,
-} from '../../../types';
-import { run as runAbility } from '../../abilities';
-import { getPlayerOrder } from '../../util';
+} from '../../../../types';
+import { run as runAbility } from '../../../abilities';
+import { getPlayerOrder } from '../../../util';
 
 export const activate = (
 	{ snapshot }: CreateCommandPayload,

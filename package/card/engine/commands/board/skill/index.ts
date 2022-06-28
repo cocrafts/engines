@@ -1,4 +1,10 @@
-import { CommandCreator, DuelCommand, DuelPlace } from '../../../types';
+import {
+	CommandCreator,
+	DuelCommand,
+	DuelIdentifier,
+	DuelPlace,
+} from '../../../../types';
+import mutateCommand from '../../mutate';
 
 import { activate } from './internal';
 
@@ -15,21 +21,39 @@ export const create: CommandCreator = (payload) => {
 		const secondCard = secondGround[i];
 
 		if (firstCard?.cooldown === 1) {
-			activate(payload, {
+			const target: DuelIdentifier = {
 				id: firstCard.id,
 				owner: firstPlayer.id,
 				place: DuelPlace.Ground,
 				position: i,
-			}).forEach(registerCommand);
+			};
+
+			activate(payload, target).forEach(registerCommand);
+			mutateCommand
+				.create({
+					snapshot,
+					target,
+					payload: { cooldown: firstCard.base.cooldown - 1 },
+				})
+				.forEach(registerCommand);
 		}
 
 		if (secondCard?.cooldown === 1) {
-			activate(payload, {
+			const target: DuelIdentifier = {
 				id: secondCard.id,
 				owner: secondPlayer.id,
 				place: DuelPlace.Ground,
 				position: i,
-			}).forEach(registerCommand);
+			};
+
+			activate(payload, target).forEach(registerCommand);
+			mutateCommand
+				.create({
+					snapshot,
+					target,
+					payload: { cooldown: secondCard.base.cooldown - 1 },
+				})
+				.forEach(registerCommand);
 		}
 	}
 

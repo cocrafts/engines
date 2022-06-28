@@ -3,10 +3,10 @@ import {
 	CardState,
 	CardStatePair,
 	DuelPlace,
-	DuelSetting,
 	DuelSetup,
 	DuelState,
 	GameMeta,
+	GameSate,
 	PlayerState,
 } from '../../types';
 
@@ -14,15 +14,23 @@ const initialHealth = 2500;
 
 export const getInitialSnapshot = (
 	{ version, map }: GameMeta,
-	{ player, firstMover, deck }: DuelSetup,
+	{ setting, player, firstMover, deck }: DuelSetup,
 ): DuelState => {
+	const { groundSize, perTurnHero, perTurnTroop } = setting;
+	const game: GameSate = { turn: 1 };
 	const [A, B] = player;
-	const handSize = 9;
-	const groundSize = 11;
-	const maxAttachment = 2;
-	const setting: DuelSetting = { handSize, groundSize, maxAttachment };
-	const firstPlayer: PlayerState = { id: A, health: initialHealth };
-	const secondPlayer: PlayerState = { id: B, health: initialHealth };
+	const firstPlayer: PlayerState = {
+		id: A,
+		health: initialHealth,
+		perTurnHero,
+		perTurnTroop,
+	};
+	const secondPlayer: PlayerState = {
+		id: B,
+		health: initialHealth,
+		perTurnHero,
+		perTurnTroop,
+	};
 	const [firstIdentifiers, secondIdentifiers] = deck;
 	const idToCard = (id: string) => cardStateFromId(map, id);
 	const firstDeck: CardState[] = firstIdentifiers.map(idToCard);
@@ -37,6 +45,7 @@ export const getInitialSnapshot = (
 	return {
 		version,
 		setting,
+		game,
 		firstMover,
 		cardMap: map,
 		player: [firstPlayer, secondPlayer],

@@ -1,31 +1,37 @@
 import { CommandType, DuelState, RunCommandPayload } from '../../types';
 
-import cleanupCommand from './board/cleanup';
 import combatCommand from './board/combat';
+import endCommand from './board/end';
 import reinforceCommand from './board/reinforce';
 import skillCommand from './board/skill';
-import drawCommand from './draw';
-import moveCommand from './move';
-import mutateCommand from './mutate';
+import cardDrawCommand from './card/draw';
+import cardMoveCommand from './card/move';
+import cardMutateCommand from './card/mutate';
+import playerMutateCommand from './player/mutate';
 
 export const commandCreators = {
-	draw: drawCommand.create,
-	move: moveCommand.create,
-	combat: combatCommand.create,
-	mutate: mutateCommand.create,
-	skill: skillCommand.create,
-	reinforce: reinforceCommand.create,
-	cleanup: cleanupCommand.create,
+	playerMutate: playerMutateCommand.create,
+
+	cardDraw: cardDrawCommand.create,
+	cardMove: cardMoveCommand.create,
+	cardMutate: cardMutateCommand.create,
+
+	boardCombat: combatCommand.create,
+	boardSkill: skillCommand.create,
+	boardReinforce: reinforceCommand.create,
+	boardEnd: endCommand.create,
 };
 
 export const runCommand = (payload: RunCommandPayload): DuelState => {
 	const { command, snapshot } = payload;
 
 	switch (command.type) {
-		case CommandType.Move:
-			return moveCommand.run(payload);
-		case CommandType.Mutate:
-			return mutateCommand.run(payload);
+		case CommandType.CardMutate:
+			return cardMutateCommand.run(payload);
+		case CommandType.CardMove:
+			return cardMoveCommand.run(payload);
+		case CommandType.PlayerMutate:
+			return playerMutateCommand.run(payload);
 		default:
 			return snapshot;
 	}

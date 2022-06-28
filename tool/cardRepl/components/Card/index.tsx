@@ -44,7 +44,7 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 					{!!item.base.cooldown && (
 						<Box>
 							<Text color="#282828">(</Text>
-							<Text color="#666666">{item.base.cooldown}</Text>
+							<Text color="#666666">{item.cooldown}</Text>
 							<Text color="#282828">)</Text>
 						</Box>
 					)}

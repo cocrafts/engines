@@ -38,7 +38,11 @@ export const Duel: FC<Props> = ({ game, history }) => {
 
 	return (
 		<Box>
-			<History history={history} players={game.player} colors={playerColors} />
+			<History
+				history={extractHistory(history)}
+				players={game.player}
+				colors={playerColors}
+			/>
 			<Box flexGrow={1} flexDirection="column" paddingRight={1}>
 				<Player state={secondPlayer} />
 				<Box justifyContent="center" height={cardHeight}>
@@ -85,3 +89,21 @@ Duel.defaultProps = {
 };
 
 export default Duel;
+
+const extractHistory = (history: Array<DuelCommand[]>, limit = 40) => {
+	const result = [];
+	let currentSize = 0;
+
+	for (let i = history.length - 1; i >= 0; i -= 1) {
+		const batch = history[i];
+
+		result.push(batch);
+		currentSize += batch.length;
+
+		if (currentSize >= limit) {
+			return result;
+		}
+	}
+
+	return result.reverse();
+};

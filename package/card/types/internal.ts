@@ -6,3 +6,16 @@ export interface UnitAttributes {
 }
 
 export type AbilityAttributes = Record<string, number>;
+
+export enum HookType {
+	TurnBegin,
+	TurnEnd,
+	SkillActivated,
+	SpellActivated,
+	Death,
+	AllyDeath,
+	EnemyDeath,
+	Summon,
+	AllySummon,
+	EnemySummon,
+}

@@ -1,7 +1,5 @@
 import { AbilityConfig } from './ability';
-import { HookType } from './hook';
 import { UnitAttributes } from './internal';
-import { TraitConfig } from './trait';
 
 export enum CardType {
 	Troop,
@@ -69,12 +67,6 @@ export interface CardConfig {
 	health?: RarityPowers;
 	ability?: AbilityConfig;
 	attachments?: string[];
-	traits?: {
-		[HookType.Summon]?: TraitConfig;
-		[HookType.Death]?: TraitConfig;
-		[HookType.Glory]?: TraitConfig;
-		[HookType.Play]?: TraitConfig;
-	};
 	skill?: Record<string, string | number> & {
 		desc?: string;
 	};

@@ -1,9 +1,10 @@
 import { CommandCreator, DuelIdentifier } from './command';
 import { DuelState } from './duel';
-import { AbilityAttributes } from './internal';
+import { AbilityAttributes, HookType } from './internal';
 
 export enum AbilityType {
-	Skill,
+	Cooldown,
+	Hook,
 	Spell,
 	Attachment,
 	Trait,
@@ -23,10 +24,20 @@ export enum AbilityTargeting {
 	HighestHealth,
 }
 
+export enum AbilityRange {
+	Target,
+	Front,
+	Area,
+	Linear,
+	LeftLinear,
+	RightLinear,
+}
+
 export interface AbilityConfig {
 	id: string;
 	type: AbilityType;
 	attributes: AbilityAttributes;
+	hook?: HookType;
 	targeting?: AbilityTargeting;
 	instruction?: string;
 	iconUri?: string;

@@ -1,12 +1,14 @@
-import { AbilityRunner } from '../../types';
+import { AbilityRunner, DuelCommand } from '../../types';
 
-import { run as mutate } from './mutate';
+import { runAbility } from './ability';
+import { runHook } from './hook';
 
 export const run: AbilityRunner = (payload) => {
-	switch (payload?.ability?.id) {
-		case 'mutate':
-			return mutate(payload);
-		default:
-			return [];
-	}
+	const commands: DuelCommand[] = [];
+	const registerCommand = (i) => commands.push(i);
+
+	runAbility(payload).forEach(registerCommand);
+	runHook(payload).forEach(registerCommand);
+
+	return commands;
 };

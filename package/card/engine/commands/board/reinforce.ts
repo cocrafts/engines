@@ -1,6 +1,6 @@
 import { CommandCreator, DuelCommand, DuelPlace } from '../../../types';
-import moveCommand from '../../commands/move';
 import { reinforceArray } from '../../util';
+import moveCommand from '../card/move';
 
 export const create: CommandCreator = ({ snapshot }) => {
 	const commands: DuelCommand[] = [];

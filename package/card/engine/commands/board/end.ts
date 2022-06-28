@@ -5,7 +5,7 @@ import {
 	DuelIdentifier,
 	DuelPlace,
 } from '../../../types';
-import mutateCommand from '../mutate';
+import mutateCommand from '../card/mutate';
 
 export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
@@ -62,8 +62,8 @@ export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 	return commands;
 };
 
-export const cleanupCommand = {
+export const endCommand = {
 	create,
 };
 
-export default cleanupCommand;
+export default endCommand;

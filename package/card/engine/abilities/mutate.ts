@@ -1,5 +1,5 @@
 import { AbilityRunner, AbilityTargeting, DuelCommand } from '../../types';
-import mutateCommand from '../commands/mutate';
+import mutateCommand from '../commands/card/mutate';
 
 export const run: AbilityRunner = ({ snapshot, ability, from }) => {
 	const commands: DuelCommand[] = [];

@@ -4,7 +4,7 @@ import {
 	DuelIdentifier,
 	DuelPlace,
 } from '../../../../types';
-import mutateCommand from '../../mutate';
+import mutateCommand from '../../card/mutate';
 
 import { activate } from './internal';
 
@@ -33,7 +33,7 @@ export const create: CommandCreator = (payload) => {
 				.create({
 					snapshot,
 					target,
-					payload: { cooldown: firstCard.base.cooldown - 1 },
+					payload: { cooldown: firstCard.base.cooldown },
 				})
 				.forEach(registerCommand);
 		}
@@ -51,7 +51,7 @@ export const create: CommandCreator = (payload) => {
 				.create({
 					snapshot,
 					target,
-					payload: { cooldown: secondCard.base.cooldown - 1 },
+					payload: { cooldown: secondCard.base.cooldown },
 				})
 				.forEach(registerCommand);
 		}

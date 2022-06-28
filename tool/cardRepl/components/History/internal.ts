@@ -19,7 +19,7 @@ export const getCommandInfo = ({
 	};
 
 	/* <--       ﯑ */
-	if (type === CommandType.Move) {
+	if (type === CommandType.CardMove) {
 		result.id = from.id?.substring?.(2, 4);
 
 		if (from.place === DuelPlace.Deck && target.place === DuelPlace.Hand) {
@@ -30,7 +30,7 @@ export const getCommandInfo = ({
 			result.icon = '';
 			result.iconColor = 'magenta';
 		}
-	} else if (type === CommandType.Mutate) {
+	} else if (type === CommandType.CardMutate) {
 		if (target.place === DuelPlace.Player) {
 			result.id = '';
 			result.idColor = '#555555';

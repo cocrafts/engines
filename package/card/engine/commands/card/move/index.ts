@@ -4,9 +4,8 @@ import {
 	CommandType,
 	DuelCommand,
 	DuelPlace,
-	SummonSide,
-} from '../../../types';
-import { getPlayerOrder } from '../../util';
+} from '../../../../types';
+import { getPlayerOrder } from '../../../util';
 
 import { destroyMove } from './destroy';
 import { move } from './internal';
@@ -26,7 +25,7 @@ export const create: CommandCreator = ({
 
 	commands.push({
 		owner,
-		type: CommandType.Move,
+		type: CommandType.CardMove,
 		from,
 		target,
 		side,

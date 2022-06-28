@@ -1,9 +1,20 @@
+export interface Identified {
+	id: string;
+}
+
 export interface UnitAttributes {
 	attack?: number;
 	defense?: number;
 	health?: number;
 	cooldown?: number;
 }
+
+export interface PlayerAttributes {
+	perTurnHero?: number;
+	perTurnTroop?: number;
+}
+
+export type CommandAttributes = UnitAttributes & PlayerAttributes;
 
 export type AbilityAttributes = Record<string, number>;
 

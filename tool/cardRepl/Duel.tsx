@@ -11,13 +11,13 @@ import Player from './components/Player';
 const cardHeight = 13;
 
 interface Props {
-	game: DuelState;
+	state: DuelState;
 	history?: Array<DuelCommand[]>;
 }
 
-export const Duel: FC<Props> = ({ game, history }) => {
+export const Duel: FC<Props> = ({ state, history }) => {
 	const [round, setRound] = useState(0);
-	const { player, deck, hand, ground, grave } = game;
+	const { player, game, deck, hand, ground, grave } = state;
 	const playerColors: [string, string] = ['blue', 'green'];
 	const [firstColor, secondColor] = playerColors;
 	const [firstPlayer, secondPlayer] = player;
@@ -40,7 +40,7 @@ export const Duel: FC<Props> = ({ game, history }) => {
 		<Box>
 			<History
 				history={extractHistory(history)}
-				players={game.player}
+				players={player}
 				colors={playerColors}
 			/>
 			<Box flexGrow={1} flexDirection="column" paddingRight={1}>
@@ -76,7 +76,7 @@ export const Duel: FC<Props> = ({ game, history }) => {
 				<Player state={firstPlayer} />
 				<Box justifyContent="center">
 					<Text color="#323232">(</Text>
-					<Text>{round}</Text>
+					<Text>{game.turn}</Text>
 					<Text color="#323232">)</Text>
 				</Box>
 			</Box>

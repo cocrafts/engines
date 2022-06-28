@@ -1,11 +1,13 @@
 import { DuelPlace, DuelState } from './duel';
-import { UnitAttributes } from './internal';
+import { CommandAttributes } from './internal';
 
 export enum CommandType {
-	Summon /* <- create from nowhere */,
-	Move,
-	Mutate,
-	Dust,
+	CardSummon /* <- create from nowhere */,
+	CardMove,
+	CardMutate,
+	CardDust,
+	PlayerMutate,
+	DuelMutate,
 }
 
 export enum SummonSide {
@@ -26,7 +28,7 @@ export interface DuelCommand {
 	from?: DuelIdentifier;
 	target?: DuelIdentifier;
 	side?: SummonSide;
-	payload?: UnitAttributes;
+	payload?: CommandAttributes;
 }
 
 export type CreateCommandPayload = Omit<DuelCommand, 'type'> & {

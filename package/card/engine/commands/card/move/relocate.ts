@@ -1,5 +1,5 @@
-import { CommandRunner, DuelPlace, DuelState } from '../../../types';
-import { cloneDuelSource, getPlayerOrder } from '../../util';
+import { CommandRunner, DuelPlace, DuelState } from '../../../../types';
+import { cloneDuelSource, getPlayerOrder } from '../../../util';
 
 export const relocateMove: CommandRunner = ({ snapshot, command }) => {
 	const { player } = snapshot;

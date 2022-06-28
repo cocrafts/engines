@@ -3,8 +3,8 @@ import {
 	CommandType,
 	DuelCommand,
 	DuelPlace,
-} from '../../../types';
-import { getPlayerOrder } from '../../util';
+} from '../../../../types';
+import { getPlayerOrder } from '../../../util';
 
 export const create: CommandCreator = ({ owner, snapshot }) => {
 	const { player, deck } = snapshot;
@@ -15,7 +15,7 @@ export const create: CommandCreator = ({ owner, snapshot }) => {
 
 	const drawCommand = {
 		owner,
-		type: CommandType.Move,
+		type: CommandType.CardMove,
 		from: {
 			id: selectedCard.id,
 			position: selectedPosition,

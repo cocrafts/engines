@@ -1,5 +1,5 @@
-import { CommandRunner, DuelPlace, DuelState } from '../../../types';
-import { addToGround, cloneDuelSource, getPlayerOrder } from '../../util';
+import { CommandRunner, DuelPlace, DuelState } from '../../../../types';
+import { addToGround, cloneDuelSource, getPlayerOrder } from '../../../util';
 
 export const summonMove: CommandRunner = ({ snapshot, command }) => {
 	const { player, cardMap } = snapshot;

@@ -4,9 +4,10 @@ import {
 	DuelIdentifier,
 	DuelPlace,
 } from '../../../../types';
-import { getPlayerOrder } from '../../../util';
-import moveCommand from '../../move';
-import mutateCommand from '../../mutate';
+import { createCommandResult, getPlayerOrder } from '../../../util';
+import cardMoveCommand from '../../card/move';
+import cardMutateCommand from '../../card/mutate';
+import playerMutateCommand from '../../player/mutate';
 
 export const combat = (
 	{ snapshot }: CreateCommandPayload,
@@ -33,7 +34,7 @@ export const combat = (
 		place: DuelPlace.Ground,
 	};
 
-	mutateCommand
+	cardMutateCommand
 		.create({
 			owner: firstPlayer.id,
 			snapshot,
@@ -44,7 +45,7 @@ export const combat = (
 		.forEach(registerCommand);
 
 	if (firstHealth <= 0) {
-		moveCommand
+		cardMoveCommand
 			.create({
 				owner: firstPlayer.id,
 				snapshot,
@@ -54,7 +55,7 @@ export const combat = (
 			.forEach(registerCommand);
 	}
 
-	mutateCommand
+	cardMutateCommand
 		.create({
 			owner: secondPlayer.id,
 			snapshot,
@@ -65,7 +66,7 @@ export const combat = (
 		.forEach(registerCommand);
 
 	if (secondHealth <= 0) {
-		moveCommand
+		cardMoveCommand
 			.create({
 				owner: secondPlayer.id,
 				snapshot,
@@ -82,8 +83,7 @@ export const attack = (
 	{ snapshot }: CreateCommandPayload,
 	from: DuelIdentifier,
 ): DuelCommand[] => {
-	const commands: DuelCommand[] = [];
-	const registerCommand = (i: DuelCommand) => commands.push(i);
+	const { commands, registerCommand } = createCommandResult();
 	const { player, ground } = snapshot;
 	const order = getPlayerOrder(player, from.owner);
 	const opponentOrder = order === 0 ? 1 : 0;
@@ -92,12 +92,14 @@ export const attack = (
 	const currentUnit = currentGround[from.position];
 	if (currentUnit?.id !== from.id) return [];
 
-	mutateCommand
+	playerMutateCommand
 		.create({
-			owner: from.owner,
 			snapshot,
 			from,
-			target: { owner: opponent.id, place: DuelPlace.Player },
+			target: {
+				owner: opponent.id,
+				place: DuelPlace.Player,
+			},
 			payload: { health: -currentUnit.attack },
 		})
 		.forEach(registerCommand);

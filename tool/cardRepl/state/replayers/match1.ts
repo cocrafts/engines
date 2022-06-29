@@ -126,9 +126,11 @@ export const replay = async () => {
 				id: snapshot.hand[0][1].id,
 				position: 1,
 				place: DuelPlace.Hand,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 		}),
 	);
@@ -140,9 +142,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Right,
 		}),
@@ -156,9 +160,11 @@ export const replay = async () => {
 				id: snapshot.hand[1][1].id,
 				position: 1,
 				place: DuelPlace.Hand,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 		}),
 	);
@@ -170,9 +176,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Right,
 		}),
@@ -203,9 +211,11 @@ export const replay = async () => {
 				id: '0040',
 				position: 2,
 				place: DuelPlace.Hand,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Left,
 		}),
@@ -218,9 +228,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Left,
 		}),
@@ -234,9 +246,11 @@ export const replay = async () => {
 				id: '0034',
 				position: 4,
 				place: DuelPlace.Hand,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Right,
 		}),
@@ -249,9 +263,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Left,
 		}),
@@ -281,9 +297,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Right,
 		}),
@@ -297,9 +315,11 @@ export const replay = async () => {
 				id: '0044',
 				position: 3,
 				place: DuelPlace.Hand,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Right,
 		}),
@@ -312,9 +332,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Left,
 		}),
@@ -328,9 +350,11 @@ export const replay = async () => {
 				id: '0004',
 				position: 2,
 				place: DuelPlace.Hand,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Left,
 		}),
@@ -360,9 +384,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Right,
 		}),
@@ -376,9 +402,11 @@ export const replay = async () => {
 				id: '0045',
 				position: 2,
 				place: DuelPlace.Hand,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Right,
 		}),
@@ -391,9 +419,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Right,
 		}),
@@ -407,9 +437,11 @@ export const replay = async () => {
 				id: '0007',
 				position: 4,
 				place: DuelPlace.Hand,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Left,
 		}),
@@ -439,9 +471,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Right,
 		}),
@@ -455,9 +489,11 @@ export const replay = async () => {
 				id: '0054',
 				position: 1,
 				place: DuelPlace.Hand,
+				owner: 'A',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'A',
 			},
 			side: SummonSide.Left,
 		}),
@@ -470,9 +506,11 @@ export const replay = async () => {
 			from: {
 				id: '9999',
 				place: DuelPlace.Player,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Right,
 		}),
@@ -486,21 +524,23 @@ export const replay = async () => {
 				id: '0019',
 				position: 2,
 				place: DuelPlace.Hand,
+				owner: 'B',
 			},
 			target: {
 				place: DuelPlace.Ground,
+				owner: 'B',
 			},
 			side: SummonSide.Right,
 		}),
 	);
 
-	// progress();
-	runBatch(commandCreators.boardCombat({ snapshot }));
-	runBatch(commandCreators.boardReinforce({ snapshot }));
+	progress();
+	// runBatch(commandCreators.boardCombat({ snapshot }));
+	// runBatch(commandCreators.boardReinforce({ snapshot }));
 	// runBatch(commandCreators.boardEnd({ snapshot }));
 
 	// console.log(commandCreators.cardDraw({ owner: 'A', snapshot }));
-	console.log(commandCreators.cardDraw({ owner: 'B', snapshot }));
+	// console.log(commandCreators.cardDraw({ owner: 'B', snapshot }));
 	// progress();
 
 	return {

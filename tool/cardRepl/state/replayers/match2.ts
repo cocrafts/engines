@@ -4,6 +4,7 @@ import {
 	DuelPlace,
 	DuelState,
 	runCommand,
+	SummonSide,
 } from '@cocrafts/card';
 import clone from 'lodash/cloneDeep';
 
@@ -12,7 +13,6 @@ import { initialState } from '../internal';
 export const replay = async () => {
 	let snapshot: DuelState = clone(initialState);
 	const commandHistory: Array<DuelCommand[]> = [];
-
 	const runBatch = (batch: DuelCommand[]) => {
 		if (batch.length > 0) {
 			commandHistory.push(batch);
@@ -25,7 +25,6 @@ export const replay = async () => {
 			};
 		});
 	};
-
 	const progress = () => {
 		runBatch(commandCreators.boardSkill({ snapshot }));
 		runBatch(commandCreators.boardReinforce({ snapshot }));
@@ -149,6 +148,43 @@ export const replay = async () => {
 			},
 		}),
 	);
+
+	runBatch(
+		commandCreators.cardMove({
+			owner: 'B',
+			snapshot,
+			from: {
+				id: snapshot.hand[1][1].id,
+				position: 1,
+				place: DuelPlace.Hand,
+				owner: 'B',
+			},
+			target: {
+				place: DuelPlace.Ground,
+				owner: 'B',
+			},
+		}),
+	);
+
+	runBatch(
+		commandCreators.cardMove({
+			owner: 'B',
+			snapshot,
+			from: {
+				id: '9999',
+				place: DuelPlace.Player,
+				owner: 'B',
+			},
+			target: {
+				place: DuelPlace.Ground,
+				owner: 'B',
+			},
+			side: SummonSide.Left,
+		}),
+	);
+
+	progress();
+	progress();
 
 	return {
 		snapshot,

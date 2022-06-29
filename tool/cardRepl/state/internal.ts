@@ -1,10 +1,8 @@
 import {
-	DuelCommand,
 	DuelSetup,
 	DuelState,
 	fetchGameMeta,
 	getInitialSnapshot,
-	runCommand,
 } from '@cocrafts/card';
 import clone from 'lodash/cloneDeep';
 
@@ -110,25 +108,4 @@ const setup: DuelSetup = {
 const defaultMeta = fetchGameMeta('jun0422');
 export const initialState: DuelState = getInitialSnapshot(defaultMeta, setup);
 
-const listeners = [];
 export const game: DuelState = clone(initialState);
-
-export const subscribe = (callback: (state: DuelState) => void) => {
-	listeners.push(callback);
-};
-
-export const broadcast = () => {
-	listeners.forEach((callback) => callback?.(game));
-};
-
-export const runCommands = (commands: DuelCommand[]) => {
-	commands.forEach((command) => {
-		const changes = runCommand({ snapshot: game, command });
-
-		Object.keys(changes).forEach((key) => {
-			game[key] = changes[key];
-		});
-
-		listeners.forEach((callback) => callback?.(game));
-	});
-};

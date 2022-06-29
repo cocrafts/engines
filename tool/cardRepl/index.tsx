@@ -1,7 +1,8 @@
 import { render } from 'ink';
 
+import { replay } from './state/replayers/matchOne';
 import Duel from './Duel';
-import { game, replay } from './state';
+import { game } from './state';
 
 const { rerender } = render(<Duel state={game} />);
 

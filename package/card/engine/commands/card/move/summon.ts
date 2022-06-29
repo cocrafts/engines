@@ -8,7 +8,7 @@ export const summonMove: CommandRunner = ({ snapshot, command }) => {
 	const groundClone = cloneDuelSource(snapshot, DuelPlace.Ground);
 	const currentGround = groundClone.source[order];
 
-	if (from.place === DuelPlace.Ability) {
+	if ([DuelPlace.Ability, DuelPlace.Player].indexOf(from.place) >= 0) {
 		const targetedCard = cardMap[`${from.id}0000`];
 		const selectedCard = { ...targetedCard, base: targetedCard };
 

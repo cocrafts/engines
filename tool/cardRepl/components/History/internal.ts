@@ -31,7 +31,6 @@ export const getCommandInfo = ({
 			result.iconColor = 'magenta';
 		}
 	} else if (type === CommandType.PlayerMutate) {
-		console.log(payload);
 		if (payload?.health) {
 			result.id = '♥';
 			result.iconColor = payload.health > 0 ? 'green' : 'red';

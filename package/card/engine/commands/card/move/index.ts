@@ -37,7 +37,7 @@ export const create: CommandCreator = ({
 	const toGround = target.place === DuelPlace.Ground;
 	const fromType = fromCard?.base?.type;
 	const fromHeroCard = fromType === CardType.Hero;
-	const fromTroopCard = fromType === CardType.Troop;
+	const fromTroopCard = from.id.startsWith('9999');
 	const isHeroSummon = owner && fromHand && toGround && fromHeroCard;
 	const isTroopSummon = owner && fromPlayer && toGround && fromTroopCard;
 	const commandInstance: DuelCommand = {

@@ -1,6 +1,6 @@
 import { render } from 'ink';
 
-import { replay } from './state/replayers/matchOne';
+import { replay } from './state/replayers/match2';
 import Duel from './Duel';
 import { game } from './state';
 

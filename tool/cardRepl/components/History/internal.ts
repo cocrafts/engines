@@ -30,14 +30,23 @@ export const getCommandInfo = ({
 			result.icon = '';
 			result.iconColor = 'magenta';
 		}
-	} else if (type === CommandType.CardMutate) {
-		if (target.place === DuelPlace.Player) {
+	} else if (type === CommandType.PlayerMutate) {
+		console.log(payload);
+		if (payload?.health) {
+			result.id = '♥';
+			result.iconColor = payload.health > 0 ? 'green' : 'red';
+			result.icon = payload.health > 0 ? '' : '';
+		} else if (payload?.perTurnHero) {
+			result.id = '';
+			result.iconColor = payload.perTurnHero > 0 ? 'green' : 'red';
+			result.icon = payload.perTurnHero > 0 ? '' : '';
+		} else if (payload?.perTurnTroop) {
+			result.id = '﯑';
+			result.iconColor = payload.perTurnTroop > 0 ? 'green' : 'red';
+			result.icon = payload.perTurnTroop > 0 ? '' : '';
+		} else {
 			result.id = '';
-			result.idColor = '#555555';
 		}
-
-		result.iconColor = payload?.health > 0 ? 'green' : 'red';
-		result.icon = payload?.health > 0 ? '' : '';
 	}
 
 	return result;

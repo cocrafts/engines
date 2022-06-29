@@ -1,26 +1,78 @@
 import {
+	CardType,
 	CommandCreator,
 	CommandRunner,
 	CommandType,
+	DuelCommand,
 	DuelPlace,
 } from '../../../../types';
-import { createCommandResult } from '../../../util';
+import {
+	cloneDuelSource,
+	createCommandResult,
+	getPlayerOrder,
+} from '../../../util';
+import playerMutateCommand from '../../player/mutate';
 
 import { destroyMove } from './destroy';
 import { move } from './internal';
 import { relocateMove } from './relocate';
 import { summonMove } from './summon';
 
-export const create: CommandCreator = ({ owner, from, target, side }) => {
+export const create: CommandCreator = ({
+	snapshot,
+	owner,
+	from,
+	target,
+	side,
+}) => {
 	const { commands, registerCommand } = createCommandResult();
-
-	registerCommand({
+	const { player } = snapshot;
+	const fromOrder = getPlayerOrder(player, from.owner);
+	const currentPlayer = player[fromOrder];
+	const fromClone = cloneDuelSource(snapshot, from.place);
+	const currentFrom = fromClone.source[fromOrder];
+	const fromCard = currentFrom[from.position];
+	const fromPlayer = from.place === DuelPlace.Player;
+	const fromHand = from.place === DuelPlace.Hand;
+	const toGround = target.place === DuelPlace.Ground;
+	const fromType = fromCard?.base?.type;
+	const fromHeroCard = fromType === CardType.Hero;
+	const fromTroopCard = fromType === CardType.Troop;
+	const isHeroSummon = owner && fromHand && toGround && fromHeroCard;
+	const isTroopSummon = owner && fromPlayer && toGround && fromTroopCard;
+	const commandInstance: DuelCommand = {
 		owner,
 		type: CommandType.CardMove,
 		from,
 		target,
 		side,
-	});
+	};
+
+	if (isHeroSummon) {
+		if (currentPlayer.perTurnHero > 0) {
+			registerCommand(commandInstance);
+			playerMutateCommand
+				.create({
+					snapshot,
+					target: { owner, place: DuelPlace.Player },
+					payload: { perTurnHero: -1 },
+				})
+				.forEach(registerCommand);
+		}
+	} else if (isTroopSummon) {
+		if (currentPlayer.perTurnTroop > 0) {
+			registerCommand(commandInstance);
+			playerMutateCommand
+				.create({
+					snapshot,
+					target: { owner, place: DuelPlace.Player },
+					payload: { perTurnTroop: -1 },
+				})
+				.forEach(registerCommand);
+		}
+	} else {
+		registerCommand(commandInstance);
+	}
 
 	return commands;
 };

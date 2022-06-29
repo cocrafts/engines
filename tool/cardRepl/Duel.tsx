@@ -90,6 +90,14 @@ Duel.defaultProps = {
 
 export default Duel;
 
+const isHistoryBatch = (batch: DuelCommand[]) => {
+	for (let i = 0; i < batch.length; i += 1) {
+		if (!batch[i]?.target) return false;
+	}
+
+	return true;
+};
+
 const extractHistory = (history: Array<DuelCommand[]>, limit = 40) => {
 	const result = [];
 	let currentSize = 0;
@@ -97,8 +105,10 @@ const extractHistory = (history: Array<DuelCommand[]>, limit = 40) => {
 	for (let i = history.length - 1; i >= 0; i -= 1) {
 		const batch = history[i];
 
-		result.push(batch);
-		currentSize += batch.length;
+		if (isHistoryBatch(batch)) {
+			result.push(batch);
+			currentSize += batch.length;
+		}
 
 		if (currentSize >= limit) {
 			return result;

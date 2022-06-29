@@ -7,9 +7,11 @@ import skillCommand from './board/skill';
 import cardDrawCommand from './card/draw';
 import cardMoveCommand from './card/move';
 import cardMutateCommand from './card/mutate';
+import duelMutateCommand from './duel/mutate';
 import playerMutateCommand from './player/mutate';
 
 export const commandCreators = {
+	duelMutate: duelMutateCommand.create,
 	playerMutate: playerMutateCommand.create,
 
 	cardDraw: cardDrawCommand.create,
@@ -32,6 +34,8 @@ export const runCommand = (payload: RunCommandPayload): DuelState => {
 			return cardMoveCommand.run(payload);
 		case CommandType.PlayerMutate:
 			return playerMutateCommand.run(payload);
+		case CommandType.DuelMutate:
+			return duelMutateCommand.run(payload);
 		default:
 			return snapshot;
 	}

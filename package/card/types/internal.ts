@@ -14,7 +14,13 @@ export interface PlayerAttributes {
 	perTurnTroop?: number;
 }
 
-export type CommandAttributes = UnitAttributes & PlayerAttributes;
+export interface GameAttributes {
+	turn?: number;
+}
+
+export type CommandAttributes = UnitAttributes &
+	PlayerAttributes &
+	GameAttributes;
 
 export type AbilityAttributes = Record<string, number>;
 

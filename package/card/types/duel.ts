@@ -1,5 +1,10 @@
 import { Card, CardState } from './card';
-import { Identified, PlayerAttributes, UnitAttributes } from './internal';
+import {
+	GameAttributes,
+	Identified,
+	PlayerAttributes,
+	UnitAttributes,
+} from './internal';
 
 export enum DuelPlace {
 	Deck,
@@ -30,9 +35,7 @@ export type PlayerState = Identified & UnitAttributes & PlayerAttributes;
 export type PlayerStatePair = [PlayerState, PlayerState];
 export type CardStatePair = [CardState[], CardState[]];
 
-export interface GameSate {
-	turn: number;
-}
+export type GameSate = GameAttributes;
 
 export type DuelState = Omit<DuelSetup, 'deck' | 'player'> & {
 	cardMap: Record<string, Card>;

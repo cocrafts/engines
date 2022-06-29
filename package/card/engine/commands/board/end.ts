@@ -5,7 +5,8 @@ import {
 	DuelIdentifier,
 	DuelPlace,
 } from '../../../types';
-import mutateCommand from '../card/mutate';
+import cardMutateCommand from '../card/mutate';
+import duelMutateCommand from '../duel/mutate';
 
 export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
@@ -26,7 +27,7 @@ export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 				position: i,
 			};
 
-			mutateCommand
+			cardMutateCommand
 				.create({
 					snapshot,
 					from: identifier,
@@ -46,7 +47,7 @@ export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 				position: i,
 			};
 
-			mutateCommand
+			cardMutateCommand
 				.create({
 					snapshot,
 					from: identifier,
@@ -58,6 +59,10 @@ export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 				.forEach(registerCommand);
 		}
 	}
+
+	duelMutateCommand
+		.create({ snapshot, payload: { turn: 1 } })
+		.forEach(registerCommand);
 
 	return commands;
 };

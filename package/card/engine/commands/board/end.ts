@@ -7,11 +7,12 @@ import {
 } from '../../../types';
 import cardMutateCommand from '../card/mutate';
 import duelMutateCommand from '../duel/mutate';
+import playerMutateCommand from '../player/mutate';
 
 export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 	const commands: DuelCommand[] = [];
 	const registerCommand = (i: DuelCommand) => commands.push(i);
-	const { player, ground } = snapshot;
+	const { setting, player, ground } = snapshot;
 	const [firstPlayer, secondPlayer] = player;
 	const [firstGround, secondGround] = ground;
 
@@ -62,6 +63,28 @@ export const create: CommandCreator = ({ snapshot }): DuelCommand[] => {
 
 	duelMutateCommand
 		.create({ snapshot, payload: { turn: 1 } })
+		.forEach(registerCommand);
+
+	playerMutateCommand
+		.create({
+			snapshot,
+			target: { owner: firstPlayer.id, place: DuelPlace.Player },
+			payload: {
+				perTurnHero: setting.perTurnHero - firstPlayer.perTurnHero,
+				perTurnTroop: setting.perTurnTroop - firstPlayer.perTurnTroop,
+			},
+		})
+		.forEach(registerCommand);
+
+	playerMutateCommand
+		.create({
+			snapshot,
+			target: { owner: secondPlayer.id, place: DuelPlace.Player },
+			payload: {
+				perTurnHero: setting.perTurnHero - secondPlayer.perTurnHero,
+				perTurnTroop: setting.perTurnTroop - secondPlayer.perTurnTroop,
+			},
+		})
 		.forEach(registerCommand);
 
 	return commands;

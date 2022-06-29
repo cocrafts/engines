@@ -3,7 +3,7 @@ import { render } from 'ink';
 import Duel from './Duel';
 import { game, replay } from './state';
 
-const { rerender } = render(<Duel game={game} />);
+const { rerender } = render(<Duel state={game} />);
 
 replay().then(({ snapshot, history }) => {
 	const slicedHistory = history.slice(10);
@@ -12,5 +12,5 @@ replay().then(({ snapshot, history }) => {
 		game[key] = snapshot[key];
 	});
 
-	rerender(<Duel game={snapshot} history={slicedHistory} />);
+	rerender(<Duel state={snapshot} history={slicedHistory} />);
 });

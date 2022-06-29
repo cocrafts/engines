@@ -2,51 +2,25 @@ import {
 	CommandCreator,
 	CommandRunner,
 	CommandType,
-	DuelCommand,
 	DuelPlace,
 } from '../../../../types';
-import { getPlayerOrder } from '../../../util';
+import { createCommandResult } from '../../../util';
 
 import { destroyMove } from './destroy';
 import { move } from './internal';
 import { relocateMove } from './relocate';
 import { summonMove } from './summon';
 
-export const create: CommandCreator = ({
-	owner,
-	snapshot,
-	from,
-	target,
-	side,
-}) => {
-	const commands: DuelCommand[] = [];
-	const { player, hand } = snapshot;
-	const order = getPlayerOrder(player, owner);
+export const create: CommandCreator = ({ owner, from, target, side }) => {
+	const { commands, registerCommand } = createCommandResult();
 
-	commands.push({
+	registerCommand({
 		owner,
 		type: CommandType.CardMove,
 		from,
 		target,
 		side,
 	});
-
-	if (target.place === DuelPlace.Ground) {
-		/* <- Simulate ability */
-		commands.push({
-			owner,
-			type: CommandType.Move,
-			from: {
-				id: '0002',
-				place: DuelPlace.Ability,
-			},
-			target: {
-				position: hand[order].length + 1,
-				place: DuelPlace.Ground,
-			},
-			side: SummonSide.Right,
-		});
-	}
 
 	return commands;
 };

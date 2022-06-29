@@ -15,7 +15,9 @@ export const replay = async () => {
 	const commandHistory: Array<DuelCommand[]> = [];
 
 	const runBatch = (batch: DuelCommand[]) => {
-		commandHistory.push(batch);
+		if (batch.length > 0) {
+			commandHistory.push(batch);
+		}
 
 		batch.forEach((command: DuelCommand) => {
 			snapshot = {
@@ -23,6 +25,14 @@ export const replay = async () => {
 				...runCommand({ snapshot, command }),
 			};
 		});
+	};
+
+	const progress = () => {
+		runBatch(commandCreators.boardSkill({ snapshot }));
+		runBatch(commandCreators.boardReinforce({ snapshot }));
+		runBatch(commandCreators.boardCombat({ snapshot }));
+		runBatch(commandCreators.boardReinforce({ snapshot }));
+		runBatch(commandCreators.boardEnd({ snapshot }));
 	};
 
 	// for (let i = 0; i < 10; i += 1) {
@@ -36,7 +46,7 @@ export const replay = async () => {
 	drawCommands.forEach((batch) => runBatch(batch as never));
 
 	runBatch(
-		commandCreators.move({
+		commandCreators.cardMove({
 			owner: 'A',
 			snapshot,
 			from: {
@@ -51,7 +61,7 @@ export const replay = async () => {
 	);
 
 	runBatch(
-		commandCreators.move({
+		commandCreators.cardMove({
 			owner: 'B',
 			snapshot,
 			from: {
@@ -65,7 +75,7 @@ export const replay = async () => {
 		}),
 	);
 
-	runBatch(commandCreators.combat({ snapshot }));
+	progress();
 
 	return {
 		snapshot,

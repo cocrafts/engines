@@ -4,7 +4,7 @@
  * 3. elemental/1: metal/1, tree/2, water/3, fire/4, earth/5, dark/6, light/7
  * [cardId/4][rarity/1][elemental/1] */
 
-import { Card, CardConfig, GameMeta } from '../types';
+import { Card, CardConfig, CardType, GameMeta } from '../types';
 
 export const metaFromConfig = (
 	cardConfigs: CardConfig[],
@@ -14,10 +14,24 @@ export const metaFromConfig = (
 	const map = {};
 
 	for (const cardConfig of cardConfigs) {
-		for (let i = 0; i < 1; i += 1) {
-			const rarity = String(i).padStart(2, '0');
-			const elemental = String(cardConfig.elemental || 0).padStart(2, '0');
-			const cardId = `${cardConfig.id}${rarity}${elemental}`;
+		if (cardConfig.type === CardType.Hero) {
+			for (let i = 0; i < 1; i += 1) {
+				const rarity = String(i).padStart(2, '0');
+				const elemental = String(cardConfig.elemental || 0).padStart(2, '0');
+				const cardId = `${cardConfig.id}${rarity}${elemental}`;
+
+				entities.push(cardId);
+				map[cardId] = {
+					...cardConfig,
+					id: cardId,
+					attack: cardConfig.attack?.[0] || 0,
+					defense: cardConfig.defense?.[0] || 0,
+					health: cardConfig.health?.[0] || 0,
+					cooldown: cardConfig.cooldown?.[0],
+				} as Card;
+			}
+		} else {
+			const cardId = `${cardConfig.id}0000`;
 
 			entities.push(cardId);
 			map[cardId] = {
@@ -26,8 +40,7 @@ export const metaFromConfig = (
 				attack: cardConfig.attack?.[0] || 0,
 				defense: cardConfig.defense?.[0] || 0,
 				health: cardConfig.health?.[0] || 0,
-				cooldown: cardConfig.cooldown?.[0] || 0,
-			} as Card;
+			};
 		}
 	}
 

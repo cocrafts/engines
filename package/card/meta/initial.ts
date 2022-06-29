@@ -2,6 +2,15 @@ import { CardClass, CardConfig, CardType, SpellTurn } from '../types';
 
 export const initialCardConfigs: CardConfig[] = [
 	{
+		id: '9999',
+		name: 'Troop',
+		type: CardType.Troop,
+		class: CardClass.Knight,
+		attack: [200],
+		health: [400],
+		defense: [0],
+	},
+	{
 		id: '0001',
 		type: CardType.Hero,
 		class: CardClass.Tanker,

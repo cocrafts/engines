@@ -82,5 +82,6 @@ export type Card = Omit<
 
 export type CardState = UnitAttributes & {
 	id: string;
+	name?: string;
 	base: Card;
 };

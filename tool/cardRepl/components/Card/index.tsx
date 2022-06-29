@@ -25,7 +25,7 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 			alignItems="center"
 			borderColor="#333333"
 		>
-			<Text color={color}>{item.id.substring(2, 4)}</Text>
+			<Text color={color}>{item.name || item.id.substring(2, 4)}</Text>
 			<Box
 				paddingLeft={1}
 				paddingBottom={1}

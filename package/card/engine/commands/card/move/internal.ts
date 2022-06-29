@@ -1,16 +1,18 @@
 import { CommandRunner, DuelPlace, DuelState } from '../../../../types';
-import { cloneDuelSource, getPlayerOrder } from '../../../util';
+import { addToGround, cloneDuelSource, getPlayerOrder } from '../../../util';
 
 export const move: CommandRunner = ({ command, snapshot }) => {
 	const { player, cardMap } = snapshot;
-	const { owner, from, target } = command;
+	const { owner, from, target, side } = command;
 	const order = getPlayerOrder(player, owner);
 	const targetClone = cloneDuelSource(snapshot, target.place);
 	const currentTarget = targetClone.source[order];
 
-	if (from.place === DuelPlace.Ability) {
+	if ([DuelPlace.Player, DuelPlace.Ability].indexOf(from.place) >= 0) {
 		const targetedCard = cardMap[`${from.id}0000`];
-		currentTarget.push({ ...targetedCard, base: targetedCard });
+		const selectedCard = { ...targetedCard, base: targetedCard };
+
+		addToGround(selectedCard, currentTarget, side);
 
 		return { [targetClone.key]: targetClone.source as unknown } as DuelState;
 	} else {

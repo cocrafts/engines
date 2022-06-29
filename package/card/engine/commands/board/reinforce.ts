@@ -8,6 +8,8 @@ export const create: CommandCreator = ({ snapshot }) => {
 	const { player, ground } = snapshot;
 	const [firstPlayer, secondPlayer] = player;
 	const [firstGround, secondGround] = ground;
+	const firstMirror = [...firstGround];
+	const secondMirror = [...secondGround];
 	const firstReinforce = reinforceArray(firstGround);
 	const secondReinforce = reinforceArray(secondGround);
 
@@ -16,9 +18,12 @@ export const create: CommandCreator = ({ snapshot }) => {
 		const secondCard = secondReinforce[i];
 
 		if (firstCard) {
-			const lastPos = firstGround.findIndex((o) => o?.id === firstCard.id);
+			const lastPos = firstMirror.findIndex((o) => o?.id === firstCard.id);
 
 			if (lastPos !== i) {
+				firstMirror[lastPos] = firstCard;
+				firstMirror[i] = null;
+
 				moveCommand
 					.create({
 						snapshot,
@@ -40,9 +45,12 @@ export const create: CommandCreator = ({ snapshot }) => {
 		}
 
 		if (secondCard) {
-			const lastPos = secondGround.findIndex((o) => o?.id === secondCard.id);
+			const lastPos = secondMirror.findIndex((o) => o?.id === secondCard.id);
 
 			if (lastPos !== i) {
+				secondMirror[lastPos] = secondCard;
+				secondMirror[i] = null;
+
 				moveCommand
 					.create({
 						snapshot,

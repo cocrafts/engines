@@ -1,0 +1,25 @@
+{
+	"name": "@cocrafts/engine-card",
+	"version": "0.0.14",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/**/**"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:cocrafts/engines.git",
+		"directory": "package/card"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"scripts": {
+		"build": "rm -rf ./dist && tsc",
+		"prepublish": "yarn build"
+	},
+	"devDependencies": {
+		"typescript": "^4.5.3"
+	}
+}

@@ -2,8 +2,11 @@
 Single repository that hold opensource algorithm for Metacraft Games.
 
 ## Required tools:
-- [NodeJs](https://nodejs.org/en/) version `14+`
-- `rockman-cli`, install via `npm i -g rockman-cli` 
+- [NodeJs](https://nodejs.org/en/), suggested version 16
+- Install `metacraft cli` via `npm i --location=global metacraft` or via yarn `yarn global add metacraft` 
 
 ## Development:
-- run `rockman` under project's root directory for Development
+Run `metacraft` under project's root directory for Development - if success you would see something like following:
+
+![](assets/demo.png)
+

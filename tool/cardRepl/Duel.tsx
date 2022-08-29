@@ -1,5 +1,9 @@
 import { FC, useState } from 'react';
-import { CardState, DuelCommand, DuelState } from '@cocrafts/card';
+import {
+	CardState,
+	DuelCommand,
+	DuelState,
+} from '@metacraft/engines-under-realm';
 import { Box, Text, useInput } from 'ink';
 
 import Card from './components/Card';

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CardState, CardType } from '@cocrafts/card';
+import { CardState, CardType } from '@metacraft/engines-under-realm';
 import { Box, Text } from 'ink';
 
 interface Props {

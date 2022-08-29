@@ -1,23 +1,16 @@
 {
-	"name": "@cocrafts/engine-card",
+	"name": "@metacraft/engines-under-realm",
+	"description": "core game algorithm for Under Realm - raise of magic",
 	"version": "0.0.14",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"license": "MIT",
 	"files": [
 		"dist/**/**"
 	],
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:cocrafts/engines.git",
-		"directory": "package/card"
-	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
 	"scripts": {
 		"build": "rm -rf ./dist && tsc",
-		"prepublish": "yarn build"
+		"release": "npm run build && npm publish --access public"
 	},
 	"devDependencies": {
 		"typescript": "^4.5.3"

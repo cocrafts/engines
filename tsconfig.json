@@ -4,7 +4,7 @@
 		"jsx": "react-native",
 		"baseUrl": ".",
 		"paths": {
-			"@cocrafts/card": ["package/card"]
+			"@metacraft/engines-under-realm": ["package/card"]
 		}
 	},
 	"exclude": [

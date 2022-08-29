@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PlayerState } from '@cocrafts/card';
+import { PlayerState } from '@metacraft/engines-under-realm';
 import { Box, Text } from 'ink';
 import BigText from 'ink-big-text';
 import Gradient from 'ink-gradient';

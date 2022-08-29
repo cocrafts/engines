@@ -5,7 +5,7 @@ import {
 	DuelState,
 	runCommand,
 	SummonSide,
-} from '@cocrafts/card';
+} from '@metacraft/engines-under-realm';
 import clone from 'lodash/cloneDeep';
 
 import { initialState } from '../internal';

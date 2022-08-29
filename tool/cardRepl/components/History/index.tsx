@@ -1,5 +1,9 @@
 import { FC } from 'react';
-import { DuelCommand, getPlayerOrder, PlayerStatePair } from '@cocrafts/card';
+import {
+	DuelCommand,
+	getPlayerOrder,
+	PlayerStatePair,
+} from '@metacraft/engines-under-realm';
 import { Box, Text } from 'ink';
 
 import { getCommandInfo } from './internal';

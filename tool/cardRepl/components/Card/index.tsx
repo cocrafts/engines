@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CardState } from '@cocrafts/card';
+import { CardState } from '@metacraft/engines-under-realm';
 import { Box, Text } from 'ink';
 
 import Attribute from './Attribute';

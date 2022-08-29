@@ -1,4 +1,8 @@
-import { CommandType, DuelCommand, DuelPlace } from '@cocrafts/card';
+import {
+	CommandType,
+	DuelCommand,
+	DuelPlace,
+} from '@metacraft/engines-under-realm';
 
 interface CommandInfo {
 	id: string;

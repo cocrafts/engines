@@ -4,7 +4,8 @@
 		"jsx": "react-native",
 		"baseUrl": ".",
 		"paths": {
-			"@metacraft/engines-under-realm": ["package/card"]
+			"@metacraft/engines-under-realm": ["package/card"],
+			"@metacraft/murg-engine": ["package/murg"]
 		}
 	},
 	"exclude": [

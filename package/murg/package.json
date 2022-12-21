@@ -1,0 +1,18 @@
+{
+	"name": "@metacraft/murg-engine",
+	"description": "core game algorithm for Under Realm - raise of magic",
+	"version": "0.0.15",
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"license": "MIT",
+	"files": [
+		"dist/**/**"
+	],
+	"scripts": {
+		"build": "rm -rf ./dist && tsc",
+		"release": "npm run build && npm publish --access public"
+	},
+	"devDependencies": {
+		"typescript": "^4.5.3"
+	}
+}

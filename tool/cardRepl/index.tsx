@@ -1,17 +1,4 @@
-import { render } from 'ink';
+import { getMeta } from '@metacraft/murg-engine';
 
-import { replay } from './state/replayers/match1';
-import Duel from './Duel';
-import { game } from './state';
-
-const { rerender } = render(<Duel state={game} />);
-
-replay().then(({ snapshot, history }) => {
-	const slicedHistory = history.slice(10);
-
-	Object.keys(snapshot).forEach((key) => {
-		game[key] = snapshot[key];
-	});
-
-	rerender(<Duel state={snapshot} history={slicedHistory} />);
-});
+const meta = getMeta();
+console.log('hmm', meta);

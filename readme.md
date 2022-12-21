@@ -9,4 +9,3 @@ Single repository that hold opensource algorithm for Metacraft Games.
 Run `metacraft` under project's root directory for Development - if success you would see something like following:
 
 ![](assets/demo.png)
-

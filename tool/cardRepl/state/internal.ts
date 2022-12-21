@@ -3,7 +3,7 @@ import {
 	DuelState,
 	fetchGameMeta,
 	getInitialSnapshot,
-} from '@cocrafts/card';
+} from '@metacraft/engines-under-realm';
 import clone from 'lodash/cloneDeep';
 
 const setup: DuelSetup = {

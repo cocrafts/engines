@@ -6,28 +6,35 @@ export const makeDuelState = ({
 	version,
 	setting,
 	firstMover,
-	playerConfigs,
+	firstPlayer,
+	secondPlayer,
 }: DuelConfig): DuelState => {
 	const { map } = makeMeta(version);
-
-	const [firstState, secondState] = playerConfigs.map((player): PlayerState => {
-		return {
-			id: player.id,
-			attack: 0,
-			defense: 0,
-			health: setting.playerHealth,
-			deck: player.deck.map((cardId) => makeCardState(map[cardId])),
-			hand: [],
-			ground: [],
-			grave: [],
-		};
-	});
+	const [firstPlayerState, secondPlayerState] = [firstPlayer, secondPlayer].map(
+		(player): PlayerState => {
+			return {
+				id: player.id,
+				attack: 0,
+				defense: 0,
+				health: setting.playerHealth,
+			};
+		},
+	);
 
 	return {
 		map,
 		setting,
 		round: 1,
 		firstMover,
-		players: [firstState, secondState],
+		firstPlayer: firstPlayerState,
+		secondPlayer: secondPlayerState,
+		firstDeck: firstPlayer.deck.map((cardId) => makeCardState(map[cardId])),
+		secondDeck: secondPlayer.deck.map((cardId) => makeCardState(map[cardId])),
+		firstHand: [],
+		secondHand: [],
+		firstGround: [],
+		secondGround: [],
+		firstGrave: [],
+		secondGrave: [],
 	};
 };

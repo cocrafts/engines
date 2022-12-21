@@ -126,9 +126,8 @@ export type DuelCommandPayload = Attribute & {
 
 export interface BoardTarget {
 	place: DuelPlace;
-	owner?: number;
+	owner?: string;
 	id?: string;
-	position?: number;
 }
 
 export interface DuelCommandTarget {
@@ -138,7 +137,7 @@ export interface DuelCommandTarget {
 
 export interface DuelCommand {
 	type: DuelCommandType;
-	owner?: number;
+	owner?: string;
 	target?: DuelCommandTarget;
 	payload?: DuelCommandPayload;
 }
@@ -161,25 +160,49 @@ export interface DuelConfig {
 	version: string;
 	setting: DuelSetting;
 	firstMover: string;
-	playerConfigs: [PlayerConfig, PlayerConfig];
+	firstPlayer: PlayerConfig;
+	secondPlayer: PlayerConfig;
 }
 
 export type CardState = Attribute & {
 	id: string;
 };
 
-export type PlayerState = Attribute & {
-	id: string;
-	deck: CardState[];
-	hand: CardState[];
-	ground: CardState[];
-	grave: CardState[];
-};
+export type PlayerState = Attribute & { id: string };
 
 export interface DuelState {
 	map: Record<string, Card>;
 	setting: DuelSetting;
 	round: number;
 	firstMover: string;
-	players: [PlayerState, PlayerState];
+	firstPlayer: PlayerState;
+	secondPlayer: PlayerState;
+	firstDeck: CardState[];
+	secondDeck: CardState[];
+	firstHand: CardState[];
+	secondHand: CardState[];
+	firstGround: CardState[];
+	secondGround: CardState[];
+	firstGrave: CardState[];
+	secondGrave: CardState[];
+}
+
+export type CreateCommandPayload = Omit<DuelCommand, 'type'> & {
+	state: DuelState;
+};
+
+export type CommandCreator<T = CreateCommandPayload> = (
+	payload: T,
+) => DuelCommand[];
+
+export type RunCommandPayload = Omit<DuelCommand, 'type'> & {
+	command: DuelCommand;
+	state: DuelState;
+};
+
+export type CommandRunner<T = RunCommandPayload> = (payload: T) => DuelState;
+
+export interface CommandBundle {
+	create?: CommandCreator;
+	run?: CommandRunner;
 }

@@ -5,8 +5,8 @@ import { SnakeCard, TroopCard, WolfCard } from './shared';
 
 const metaHash: Record<string, Card[]> = { ver00001 };
 
-export const getMeta = (version?: string): DuelMeta => {
-	const cards = metaHash[version] || ver00001;
+export const getMeta = (version = '00001'): DuelMeta => {
+	const cards = metaHash[`ver${version}`] || ver00001;
 	const entities = [];
 	const map = {};
 

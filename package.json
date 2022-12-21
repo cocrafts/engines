@@ -19,13 +19,15 @@
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "jest": "^28.1.1",
+    "lodash": "^4.17.21",
     "module-alias": "^2.2.2",
     "prettier": "^2.7.0",
     "react": "17.0.2",
     "typescript": "^4.7.3"
   },
   "dependencies": {
-    "@types/node": "^17.0.43"
+    "@types/node": "^17.0.43",
+    "nanoid": "^3.0.0"
   },
   "resolutions": {
     "@types/react": "18.0.5"

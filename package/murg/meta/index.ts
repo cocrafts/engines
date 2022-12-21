@@ -1,11 +1,11 @@
-import { Card, CardType, DuelMeta, ElementalType } from '../utils/type';
+import { Card, CardMeta, CardType, ElementalType } from '../utils/type';
 
 import ver00001 from './db/00001';
 import { SnakeCard, TroopCard, WolfCard } from './shared';
 
 const metaHash: Record<string, Card[]> = { ver00001 };
 
-export const getMeta = (version = '00001'): DuelMeta => {
+export const makeMeta = (version = '00001'): CardMeta => {
 	const cards = metaHash[`ver${version}`] || ver00001;
 	const entities = [];
 	const map = {};

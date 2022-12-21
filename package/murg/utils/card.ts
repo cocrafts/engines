@@ -1,4 +1,10 @@
-import { Card, FragmentType, TemplateFragment, TemplateStyle } from './type';
+import {
+	Card,
+	CardState,
+	FragmentType,
+	TemplateFragment,
+	TemplateStyle,
+} from './type';
 
 const colors: Record<string, string> = {
 	black: '#000000',
@@ -145,4 +151,14 @@ export const interpolate = (card: Card): Card => {
 
 	card.skill.template = interpolateTemplate(template);
 	return card;
+};
+
+export const makeCardState = ({ id, attribute, skill }: Card): CardState => {
+	return {
+		id,
+		attack: attribute.attack,
+		health: attribute.health,
+		defense: attribute.defense,
+		charge: skill?.charge,
+	};
 };

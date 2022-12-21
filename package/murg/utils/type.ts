@@ -15,12 +15,6 @@ export interface TemplateFragment {
 	style?: TemplateStyle;
 }
 
-export interface CardKeyword {
-	value: string;
-	explain?: string;
-	templateStyle?: TemplateStyle;
-}
-
 export enum ActivationType {
 	Summon,
 	Death,
@@ -60,6 +54,7 @@ export interface Attribute {
 	attack: number;
 	health: number;
 	defense: number;
+	charge?: number;
 }
 
 export enum CardType {
@@ -99,8 +94,92 @@ export interface Card {
 	skill?: Skill;
 }
 
-export interface DuelMeta {
+export interface CardMeta {
 	version: string;
 	entities: string[];
 	map: Record<string, Card>;
+}
+
+export enum DuelCommandType {
+	CardSummon,
+	CardMove,
+	CardMutate,
+	CardDust,
+	PlayerMutate,
+	DuelMutate,
+}
+
+export enum DuelPlace {
+	Deck,
+	Hand,
+	Ground,
+	Grave,
+	Ability,
+	Player,
+}
+
+export type DuelCommandPayload = Attribute & {
+	round?: number;
+	perTurnHero?: number;
+	perTurnTroop?: number;
+};
+
+export interface BoardTarget {
+	place: DuelPlace;
+	owner?: number;
+	id?: string;
+	position?: number;
+}
+
+export interface DuelCommandTarget {
+	from?: BoardTarget;
+	to?: BoardTarget;
+}
+
+export interface DuelCommand {
+	type: DuelCommandType;
+	owner?: number;
+	target?: DuelCommandTarget;
+	payload?: DuelCommandPayload;
+}
+
+export interface DuelSetting {
+	playerHealth: number;
+	handSize: number;
+	groundSize: number;
+	maxAttachment: number;
+	perTurnHero: number;
+	perTurnTroop: number;
+}
+
+export interface PlayerConfig {
+	id: string;
+	deck: string[];
+}
+
+export interface DuelConfig {
+	version: string;
+	setting: DuelSetting;
+	firstMover: string;
+	playerConfigs: [PlayerConfig, PlayerConfig];
+}
+
+export type CardState = Attribute & {
+	id: string;
+};
+
+export type PlayerState = Attribute & {
+	id: string;
+	deck: CardState[];
+	hand: CardState[];
+	ground: CardState[];
+	grave: CardState[];
+};
+
+export interface DuelState {
+	map: Record<string, Card>;
+	setting: DuelSetting;
+	round: number;
+	firstMover: string;
+	players: [PlayerState, PlayerState];
 }

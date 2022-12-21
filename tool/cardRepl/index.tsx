@@ -1,4 +1,4 @@
-import { getMeta } from '@metacraft/murg-engine';
+import { makeMeta } from '@metacraft/murg-engine';
 
-const meta = getMeta();
+const meta = makeMeta();
 console.log('hmm', meta);

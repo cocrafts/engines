@@ -101,21 +101,21 @@ export interface CardMeta {
 }
 
 export enum DuelCommandType {
-	CardSummon,
-	CardMove,
-	CardMutate,
-	CardDust,
-	PlayerMutate,
-	DuelMutate,
+	CardSummon = 'CardSummon',
+	CardMove = 'CardMove',
+	CardMutate = 'CardMutate',
+	CardDust = 'CardDust',
+	PlayerMutate = 'PlayerMutate',
+	DuelMutate = 'DuelMutate',
 }
 
 export enum DuelPlace {
-	Deck,
-	Hand,
-	Ground,
-	Grave,
-	Ability,
-	Player,
+	Deck = 'Deck',
+	Hand = 'Hand',
+	Ground = 'Ground',
+	Grave = 'Grave',
+	Ability = 'Ability',
+	Player = 'Player',
 }
 
 export type DuelCommandPayload = Attribute & {
@@ -124,10 +124,16 @@ export type DuelCommandPayload = Attribute & {
 	perTurnTroop?: number;
 };
 
+export enum TargetSide {
+	Left = 'left',
+	Right = 'right',
+}
+
 export interface BoardTarget {
 	place: DuelPlace;
 	owner?: string;
 	id?: string;
+	side?: TargetSide;
 }
 
 export interface DuelCommandTarget {
@@ -200,7 +206,9 @@ export type RunCommandPayload = Omit<DuelCommand, 'type'> & {
 	state: DuelState;
 };
 
-export type CommandRunner<T = RunCommandPayload> = (payload: T) => DuelState;
+export type CommandRunner<T = RunCommandPayload> = (
+	payload: T,
+) => Partial<DuelState>;
 
 export interface CommandBundle {
 	create?: CommandCreator;

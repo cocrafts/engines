@@ -145,8 +145,8 @@ export const run: CommandRunner = ({ state, command: { target } }) => {
 	return result;
 };
 
-const moveBundle: CommandBundle = {
+export const cardMove: CommandBundle = {
 	create,
 };
 
-export default moveBundle;
+export default cardMove;

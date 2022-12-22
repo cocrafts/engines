@@ -10,8 +10,8 @@ export const create: CommandCreator = ({ owner, target, payload }) => {
 	const { commands, registerCommand } = createCommandResult();
 
 	registerCommand({
-		owner,
 		type: DuelCommandType.PlayerMutate,
+		owner,
 		target,
 		payload,
 	});

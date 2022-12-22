@@ -18,7 +18,35 @@ export const defaultSetting: DuelSetting = {
 	perTurnTroop: 1,
 };
 
-export const makeDuelState = ({
+export const makeDuel = (
+	[firstPlayer, secondPlayer]: [PlayerConfig, PlayerConfig],
+	version = '00001',
+	setting = defaultSetting,
+) => {
+	const firstMover = Math.random() > 0.5 ? firstPlayer.id : secondPlayer.id;
+	const makeUniqueId = (id: string) => `${id}#${nanoId()}`;
+
+	const config: DuelConfig = {
+		version,
+		setting,
+		firstMover,
+		firstPlayer: {
+			id: firstPlayer.id,
+			deck: firstPlayer.deck.map(makeUniqueId),
+		},
+		secondPlayer: {
+			id: secondPlayer.id,
+			deck: secondPlayer.deck.map(makeUniqueId),
+		},
+	};
+
+	return {
+		config,
+		state: getInitialState(config),
+	};
+};
+
+export const getInitialState = ({
 	version,
 	setting,
 	firstMover,
@@ -55,33 +83,5 @@ export const makeDuelState = ({
 		secondGround: [],
 		firstGrave: [],
 		secondGrave: [],
-	};
-};
-
-export const makeDuel = (
-	[firstPlayer, secondPlayer]: [PlayerConfig, PlayerConfig],
-	version = '00001',
-	setting = defaultSetting,
-) => {
-	const firstMover = Math.random() > 0.5 ? firstPlayer.id : secondPlayer.id;
-	const makeUniqueId = (id: string) => `${id}#${nanoId()}`;
-
-	const config: DuelConfig = {
-		version,
-		setting,
-		firstMover,
-		firstPlayer: {
-			id: firstPlayer.id,
-			deck: firstPlayer.deck.map(makeUniqueId),
-		},
-		secondPlayer: {
-			id: secondPlayer.id,
-			deck: secondPlayer.deck.map(makeUniqueId),
-		},
-	};
-
-	return {
-		config,
-		state: makeDuelState(config),
 	};
 };

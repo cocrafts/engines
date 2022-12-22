@@ -133,7 +133,7 @@ export interface BoardTarget {
 	place: DuelPlace;
 	owner?: string;
 	id?: string;
-	side?: TargetSide;
+	index?: number;
 }
 
 export interface DuelCommandTarget {

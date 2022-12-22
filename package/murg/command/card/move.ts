@@ -95,7 +95,7 @@ export const run: CommandRunner = ({ state, command: { target } }) => {
 		const groundClone = cloneState(state, target.to.owner, DuelPlace.Ground);
 
 		if (fromAir) {
-			groundClone.state[target.to.index] = makeCardState(map[target.from.id]);
+			groundClone.state[target.to.index] = makeCardState(target.from.id, map);
 
 			result[groundClone.key] = groundClone.state;
 		} else {
@@ -126,7 +126,7 @@ export const run: CommandRunner = ({ state, command: { target } }) => {
 		const toClone = cloneState(state, target.to.owner, target.to.place);
 
 		if (fromAir) {
-			toClone.state.push(makeCardState(map[target.from.id]));
+			toClone.state.push(makeCardState(target.from.id, map));
 
 			result[toClone.key] = toClone.state;
 		} else {

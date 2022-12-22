@@ -6,7 +6,7 @@ import cardMutate from './card/mutate';
 import duelMutate from './duel/mutate';
 import playerMutate from './player/mutate';
 
-export const instruction = {
+export const createCommand = {
 	duelMutate: duelMutate.create,
 
 	cardDraw: cardDraw.create,

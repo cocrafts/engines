@@ -1,4 +1,3 @@
-import { nanoId } from './helper';
 import {
 	Card,
 	CardState,
@@ -154,9 +153,13 @@ export const interpolate = (card: Card): Card => {
 	return card;
 };
 
-export const makeCardState = ({ id, attribute, skill }: Card): CardState => {
+export const makeCardState = (
+	cardId: string,
+	map: Record<string, Card>,
+): CardState => {
+	const { attribute, skill } = map[cardId.substring(0, 9)];
 	const result: CardState = {
-		id: `${id}#${nanoId()}`,
+		id: cardId,
 		attack: attribute.attack,
 		health: attribute.health,
 		defense: attribute.defense,

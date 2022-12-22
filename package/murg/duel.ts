@@ -17,6 +17,8 @@ export const makeDuelState = ({
 				attack: 0,
 				defense: 0,
 				health: setting.playerHealth,
+				perTurnTroop: setting.perTurnTroop,
+				perTurnHero: setting.perTurnHero,
 			};
 		},
 	);

@@ -118,7 +118,7 @@ export enum DuelPlace {
 	Player = 'Player',
 }
 
-export type DuelCommandPayload = Attribute & {
+export type DuelCommandPayload = Partial<Attribute> & {
 	round?: number;
 	perTurnHero?: number;
 	perTurnTroop?: number;
@@ -174,7 +174,11 @@ export type CardState = Attribute & {
 	id: string;
 };
 
-export type PlayerState = Attribute & { id: string };
+export type PlayerState = Attribute & {
+	id: string;
+	perTurnHero: number;
+	perTurnTroop: number;
+};
 
 export interface DuelState {
 	map: Record<string, Card>;
@@ -201,10 +205,10 @@ export type CommandCreator<T = CreateCommandPayload> = (
 	payload: T,
 ) => DuelCommand[];
 
-export type RunCommandPayload = Omit<DuelCommand, 'type'> & {
-	command: DuelCommand;
+export interface RunCommandPayload {
 	state: DuelState;
-};
+	command: DuelCommand;
+}
 
 export type CommandRunner<T = RunCommandPayload> = (
 	payload: T,

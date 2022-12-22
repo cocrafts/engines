@@ -1,20 +1,71 @@
 import { makeCardState } from '../../utils/card';
-import { cloneState } from '../../utils/helper';
+import {
+	cloneState,
+	createCommandResult,
+	selectPlayer,
+} from '../../utils/helper';
 import {
 	CardState,
+	CardType,
 	CommandBundle,
 	CommandCreator,
 	CommandRunner,
+	DuelCommand,
+	DuelCommandType,
 	DuelPlace,
 	DuelState,
 } from '../../utils/type';
+import playerMutate from '../player/mutate';
 
-export const create: CommandCreator = ({ owner, state }) => {
-	return [];
+export const create: CommandCreator = ({ owner, state, target }) => {
+	const { map } = state;
+	const { commands, registerCommand } = createCommandResult();
+	const player = selectPlayer(state, owner);
+	const cardInstance = map[target.from.id?.substring(0, 9)];
+	const fromPlayer = target.from.place === DuelPlace.Player;
+	const fromHand = target.from.place === DuelPlace.Hand;
+	const toGround = target.to.place === DuelPlace.Ground;
+	const fromHeroCard = cardInstance.kind === CardType.Hero;
+	const fromTroopCard = cardInstance.kind === CardType.Troop;
+	const isHeroSummon = owner && fromHand && toGround && fromHeroCard;
+	const isTroopSummon = owner && fromPlayer && toGround && fromTroopCard;
+	const moveCommand: DuelCommand = {
+		owner,
+		type: DuelCommandType.CardMove,
+		target,
+	};
+
+	if (isHeroSummon) {
+		if (player.perTurnHero > 0) {
+			registerCommand(moveCommand);
+			playerMutate
+				.create({
+					state,
+					target: { to: { owner, place: DuelPlace.Player } },
+					payload: { perTurnHero: -1 },
+				})
+				.forEach(registerCommand);
+		}
+	} else if (isTroopSummon) {
+		if (player.perTurnTroop > 0) {
+			registerCommand(moveCommand);
+			playerMutate
+				.create({
+					state,
+					target: { to: { owner, place: DuelPlace.Player } },
+					payload: { perTurnTroop: -1 },
+				})
+				.forEach(registerCommand);
+		}
+	} else {
+		registerCommand(moveCommand);
+	}
+
+	return commands;
 };
 
 const generatedPlaces = [DuelPlace.Player, DuelPlace.Ability];
-export const run: CommandRunner = ({ state, target }) => {
+export const run: CommandRunner = ({ state, command: { target } }) => {
 	const { map } = state;
 	const result: Partial<DuelState> = {};
 	const toCardFilter = (i: CardState) => i.id === target.to.id;
@@ -94,8 +145,8 @@ export const run: CommandRunner = ({ state, target }) => {
 	return result;
 };
 
-const moveCommand: CommandBundle = {
+const moveBundle: CommandBundle = {
 	create,
 };
 
-export default moveCommand;
+export default moveBundle;

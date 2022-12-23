@@ -41,7 +41,6 @@ export const Duel: FC<Props> = ({ history }) => {
 	const playerColors: [string, string] = ['blue', 'green'];
 	const [firstColor, secondColor] = playerColors;
 
-	console.log(firstGround, secondGround);
 	return (
 		<Box>
 			<History

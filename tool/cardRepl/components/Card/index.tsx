@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CardState, TemplateFragment } from '@metacraft/murg-engine';
+import { CardState, DuelState, TemplateFragment } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 import { useSnapshot } from 'valtio';
 
@@ -7,6 +7,7 @@ import { state } from '../../util';
 
 import Attribute from './Attribute';
 import EmptyCard from './Empty';
+import SkillDesc from './SkillDesc';
 
 interface Props {
 	color?: string;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 export const Card: FC<Props> = ({ color, item, index, width }) => {
-	const { map } = useSnapshot(state);
+	const { map } = useSnapshot(state) as DuelState;
 	const card = map[item?.id.substring(0, 9)];
 
 	if (!item?.id) {
@@ -39,9 +40,7 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 				flexGrow={1}
 				alignItems="flex-end"
 			>
-				<Text color="#888888">
-					{extractSkillTemplate(card.skill.template as never)}
-				</Text>
+				<SkillDesc skill={card.skill} />
 			</Box>
 			<Box>
 				<Box width="33%" />

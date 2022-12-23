@@ -107,7 +107,7 @@ export const interpolateTemplate = (text: string) => {
 	while (end < text.length) {
 		const bracketIndex = text.indexOf('[', end);
 
-		if (bracketIndex > 0) {
+		if (bracketIndex >= 0) {
 			end = text.indexOf(']', bracketIndex);
 			const fragment = text.slice(bracketIndex + 1, end);
 			const [key, format] = fragment.split(':');
@@ -142,6 +142,7 @@ export const interpolateTemplate = (text: string) => {
 		});
 	}
 
+	console.log(template);
 	return template;
 };
 

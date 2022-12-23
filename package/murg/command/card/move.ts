@@ -7,17 +7,20 @@ import {
 import {
 	CardState,
 	CardType,
-	CommandBundle,
-	CommandCreator,
 	CommandRunner,
 	DuelCommand,
 	DuelCommandType,
 	DuelPlace,
 	DuelState,
+	StatefulCommand,
 } from '../../utils/type';
 import playerMutate from '../player/mutate';
 
-export const create: CommandCreator = ({ owner, state, target }) => {
+export const create: StatefulCommand<'owner' | 'target'> = ({
+	state,
+	owner,
+	target,
+}) => {
 	const { map } = state;
 	const { commands, registerCommand } = createCommandResult();
 	const player = selectPlayer(state, owner);
@@ -145,8 +148,9 @@ export const run: CommandRunner = ({ state, command: { target } }) => {
 	return result;
 };
 
-export const cardMove: CommandBundle = {
+export const cardMove = {
 	create,
+	run,
 };
 
 export default cardMove;

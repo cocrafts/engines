@@ -1,12 +1,11 @@
 import { cloneState, createCommandResult } from '../../utils/helper';
 import {
-	CommandBundle,
-	CommandCreator,
 	CommandRunner,
 	DuelCommandType,
+	StatelessCommand,
 } from '../../utils/type';
 
-export const create: CommandCreator = ({ owner, target, payload }) => {
+export const create: StatelessCommand = ({ owner, target, payload }) => {
 	const { commands, registerCommand } = createCommandResult();
 
 	registerCommand({
@@ -37,7 +36,7 @@ export const run: CommandRunner = ({
 	};
 };
 
-export const cardMutate: CommandBundle = {
+export const cardMutate = {
 	create,
 	run,
 };

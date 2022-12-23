@@ -1,3 +1,4 @@
+export * from './command';
 export * from './duel';
 export * from './meta';
 export * from './utils/card';

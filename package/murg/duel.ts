@@ -19,14 +19,27 @@ export const defaultSetting: DuelSetting = {
 };
 
 export const makeDuel = (
+	players: [PlayerConfig, PlayerConfig],
+	version = '00001',
+	setting = defaultSetting,
+): { config: DuelConfig; state: DuelState } => {
+	const config = makeDuelConfig(players, version, setting);
+
+	return {
+		config,
+		state: getInitialState(config),
+	};
+};
+
+export const makeDuelConfig = (
 	[firstPlayer, secondPlayer]: [PlayerConfig, PlayerConfig],
 	version = '00001',
 	setting = defaultSetting,
-) => {
+): DuelConfig => {
 	const firstMover = Math.random() > 0.5 ? firstPlayer.id : secondPlayer.id;
 	const makeUniqueId = (id: string) => `${id}#${nanoId()}`;
 
-	const config: DuelConfig = {
+	return {
 		version,
 		setting,
 		firstMover,
@@ -38,11 +51,6 @@ export const makeDuel = (
 			id: secondPlayer.id,
 			deck: secondPlayer.deck.map(makeUniqueId),
 		},
-	};
-
-	return {
-		config,
-		state: getInitialState(config),
 	};
 };
 

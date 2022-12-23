@@ -119,6 +119,7 @@ export enum DuelPlace {
 }
 
 export type DuelCommandPayload = Partial<Attribute> & {
+	gameOver?: boolean;
 	round?: number;
 	perTurnHero?: number;
 	perTurnTroop?: number;
@@ -197,12 +198,14 @@ export interface DuelState {
 	secondGrave: CardState[];
 }
 
-export type CreateCommandPayload = Omit<DuelCommand, 'type'> & {
-	state: DuelState;
-};
+type CommandFields = 'owner' | 'target' | 'payload';
 
-export type CommandCreator<T = CreateCommandPayload> = (
-	payload: T,
+export type StatefulCommand<K extends keyof DuelCommand = CommandFields> = (
+	payload: Pick<DuelCommand, K> & { state: DuelState },
+) => DuelCommand[];
+
+export type StatelessCommand<K extends keyof DuelCommand = CommandFields> = (
+	payload: Pick<DuelCommand, K>,
 ) => DuelCommand[];
 
 export interface RunCommandPayload {
@@ -213,8 +216,3 @@ export interface RunCommandPayload {
 export type CommandRunner<T = RunCommandPayload> = (
 	payload: T,
 ) => Partial<DuelState>;
-
-export interface CommandBundle {
-	create?: CommandCreator;
-	run?: CommandRunner;
-}

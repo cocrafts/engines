@@ -1,13 +1,12 @@
 import { selectDeck } from '../../utils/helper';
 import {
-	CommandBundle,
-	CommandCreator,
 	DuelCommand,
 	DuelCommandType,
 	DuelPlace,
+	StatefulCommand,
 } from '../../utils/type';
 
-export const create: CommandCreator = ({ owner, state }) => {
+export const create: StatefulCommand<'owner'> = ({ state, owner }) => {
 	const deck = selectDeck(state, owner);
 	const randomIndex = Math.floor(Math.random() * deck.length);
 	const randomCard = deck[randomIndex];
@@ -29,7 +28,7 @@ export const create: CommandCreator = ({ owner, state }) => {
 	return [drawCommand];
 };
 
-export const drawCommand: CommandBundle = {
+export const drawCommand = {
 	create,
 };
 

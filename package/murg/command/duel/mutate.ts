@@ -1,12 +1,11 @@
 import { createCommandResult } from '../../utils/helper';
 import {
-	CommandBundle,
-	CommandCreator,
 	CommandRunner,
 	DuelCommandType,
+	StatelessCommand,
 } from '../../utils/type';
 
-export const create: CommandCreator = ({ payload }) => {
+export const create: StatelessCommand<'payload'> = ({ payload }) => {
 	const { commands, registerCommand } = createCommandResult();
 
 	registerCommand({
@@ -21,7 +20,7 @@ export const run: CommandRunner = ({ state, command: { payload } }) => {
 	return { round: state.round + payload.round || 0 };
 };
 
-export const duelMutate: CommandBundle = {
+export const duelMutate = {
 	create,
 	run,
 };

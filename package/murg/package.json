@@ -1,7 +1,7 @@
 {
 	"name": "@metacraft/murg-engine",
 	"description": "core game algorithm for Under Realm - raise of magic",
-	"version": "0.0.15",
+	"version": "0.0.17",
 	"main": "./index.ts",
 	"types": "./index.ts",
 	"license": "MIT",

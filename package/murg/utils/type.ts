@@ -216,3 +216,8 @@ export interface RunCommandPayload {
 export type CommandRunner<T = RunCommandPayload> = (
 	payload: T,
 ) => Partial<DuelState>;
+
+export interface MoveResult {
+	state: DuelState;
+	commands: DuelCommand[];
+}

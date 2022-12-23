@@ -1,7 +1,7 @@
 import {
-	createMove,
 	DuelCommand,
 	DuelState,
+	move,
 	MoveResult,
 } from '@metacraft/murg-engine';
 import clone from 'lodash/cloneDeep';
@@ -21,7 +21,7 @@ export const replay = async () => {
 		commandHistory.push(commands);
 	};
 
-	runMove(() => createMove.distributeCards(snapshot, 5));
+	runMove(() => move.distributeCards(snapshot, 5));
 
 	return {
 		state: snapshot,

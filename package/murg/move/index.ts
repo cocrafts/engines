@@ -1,5 +1,5 @@
 import { distributeCards } from './duel/distribute';
 
-export const createMove = {
+export const move = {
 	distributeCards,
 };

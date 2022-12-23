@@ -44,7 +44,7 @@ export enum InspireSource {
 }
 
 export interface Skill {
-	template: Array<TemplateFragment> | string;
+	template: TemplateFragment[] | string;
 	charge?: number;
 	activation?: ActivationType;
 	inspire?: InspireSource;

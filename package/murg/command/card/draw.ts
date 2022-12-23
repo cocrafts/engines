@@ -16,10 +16,12 @@ export const create: StatefulCommand<'owner'> = ({ state, owner }) => {
 		type: DuelCommandType.CardMove,
 		target: {
 			from: {
+				owner,
 				id: randomCard.id,
 				place: DuelPlace.Deck,
 			},
 			to: {
+				owner,
 				place: DuelPlace.Hand,
 			},
 		},

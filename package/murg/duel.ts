@@ -1,6 +1,7 @@
 import { makeCardState } from './utils/card';
 import { nanoId } from './utils/helper';
 import {
+	CardState,
 	DuelConfig,
 	DuelSetting,
 	DuelState,
@@ -63,6 +64,8 @@ export const getInitialState = ({
 }: DuelConfig): DuelState => {
 	const { map } = makeMeta(version);
 	const cardIdToState = (id: string) => makeCardState(id, map);
+	const firstGround: CardState[] = [];
+	const secondGround: CardState[] = [];
 	const [firstPlayerState, secondPlayerState] = [firstPlayer, secondPlayer].map(
 		(player): PlayerState => {
 			return {
@@ -76,6 +79,11 @@ export const getInitialState = ({
 		},
 	);
 
+	for (let i = 0; i < setting.groundSize; i += 1) {
+		firstGround.push(null);
+		secondGround.push(null);
+	}
+
 	return {
 		map,
 		setting,
@@ -87,8 +95,8 @@ export const getInitialState = ({
 		secondDeck: secondPlayer.deck.map(cardIdToState),
 		firstHand: [],
 		secondHand: [],
-		firstGround: [],
-		secondGround: [],
+		firstGround: firstGround,
+		secondGround: secondGround,
 		firstGrave: [],
 		secondGrave: [],
 	};

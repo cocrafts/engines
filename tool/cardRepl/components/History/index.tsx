@@ -1,17 +1,15 @@
 import { FC } from 'react';
-import {
-	DuelCommand,
-	getPlayerOrder,
-	PlayerStatePair,
-} from '@metacraft/engines-under-realm';
+import { DuelCommand, PlayerState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
+
+import { selectColor } from '../../util';
 
 import { getCommandInfo } from './internal';
 
 interface Props {
 	size?: number;
 	colors: [string, string];
-	players?: PlayerStatePair;
+	players?: [PlayerState, PlayerState];
 	history: Array<DuelCommand[]>;
 }
 
@@ -35,8 +33,7 @@ export const History: FC<Props> = ({ size, players, colors, history }) => {
 					>
 						{chunk.map((command, z) => {
 							const { id, icon, idColor, iconColor } = getCommandInfo(command);
-							const order = getPlayerOrder(players, command.owner);
-							const playerColor = colors[order];
+							const playerColor = selectColor(players, colors, command.owner);
 
 							return (
 								<Box key={z}>

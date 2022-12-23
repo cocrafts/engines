@@ -1,6 +1,9 @@
 import { FC } from 'react';
-import { CardState } from '@metacraft/engines-under-realm';
+import { CardState, TemplateFragment } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
+import { useSnapshot } from 'valtio';
+
+import { state } from '../../util';
 
 import Attribute from './Attribute';
 import EmptyCard from './Empty';
@@ -13,7 +16,10 @@ interface Props {
 }
 
 export const Card: FC<Props> = ({ color, item, index, width }) => {
-	if (!item) {
+	const { map } = useSnapshot(state);
+	const card = map[item?.id.substring(0, 9)];
+
+	if (!item?.id) {
 		return <EmptyCard width={width} index={index} />;
 	}
 
@@ -25,7 +31,7 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 			alignItems="center"
 			borderColor="#333333"
 		>
-			<Text color={color}>{item.name || item.id.substring(2, 4)}</Text>
+			<Text color={color}>{card.name || item.id.substring(2, 4)}</Text>
 			<Box
 				paddingLeft={1}
 				paddingBottom={1}
@@ -33,7 +39,9 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 				flexGrow={1}
 				alignItems="flex-end"
 			>
-				<Text color="#888888">{item.base.skill?.desc || ''}</Text>
+				<Text color="#888888">
+					{extractSkillTemplate(card.skill.template as never)}
+				</Text>
 			</Box>
 			<Box>
 				<Box width="33%" />
@@ -41,19 +49,19 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 					<Text color="#323232">...</Text>
 				</Box>
 				<Box width="33%" justifyContent="center">
-					{!!item.base.cooldown && (
+					{!!card.skill.charge && (
 						<Box>
 							<Text color="#282828">(</Text>
-							<Text color="#666666">{item.cooldown}</Text>
+							<Text color="#666666">{item?.charge}</Text>
 							<Text color="#282828">)</Text>
 						</Box>
 					)}
 				</Box>
 			</Box>
 			<Box>
-				<Attribute pair={[item.attack, item.base.attack]} />
-				<Attribute pair={[item.defense, item.base.defense]} />
-				<Attribute pair={[item.health, item.base.health]} />
+				<Attribute pair={[item?.attack, card.attribute.attack]} />
+				<Attribute pair={[item?.defense, card.attribute.defense]} />
+				<Attribute pair={[item?.health, card.attribute.health]} />
 			</Box>
 		</Box>
 	);
@@ -65,3 +73,8 @@ Card.defaultProps = {
 };
 
 export default Card;
+
+export const extractSkillTemplate = (template: TemplateFragment[] | string) => {
+	if (typeof template === 'string') return template;
+	return template.map((i) => i.text).join('');
+};

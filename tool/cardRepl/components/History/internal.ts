@@ -1,8 +1,8 @@
 import {
-	CommandType,
 	DuelCommand,
+	DuelCommandType,
 	DuelPlace,
-} from '@metacraft/engines-under-realm';
+} from '@metacraft/murg-engine';
 
 interface CommandInfo {
 	id: string;
@@ -13,28 +13,27 @@ interface CommandInfo {
 
 export const getCommandInfo = ({
 	type,
-	from,
-	target,
+	target: { from, to },
 	payload,
 }: DuelCommand): CommandInfo => {
 	const result: CommandInfo = {
-		id: target.id?.substring?.(2, 4),
+		id: to.id?.substring?.(3, 5),
 		icon: '',
 	};
 
 	/* <--       ﯑ */
-	if (type === CommandType.CardMove) {
-		result.id = from.id?.substring?.(2, 4);
+	if (type === DuelCommandType.CardMove) {
+		result.id = from.id?.substring?.(3, 5);
 
-		if (from.place === DuelPlace.Deck && target.place === DuelPlace.Hand) {
+		if (from.place === DuelPlace.Deck && to.place === DuelPlace.Hand) {
 			result.icon = '﬷'; /* <- draw */
-		} else if (target.place === DuelPlace.Ground) {
+		} else if (to.place === DuelPlace.Ground) {
 			result.icon = '﬷';
-		} else if (target.place === DuelPlace.Grave) {
+		} else if (to.place === DuelPlace.Grave) {
 			result.icon = '';
 			result.iconColor = 'magenta';
 		}
-	} else if (type === CommandType.PlayerMutate) {
+	} else if (type === DuelCommandType.PlayerMutate) {
 		if (payload?.health) {
 			result.id = '♥';
 			result.iconColor = payload.health > 0 ? 'green' : 'red';

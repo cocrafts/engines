@@ -1,16 +1,19 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import {
 	CardState,
 	DuelCommand,
 	DuelState,
-} from '@metacraft/engines-under-realm';
-import { Box, Text, useInput } from 'ink';
+	PlayerState,
+} from '@metacraft/murg-engine';
+import { Box, Text } from 'ink';
+import { useSnapshot } from 'valtio';
 
 import Card from './components/Card';
 import Deck from './components/Deck';
 import GraveYard from './components/GraveYard';
 import History from './components/History';
 import Player from './components/Player';
+import { state } from './util';
 
 const cardHeight = 13;
 
@@ -19,32 +22,31 @@ interface Props {
 	history?: Array<DuelCommand[]>;
 }
 
-export const Duel: FC<Props> = ({ state, history }) => {
-	const [round, setRound] = useState(0);
-	const { player, game, deck, hand, ground, grave } = state;
+export const Duel: FC<Props> = ({ history }) => {
+	const {
+		round,
+		firstPlayer,
+		secondPlayer,
+		firstDeck,
+		secondDeck,
+		firstHand,
+		secondHand,
+		firstGround,
+		secondGround,
+		firstGrave,
+		secondGrave,
+	} = useSnapshot(state) as DuelState;
+
+	const players: [PlayerState, PlayerState] = [firstPlayer, secondPlayer];
 	const playerColors: [string, string] = ['blue', 'green'];
 	const [firstColor, secondColor] = playerColors;
-	const [firstPlayer, secondPlayer] = player;
-	const [firstDeck, secondDeck] = deck;
-	const [firstHand, secondHand] = hand;
-	const [firstGround, secondGround] = ground;
-	const [firstGrave, secondGrave] = grave;
 
-	useInput((input, key) => {
-		if (input === 'r') {
-			setRound(0);
-		} else if (key.leftArrow) {
-			setRound(round - 1);
-		} else if (key.rightArrow) {
-			setRound(round + 1);
-		}
-	});
-
+	console.log(firstGround, secondGround);
 	return (
 		<Box>
 			<History
 				history={extractHistory(history)}
-				players={player}
+				players={players}
 				colors={playerColors}
 			/>
 			<Box flexGrow={1} flexDirection="column" paddingRight={1}>
@@ -80,7 +82,7 @@ export const Duel: FC<Props> = ({ state, history }) => {
 				<Player state={firstPlayer} />
 				<Box justifyContent="center">
 					<Text color="#323232">(</Text>
-					<Text>{game.turn}</Text>
+					<Text>{round}</Text>
 					<Text color="#323232">)</Text>
 				</Box>
 			</Box>

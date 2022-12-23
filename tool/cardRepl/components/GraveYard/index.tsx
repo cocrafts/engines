@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CardState } from '@metacraft/engines-under-realm';
+import { CardState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 import GraveCard from './GraveCard';

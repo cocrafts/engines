@@ -8,13 +8,13 @@ import {
 
 export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 	const { firstPlayer, secondPlayer } = state;
-	const firstBundle: DuelCommandBundle = {
+	const firstDrawBundle: DuelCommandBundle = {
 		turn: state.turn,
 		phase: DuelPhases.Draw,
 		phaseOf: firstPlayer.id,
 		commands: [],
 	};
-	const secondBundle: DuelCommandBundle = {
+	const secondDrawBundle: DuelCommandBundle = {
 		turn: state.turn,
 		phase: DuelPhases.Draw,
 		phaseOf: secondPlayer.id,
@@ -26,7 +26,7 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 		createCommand
 			.cardDraw({ state: snapshot, owner: firstPlayer.id })
 			.forEach((command) => {
-				firstBundle.commands.push(command);
+				firstDrawBundle.commands.push(command);
 
 				snapshot = {
 					...snapshot,
@@ -37,7 +37,7 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 		createCommand
 			.cardDraw({ state: snapshot, owner: secondPlayer.id })
 			.forEach((command) => {
-				secondBundle.commands.push(command);
+				secondDrawBundle.commands.push(command);
 
 				snapshot = {
 					...snapshot,
@@ -46,8 +46,14 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 			});
 	}
 
+	const cleanUpBundle: DuelCommandBundle = {
+		turn: state.turn,
+		phase: DuelPhases.CleanUp,
+		commands: [createCommand.duelMutate({ payload: { turn: 1 } })[0]],
+	};
+
 	return {
 		state: snapshot,
-		bundles: [firstBundle, secondBundle],
+		bundles: [firstDrawBundle, secondDrawBundle, cleanUpBundle],
 	};
 };

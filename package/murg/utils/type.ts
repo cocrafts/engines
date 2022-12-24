@@ -22,8 +22,8 @@ export enum ActivationType {
 	Attack,
 	Defense,
 	Glory,
-	Prefight,
-	Postfight,
+	PreFight,
+	PostFight,
 	Charge,
 	Inspire,
 	Banner,
@@ -121,7 +121,10 @@ export enum DuelPlace {
 export enum DuelPhases {
 	Draw = 'Draw',
 	Setup = 'Setup' /* <-- setup hero/troop/spell,  skill, */,
-	Combat = 'Combat',
+	PreFight = 'PreFight',
+	Fight = 'Fight',
+	PostFight = 'PostFight',
+	CleanUp = 'CleanUp',
 }
 
 export type DuelCommandPayload = Partial<Attribute> & {

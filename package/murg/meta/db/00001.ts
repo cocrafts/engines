@@ -101,7 +101,7 @@ const cardList: Card[] = [
 		},
 		skill: {
 			template: '[Destroy:Danger] facing enemy if [30 or less] health.',
-			activation: ActivationType.Prefight,
+			activation: ActivationType.PreFight,
 		},
 	},
 	{
@@ -919,7 +919,7 @@ const cardList: Card[] = [
 		},
 		skill: {
 			template: '[Steal] facing [Troop] if it have [20 or less] Health.',
-			activation: ActivationType.Postfight,
+			activation: ActivationType.PostFight,
 		},
 	},
 	{

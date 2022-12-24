@@ -13,11 +13,12 @@ interface CommandInfo {
 
 export const getCommandInfo = ({
 	type,
-	target: { from, to },
+	target,
 	payload,
 }: DuelCommand): CommandInfo => {
+	const { from, to } = target || {};
 	const result: CommandInfo = {
-		id: to.id?.substring?.(3, 5),
+		id: to?.id?.substring?.(3, 5),
 		icon: '',
 	};
 
@@ -49,6 +50,8 @@ export const getCommandInfo = ({
 		} else {
 			result.id = '';
 		}
+	} else if (type === DuelCommandType.DuelMutate) {
+		result.id = 'T';
 	}
 
 	return result;

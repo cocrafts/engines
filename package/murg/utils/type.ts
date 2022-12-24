@@ -118,9 +118,15 @@ export enum DuelPlace {
 	Player = 'Player',
 }
 
+export enum DuelPhases {
+	Draw = 'Draw',
+	Setup = 'Setup' /* <-- setup hero/troop/spell,  skill, */,
+	Combat = 'Combat',
+}
+
 export type DuelCommandPayload = Partial<Attribute> & {
 	gameOver?: boolean;
-	round?: number;
+	turn?: number;
 	perTurnHero?: number;
 	perTurnTroop?: number;
 };
@@ -184,7 +190,9 @@ export type PlayerState = Attribute & {
 export interface DuelState {
 	map: Record<string, Card>;
 	setting: DuelSetting;
-	round: number;
+	turn: number;
+	phase: DuelPhases;
+	phaseOf: string;
 	firstMover: string;
 	firstPlayer: PlayerState;
 	secondPlayer: PlayerState;
@@ -217,7 +225,16 @@ export type CommandRunner<T = RunCommandPayload> = (
 	payload: T,
 ) => Partial<DuelState>;
 
-export interface MoveResult {
-	state: DuelState;
+export interface DuelCommandBundle {
+	turn: number;
+	phase: DuelPhases;
+	phaseOf?: string;
 	commands: DuelCommand[];
 }
+
+export interface MoveResult {
+	state: DuelState;
+	bundles: DuelCommandBundle[];
+}
+
+export type CommandHistory = DuelCommandBundle[];

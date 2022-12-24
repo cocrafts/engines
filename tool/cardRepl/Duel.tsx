@@ -2,6 +2,7 @@ import { FC } from 'react';
 import {
 	CardState,
 	DuelCommand,
+	DuelCommandBundle,
 	DuelState,
 	PlayerState,
 } from '@metacraft/murg-engine';
@@ -19,12 +20,12 @@ const cardHeight = 13;
 
 interface Props {
 	state: DuelState;
-	history?: Array<DuelCommand[]>;
+	history?: Array<DuelCommandBundle>;
 }
 
 export const Duel: FC<Props> = ({ history }) => {
 	const {
-		round,
+		turn,
 		firstPlayer,
 		secondPlayer,
 		firstDeck,
@@ -43,11 +44,7 @@ export const Duel: FC<Props> = ({ history }) => {
 
 	return (
 		<Box>
-			<History
-				history={extractHistory(history)}
-				players={players}
-				colors={playerColors}
-			/>
+			<History history={history} players={players} colors={playerColors} />
 			<Box flexGrow={1} flexDirection="column" paddingRight={1}>
 				<Player state={secondPlayer} />
 				<Box justifyContent="center" height={cardHeight}>
@@ -81,7 +78,7 @@ export const Duel: FC<Props> = ({ history }) => {
 				<Player state={firstPlayer} />
 				<Box justifyContent="center">
 					<Text color="#323232">(</Text>
-					<Text>{round}</Text>
+					<Text>{turn}</Text>
 					<Text color="#323232">)</Text>
 				</Box>
 			</Box>
@@ -103,16 +100,16 @@ const isHistoryBatch = (batch: DuelCommand[]) => {
 	return true;
 };
 
-const extractHistory = (history: Array<DuelCommand[]>, limit = 40) => {
+const extractHistory = (history: Array<DuelCommandBundle>, limit = 40) => {
 	const result = [];
 	let currentSize = 0;
 
 	for (let i = history.length - 1; i >= 0; i -= 1) {
-		const batch = history[i];
+		const { commands } = history[i];
 
-		if (isHistoryBatch(batch)) {
-			result.push(batch);
-			currentSize += batch.length;
+		if (isHistoryBatch(commands)) {
+			result.push(commands);
+			currentSize += commands.length;
 		}
 
 		if (currentSize >= limit) {

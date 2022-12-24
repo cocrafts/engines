@@ -16375,7 +16375,9 @@
 			"perTurnHero": 1,
 			"perTurnTroop": 1
 		},
-		"round": 1,
+		"turn": 1,
+		"phase": "Draw",
+		"phaseOf": "B",
 		"firstMover": "B",
 		"firstPlayer": {
 			"id": "A",

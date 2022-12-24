@@ -3,6 +3,7 @@ import { nanoId } from './utils/helper';
 import {
 	CardState,
 	DuelConfig,
+	DuelPhases,
 	DuelSetting,
 	DuelState,
 	PlayerConfig,
@@ -87,7 +88,9 @@ export const getInitialState = ({
 	return {
 		map,
 		setting,
-		round: 1,
+		turn: 1,
+		phase: DuelPhases.Draw,
+		phaseOf: firstMover,
 		firstMover,
 		firstPlayer: firstPlayerState,
 		secondPlayer: secondPlayerState,

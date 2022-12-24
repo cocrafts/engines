@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DuelCommand, PlayerState } from '@metacraft/murg-engine';
+import { DuelCommandBundle, PlayerState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 import { selectColor } from '../../util';
@@ -10,7 +10,7 @@ interface Props {
 	size?: number;
 	colors: [string, string];
 	players?: [PlayerState, PlayerState];
-	history: Array<DuelCommand[]>;
+	history: Array<DuelCommandBundle>;
 }
 
 export const History: FC<Props> = ({ size, players, colors, history }) => {
@@ -22,7 +22,7 @@ export const History: FC<Props> = ({ size, players, colors, history }) => {
 			borderStyle="round"
 			borderColor="#323232"
 		>
-			{history.map((chunk, i) => {
+			{history.map(({ commands }, i) => {
 				return (
 					<Box
 						key={i}
@@ -31,18 +31,20 @@ export const History: FC<Props> = ({ size, players, colors, history }) => {
 						flexDirection="column"
 						alignItems="center"
 					>
-						{chunk.map((command, z) => {
-							const { id, icon, idColor, iconColor } = getCommandInfo(command);
-							const playerColor = selectColor(players, colors, command.owner);
+						{commands &&
+							commands.map((command, z) => {
+								const { id, icon, idColor, iconColor } =
+									getCommandInfo(command);
+								const playerColor = selectColor(players, colors, command.owner);
 
-							return (
-								<Box key={z}>
-									<Text color={idColor || '#323232'}>{id}</Text>
-									<Text color={playerColor}>•</Text>
-									<Text color={iconColor || playerColor}>{icon}</Text>
-								</Box>
-							);
-						})}
+								return (
+									<Box key={z}>
+										<Text color={idColor || '#323232'}>{id}</Text>
+										<Text color={playerColor}>•</Text>
+										<Text color={iconColor || playerColor}>{icon}</Text>
+									</Box>
+								);
+							})}
 					</Box>
 				);
 			})}

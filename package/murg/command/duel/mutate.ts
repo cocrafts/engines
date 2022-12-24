@@ -17,7 +17,7 @@ export const create: StatelessCommand<'payload'> = ({ payload }) => {
 };
 
 export const run: CommandRunner = ({ state, command: { payload } }) => {
-	return { round: state.round + payload.round || 0 };
+	return { turn: state.turn + payload.turn || 0 };
 };
 
 export const duelMutate = {

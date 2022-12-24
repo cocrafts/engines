@@ -1,5 +1,5 @@
 import {
-	DuelCommand,
+	CommandHistory,
 	DuelState,
 	move,
 	MoveResult,
@@ -12,17 +12,18 @@ export const initialState = duel.state;
 
 export const replay = async () => {
 	let snapshot: DuelState = clone(duel.state);
-	const commandHistory: Array<DuelCommand[]> = [];
+	const commandHistory: CommandHistory = [];
 
 	const runMove = (f: () => MoveResult) => {
-		const { state, commands } = f();
+		const { state, bundles } = f();
 
 		snapshot = state;
-		commandHistory.push(commands);
+		bundles.forEach((bundle) => commandHistory.push(bundle));
 	};
 
 	runMove(() => move.distributeCards(snapshot, 5));
 
+	console.log(commandHistory);
 	return {
 		state: snapshot,
 		history: commandHistory,

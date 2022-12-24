@@ -142,7 +142,6 @@ export const interpolateTemplate = (text: string) => {
 		});
 	}
 
-	console.log(template);
 	return template;
 };
 

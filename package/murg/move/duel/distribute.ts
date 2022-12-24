@@ -1,27 +1,53 @@
 import { createCommand, runCommand } from '../../command';
-import { createCommandResult } from '../../utils/helper';
-import { DuelState, MoveResult } from '../../utils/type';
+import {
+	DuelCommandBundle,
+	DuelPhases,
+	DuelState,
+	MoveResult,
+} from '../../utils/type';
 
 export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 	const { firstPlayer, secondPlayer } = state;
-	const { commands, registerCommand } = createCommandResult();
+	const firstBundle: DuelCommandBundle = {
+		turn: state.turn,
+		phase: DuelPhases.Draw,
+		phaseOf: firstPlayer.id,
+		commands: [],
+	};
+	const secondBundle: DuelCommandBundle = {
+		turn: state.turn,
+		phase: DuelPhases.Draw,
+		phaseOf: secondPlayer.id,
+		commands: [],
+	};
 	let snapshot = { ...state };
 
-	for (let i = 0; i < amount * 2; i += 1) {
-		const owner = i >= amount ? firstPlayer.id : secondPlayer.id;
+	for (let i = 0; i < amount; i += 1) {
+		createCommand
+			.cardDraw({ state: snapshot, owner: firstPlayer.id })
+			.forEach((command) => {
+				firstBundle.commands.push(command);
 
-		createCommand.cardDraw({ state: snapshot, owner }).forEach((command) => {
-			registerCommand(command);
+				snapshot = {
+					...snapshot,
+					...runCommand({ state: snapshot, command }),
+				};
+			});
 
-			snapshot = {
-				...snapshot,
-				...runCommand({ state: snapshot, command }),
-			};
-		});
+		createCommand
+			.cardDraw({ state: snapshot, owner: secondPlayer.id })
+			.forEach((command) => {
+				secondBundle.commands.push(command);
+
+				snapshot = {
+					...snapshot,
+					...runCommand({ state: snapshot, command }),
+				};
+			});
 	}
 
 	return {
 		state: snapshot,
-		commands,
+		bundles: [firstBundle, secondBundle],
 	};
 };

@@ -1,5 +1,3 @@
-import { customAlphabet } from 'nanoid';
-
 import {
 	CardState,
 	DuelCommand,
@@ -8,12 +6,13 @@ import {
 	PlayerState,
 } from './type';
 
-const dictionary =
-	'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-
-export const nanoId = customAlphabet(dictionary, 9);
-export const microId = customAlphabet(dictionary, 16);
-export const nanoToken = customAlphabet(dictionary, 16);
+export const nanoId = () => {
+	return 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		const r = (Math.random() * 16) | 0,
+			v = c == 'x' ? r : (r & 0x3) | 0x8;
+		return v.toString(16);
+	});
+};
 
 export interface CommandResult {
 	commands: DuelCommand[];

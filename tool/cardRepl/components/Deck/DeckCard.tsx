@@ -3,7 +3,7 @@ import { CardState, CardType } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 import { useSnapshot } from 'valtio';
 
-import { state } from '../../util';
+import { duel } from '../../util';
 
 interface Props {
 	item: CardState;
@@ -12,8 +12,8 @@ interface Props {
 }
 
 export const DeckCard: FC<Props> = ({ item, index, color }) => {
-	const { map } = useSnapshot(state);
-	const card = map[item.id.substring(0, 9)];
+	const { cardMap } = useSnapshot(duel);
+	const card = cardMap[item.id.substring(0, 9)];
 	const dimColor = index % 2 === 0;
 	const isSpell = card.kind === CardType.Spell;
 	const dotColor = isSpell ? 'green' : '#282828';

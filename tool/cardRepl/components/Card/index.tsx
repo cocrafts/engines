@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { CardState, DuelState, TemplateFragment } from '@metacraft/murg-engine';
+import { DuelState, TemplateFragment } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 import { useSnapshot } from 'valtio';
 
-import { state } from '../../util';
+import { duel } from '../../util';
 
 import Attribute from './Attribute';
 import EmptyCard from './Empty';
@@ -11,19 +11,19 @@ import SkillDesc from './SkillDesc';
 
 interface Props {
 	color?: string;
-	item: CardState;
+	id: string;
 	index?: number;
 	width?: number;
 }
 
-export const Card: FC<Props> = ({ color, item, index, width }) => {
-	const { map } = useSnapshot(state) as DuelState;
-	const card = map[item?.id.substring(0, 9)];
+export const Card: FC<Props> = ({ color, id, index, width }) => {
+	if (!id) return <EmptyCard width={width} index={index} />;
 
-	if (!item?.id) {
-		return <EmptyCard width={width} index={index} />;
-	}
+	const { stateMap, cardMap } = useSnapshot(duel) as DuelState;
+	const card = cardMap[id.substring(0, 9)];
+	const state = stateMap[id];
 
+	console.log(stateMap);
 	return (
 		<Box
 			width={width}
@@ -33,7 +33,7 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 			borderColor="#333333"
 		>
 			<Text color={color}>
-				[{item.id.substring(3, 5)}] {card.name}
+				[{id.substring(3, 5)}] {card.name}
 			</Text>
 			<Box
 				paddingLeft={1}
@@ -53,16 +53,16 @@ export const Card: FC<Props> = ({ color, item, index, width }) => {
 					{!!card.skill.charge && (
 						<Box>
 							<Text color="#282828">(</Text>
-							<Text color="#666666">{item?.charge}</Text>
+							<Text color="#666666">{state?.charge}</Text>
 							<Text color="#282828">)</Text>
 						</Box>
 					)}
 				</Box>
 			</Box>
 			<Box>
-				<Attribute pair={[item?.attack, card.attribute.attack]} />
-				<Attribute pair={[item?.defense, card.attribute.defense]} />
-				<Attribute pair={[item?.health, card.attribute.health]} />
+				<Attribute pair={[state?.attack, card.attribute.attack]} />
+				<Attribute pair={[state?.defense, card.attribute.defense]} />
+				<Attribute pair={[state?.health, card.attribute.health]} />
 			</Box>
 		</Box>
 	);

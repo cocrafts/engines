@@ -1,31 +1,31 @@
 import {
 	CommandHistory,
 	DuelState,
+	mergeFragmentToState,
 	move,
 	MoveResult,
 } from '@metacraft/murg-engine';
 import clone from 'lodash/cloneDeep';
 
-const duel = require('./0001.json');
+const cache = require('./0001.json');
 
-export const initialState = duel.state;
+export const initialState = cache.state;
 
 export const replay = async () => {
-	let snapshot: DuelState = clone(duel.state);
+	const duel: DuelState = clone(cache.state);
 	const commandHistory: CommandHistory = [];
 
 	const runMove = (f: () => MoveResult) => {
 		const { state, bundles } = f();
 
-		snapshot = state;
+		mergeFragmentToState(duel, state);
 		bundles.forEach((bundle) => commandHistory.push(bundle));
 	};
 
-	runMove(() => move.distributeCards(snapshot, 5));
+	runMove(() => move.distributeCards(duel, 5));
 
-	console.log(commandHistory);
 	return {
-		state: snapshot,
+		duel,
 		history: commandHistory,
 	};
 };

@@ -53,6 +53,6 @@ export const selectColor = (
 
 import { initialState, replay } from './match/first';
 
-export const state = proxy<DuelState>(initialState);
+export const duel = proxy<DuelState>(initialState);
 
 export const replayGame = replay;

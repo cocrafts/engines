@@ -1,19 +1,26 @@
 import { FC } from 'react';
-import { CardState } from '@metacraft/murg-engine';
+import { DuelState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
+import { useSnapshot } from 'valtio';
+
+import { duel } from '../../util';
 
 import DeckCard from './DeckCard';
 
 interface Props {
 	color?: string;
-	cards: CardState[];
+	cardIds: string[];
 }
 
-export const CardDeck: FC<Props> = ({ color, cards }) => {
+export const CardDeck: FC<Props> = ({ color, cardIds }) => {
+	const { stateMap } = useSnapshot(duel) as DuelState;
+
 	return (
 		<Box borderStyle="round" borderColor="#333333">
-			{cards.map((item, i) => {
-				return <DeckCard key={item.id} item={item} index={i} color={color} />;
+			{cardIds.map((id, i) => {
+				const cardState = stateMap[id];
+				console.log(cardState);
+				return <DeckCard key={id} item={cardState} index={i} color={color} />;
 			})}
 			<Text color="#323232"> • </Text>
 		</Box>

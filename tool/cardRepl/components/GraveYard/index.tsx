@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { CardState } from '@metacraft/murg-engine';
+import { string } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 import GraveCard from './GraveCard';
 
 interface Props {
 	color?: string;
-	cards?: CardState[];
+	cards?: string[];
 }
 
 export const GraveYard: FC<Props> = ({ color, cards }) => {

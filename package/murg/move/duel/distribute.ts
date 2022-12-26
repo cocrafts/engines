@@ -1,4 +1,5 @@
 import { createCommand, runCommand } from '../../command';
+import { mergeFragmentToState } from '../../utils/helper';
 import {
 	DuelCommandBundle,
 	DuelPhases,
@@ -20,7 +21,7 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 		phaseOf: secondPlayer.id,
 		commands: [],
 	};
-	let snapshot = { ...state };
+	const snapshot = { ...state };
 
 	for (let i = 0; i < amount; i += 1) {
 		createCommand
@@ -28,10 +29,7 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 			.forEach((command) => {
 				firstDrawBundle.commands.push(command);
 
-				snapshot = {
-					...snapshot,
-					...runCommand({ duel: snapshot, command }),
-				};
+				mergeFragmentToState(snapshot, runCommand({ duel: snapshot, command }));
 			});
 
 		createCommand
@@ -39,10 +37,7 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 			.forEach((command) => {
 				secondDrawBundle.commands.push(command);
 
-				snapshot = {
-					...snapshot,
-					...runCommand({ duel: snapshot, command }),
-				};
+				mergeFragmentToState(snapshot, runCommand({ duel: snapshot, command }));
 			});
 	}
 

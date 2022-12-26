@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import {
-	CardState,
 	DuelCommand,
 	DuelCommandBundle,
 	DuelState,
@@ -14,7 +13,7 @@ import Deck from './components/Deck';
 import GraveYard from './components/GraveYard';
 import History from './components/History';
 import Player from './components/Player';
-import { state } from './util';
+import { duel } from './util';
 
 const cardHeight = 13;
 
@@ -36,7 +35,7 @@ export const Duel: FC<Props> = ({ history }) => {
 		secondGround,
 		firstGrave,
 		secondGrave,
-	} = useSnapshot(state) as DuelState;
+	} = useSnapshot(duel) as DuelState;
 
 	const players: [PlayerState, PlayerState] = [firstPlayer, secondPlayer];
 	const playerColors: [string, string] = ['blue', 'green'];
@@ -48,31 +47,31 @@ export const Duel: FC<Props> = ({ history }) => {
 			<Box flexGrow={1} flexDirection="column" paddingRight={1}>
 				<Player state={secondPlayer} />
 				<Box justifyContent="center" height={cardHeight}>
-					{secondHand.map((card, i) => (
-						<Card color={secondColor} item={card} key={i} />
+					{secondHand.map((id, i) => (
+						<Card color={secondColor} id={id} key={i} />
 					))}
 				</Box>
 				<Box alignSelf="center">
 					<GraveYard cards={secondGrave} />
-					<Deck color={secondColor} cards={secondDeck as CardState[]} />
+					<Deck color={secondColor} cardIds={secondDeck} />
 				</Box>
 				<Box justifyContent="center" height={cardHeight}>
-					{secondGround.map((card, i) => (
-						<Card color={secondColor} item={card} key={i} index={i} />
+					{secondGround.map((id, i) => (
+						<Card color={secondColor} id={id} key={i} index={i} />
 					))}
 				</Box>
 				<Box justifyContent="center" height={cardHeight}>
-					{firstGround.map((card, i) => (
-						<Card color={firstColor} item={card} key={i} index={i} />
+					{firstGround.map((id, i) => (
+						<Card color={firstColor} id={id} key={i} index={i} />
 					))}
 				</Box>
 				<Box alignSelf="center">
-					<Deck color={firstColor} cards={firstDeck as CardState[]} />
+					<Deck color={firstColor} cardIds={firstDeck} />
 					<GraveYard cards={firstGrave} />
 				</Box>
 				<Box justifyContent="center" height={cardHeight}>
-					{firstHand.map((card, i) => (
-						<Card color={firstColor} item={card} key={i} />
+					{firstHand.map((id, i) => (
+						<Card color={firstColor} id={id} key={i} />
 					))}
 				</Box>
 				<Player state={firstPlayer} />

@@ -26,6 +26,8 @@ interface Props {
 export const Duel: FC<Props> = ({ history }) => {
 	const {
 		turn,
+		phase,
+		phaseOf,
 		firstPlayer,
 		secondPlayer,
 		firstDeck,
@@ -87,7 +89,9 @@ export const Duel: FC<Props> = ({ history }) => {
 					<Player state={firstPlayer} />
 					<Box justifyContent="center">
 						<Text color="#323232">[</Text>
-						<Text>Turn: {turn}</Text>
+						<Text>
+							Turn: {turn} ({phaseOf} {phase})
+						</Text>
 						<Text color="#323232">]</Text>
 					</Box>
 				</Box>

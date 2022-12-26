@@ -17,7 +17,18 @@ export const create: StatelessCommand<'payload'> = ({ payload }) => {
 };
 
 export const run: CommandRunner = ({ duel, command: { payload } }) => {
-	return { turn: duel.turn + payload.turn || 0 };
+	const updates = {};
+
+	Object.keys(payload).forEach((key) => {
+		const value = payload[key];
+		if (isNaN(value)) {
+			updates[key] = value;
+		} else {
+			updates[key] = duel[key] + (value || 0);
+		}
+	});
+
+	return updates;
 };
 
 export const duelMutate = {

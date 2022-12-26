@@ -24,13 +24,23 @@ export const Player: FC<Props> = ({ duel }) => {
 
 			{stateKeys.map((key) => {
 				const state = stateMap[key];
+				const attack = String(state.attack).padStart(3, ' ');
+				const defense = String(state.defense).padStart(3, ' ');
+				const health = String(state.health).padStart(3, ' ');
+				const charge = state.charge ? ` (${state.charge})` : '';
+
 				return (
 					<Box key={key}>
 						<Box width={15}>
 							<Text>{key}</Text>
 						</Box>
 						<Box>
-							<Text>{JSON.stringify(state)}</Text>
+							<Text color="red">{attack}</Text>
+							<Text color="gray"> | </Text>
+							<Text>{defense}</Text>
+							<Text color="gray"> | </Text>
+							<Text color="green">{health}</Text>
+							<Text color="blue">{charge}</Text>
 						</Box>
 					</Box>
 				);

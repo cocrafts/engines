@@ -1,6 +1,5 @@
 import { DuelCommandType, DuelState, RunCommandPayload } from '../utils/type';
 
-import cardDraw from './card/draw';
 import cardMove from './card/move';
 import cardMutate from './card/mutate';
 import duelMutate from './duel/mutate';
@@ -9,7 +8,6 @@ import playerMutate from './player/mutate';
 export const createCommand = {
 	duelMutate: duelMutate.create,
 
-	cardDraw: cardDraw.create,
 	cardMove: cardMove.create,
 	cardMutate: cardMutate.create,
 

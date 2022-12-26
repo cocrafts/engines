@@ -65,6 +65,19 @@ export const mergeFragmentToState = (
 	});
 };
 
+export const createBundle = (
+	duel: DuelState,
+	phase?: DuelPhases,
+	phaseOf?: string,
+) => {
+	return {
+		turn: duel.turn,
+		phase: phase || duel.phase,
+		phaseOf: phaseOf || duel.phaseOf,
+		commands: [],
+	};
+};
+
 export const runAndMergeBundle = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
@@ -91,17 +104,4 @@ export const createAndMergeBundle = (
 	};
 
 	return runAndMergeBundle(duel, bundle, commands);
-};
-
-export const createBundle = (
-	duel: DuelState,
-	phase?: DuelPhases,
-	phaseOf?: string,
-) => {
-	return {
-		turn: duel.turn,
-		phase: phase || duel.phase,
-		phaseOf: phaseOf || duel.phaseOf,
-		commands: [],
-	};
 };

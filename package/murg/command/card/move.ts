@@ -1,68 +1,27 @@
-import { getCard } from '../../utils/card';
 import {
 	cloneState,
 	createCommandResult,
 	createDuelFragment,
-	selectPlayer,
 } from '../../utils/helper';
 import { injectCardState } from '../../utils/state';
 import {
-	CardType,
 	CommandRunner,
-	DuelCommand,
 	DuelCommandType,
 	DuelPlace,
-	StatefulCommand,
+	StatelessCommand,
 } from '../../utils/type';
-import playerMutate from '../player/mutate';
 
-export const create: StatefulCommand<'owner' | 'target'> = ({
-	duel,
+export const create: StatelessCommand<'owner' | 'target'> = ({
 	owner,
 	target,
 }) => {
 	const { commands, registerCommand } = createCommandResult();
-	const { cardMap } = duel;
-	const player = selectPlayer(duel, owner);
-	const card = getCard(cardMap, target.from.id);
-	const fromPlayer = target.from.place === DuelPlace.Player;
-	const fromHand = target.from.place === DuelPlace.Hand;
-	const toGround = target.to.place === DuelPlace.Ground;
-	const fromHeroCard = card.kind === CardType.Hero;
-	const fromTroopCard = card.kind === CardType.Troop;
-	const isHeroSummon = owner && fromHand && toGround && fromHeroCard;
-	const isTroopSummon = owner && fromPlayer && toGround && fromTroopCard;
-	const moveCommand: DuelCommand = {
+
+	registerCommand({
 		owner,
 		type: DuelCommandType.CardMove,
 		target,
-	};
-
-	if (isHeroSummon) {
-		if (player.perTurnDraw > 0) {
-			registerCommand(moveCommand);
-			playerMutate
-				.create({
-					duel,
-					target: { to: { owner, place: DuelPlace.Player } },
-					payload: { perTurnDraw: -1 },
-				})
-				.forEach(registerCommand);
-		}
-	} else if (isTroopSummon) {
-		if (player.perTurnTroop > 0) {
-			registerCommand(moveCommand);
-			playerMutate
-				.create({
-					duel,
-					target: { to: { owner, place: DuelPlace.Player } },
-					payload: { perTurnTroop: -1 },
-				})
-				.forEach(registerCommand);
-		}
-	} else {
-		registerCommand(moveCommand);
-	}
+	});
 
 	return commands;
 };

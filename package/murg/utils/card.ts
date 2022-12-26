@@ -163,6 +163,7 @@ export const interpolateTemplate = (text: string) => {
 
 export const interpolate = (card: Card): Card => {
 	if (!card.skill) return card;
+
 	const { charge, activation, template } = card.skill;
 	const charges = charge ? ` (${charge})` : '';
 	const triggerFragment: TemplateFragment = {
@@ -178,26 +179,17 @@ export const interpolate = (card: Card): Card => {
 	return card;
 };
 
-/* <- impure function that mutate [duel] param, be careful! */
-export const injectCardState = (
-	partial: Partial<DuelState>,
-	cardMap: Record<string, Card>,
-	cardId: string,
-): CardState => {
-	const nextUniqueCount = partial.uniqueCardCount + 1;
-	const { attribute, skill } = cardMap[cardId.substring(0, 9)];
-	const cardState: CardState = {
-		id: `${cardId}#${nextUniqueCount}`,
-		attack: attribute.attack,
-		health: attribute.health,
-		defense: attribute.defense,
-	};
+export const getCard = (cardMap: Record<string, Card>, id: string) => {
+	return cardMap[id.substring(0, 9)];
+};
 
-	if (skill?.charge) cardState.charge = skill.charge;
-	if (!partial.stateMap) partial.stateMap = {};
+export const getTroopCard = (cardMap: Record<string, Card>) => {
+	return cardMap['999990000'];
+};
 
-	partial.uniqueCardCount = nextUniqueCount;
-	partial.stateMap[cardState.id] = cardState;
-
-	return cardState;
+export const getCardState = (
+	stateMap: Record<string, CardState>,
+	id: string,
+) => {
+	return stateMap[id];
 };

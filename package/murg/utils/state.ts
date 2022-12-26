@@ -1,6 +1,39 @@
 import { runCommand } from '../command';
 
-import { DuelCommand, DuelCommandBundle, DuelPhases, DuelState } from './type';
+import {
+	Card,
+	CardState,
+	DuelCommand,
+	DuelCommandBundle,
+	DuelPhases,
+	DuelState,
+} from './type';
+
+/* This file is a collection of functions that uses to manage states
+ * most of the functions are Impure that mutate params, be careful! */
+
+export const injectCardState = (
+	partial: Partial<DuelState>,
+	cardMap: Record<string, Card>,
+	cardId: string,
+): CardState => {
+	const nextUniqueCount = partial.uniqueCardCount + 1;
+	const { attribute, skill } = cardMap[cardId.substring(0, 9)];
+	const cardState: CardState = {
+		id: `${cardId}#${nextUniqueCount}`,
+		attack: attribute.attack,
+		health: attribute.health,
+		defense: attribute.defense,
+	};
+
+	if (skill?.charge) cardState.charge = skill.charge;
+	if (!partial.stateMap) partial.stateMap = {};
+
+	partial.uniqueCardCount = nextUniqueCount;
+	partial.stateMap[cardState.id] = cardState;
+
+	return cardState;
+};
 
 export const mergeFragmentToState = (
 	state: DuelState,

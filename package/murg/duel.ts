@@ -1,5 +1,5 @@
-import { injectCardState } from './utils/card';
 import { selectDeck } from './utils/helper';
+import { injectCardState } from './utils/state';
 import {
 	CardState,
 	DuelConfig,

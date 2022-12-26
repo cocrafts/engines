@@ -1,5 +1,6 @@
 import { runCommand } from '../command';
 
+import { getCard } from './card';
 import {
 	Card,
 	CardState,
@@ -18,7 +19,7 @@ export const injectCardState = (
 	cardId: string,
 ): CardState => {
 	const nextUniqueCount = partial.uniqueCardCount + 1;
-	const { attribute, skill } = cardMap[cardId.substring(0, 9)];
+	const { attribute, skill } = getCard(cardMap, cardId);
 	const cardState: CardState = {
 		id: `${cardId}#${nextUniqueCount}`,
 		attack: attribute.attack,

@@ -1,10 +1,11 @@
-import { injectCardState } from '../../utils/card';
+import { getCard } from '../../utils/card';
 import {
 	cloneState,
 	createCommandResult,
 	createDuelFragment,
 	selectPlayer,
 } from '../../utils/helper';
+import { injectCardState } from '../../utils/state';
 import {
 	CardType,
 	CommandRunner,
@@ -23,7 +24,7 @@ export const create: StatefulCommand<'owner' | 'target'> = ({
 	const { commands, registerCommand } = createCommandResult();
 	const { cardMap } = duel;
 	const player = selectPlayer(duel, owner);
-	const card = cardMap[target.from.id?.substring(0, 9)];
+	const card = getCard(cardMap, target.from.id);
 	const fromPlayer = target.from.place === DuelPlace.Player;
 	const fromHand = target.from.place === DuelPlace.Hand;
 	const toGround = target.to.place === DuelPlace.Ground;

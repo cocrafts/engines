@@ -2,7 +2,6 @@ import {
 	ActivationType,
 	Card,
 	CardState,
-	DuelState,
 	FragmentType,
 	TemplateFragment,
 	TemplateStyle,

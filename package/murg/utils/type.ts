@@ -242,10 +242,8 @@ export interface DuelCommandBundle {
 }
 
 export interface MoveResult {
-	duel: DuelState;
+	duel?: DuelState;
 	commandBundles: DuelCommandBundle[];
 }
-
-export type MaybeMoveResult = MoveResult | null | undefined;
 
 export type CommandHistory = DuelCommandBundle[];

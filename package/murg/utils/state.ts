@@ -8,6 +8,7 @@ import {
 	DuelCommandBundle,
 	DuelPhases,
 	DuelState,
+	MoveResult,
 } from './type';
 
 /* This file is a collection of functions that uses to manage states
@@ -104,4 +105,8 @@ export const createAndMergeBundle = (
 	};
 
 	return runAndMergeBundle(duel, bundle, commands);
+};
+
+export const emptyMoveResult: MoveResult = {
+	commandBundles: [],
 };

@@ -9,17 +9,13 @@ import {
 import {
 	createAndMergeBundle,
 	createBundle,
+	emptyMoveResult,
 	runAndMergeBundle,
 } from '../utils/state';
-import {
-	DuelPhases,
-	DuelPlace,
-	DuelState,
-	MaybeMoveResult,
-} from '../utils/type';
+import { DuelPhases, DuelPlace, DuelState, MoveResult } from '../utils/type';
 
-export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
-	if (duel.turn > 0) return undefined;
+export const distributeInitialCards = (duel: DuelState): MoveResult => {
+	if (duel.turn > 0) return emptyMoveResult;
 
 	const { setting, firstPlayer, secondPlayer } = duel;
 	const firstDeck = selectDeck(duel, firstPlayer.id);
@@ -83,8 +79,8 @@ export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
 	};
 };
 
-export const distributeTurnCards = (duel: DuelState): MaybeMoveResult => {
-	if (duel.phase !== DuelPhases.Draw) return undefined;
+export const distributeTurnCards = (duel: DuelState): MoveResult => {
+	if (duel.phase !== DuelPhases.Draw) return emptyMoveResult;
 
 	const player = selectPlayer(duel, duel.phaseOf);
 	const deck = selectDeck(duel, duel.phaseOf);

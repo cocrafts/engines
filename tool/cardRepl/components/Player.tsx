@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PlayerState } from '@metacraft/engines-under-realm';
+import { PlayerState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 import BigText from 'ink-big-text';
 import Gradient from 'ink-gradient';
@@ -11,7 +11,7 @@ interface Props {
 export const Player: FC<Props> = ({ state }) => {
 	return (
 		<Box justifyContent="center" alignItems="center">
-			<Text>[{state.perTurnHero}]</Text>
+			<Text>[{state.perTurnDraw}]</Text>
 			<Gradient name="pastel">
 				<BigText text={String(state.health)} />
 			</Gradient>

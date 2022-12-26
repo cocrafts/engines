@@ -1,5 +1,5 @@
-import { makeCardState } from './utils/card';
-import { nanoId } from './utils/helper';
+import { injectCardState } from './utils/card';
+import { selectDeck } from './utils/helper';
 import {
 	CardState,
 	DuelConfig,
@@ -39,20 +39,13 @@ export const makeDuelConfig = (
 	setting = defaultSetting,
 ): DuelConfig => {
 	const firstMover = Math.random() > 0.5 ? firstPlayer.id : secondPlayer.id;
-	const makeUniqueId = (id: string) => `${id}#${nanoId()}`;
 
 	return {
 		version,
 		setting,
 		firstMover,
-		firstPlayer: {
-			id: firstPlayer.id,
-			deck: firstPlayer.deck.map(makeUniqueId),
-		},
-		secondPlayer: {
-			id: secondPlayer.id,
-			deck: secondPlayer.deck.map(makeUniqueId),
-		},
+		firstPlayer,
+		secondPlayer,
 	};
 };
 
@@ -63,10 +56,8 @@ export const getInitialState = ({
 	firstPlayer,
 	secondPlayer,
 }: DuelConfig): DuelState => {
-	const { map } = makeMeta(version);
-	const cardIdToState = (id: string) => makeCardState(id, map);
-	const firstGround: CardState[] = [];
-	const secondGround: CardState[] = [];
+	const { map: cardMap } = makeMeta(version);
+	const stateMap: Record<string, CardState> = {};
 	const [firstPlayerState, secondPlayerState] = [firstPlayer, secondPlayer].map(
 		(player): PlayerState => {
 			return {
@@ -80,27 +71,39 @@ export const getInitialState = ({
 		},
 	);
 
-	for (let i = 0; i < setting.groundSize; i += 1) {
-		firstGround.push(null);
-		secondGround.push(null);
-	}
-
-	return {
-		map,
+	const duel: DuelState = {
+		cardMap,
+		stateMap,
 		setting,
-		turn: 1,
+		turn: 0,
+		uniqueCardCount: 0,
 		phase: DuelPhases.Draw,
 		phaseOf: firstMover,
 		firstMover,
 		firstPlayer: firstPlayerState,
 		secondPlayer: secondPlayerState,
-		firstDeck: firstPlayer.deck.map(cardIdToState),
-		secondDeck: secondPlayer.deck.map(cardIdToState),
+		firstDeck: [],
+		secondDeck: [],
 		firstHand: [],
 		secondHand: [],
-		firstGround: firstGround,
-		secondGround: secondGround,
+		firstGround: [],
+		secondGround: [],
 		firstGrave: [],
 		secondGrave: [],
 	};
+
+	[firstPlayer, secondPlayer].forEach(({ id: playerId, deck }) => {
+		const currentDeck = selectDeck(duel, playerId);
+
+		deck.forEach((cardId) => {
+			currentDeck.push(injectCardState(duel, cardMap, cardId).id);
+		});
+	});
+
+	for (let i = 0; i < setting.groundSize; i += 1) {
+		duel.firstGround.push(null);
+		duel.secondGround.push(null);
+	}
+
+	return duel;
 };

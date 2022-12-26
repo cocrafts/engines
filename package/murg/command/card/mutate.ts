@@ -1,4 +1,8 @@
-import { cloneState, createCommandResult } from '../../utils/helper';
+import {
+	cloneState,
+	createCommandResult,
+	createDuelFragment,
+} from '../../utils/helper';
 import {
 	CommandRunner,
 	DuelCommandType,
@@ -19,21 +23,22 @@ export const create: StatelessCommand = ({ owner, target, payload }) => {
 };
 
 export const run: CommandRunner = ({
-	state,
+	duel,
 	command: { owner, target, payload },
 }) => {
-	const toClone = cloneState(state, owner, target.to.place);
-	const targetedIndex = toClone.state.findIndex((i) => i.id === target.to.id);
-	const targetedCard = toClone.state[targetedIndex];
+	const fragment = createDuelFragment(duel);
+	const toClone = cloneState(duel, owner, target.to.place);
+	const targetedIndex = toClone.state.findIndex((id) => id === target.to.id);
+	const targetedCardId = toClone.state[targetedIndex];
+	const targetedState = { ...duel.stateMap[targetedCardId] };
 
 	Object.keys(payload).forEach((key) => {
 		const diff = payload[key] || 0;
-		targetedCard[key] = targetedCard[key] + diff;
+		targetedState[key] = targetedState[key] + diff;
 	});
 
-	return {
-		[toClone.key]: toClone.state,
-	};
+	fragment.stateMap[targetedCardId] = targetedState;
+	return fragment;
 };
 
 export const cardMutate = {

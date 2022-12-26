@@ -6,10 +6,10 @@ import {
 	StatefulCommand,
 } from '../../utils/type';
 
-export const create: StatefulCommand<'owner'> = ({ state, owner }) => {
-	const deck = selectDeck(state, owner);
+export const create: StatefulCommand<'owner'> = ({ duel, owner }) => {
+	const deck = selectDeck(duel, owner);
 	const randomIndex = Math.floor(Math.random() * deck.length);
-	const randomCard = deck[randomIndex];
+	const randomId = deck[randomIndex];
 
 	const drawCommand: DuelCommand = {
 		owner,
@@ -17,7 +17,7 @@ export const create: StatefulCommand<'owner'> = ({ state, owner }) => {
 		target: {
 			from: {
 				owner,
-				id: randomCard.id,
+				id: randomId,
 				place: DuelPlace.Deck,
 			},
 			to: {

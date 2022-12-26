@@ -1,6 +1,7 @@
 import {
 	Card,
 	CardState,
+	DuelState,
 	FragmentType,
 	TemplateFragment,
 	TemplateStyle,
@@ -153,21 +154,26 @@ export const interpolate = (card: Card): Card => {
 	return card;
 };
 
-export const makeCardState = (
+/* <- impure function that mutate [duel] param, be careful! */
+export const injectCardState = (
+	partial: Partial<DuelState>,
+	cardMap: Record<string, Card>,
 	cardId: string,
-	map: Record<string, Card>,
 ): CardState => {
-	const { attribute, skill } = map[cardId.substring(0, 9)];
-	const result: CardState = {
-		id: cardId,
+	const nextUniqueCount = partial.uniqueCardCount + 1;
+	const { attribute, skill } = cardMap[cardId.substring(0, 9)];
+	const cardState: CardState = {
+		id: `${cardId}#${nextUniqueCount}`,
 		attack: attribute.attack,
 		health: attribute.health,
 		defense: attribute.defense,
 	};
 
-	if (skill?.charge) {
-		result.charge = skill.charge;
-	}
+	if (skill?.charge) cardState.charge = skill.charge;
+	if (!partial.stateMap) partial.stateMap = {};
 
-	return result;
+	partial.uniqueCardCount = nextUniqueCount;
+	partial.stateMap[cardState.id] = cardState;
+
+	return cardState;
 };

@@ -130,6 +130,8 @@ export enum DuelPhases {
 export type DuelCommandPayload = Partial<Attribute> & {
 	gameOver?: boolean;
 	turn?: number;
+	phase?: DuelPhases;
+	phaseOf?: string;
 	perTurnHero?: number;
 	perTurnTroop?: number;
 };
@@ -191,28 +193,30 @@ export type PlayerState = Attribute & {
 };
 
 export interface DuelState {
-	map: Record<string, Card>;
 	setting: DuelSetting;
+	cardMap: Record<string, Card>;
+	stateMap: Record<string, CardState>;
+	uniqueCardCount: number /* <-- important! to track unique card in a match */;
 	turn: number;
 	phase: DuelPhases;
 	phaseOf: string;
 	firstMover: string;
 	firstPlayer: PlayerState;
 	secondPlayer: PlayerState;
-	firstDeck: CardState[];
-	secondDeck: CardState[];
-	firstHand: CardState[];
-	secondHand: CardState[];
-	firstGround: CardState[];
-	secondGround: CardState[];
-	firstGrave: CardState[];
-	secondGrave: CardState[];
+	firstDeck: string[];
+	secondDeck: string[];
+	firstHand: string[];
+	secondHand: string[];
+	firstGround: string[];
+	secondGround: string[];
+	firstGrave: string[];
+	secondGrave: string[];
 }
 
 type CommandFields = 'owner' | 'target' | 'payload';
 
 export type StatefulCommand<K extends keyof DuelCommand = CommandFields> = (
-	payload: Pick<DuelCommand, K> & { state: DuelState },
+	payload: Pick<DuelCommand, K> & { duel: DuelState },
 ) => DuelCommand[];
 
 export type StatelessCommand<K extends keyof DuelCommand = CommandFields> = (
@@ -220,7 +224,7 @@ export type StatelessCommand<K extends keyof DuelCommand = CommandFields> = (
 ) => DuelCommand[];
 
 export interface RunCommandPayload {
-	state: DuelState;
+	duel: DuelState;
 	command: DuelCommand;
 }
 

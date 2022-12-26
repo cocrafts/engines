@@ -10,7 +10,7 @@ import {
 } from '../../utils/type';
 
 export const create: StatefulCommand<'target' | 'payload'> = ({
-	state,
+	duel,
 	target,
 	payload,
 }) => {
@@ -23,7 +23,7 @@ export const create: StatefulCommand<'target' | 'payload'> = ({
 	});
 
 	if (payload.health) {
-		const player = selectPlayer(state, target.to.owner);
+		const player = selectPlayer(duel, target.to.owner);
 		const nextHealth = player.health;
 
 		if (nextHealth <= 0) {
@@ -37,8 +37,8 @@ export const create: StatefulCommand<'target' | 'payload'> = ({
 	return commands;
 };
 
-export const run: CommandRunner = ({ state, command: { owner, payload } }) => {
-	const playerClone = clonePlayer(state, owner);
+export const run: CommandRunner = ({ duel, command: { owner, payload } }) => {
+	const playerClone = clonePlayer(duel, owner);
 
 	Object.keys(payload).forEach((key) => {
 		const diff = payload[key] || 0;

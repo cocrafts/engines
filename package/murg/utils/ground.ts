@@ -1,4 +1,4 @@
-import { CardState, TargetSide } from './type';
+import { TargetSide } from './type';
 
 interface GroundSize {
 	centerIndex: number;
@@ -9,8 +9,8 @@ interface GroundSize {
 }
 
 export const addToGround = (
-	card: CardState,
-	ground: CardState[],
+	card: string,
+	ground: string[],
 	side: TargetSide = TargetSide.Right,
 ): boolean => {
 	const sizes = getGroundSizes(ground);
@@ -34,7 +34,7 @@ export const addToGround = (
 	return true;
 };
 
-export const getGroundSizes = (ground: CardState[]) => {
+export const getGroundSizes = (ground: string[]) => {
 	const radius = Math.floor(ground.length / 2);
 	const size: GroundSize = {
 		centerIndex: radius,

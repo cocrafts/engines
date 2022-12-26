@@ -27,6 +27,6 @@ export const runCommand = (payload: RunCommandPayload): Partial<DuelState> => {
 		case DuelCommandType.DuelMutate:
 			return duelMutate.run(payload);
 		default:
-			return payload.state;
+			return payload.duel;
 	}
 };

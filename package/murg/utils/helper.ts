@@ -1,10 +1,4 @@
-import {
-	CardState,
-	DuelCommand,
-	DuelPlace,
-	DuelState,
-	PlayerState,
-} from './type';
+import { DuelCommand, DuelPlace, DuelState, PlayerState } from './type';
 
 export const nanoId = () => {
 	return 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -25,6 +19,15 @@ export const createCommandResult = (
 	return {
 		commands: defaults,
 		registerCommand: (i) => defaults.push(i),
+	};
+};
+
+export const createDuelFragment = ({
+	uniqueCardCount,
+}: DuelState): Partial<DuelState> => {
+	return {
+		uniqueCardCount,
+		stateMap: {},
 	};
 };
 
@@ -53,23 +56,23 @@ export const clonePlayer = (state: DuelState, owner: string): PlayerClone => {
 };
 
 export const selectState = (
-	state: DuelState,
+	duel: DuelState,
 	owner: string,
 	source: DuelPlace,
-): CardState[] => {
+): string[] => {
 	if (!owner) return;
 	const firstSource = `first${source}`;
 
-	if (state.firstPlayer.id === owner) {
-		return state[firstSource];
+	if (duel.firstPlayer.id === owner) {
+		return duel[firstSource];
 	}
 
-	return state[`second${source}`];
+	return duel[`second${source}`];
 };
 
 export interface StateClone {
 	key: string;
-	state: CardState[];
+	state: string[];
 }
 
 export const cloneState = (
@@ -80,7 +83,7 @@ export const cloneState = (
 	const isFirst = state.firstPlayer.id === owner;
 	const firstSource = `first${source}`;
 	const secondSource = `second${source}`;
-	const selectedState = selectState(state, owner, source) as CardState[];
+	const selectedState = selectState(state, owner, source) as string[];
 
 	return {
 		key: isFirst ? firstSource : secondSource,
@@ -88,18 +91,47 @@ export const cloneState = (
 	};
 };
 
-export const selectDeck = (state: DuelState, owner: string): CardState[] => {
+export const selectDeck = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Deck);
 };
 
-export const selectHand = (state: DuelState, owner: string): CardState[] => {
+export const selectHand = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Hand);
 };
 
-export const selectGround = (state: DuelState, owner: string): CardState[] => {
+export const selectGround = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Ground);
 };
 
-export const selectGrave = (state: DuelState, owner: string): CardState[] => {
+export const selectGrave = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Grave);
+};
+
+export const mergeFragmentToState = (
+	state: DuelState,
+	fragment: Partial<DuelState>,
+): void => {
+	[
+		'uniqueCardCount',
+		'turn',
+		'phase',
+		'phaseOf',
+		'firstMover',
+		'firstPlayer',
+		'secondPlayer',
+		'firstDeck',
+		'secondDeck',
+		'firstHand',
+		'secondHand',
+		'firstGround',
+		'secondGround',
+		'firstGrave',
+		'secondGrave',
+	].forEach((key) => {
+		state[key] = fragment[key] || state[key];
+	});
+
+	Object.keys(fragment.stateMap || {}).forEach((id) => {
+		state.stateMap[id] = fragment.stateMap[id];
+	});
 };

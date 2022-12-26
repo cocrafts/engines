@@ -24,24 +24,24 @@ export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
 
 	for (let i = 0; i < amount; i += 1) {
 		createCommand
-			.cardDraw({ state: snapshot, owner: firstPlayer.id })
+			.cardDraw({ duel: snapshot, owner: firstPlayer.id })
 			.forEach((command) => {
 				firstDrawBundle.commands.push(command);
 
 				snapshot = {
 					...snapshot,
-					...runCommand({ state: snapshot, command }),
+					...runCommand({ duel: snapshot, command }),
 				};
 			});
 
 		createCommand
-			.cardDraw({ state: snapshot, owner: secondPlayer.id })
+			.cardDraw({ duel: snapshot, owner: secondPlayer.id })
 			.forEach((command) => {
 				secondDrawBundle.commands.push(command);
 
 				snapshot = {
 					...snapshot,
-					...runCommand({ state: snapshot, command }),
+					...runCommand({ duel: snapshot, command }),
 				};
 			});
 	}

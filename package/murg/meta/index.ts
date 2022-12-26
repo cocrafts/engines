@@ -1,7 +1,6 @@
 import { Card, CardMeta, CardType, ElementalType } from '../utils/type';
 
 import ver00001 from './db/00001';
-import { SnakeCard, TroopCard, WolfCard } from './shared';
 
 const metaHash: Record<string, Card[]> = { ver00001 };
 
@@ -28,13 +27,11 @@ export const makeMeta = (version = '00001'): CardMeta => {
 					map[sku] = generatedCard;
 				}
 			}
+		} else if (card.kind === CardType.Troop) {
+			entities.push(card.id);
+			map[card.id] = card;
 		}
 	}
-
-	[SnakeCard, TroopCard, WolfCard].forEach((card) => {
-		entities.push(card.id);
-		map[card.id] = card;
-	});
 
 	return { version, entities, map };
 };

@@ -9,6 +9,52 @@ import {
 
 const cardList: Card[] = [
 	{
+		id: '999990000',
+		name: 'Troop',
+		kind: CardType.Troop,
+		rarity: 0,
+		class: ClassType.Beast,
+		attribute: {
+			attack: 20,
+			defense: 0,
+			health: 40,
+		},
+		skill: {
+			template: 'A proud warrior.',
+		},
+	},
+	{
+		id: '999980000',
+		name: 'Wolf',
+		kind: CardType.Troop,
+		rarity: 0,
+		class: ClassType.Beast,
+		attribute: {
+			attack: 20,
+			defense: 0,
+			health: 20,
+		},
+		skill: {
+			template: 'A ware wolf.',
+		},
+	},
+	{
+		id: '999970000',
+		name: 'Troop',
+		kind: CardType.Troop,
+		rarity: 0,
+		class: ClassType.Beast,
+		attribute: {
+			attack: 10,
+			defense: 0,
+			health: 20,
+		},
+		skill: {
+			template: 'Small snake.',
+		},
+	},
+	/* <-- end of Troop cards */
+	{
 		id: '00001',
 		name: 'The Raven',
 		class: ClassType.Assassin,

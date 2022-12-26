@@ -7,7 +7,7 @@
 			"handSize": 9,
 			"groundSize": 11,
 			"maxAttachment": 2,
-			"perTurnDraw": 1,
+			"perTurnDraw": 2,
 			"perTurnTroop": 1
 		},
 		"firstMover": "B",
@@ -18431,7 +18431,7 @@
 			"handSize": 9,
 			"groundSize": 11,
 			"maxAttachment": 2,
-			"perTurnDraw": 1,
+			"perTurnDraw": 2,
 			"perTurnTroop": 1
 		},
 		"turn": 0,

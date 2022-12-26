@@ -5,15 +5,15 @@ import {
 	StatelessCommand,
 } from '../../utils/type';
 
-export const create: StatelessCommand<'target' | 'payload'> = ({
-	target,
+export const create: StatelessCommand<'owner' | 'payload'> = ({
+	owner,
 	payload,
 }) => {
 	const { commands, registerCommand } = createCommandResult();
 
 	registerCommand({
 		type: DuelCommandType.PlayerMutate,
-		target,
+		owner,
 		payload,
 	});
 

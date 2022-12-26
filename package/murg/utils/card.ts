@@ -182,8 +182,10 @@ export const getCard = (cardMap: Record<string, Card>, id: string) => {
 	return cardMap[id.substring(0, 9)];
 };
 
+export const troopId = '999990000';
+
 export const getTroopCard = (cardMap: Record<string, Card>) => {
-	return cardMap['999990000'];
+	return cardMap[troopId];
 };
 
 export const getCardState = (

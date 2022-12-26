@@ -1,5 +1,6 @@
-import { distributeInitialCards } from './duel/distribute';
+import { distributeInitialCards, distributeTurnCards } from './distribute';
 
 export const move = {
 	distributeInitialCards,
+	distributeTurnCards,
 };

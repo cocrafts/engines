@@ -45,6 +45,8 @@ export const replay = async () => {
 		runCommandBundles(require('./distribute.json'));
 	}
 
+	runMove(() => move.distributeTurnCards(duel));
+
 	return {
 		duel,
 		history: commandHistory,

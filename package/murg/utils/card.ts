@@ -163,15 +163,18 @@ export const interpolateTemplate = (text: string) => {
 
 export const interpolate = (card: Card): Card => {
 	if (!card.skill) return card;
-	const template = card.skill.template as never;
-	const activation = ActivationDisplays[card.skill.activation];
-	const charge = card.skill.charge ? ` (${card.skill.charge})` : '';
+	const { charge, activation, template } = card.skill;
+	const charges = charge ? ` (${charge})` : '';
 	const triggerFragment: TemplateFragment = {
-		text: `${activation}${charge}: `,
+		text: activation ? `${ActivationDisplays[activation]}${charges}: ` : '',
 		type: FragmentType.TEXT,
 	};
 
-	card.skill.template = [triggerFragment, ...interpolateTemplate(template)];
+	card.skill.template = [
+		triggerFragment,
+		...interpolateTemplate(template as never),
+	];
+
 	return card;
 };
 

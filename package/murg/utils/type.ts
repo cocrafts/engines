@@ -158,6 +158,7 @@ export interface DuelCommand {
 	owner?: string;
 	target?: DuelCommandTarget;
 	payload?: DuelCommandPayload;
+	amount?: number;
 }
 
 export interface DuelSetting {

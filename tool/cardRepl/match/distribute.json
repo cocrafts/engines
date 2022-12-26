@@ -2,7 +2,7 @@
 	{
 		"turn": 0,
 		"phase": "Draw",
-		"phaseOf": "A",
+		"phaseOf": "B",
 		"commands": [
 			{
 				"owner": "A",
@@ -10,7 +10,7 @@
 				"target": {
 					"from": {
 						"owner": "A",
-						"id": "000190006#1",
+						"id": "000350005#30",
 						"place": "Deck"
 					},
 					"to": {
@@ -25,7 +25,7 @@
 				"target": {
 					"from": {
 						"owner": "A",
-						"id": "000040005#8",
+						"id": "000110002#12",
 						"place": "Deck"
 					},
 					"to": {
@@ -40,7 +40,7 @@
 				"target": {
 					"from": {
 						"owner": "A",
-						"id": "000400002#12",
+						"id": "000090007#6",
 						"place": "Deck"
 					},
 					"to": {
@@ -55,7 +55,7 @@
 				"target": {
 					"from": {
 						"owner": "A",
-						"id": "000260003#13",
+						"id": "000510006#17",
 						"place": "Deck"
 					},
 					"to": {
@@ -70,7 +70,7 @@
 				"target": {
 					"from": {
 						"owner": "A",
-						"id": "000330007#27",
+						"id": "000220002#19",
 						"place": "Deck"
 					},
 					"to": {
@@ -92,7 +92,7 @@
 				"target": {
 					"from": {
 						"owner": "B",
-						"id": "000370004#56",
+						"id": "000310007#43",
 						"place": "Deck"
 					},
 					"to": {
@@ -107,7 +107,7 @@
 				"target": {
 					"from": {
 						"owner": "B",
-						"id": "000540002#46",
+						"id": "000360001#72",
 						"place": "Deck"
 					},
 					"to": {
@@ -122,7 +122,7 @@
 				"target": {
 					"from": {
 						"owner": "B",
-						"id": "000160005#50",
+						"id": "000100001#47",
 						"place": "Deck"
 					},
 					"to": {
@@ -137,7 +137,7 @@
 				"target": {
 					"from": {
 						"owner": "B",
-						"id": "000310001#64",
+						"id": "000550002#55",
 						"place": "Deck"
 					},
 					"to": {
@@ -152,7 +152,7 @@
 				"target": {
 					"from": {
 						"owner": "B",
-						"id": "000390003#61",
+						"id": "000260007#66",
 						"place": "Deck"
 					},
 					"to": {
@@ -166,6 +166,7 @@
 	{
 		"turn": 0,
 		"phase": "CleanUp",
+		"phaseOf": "B",
 		"commands": [
 			{
 				"type": "DuelMutate",

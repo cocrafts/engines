@@ -1,33 +1,37 @@
-import { selectDeck } from '../../utils/helper';
 import {
-	DuelCommand,
-	DuelCommandType,
-	DuelPlace,
-	StatefulCommand,
-} from '../../utils/type';
+	createCommandResult,
+	pickUniqueIds,
+	selectDeck,
+} from '../../utils/helper';
+import { DuelCommandType, DuelPlace, StatefulCommand } from '../../utils/type';
 
-export const create: StatefulCommand<'owner'> = ({ duel, owner }) => {
+export const create: StatefulCommand<'owner' | 'amount'> = ({
+	duel,
+	owner,
+	amount = 1,
+}) => {
+	const { commands, registerCommand } = createCommandResult();
 	const deck = selectDeck(duel, owner);
-	const randomIndex = Math.floor(Math.random() * deck.length);
-	const randomId = deck[randomIndex];
 
-	const drawCommand: DuelCommand = {
-		owner,
-		type: DuelCommandType.CardMove,
-		target: {
-			from: {
-				owner,
-				id: randomId,
-				place: DuelPlace.Deck,
+	pickUniqueIds(deck, amount).forEach((cardId) => {
+		registerCommand({
+			owner,
+			type: DuelCommandType.CardMove,
+			target: {
+				from: {
+					owner,
+					id: cardId,
+					place: DuelPlace.Deck,
+				},
+				to: {
+					owner,
+					place: DuelPlace.Hand,
+				},
 			},
-			to: {
-				owner,
-				place: DuelPlace.Hand,
-			},
-		},
-	};
+		});
+	});
 
-	return [drawCommand];
+	return commands;
 };
 
 export const drawCommand = {

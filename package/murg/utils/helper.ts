@@ -106,3 +106,16 @@ export const selectGround = (state: DuelState, owner: string): string[] => {
 export const selectGrave = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Grave);
 };
+
+export const pickUniqueIds = (list: string[], amount: number) => {
+	const result = [];
+	const listClone = [...list];
+
+	for (let i = 0; i < amount; i++) {
+		const index = Math.floor(Math.random() * listClone.length);
+		const id = listClone.splice(index, 1)[0];
+		result.push(id);
+	}
+
+	return result;
+};

@@ -11,6 +11,7 @@ import clone from 'lodash/cloneDeep';
 
 const cache = require('./cache.json');
 
+const redistribute = false;
 export const initialState = getInitialState(cache.config);
 
 export const replay = async () => {
@@ -34,13 +35,15 @@ export const replay = async () => {
 		});
 	};
 
-	// runCommandBundles(require('./distribute.json'));
-	runMove(() => move.distributeInitialCards(duel));
-
-	require('fs').writeFileSync(
-		'distribute.json',
-		JSON.stringify(commandHistory),
-	);
+	if (redistribute) {
+		runMove(() => move.distributeInitialCards(duel));
+		require('fs').writeFileSync(
+			'distribute.json',
+			JSON.stringify(commandHistory),
+		);
+	} else {
+		runCommandBundles(require('./distribute.json'));
+	}
 
 	return {
 		duel,

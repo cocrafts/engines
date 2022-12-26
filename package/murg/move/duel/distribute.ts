@@ -1,40 +1,34 @@
 import { createCommand } from '../../command';
-import { createAndMergeBundle, runAndMergeBundle } from '../../utils/state';
 import {
-	DuelCommandBundle,
-	DuelPhases,
-	DuelState,
-	MoveResult,
-} from '../../utils/type';
+	createAndMergeBundle,
+	createBundle,
+	runAndMergeBundle,
+} from '../../utils/state';
+import { DuelPhases, DuelState, MaybeMoveResult } from '../../utils/type';
 
-export const distributeInitialCards = (duel: DuelState): MoveResult => {
+export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
+	if (duel.turn > 0) return undefined;
+
 	const { firstPlayer, secondPlayer } = duel;
-	const firstDrawBundle: DuelCommandBundle = {
-		turn: duel.turn,
-		phase: DuelPhases.Draw,
-		phaseOf: firstPlayer.id,
-		commands: [],
-	};
-	const secondDrawBundle: DuelCommandBundle = {
-		turn: duel.turn,
-		phase: DuelPhases.Draw,
-		phaseOf: secondPlayer.id,
-		commands: [],
-	};
-
-	for (let i = 0; i < duel.setting.initialCardCount; i += 1) {
-		runAndMergeBundle(
+	const firstDrawBundle = createAndMergeBundle(
+		duel,
+		DuelPhases.Draw,
+		createCommand.cardDraw({
 			duel,
-			firstDrawBundle,
-			createCommand.cardDraw({ duel, owner: firstPlayer.id }),
-		);
+			owner: firstPlayer.id,
+			amount: duel.setting.initialCardCount,
+		}),
+	);
 
-		runAndMergeBundle(
+	const secondDrawBundle = createAndMergeBundle(
+		duel,
+		DuelPhases.Draw,
+		createCommand.cardDraw({
 			duel,
-			secondDrawBundle,
-			createCommand.cardDraw({ duel, owner: secondPlayer.id }),
-		);
-	}
+			owner: secondPlayer.id,
+			amount: duel.setting.initialCardCount,
+		}),
+	);
 
 	const cleanUpBundle = createAndMergeBundle(
 		duel,

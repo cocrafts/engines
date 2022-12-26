@@ -7,90 +7,90 @@
 			"handSize": 9,
 			"groundSize": 11,
 			"maxAttachment": 2,
-			"perTurnDraw": 2,
+			"perTurnDraw": 1,
 			"perTurnTroop": 1
 		},
-		"firstMover": "A",
+		"firstMover": "B",
 		"firstPlayer": {
 			"id": "A",
 			"deck": [
-				"000190006",
-				"000120006",
-				"000450004",
-				"000200004",
-				"000410005",
-				"000210004",
 				"000080005",
-				"000040005",
-				"000060004",
-				"000020007",
-				"000460003",
-				"000400002",
-				"000260003",
-				"000070004",
-				"000300001",
-				"000150003",
-				"000130007",
-				"000100007",
-				"000340001",
-				"000550003",
-				"000540005",
-				"000030006",
-				"000170003",
+				"000490007",
+				"000230001",
+				"000500006",
+				"000010001",
 				"000090007",
-				"000280007",
-				"000500003",
-				"000330007",
-				"000380003",
-				"000480007",
-				"000140007",
-				"000360004",
-				"000160004",
-				"000270001",
-				"000050006",
-				"000390004",
-				"000240006"
+				"000430004",
+				"000100004",
+				"000300006",
+				"000050005",
+				"000150004",
+				"000110002",
+				"000440007",
+				"000040001",
+				"000140003",
+				"000160006",
+				"000510006",
+				"000210007",
+				"000220002",
+				"000530005",
+				"000240004",
+				"000070001",
+				"000340001",
+				"000060006",
+				"000560006",
+				"000310003",
+				"000550004",
+				"000180005",
+				"000360003",
+				"000350005",
+				"000470007",
+				"000320006",
+				"000390002",
+				"000250002",
+				"000370003",
+				"000170004"
 			]
 		},
 		"secondPlayer": {
 			"id": "B",
 			"deck": [
-				"000440004",
-				"000500005",
-				"000550004",
-				"000420003",
-				"000210006",
-				"000120007",
-				"000350004",
-				"000020006",
-				"000110001",
-				"000540002",
-				"000480006",
-				"000380002",
-				"000490003",
-				"000160005",
-				"000300004",
-				"000010002",
-				"000520003",
-				"000270007",
-				"000330004",
-				"000370004",
-				"000080007",
-				"000240003",
-				"000400002",
+				"000460006",
 				"000170003",
-				"000390003",
-				"000140004",
-				"000060007",
-				"000310001",
-				"000340003",
-				"000130002",
-				"000470001",
-				"000430001",
-				"000150007",
-				"000180001",
-				"000530006",
-				"000230007"
+				"000210006",
+				"000270005",
+				"000320001",
+				"000240007",
+				"000310007",
+				"000140005",
+				"000110001",
+				"000430002",
+				"000100001",
+				"000050005",
+				"000130001",
+				"000090006",
+				"000530004",
+				"000340006",
+				"000370001",
+				"000160005",
+				"000550002",
+				"000080005",
+				"000290005",
+				"000190001",
+				"000490001",
+				"000180003",
+				"000420004",
+				"000030001",
+				"000070002",
+				"000020003",
+				"000450003",
+				"000260007",
+				"000060003",
+				"000500002",
+				"000400006",
+				"000220006",
+				"000280002",
+				"000360001"
 			]
 		}
 	},
@@ -108,12 +108,21 @@
 					"health": 20
 				},
 				"skill": {
-					"template": "Small snake."
+					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
+						{
+							"text": "Small snake.",
+							"type": "text"
+						}
+					]
 				}
 			},
 			"999980000": {
 				"id": "999980000",
-				"name": "Troop",
+				"name": "Wolf",
 				"kind": 1,
 				"rarity": 0,
 				"class": "06",
@@ -123,7 +132,16 @@
 					"health": 20
 				},
 				"skill": {
-					"template": "A ware wolf."
+					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
+						{
+							"text": "A ware wolf.",
+							"type": "text"
+						}
+					]
 				}
 			},
 			"999990000": {
@@ -138,7 +156,16 @@
 					"health": 40
 				},
 				"skill": {
-					"template": "A proud warrior."
+					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
+						{
+							"text": "A proud warrior.",
+							"type": "text"
+						}
+					]
 				}
 			},
 			"000010001": {
@@ -154,6 +181,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Destroy first facing ",
 							"type": "text"
@@ -189,6 +220,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Destroy first facing ",
 							"type": "text"
 						},
@@ -222,6 +257,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Destroy first facing ",
 							"type": "text"
@@ -257,6 +296,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Destroy first facing ",
 							"type": "text"
 						},
@@ -290,6 +333,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Destroy first facing ",
 							"type": "text"
@@ -325,6 +372,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Destroy first facing ",
 							"type": "text"
 						},
@@ -359,6 +410,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Destroy first facing ",
 							"type": "text"
 						},
@@ -392,6 +447,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -438,6 +497,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -482,6 +545,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -528,6 +595,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -572,6 +643,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -618,6 +693,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -662,6 +741,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -708,6 +791,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -741,6 +828,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Permanently ",
 							"type": "text"
@@ -776,6 +867,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -809,6 +904,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Permanently ",
 							"type": "text"
@@ -844,6 +943,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -877,6 +980,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Permanently ",
 							"type": "text"
@@ -912,6 +1019,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -946,6 +1057,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore enemy's ",
 							"type": "text"
 						},
@@ -978,6 +1093,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore enemy's ",
 							"type": "text"
@@ -1012,6 +1131,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore enemy's ",
 							"type": "text"
 						},
@@ -1044,6 +1167,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore enemy's ",
 							"type": "text"
@@ -1078,6 +1205,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore enemy's ",
 							"type": "text"
 						},
@@ -1110,6 +1241,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore enemy's ",
 							"type": "text"
@@ -1144,6 +1279,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore enemy's ",
 							"type": "text"
 						},
@@ -1176,6 +1315,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1222,6 +1365,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1266,6 +1413,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1312,6 +1463,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1356,6 +1511,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1402,6 +1561,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1446,6 +1609,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1492,6 +1659,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1536,6 +1707,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1582,6 +1757,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1626,6 +1805,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1672,6 +1855,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1716,6 +1903,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -1762,6 +1953,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Pre Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -1806,6 +2001,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -1865,6 +2064,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self buff ",
 							"type": "text"
 						},
@@ -1922,6 +2125,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -1981,6 +2188,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self buff ",
 							"type": "text"
 						},
@@ -2038,6 +2249,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -2097,6 +2312,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self buff ",
 							"type": "text"
 						},
@@ -2154,6 +2373,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -2213,6 +2436,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -2246,6 +2473,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -2281,6 +2512,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -2314,6 +2549,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -2349,6 +2588,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -2382,6 +2625,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -2417,6 +2664,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -2451,6 +2702,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -2488,6 +2743,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2523,6 +2782,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -2560,6 +2823,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2595,6 +2862,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -2632,6 +2903,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2668,6 +2943,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (1): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2703,6 +2982,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -2751,6 +3034,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2797,6 +3084,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -2845,6 +3136,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2891,6 +3186,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -2939,6 +3238,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -2986,6 +3289,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -3031,6 +3338,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3078,6 +3389,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3123,6 +3438,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3170,6 +3489,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3215,6 +3538,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3262,6 +3589,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3307,6 +3638,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3354,6 +3689,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3388,6 +3727,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3424,6 +3767,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3458,6 +3805,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3494,6 +3845,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3528,6 +3883,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -3564,6 +3923,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -3599,6 +3962,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Glory: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal additional ",
 							"type": "text"
 						},
@@ -3631,6 +3998,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Glory: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal additional ",
 							"type": "text"
@@ -3665,6 +4036,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Glory: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal additional ",
 							"type": "text"
 						},
@@ -3697,6 +4072,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Glory: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal additional ",
 							"type": "text"
@@ -3731,6 +4110,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Glory: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal additional ",
 							"type": "text"
 						},
@@ -3763,6 +4146,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Glory: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal additional ",
 							"type": "text"
@@ -3797,6 +4184,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Glory: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal additional ",
 							"type": "text"
 						},
@@ -3829,6 +4220,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Stack ",
 							"type": "text"
@@ -3864,6 +4259,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Stack ",
 							"type": "text"
 						},
@@ -3897,6 +4296,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Stack ",
 							"type": "text"
@@ -3932,6 +4335,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Stack ",
 							"type": "text"
 						},
@@ -3965,6 +4372,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Stack ",
 							"type": "text"
@@ -4000,6 +4411,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Stack ",
 							"type": "text"
 						},
@@ -4033,6 +4448,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Stack ",
 							"type": "text"
@@ -4068,6 +4487,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Double attack.",
 							"type": "text"
 						}
@@ -4090,6 +4513,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Double attack.",
 							"type": "text"
@@ -4114,6 +4541,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Double attack.",
 							"type": "text"
 						}
@@ -4136,6 +4567,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Double attack.",
 							"type": "text"
@@ -4160,6 +4595,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Double attack.",
 							"type": "text"
 						}
@@ -4182,6 +4621,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Double attack.",
 							"type": "text"
@@ -4206,6 +4649,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Double attack.",
 							"type": "text"
 						}
@@ -4228,6 +4675,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore ",
 							"type": "text"
@@ -4263,6 +4714,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore ",
 							"type": "text"
 						},
@@ -4296,6 +4751,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore ",
 							"type": "text"
@@ -4331,6 +4790,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore ",
 							"type": "text"
 						},
@@ -4364,6 +4827,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore ",
 							"type": "text"
@@ -4399,6 +4866,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Ignore ",
 							"type": "text"
 						},
@@ -4432,6 +4903,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Ignore ",
 							"type": "text"
@@ -4467,6 +4942,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
 						}
@@ -4487,6 +4966,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
@@ -4509,6 +4992,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
 						}
@@ -4529,6 +5016,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
@@ -4551,6 +5042,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
 						}
@@ -4571,6 +5066,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
@@ -4593,6 +5092,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Like the Great Fire, we sweep through the battlefield like an unstoppable force",
 							"type": "text"
 						}
@@ -4613,6 +5116,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -4661,6 +5168,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -4707,6 +5218,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -4755,6 +5270,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -4801,6 +5320,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -4849,6 +5372,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -4895,6 +5422,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -4943,6 +5474,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -4988,6 +5523,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -5035,6 +5574,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -5080,6 +5623,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -5127,6 +5674,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -5172,6 +5723,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -5219,6 +5774,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -5264,6 +5823,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
 						{
 							"text": "Transform ",
 							"type": "text"
@@ -5312,6 +5875,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Transform ",
 							"type": "text"
 						},
@@ -5358,6 +5925,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
 						{
 							"text": "Transform ",
 							"type": "text"
@@ -5406,6 +5977,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Transform ",
 							"type": "text"
 						},
@@ -5452,6 +6027,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
 						{
 							"text": "Transform ",
 							"type": "text"
@@ -5500,6 +6079,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Transform ",
 							"type": "text"
 						},
@@ -5547,6 +6130,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (4): ",
+							"type": "text"
+						},
+						{
 							"text": "Transform ",
 							"type": "text"
 						},
@@ -5593,6 +6180,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Take extra ",
 							"type": "text"
@@ -5652,6 +6243,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Take extra ",
 							"type": "text"
 						},
@@ -5709,6 +6304,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Take extra ",
 							"type": "text"
@@ -5768,6 +6367,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Take extra ",
 							"type": "text"
 						},
@@ -5825,6 +6428,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Take extra ",
 							"type": "text"
@@ -5884,6 +6491,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "Take extra ",
 							"type": "text"
 						},
@@ -5941,6 +6552,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "Take extra ",
 							"type": "text"
@@ -6000,6 +6615,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self heal ",
 							"type": "text"
 						},
@@ -6034,6 +6653,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self heal ",
 							"type": "text"
@@ -6070,6 +6693,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self heal ",
 							"type": "text"
 						},
@@ -6104,6 +6731,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self heal ",
 							"type": "text"
@@ -6140,6 +6771,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self heal ",
 							"type": "text"
 						},
@@ -6174,6 +6809,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self heal ",
 							"type": "text"
@@ -6210,6 +6849,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self heal ",
 							"type": "text"
 						},
@@ -6245,6 +6888,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -6294,6 +6941,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -6341,6 +6992,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -6390,6 +7045,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -6437,6 +7096,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -6486,6 +7149,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -6533,6 +7200,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -6582,6 +7253,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -6628,6 +7303,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Create ",
 							"type": "text"
@@ -6676,6 +7355,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -6722,6 +7405,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Create ",
 							"type": "text"
@@ -6770,6 +7457,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -6816,6 +7507,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Create ",
 							"type": "text"
@@ -6864,6 +7559,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -6910,6 +7609,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -6943,6 +7646,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -6978,6 +7685,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -7011,6 +7722,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -7046,6 +7761,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -7079,6 +7798,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "Gain ",
 							"type": "text"
@@ -7114,6 +7837,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Gain ",
 							"type": "text"
 						},
@@ -7148,6 +7875,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7195,6 +7926,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7240,6 +7975,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7287,6 +8026,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7332,6 +8075,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7379,6 +8126,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7425,6 +8176,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7470,6 +8225,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -7503,6 +8262,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "Permanently ",
 							"type": "text"
@@ -7538,6 +8301,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -7571,6 +8338,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "Permanently ",
 							"type": "text"
@@ -7606,6 +8377,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -7639,6 +8414,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "Permanently ",
 							"type": "text"
@@ -7674,6 +8453,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "Permanently ",
 							"type": "text"
 						},
@@ -7708,6 +8491,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7740,6 +8527,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Death: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7774,6 +8565,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7806,6 +8601,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Death: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7840,6 +8639,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7872,6 +8675,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Death: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7906,6 +8713,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -7939,6 +8750,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -7987,6 +8802,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8033,6 +8852,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8081,6 +8904,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8127,6 +8954,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8175,6 +9006,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8222,6 +9057,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8268,6 +9107,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8301,6 +9144,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8336,6 +9183,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8369,6 +9220,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8404,6 +9259,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8437,6 +9296,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Passive: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8472,6 +9335,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Passive: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8506,6 +9373,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
 						}
@@ -8526,6 +9397,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
@@ -8548,6 +9423,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
 						}
@@ -8568,6 +9447,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
@@ -8590,6 +9473,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
 						}
@@ -8610,6 +9497,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
@@ -8632,6 +9523,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Bjorn mountain is our home, and we protect it with our lives",
 							"type": "text"
 						}
@@ -8652,6 +9547,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
@@ -8674,6 +9573,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
 						}
@@ -8694,6 +9597,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
@@ -8716,6 +9623,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
 						}
@@ -8736,6 +9647,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
@@ -8758,6 +9673,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
 						}
@@ -8779,6 +9698,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "We are shield of the Tanker Guild",
 							"type": "text"
 						}
@@ -8799,6 +9722,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8846,6 +9773,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8891,6 +9822,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -8938,6 +9873,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -8983,6 +9922,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -9030,6 +9973,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -9076,6 +10023,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -9121,6 +10072,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -9181,6 +10136,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self buff ",
 							"type": "text"
 						},
@@ -9239,6 +10198,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -9299,6 +10262,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self buff ",
 							"type": "text"
 						},
@@ -9357,6 +10324,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -9417,6 +10388,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Self buff ",
 							"type": "text"
 						},
@@ -9475,6 +10450,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Self buff ",
 							"type": "text"
@@ -9535,6 +10514,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Reduce ",
 							"type": "text"
 						},
@@ -9580,6 +10563,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Reduce ",
 							"type": "text"
@@ -9627,6 +10614,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Reduce ",
 							"type": "text"
 						},
@@ -9672,6 +10663,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Reduce ",
 							"type": "text"
@@ -9719,6 +10714,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Reduce ",
 							"type": "text"
 						},
@@ -9764,6 +10763,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Reduce ",
 							"type": "text"
@@ -9811,6 +10814,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Reduce ",
 							"type": "text"
 						},
@@ -9857,6 +10864,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -9906,6 +10917,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -9953,6 +10968,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -10002,6 +11021,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -10049,6 +11072,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -10098,6 +11125,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -10146,6 +11177,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -10192,6 +11227,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -10240,6 +11279,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -10286,6 +11329,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -10334,6 +11381,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -10380,6 +11431,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -10428,6 +11483,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -10474,6 +11533,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -10523,6 +11586,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -10557,6 +11624,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -10593,6 +11664,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -10627,6 +11702,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -10663,6 +11742,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -10697,6 +11780,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -10733,6 +11820,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -10766,6 +11857,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
 						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
@@ -10801,6 +11896,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
+						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
 						},
@@ -10834,6 +11933,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
 						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
@@ -10869,6 +11972,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
+						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
 						},
@@ -10902,6 +12009,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
 						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
@@ -10937,6 +12048,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
+						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
 						},
@@ -10970,6 +12085,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (6): ",
+							"type": "text"
+						},
 						{
 							"text": "For each unit on the battlefield, deal ",
 							"type": "text"
@@ -11006,6 +12125,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -11040,6 +12163,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -11076,6 +12203,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -11110,6 +12241,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -11146,6 +12281,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -11180,6 +12319,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Defense: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -11216,6 +12359,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Defense: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -11249,6 +12396,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11285,6 +12436,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11319,6 +12474,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11355,6 +12514,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11389,6 +12552,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11425,6 +12592,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11460,6 +12631,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11494,6 +12669,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11542,6 +12721,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11588,6 +12771,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11636,6 +12823,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11682,6 +12873,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11730,6 +12925,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Heal ",
 							"type": "text"
 						},
@@ -11776,6 +12975,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Heal ",
 							"type": "text"
@@ -11824,6 +13027,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
 						}
@@ -11846,6 +13053,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
@@ -11870,6 +13081,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
 						}
@@ -11892,6 +13107,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
@@ -11916,6 +13135,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
 						}
@@ -11938,6 +13161,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
@@ -11962,6 +13189,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "Repeat one activated spell.",
 							"type": "text"
 						}
@@ -11985,6 +13216,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12022,6 +13257,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12057,6 +13296,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12094,6 +13337,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12129,6 +13376,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12166,6 +13417,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12201,6 +13456,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Inspire: ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12238,6 +13497,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12273,6 +13536,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12310,6 +13577,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12345,6 +13616,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12382,6 +13657,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12417,6 +13696,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Deal ",
 							"type": "text"
@@ -12454,6 +13737,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Deal ",
 							"type": "text"
 						},
@@ -12488,6 +13775,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -12537,6 +13828,10 @@
 							"type": "text"
 						},
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Toss",
 							"type": "text",
 							"style": {
@@ -12576,6 +13871,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -12625,6 +13924,10 @@
 							"type": "text"
 						},
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Toss",
 							"type": "text",
 							"style": {
@@ -12664,6 +13967,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -12713,6 +14020,10 @@
 							"type": "text"
 						},
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Toss",
 							"type": "text",
 							"style": {
@@ -12757,6 +14068,10 @@
 							"type": "text"
 						},
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Toss",
 							"type": "text",
 							"style": {
@@ -12796,6 +14111,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -12855,6 +14174,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -12912,6 +14235,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -12971,6 +14298,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -13028,6 +14359,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -13087,6 +14422,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -13144,6 +14483,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -13203,6 +14546,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -13260,6 +14607,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -13319,6 +14670,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -13376,6 +14731,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -13435,6 +14794,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -13492,6 +14855,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -13551,6 +14918,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -13609,6 +14980,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Set random ",
 							"type": "text"
 						},
@@ -13654,6 +15029,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Set random ",
 							"type": "text"
@@ -13701,6 +15080,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Set random ",
 							"type": "text"
 						},
@@ -13746,6 +15129,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Set random ",
 							"type": "text"
@@ -13793,6 +15180,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Set random ",
 							"type": "text"
 						},
@@ -13839,6 +15230,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "",
+							"type": "text"
+						},
+						{
 							"text": "Set random ",
 							"type": "text"
 						},
@@ -13884,6 +15279,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "",
+							"type": "text"
+						},
 						{
 							"text": "Set random ",
 							"type": "text"
@@ -13932,6 +15331,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -13967,6 +15370,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Create ",
 							"type": "text"
@@ -14004,6 +15411,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -14039,6 +15450,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Create ",
 							"type": "text"
@@ -14076,6 +15491,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -14111,6 +15530,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "Create ",
 							"type": "text"
@@ -14148,6 +15571,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "Create ",
 							"type": "text"
 						},
@@ -14183,6 +15610,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -14256,6 +15687,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14327,6 +15762,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -14400,6 +15839,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14471,6 +15914,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -14544,6 +15991,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14616,6 +16067,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (2): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14687,6 +16142,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14732,6 +16191,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -14779,6 +16242,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14824,6 +16291,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -14871,6 +16342,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -14916,6 +16391,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Banner: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -14963,6 +16442,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Banner: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15008,6 +16491,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Summon ",
 							"type": "text"
@@ -15055,6 +16542,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Summon ",
 							"type": "text"
 						},
@@ -15100,6 +16591,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Summon ",
 							"type": "text"
@@ -15147,6 +16642,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Summon ",
 							"type": "text"
 						},
@@ -15192,6 +16691,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Attack: ",
+							"type": "text"
+						},
 						{
 							"text": "Summon ",
 							"type": "text"
@@ -15239,6 +16742,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Summon ",
 							"type": "text"
 						},
@@ -15285,6 +16792,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Attack: ",
+							"type": "text"
+						},
+						{
 							"text": "Summon ",
 							"type": "text"
 						},
@@ -15330,6 +16841,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15388,6 +16903,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15444,6 +16963,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15502,6 +17025,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15558,6 +17085,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15616,6 +17147,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15672,6 +17207,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Post Fight: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15730,6 +17269,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15763,6 +17306,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Death: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15798,6 +17345,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15831,6 +17382,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Death: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15866,6 +17421,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15899,6 +17458,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Death: ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -15934,6 +17497,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Death: ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -15968,6 +17535,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -16028,6 +17599,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -16086,6 +17661,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -16146,6 +17725,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -16204,6 +17787,10 @@
 				},
 				"skill": {
 					"template": [
+						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
 						{
 							"text": "",
 							"type": "text"
@@ -16264,6 +17851,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -16323,6 +17914,10 @@
 				"skill": {
 					"template": [
 						{
+							"text": "Charge (3): ",
+							"type": "text"
+						},
+						{
 							"text": "",
 							"type": "text"
 						},
@@ -16369,282 +17964,282 @@
 			}
 		},
 		"stateMap": {
-			"000190006#1": {
-				"id": "000190006#1",
-				"attack": 30,
-				"health": 60,
-				"defense": 0,
-				"charge": 4
-			},
-			"000120006#2": {
-				"id": "000120006#2",
-				"attack": 30,
-				"health": 50,
-				"defense": 0
-			},
-			"000450004#3": {
-				"id": "000450004#3",
-				"attack": 40,
-				"health": 60,
-				"defense": 0,
-				"charge": 3
-			},
-			"000200004#4": {
-				"id": "000200004#4",
-				"attack": 20,
-				"health": 90,
-				"defense": 0,
-				"charge": 4
-			},
-			"000410005#5": {
-				"id": "000410005#5",
-				"attack": 40,
-				"health": 40,
-				"defense": 0,
-				"charge": 3
-			},
-			"000210004#6": {
-				"id": "000210004#6",
-				"attack": 20,
-				"health": 90,
-				"defense": 20
-			},
-			"000080005#7": {
-				"id": "000080005#7",
+			"000080005#1": {
+				"id": "000080005#1",
 				"attack": 0,
 				"health": 90,
 				"defense": 0
 			},
-			"000040005#8": {
-				"id": "000040005#8",
-				"attack": 40,
-				"health": 20,
+			"000490007#2": {
+				"id": "000490007#2",
+				"attack": 30,
+				"health": 40,
 				"defense": 0
 			},
-			"000060004#9": {
-				"id": "000060004#9",
+			"000230001#3": {
+				"id": "000230001#3",
 				"attack": 30,
 				"health": 60,
-				"defense": 10
+				"defense": 0,
+				"charge": 2
 			},
-			"000020007#10": {
-				"id": "000020007#10",
-				"attack": 20,
-				"health": 60,
-				"defense": 0
-			},
-			"000460003#11": {
-				"id": "000460003#11",
+			"000500006#4": {
+				"id": "000500006#4",
 				"attack": 30,
-				"health": 60,
-				"defense": 0
-			},
-			"000400002#12": {
-				"id": "000400002#12",
-				"attack": 30,
-				"health": 50,
-				"defense": 0
-			},
-			"000260003#13": {
-				"id": "000260003#13",
-				"attack": 20,
-				"health": 80,
-				"defense": 0
-			},
-			"000070004#14": {
-				"id": "000070004#14",
-				"attack": 30,
-				"health": 50,
+				"health": 40,
 				"defense": 0,
 				"charge": 3
 			},
-			"000300001#15": {
-				"id": "000300001#15",
-				"attack": 20,
-				"health": 50,
-				"defense": 0
-			},
-			"000150003#16": {
-				"id": "000150003#16",
-				"attack": 40,
-				"health": 60,
-				"defense": 0,
-				"charge": 3
-			},
-			"000130007#17": {
-				"id": "000130007#17",
-				"attack": 40,
-				"health": 40,
-				"defense": 0
-			},
-			"000100007#18": {
-				"id": "000100007#18",
-				"attack": 40,
-				"health": 40,
-				"defense": 0
-			},
-			"000340001#19": {
-				"id": "000340001#19",
-				"attack": 20,
-				"health": 50,
-				"defense": 0,
-				"charge": 3
-			},
-			"000550003#20": {
-				"id": "000550003#20",
+			"000010001#5": {
+				"id": "000010001#5",
 				"attack": 30,
-				"health": 50,
+				"health": 30,
 				"defense": 0
 			},
-			"000540005#21": {
-				"id": "000540005#21",
-				"attack": 30,
-				"health": 40,
-				"defense": 0
-			},
-			"000030006#22": {
-				"id": "000030006#22",
-				"attack": 30,
-				"health": 50,
-				"defense": 0
-			},
-			"000170003#23": {
-				"id": "000170003#23",
-				"attack": 60,
-				"health": 40,
-				"defense": 0
-			},
-			"000090007#24": {
-				"id": "000090007#24",
+			"000090007#6": {
+				"id": "000090007#6",
 				"attack": 20,
 				"health": 60,
 				"defense": 0,
 				"charge": 1
 			},
-			"000280007#25": {
-				"id": "000280007#25",
-				"attack": 30,
-				"health": 60,
+			"000430004#7": {
+				"id": "000430004#7",
+				"attack": 20,
+				"health": 50,
+				"defense": 20,
+				"charge": 2
+			},
+			"000100004#8": {
+				"id": "000100004#8",
+				"attack": 40,
+				"health": 40,
 				"defense": 0
 			},
-			"000500003#26": {
-				"id": "000500003#26",
-				"attack": 30,
-				"health": 40,
-				"defense": 0,
-				"charge": 3
+			"000300006#9": {
+				"id": "000300006#9",
+				"attack": 20,
+				"health": 50,
+				"defense": 0
 			},
-			"000330007#27": {
-				"id": "000330007#27",
-				"attack": 30,
-				"health": 60,
-				"defense": 10,
-				"charge": 3
-			},
-			"000380003#28": {
-				"id": "000380003#28",
+			"000050005#10": {
+				"id": "000050005#10",
 				"attack": 30,
 				"health": 50,
 				"defense": 0
 			},
-			"000480007#29": {
-				"id": "000480007#29",
-				"attack": 30,
-				"health": 40,
-				"defense": 0,
-				"charge": 2
-			},
-			"000140007#30": {
-				"id": "000140007#30",
-				"attack": 20,
-				"health": 60,
-				"defense": 0
-			},
-			"000360004#31": {
-				"id": "000360004#31",
-				"attack": 20,
+			"000150004#11": {
+				"id": "000150004#11",
+				"attack": 40,
 				"health": 60,
 				"defense": 0,
 				"charge": 3
 			},
-			"000160004#32": {
-				"id": "000160004#32",
+			"000110002#12": {
+				"id": "000110002#12",
+				"attack": 20,
+				"health": 50,
+				"defense": 0
+			},
+			"000440007#13": {
+				"id": "000440007#13",
+				"attack": 30,
+				"health": 60,
+				"defense": 0
+			},
+			"000040001#14": {
+				"id": "000040001#14",
+				"attack": 40,
+				"health": 20,
+				"defense": 0
+			},
+			"000140003#15": {
+				"id": "000140003#15",
+				"attack": 20,
+				"health": 60,
+				"defense": 0
+			},
+			"000160006#16": {
+				"id": "000160006#16",
 				"attack": 50,
 				"health": 70,
 				"defense": 0
 			},
-			"000270001#33": {
-				"id": "000270001#33",
+			"000510006#17": {
+				"id": "000510006#17",
 				"attack": 30,
-				"health": 100,
+				"health": 70,
+				"defense": 0,
+				"charge": 2
+			},
+			"000210007#18": {
+				"id": "000210007#18",
+				"attack": 20,
+				"health": 90,
+				"defense": 20
+			},
+			"000220002#19": {
+				"id": "000220002#19",
+				"attack": 30,
+				"health": 50,
+				"defense": 0,
+				"charge": 3
+			},
+			"000530005#20": {
+				"id": "000530005#20",
+				"attack": 10,
+				"health": 50,
 				"defense": 0
 			},
-			"000050006#34": {
-				"id": "000050006#34",
+			"000240004#21": {
+				"id": "000240004#21",
+				"attack": 40,
+				"health": 40,
+				"defense": 0
+			},
+			"000070001#22": {
+				"id": "000070001#22",
+				"attack": 30,
+				"health": 50,
+				"defense": 0,
+				"charge": 3
+			},
+			"000340001#23": {
+				"id": "000340001#23",
+				"attack": 20,
+				"health": 50,
+				"defense": 0,
+				"charge": 3
+			},
+			"000060006#24": {
+				"id": "000060006#24",
+				"attack": 30,
+				"health": 60,
+				"defense": 10
+			},
+			"000560006#25": {
+				"id": "000560006#25",
+				"attack": 20,
+				"health": 40,
+				"defense": 0,
+				"charge": 3
+			},
+			"000310003#26": {
+				"id": "000310003#26",
+				"attack": 40,
+				"health": 60,
+				"defense": 20
+			},
+			"000550004#27": {
+				"id": "000550004#27",
 				"attack": 30,
 				"health": 50,
 				"defense": 0
 			},
-			"000390004#35": {
-				"id": "000390004#35",
+			"000180005#28": {
+				"id": "000180005#28",
+				"attack": 20,
+				"health": 50,
+				"defense": 0,
+				"charge": 2
+			},
+			"000360003#29": {
+				"id": "000360003#29",
+				"attack": 20,
+				"health": 60,
+				"defense": 0,
+				"charge": 3
+			},
+			"000350005#30": {
+				"id": "000350005#30",
+				"attack": 20,
+				"health": 40,
+				"defense": 0,
+				"charge": 3
+			},
+			"000470007#31": {
+				"id": "000470007#31",
+				"attack": 40,
+				"health": 50,
+				"defense": 0,
+				"charge": 3
+			},
+			"000320006#32": {
+				"id": "000320006#32",
+				"attack": 10,
+				"health": 70,
+				"defense": 30
+			},
+			"000390002#33": {
+				"id": "000390002#33",
 				"attack": 20,
 				"health": 60,
 				"defense": 0,
 				"charge": 6
 			},
-			"000240006#36": {
-				"id": "000240006#36",
+			"000250002#34": {
+				"id": "000250002#34",
 				"attack": 40,
+				"health": 60,
+				"defense": 10
+			},
+			"000370003#35": {
+				"id": "000370003#35",
+				"attack": 30,
+				"health": 30,
+				"defense": 0,
+				"charge": 2
+			},
+			"000170004#36": {
+				"id": "000170004#36",
+				"attack": 60,
 				"health": 40,
 				"defense": 0
 			},
-			"000440004#37": {
-				"id": "000440004#37",
+			"000460006#37": {
+				"id": "000460006#37",
 				"attack": 30,
 				"health": 60,
 				"defense": 0
 			},
-			"000500005#38": {
-				"id": "000500005#38",
-				"attack": 30,
+			"000170003#38": {
+				"id": "000170003#38",
+				"attack": 60,
 				"health": 40,
-				"defense": 0,
-				"charge": 3
-			},
-			"000550004#39": {
-				"id": "000550004#39",
-				"attack": 30,
-				"health": 50,
 				"defense": 0
 			},
-			"000420003#40": {
-				"id": "000420003#40",
-				"attack": 30,
-				"health": 50,
-				"defense": 0,
-				"charge": 2
-			},
-			"000210006#41": {
-				"id": "000210006#41",
+			"000210006#39": {
+				"id": "000210006#39",
 				"attack": 20,
 				"health": 90,
 				"defense": 20
 			},
-			"000120007#42": {
-				"id": "000120007#42",
+			"000270005#40": {
+				"id": "000270005#40",
 				"attack": 30,
-				"health": 50,
+				"health": 100,
 				"defense": 0
 			},
-			"000350004#43": {
-				"id": "000350004#43",
-				"attack": 20,
-				"health": 40,
-				"defense": 0,
-				"charge": 3
+			"000320001#41": {
+				"id": "000320001#41",
+				"attack": 10,
+				"health": 70,
+				"defense": 30
 			},
-			"000020006#44": {
-				"id": "000020006#44",
+			"000240007#42": {
+				"id": "000240007#42",
+				"attack": 40,
+				"health": 40,
+				"defense": 0
+			},
+			"000310007#43": {
+				"id": "000310007#43",
+				"attack": 40,
+				"health": 60,
+				"defense": 20
+			},
+			"000140005#44": {
+				"id": "000140005#44",
 				"attack": 20,
 				"health": 60,
 				"defense": 0
@@ -16655,177 +18250,179 @@
 				"health": 50,
 				"defense": 0
 			},
-			"000540002#46": {
-				"id": "000540002#46",
-				"attack": 30,
-				"health": 40,
-				"defense": 0
-			},
-			"000480006#47": {
-				"id": "000480006#47",
-				"attack": 30,
-				"health": 40,
-				"defense": 0,
-				"charge": 2
-			},
-			"000380002#48": {
-				"id": "000380002#48",
-				"attack": 30,
-				"health": 50,
-				"defense": 0
-			},
-			"000490003#49": {
-				"id": "000490003#49",
-				"attack": 30,
-				"health": 40,
-				"defense": 0
-			},
-			"000160005#50": {
-				"id": "000160005#50",
-				"attack": 50,
-				"health": 70,
-				"defense": 0
-			},
-			"000300004#51": {
-				"id": "000300004#51",
-				"attack": 20,
-				"health": 50,
-				"defense": 0
-			},
-			"000010002#52": {
-				"id": "000010002#52",
-				"attack": 30,
-				"health": 30,
-				"defense": 0
-			},
-			"000520003#53": {
-				"id": "000520003#53",
-				"attack": 30,
-				"health": 60,
-				"defense": 0
-			},
-			"000270007#54": {
-				"id": "000270007#54",
-				"attack": 30,
-				"health": 100,
-				"defense": 0
-			},
-			"000330004#55": {
-				"id": "000330004#55",
-				"attack": 30,
-				"health": 60,
-				"defense": 10,
-				"charge": 3
-			},
-			"000370004#56": {
-				"id": "000370004#56",
-				"attack": 30,
-				"health": 30,
-				"defense": 0,
-				"charge": 2
-			},
-			"000080007#57": {
-				"id": "000080007#57",
-				"attack": 0,
-				"health": 90,
-				"defense": 0
-			},
-			"000240003#58": {
-				"id": "000240003#58",
-				"attack": 40,
-				"health": 40,
-				"defense": 0
-			},
-			"000400002#59": {
-				"id": "000400002#59",
-				"attack": 30,
-				"health": 50,
-				"defense": 0
-			},
-			"000170003#60": {
-				"id": "000170003#60",
-				"attack": 60,
-				"health": 40,
-				"defense": 0
-			},
-			"000390003#61": {
-				"id": "000390003#61",
-				"attack": 20,
-				"health": 60,
-				"defense": 0,
-				"charge": 6
-			},
-			"000140004#62": {
-				"id": "000140004#62",
-				"attack": 20,
-				"health": 60,
-				"defense": 0
-			},
-			"000060007#63": {
-				"id": "000060007#63",
-				"attack": 30,
-				"health": 60,
-				"defense": 10
-			},
-			"000310001#64": {
-				"id": "000310001#64",
-				"attack": 40,
-				"health": 60,
-				"defense": 20
-			},
-			"000340003#65": {
-				"id": "000340003#65",
-				"attack": 20,
-				"health": 50,
-				"defense": 0,
-				"charge": 3
-			},
-			"000130002#66": {
-				"id": "000130002#66",
-				"attack": 40,
-				"health": 40,
-				"defense": 0
-			},
-			"000470001#67": {
-				"id": "000470001#67",
-				"attack": 40,
-				"health": 50,
-				"defense": 0,
-				"charge": 3
-			},
-			"000430001#68": {
-				"id": "000430001#68",
+			"000430002#46": {
+				"id": "000430002#46",
 				"attack": 20,
 				"health": 50,
 				"defense": 20,
 				"charge": 2
 			},
-			"000150007#69": {
-				"id": "000150007#69",
+			"000100001#47": {
+				"id": "000100001#47",
 				"attack": 40,
+				"health": 40,
+				"defense": 0
+			},
+			"000050005#48": {
+				"id": "000050005#48",
+				"attack": 30,
+				"health": 50,
+				"defense": 0
+			},
+			"000130001#49": {
+				"id": "000130001#49",
+				"attack": 40,
+				"health": 40,
+				"defense": 0
+			},
+			"000090006#50": {
+				"id": "000090006#50",
+				"attack": 20,
 				"health": 60,
+				"defense": 0,
+				"charge": 1
+			},
+			"000530004#51": {
+				"id": "000530004#51",
+				"attack": 10,
+				"health": 50,
+				"defense": 0
+			},
+			"000340006#52": {
+				"id": "000340006#52",
+				"attack": 20,
+				"health": 50,
 				"defense": 0,
 				"charge": 3
 			},
-			"000180001#70": {
-				"id": "000180001#70",
+			"000370001#53": {
+				"id": "000370001#53",
+				"attack": 30,
+				"health": 30,
+				"defense": 0,
+				"charge": 2
+			},
+			"000160005#54": {
+				"id": "000160005#54",
+				"attack": 50,
+				"health": 70,
+				"defense": 0
+			},
+			"000550002#55": {
+				"id": "000550002#55",
+				"attack": 30,
+				"health": 50,
+				"defense": 0
+			},
+			"000080005#56": {
+				"id": "000080005#56",
+				"attack": 0,
+				"health": 90,
+				"defense": 0
+			},
+			"000290005#57": {
+				"id": "000290005#57",
+				"attack": 50,
+				"health": 40,
+				"defense": 10
+			},
+			"000190001#58": {
+				"id": "000190001#58",
+				"attack": 30,
+				"health": 60,
+				"defense": 0,
+				"charge": 4
+			},
+			"000490001#59": {
+				"id": "000490001#59",
+				"attack": 30,
+				"health": 40,
+				"defense": 0
+			},
+			"000180003#60": {
+				"id": "000180003#60",
 				"attack": 20,
 				"health": 50,
 				"defense": 0,
 				"charge": 2
 			},
-			"000530006#71": {
-				"id": "000530006#71",
-				"attack": 10,
+			"000420004#61": {
+				"id": "000420004#61",
+				"attack": 30,
+				"health": 50,
+				"defense": 0,
+				"charge": 2
+			},
+			"000030001#62": {
+				"id": "000030001#62",
+				"attack": 30,
 				"health": 50,
 				"defense": 0
 			},
-			"000230007#72": {
-				"id": "000230007#72",
+			"000070002#63": {
+				"id": "000070002#63",
 				"attack": 30,
+				"health": 50,
+				"defense": 0,
+				"charge": 3
+			},
+			"000020003#64": {
+				"id": "000020003#64",
+				"attack": 20,
+				"health": 60,
+				"defense": 0
+			},
+			"000450003#65": {
+				"id": "000450003#65",
+				"attack": 40,
 				"health": 60,
 				"defense": 0,
-				"charge": 2
+				"charge": 3
+			},
+			"000260007#66": {
+				"id": "000260007#66",
+				"attack": 20,
+				"health": 80,
+				"defense": 0
+			},
+			"000060003#67": {
+				"id": "000060003#67",
+				"attack": 30,
+				"health": 60,
+				"defense": 10
+			},
+			"000500002#68": {
+				"id": "000500002#68",
+				"attack": 30,
+				"health": 40,
+				"defense": 0,
+				"charge": 3
+			},
+			"000400006#69": {
+				"id": "000400006#69",
+				"attack": 30,
+				"health": 50,
+				"defense": 0
+			},
+			"000220006#70": {
+				"id": "000220006#70",
+				"attack": 30,
+				"health": 50,
+				"defense": 0,
+				"charge": 3
+			},
+			"000280002#71": {
+				"id": "000280002#71",
+				"attack": 30,
+				"health": 60,
+				"defense": 0
+			},
+			"000360001#72": {
+				"id": "000360001#72",
+				"attack": 20,
+				"health": 60,
+				"defense": 0,
+				"charge": 3
 			}
 		},
 		"setting": {
@@ -16834,21 +18431,21 @@
 			"handSize": 9,
 			"groundSize": 11,
 			"maxAttachment": 2,
-			"perTurnDraw": 2,
+			"perTurnDraw": 1,
 			"perTurnTroop": 1
 		},
 		"turn": 0,
 		"uniqueCardCount": 72,
 		"phase": "Draw",
-		"phaseOf": "A",
-		"firstMover": "A",
+		"phaseOf": "B",
+		"firstMover": "B",
 		"firstPlayer": {
 			"id": "A",
 			"attack": 0,
 			"defense": 0,
 			"health": 250,
 			"perTurnTroop": 1,
-			"perTurnHero": 1
+			"perTurnDraw": 1
 		},
 		"secondPlayer": {
 			"id": "B",
@@ -16856,83 +18453,83 @@
 			"defense": 0,
 			"health": 250,
 			"perTurnTroop": 1,
-			"perTurnHero": 1
+			"perTurnDraw": 1
 		},
 		"firstDeck": [
-			"000190006#1",
-			"000120006#2",
-			"000450004#3",
-			"000200004#4",
-			"000410005#5",
-			"000210004#6",
-			"000080005#7",
-			"000040005#8",
-			"000060004#9",
-			"000020007#10",
-			"000460003#11",
-			"000400002#12",
-			"000260003#13",
-			"000070004#14",
-			"000300001#15",
-			"000150003#16",
-			"000130007#17",
-			"000100007#18",
-			"000340001#19",
-			"000550003#20",
-			"000540005#21",
-			"000030006#22",
-			"000170003#23",
-			"000090007#24",
-			"000280007#25",
-			"000500003#26",
-			"000330007#27",
-			"000380003#28",
-			"000480007#29",
-			"000140007#30",
-			"000360004#31",
-			"000160004#32",
-			"000270001#33",
-			"000050006#34",
-			"000390004#35",
-			"000240006#36"
+			"000080005#1",
+			"000490007#2",
+			"000230001#3",
+			"000500006#4",
+			"000010001#5",
+			"000090007#6",
+			"000430004#7",
+			"000100004#8",
+			"000300006#9",
+			"000050005#10",
+			"000150004#11",
+			"000110002#12",
+			"000440007#13",
+			"000040001#14",
+			"000140003#15",
+			"000160006#16",
+			"000510006#17",
+			"000210007#18",
+			"000220002#19",
+			"000530005#20",
+			"000240004#21",
+			"000070001#22",
+			"000340001#23",
+			"000060006#24",
+			"000560006#25",
+			"000310003#26",
+			"000550004#27",
+			"000180005#28",
+			"000360003#29",
+			"000350005#30",
+			"000470007#31",
+			"000320006#32",
+			"000390002#33",
+			"000250002#34",
+			"000370003#35",
+			"000170004#36"
 		],
 		"secondDeck": [
-			"000440004#37",
-			"000500005#38",
-			"000550004#39",
-			"000420003#40",
-			"000210006#41",
-			"000120007#42",
-			"000350004#43",
-			"000020006#44",
+			"000460006#37",
+			"000170003#38",
+			"000210006#39",
+			"000270005#40",
+			"000320001#41",
+			"000240007#42",
+			"000310007#43",
+			"000140005#44",
 			"000110001#45",
-			"000540002#46",
-			"000480006#47",
-			"000380002#48",
-			"000490003#49",
-			"000160005#50",
-			"000300004#51",
-			"000010002#52",
-			"000520003#53",
-			"000270007#54",
-			"000330004#55",
-			"000370004#56",
-			"000080007#57",
-			"000240003#58",
-			"000400002#59",
-			"000170003#60",
-			"000390003#61",
-			"000140004#62",
-			"000060007#63",
-			"000310001#64",
-			"000340003#65",
-			"000130002#66",
-			"000470001#67",
-			"000430001#68",
-			"000150007#69",
-			"000180001#70",
-			"000530006#71",
-			"000230007#72"
+			"000430002#46",
+			"000100001#47",
+			"000050005#48",
+			"000130001#49",
+			"000090006#50",
+			"000530004#51",
+			"000340006#52",
+			"000370001#53",
+			"000160005#54",
+			"000550002#55",
+			"000080005#56",
+			"000290005#57",
+			"000190001#58",
+			"000490001#59",
+			"000180003#60",
+			"000420004#61",
+			"000030001#62",
+			"000070002#63",
+			"000020003#64",
+			"000450003#65",
+			"000260007#66",
+			"000060003#67",
+			"000500002#68",
+			"000400006#69",
+			"000220006#70",
+			"000280002#71",
+			"000360001#72"
 		],
 		"firstHand": [],
 		"secondHand": [],

@@ -55,4 +55,12 @@ import { initialState, replay } from './match/first';
 
 export const duel = proxy<DuelState>(initialState);
 
+export interface AppConfig {
+	debug: boolean;
+}
+
+export const appConfig = proxy<AppConfig>({
+	debug: false,
+});
+
 export const replayGame = replay;

@@ -1,5 +1,5 @@
-import { createCommand, runCommand } from '../../command';
-import { mergeFragmentToState } from '../../utils/helper';
+import { createCommand } from '../../command';
+import { createAndMergeBundle, runAndMergeBundle } from '../../utils/state';
 import {
 	DuelCommandBundle,
 	DuelPhases,
@@ -7,48 +7,44 @@ import {
 	MoveResult,
 } from '../../utils/type';
 
-export const distributeCards = (state: DuelState, amount = 5): MoveResult => {
-	const { firstPlayer, secondPlayer } = state;
+export const distributeCards = (duel: DuelState, amount = 5): MoveResult => {
+	const { firstPlayer, secondPlayer } = duel;
 	const firstDrawBundle: DuelCommandBundle = {
-		turn: state.turn,
+		turn: duel.turn,
 		phase: DuelPhases.Draw,
 		phaseOf: firstPlayer.id,
 		commands: [],
 	};
 	const secondDrawBundle: DuelCommandBundle = {
-		turn: state.turn,
+		turn: duel.turn,
 		phase: DuelPhases.Draw,
 		phaseOf: secondPlayer.id,
 		commands: [],
 	};
-	const snapshot = { ...state };
+	const snapshot = { ...duel };
 
 	for (let i = 0; i < amount; i += 1) {
-		createCommand
-			.cardDraw({ duel: snapshot, owner: firstPlayer.id })
-			.forEach((command) => {
-				firstDrawBundle.commands.push(command);
+		runAndMergeBundle(
+			duel,
+			firstDrawBundle,
+			createCommand.cardDraw({ duel, owner: firstPlayer.id }),
+		);
 
-				mergeFragmentToState(snapshot, runCommand({ duel: snapshot, command }));
-			});
-
-		createCommand
-			.cardDraw({ duel: snapshot, owner: secondPlayer.id })
-			.forEach((command) => {
-				secondDrawBundle.commands.push(command);
-
-				mergeFragmentToState(snapshot, runCommand({ duel: snapshot, command }));
-			});
+		runAndMergeBundle(
+			duel,
+			secondDrawBundle,
+			createCommand.cardDraw({ duel, owner: secondPlayer.id }),
+		);
 	}
 
-	const cleanUpBundle: DuelCommandBundle = {
-		turn: state.turn,
-		phase: DuelPhases.CleanUp,
-		commands: [createCommand.duelMutate({ payload: { turn: 1 } })[0]],
-	};
+	const cleanUpBundle = createAndMergeBundle(
+		duel,
+		DuelPhases.CleanUp,
+		createCommand.duelMutate({ payload: { turn: 1 } }),
+	);
 
 	return {
 		state: snapshot,
-		bundles: [firstDrawBundle, secondDrawBundle, cleanUpBundle],
+		commandBundles: [firstDrawBundle, secondDrawBundle, cleanUpBundle],
 	};
 };

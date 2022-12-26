@@ -22,6 +22,7 @@ export const CardDeck: FC<Props> = ({ color, cardIds }) => {
 
 				return <DeckCard key={id} item={cardState} index={i} color={color} />;
 			})}
+			<Text color="yellow"> • {cardIds.length} cards </Text>
 			<Text color="#323232"> • </Text>
 		</Box>
 	);

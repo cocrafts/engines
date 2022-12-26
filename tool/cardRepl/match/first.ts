@@ -1,29 +1,46 @@
 import {
-	CommandHistory,
+	DuelCommandBundle,
 	DuelState,
 	getInitialState,
 	mergeFragmentToState,
 	move,
 	MoveResult,
+	runCommand,
 } from '@metacraft/murg-engine';
 import clone from 'lodash/cloneDeep';
 
-const cache = require('./0001.json');
+const cache = require('./cache.json');
 
 export const initialState = getInitialState(cache.config);
 
 export const replay = async () => {
 	const duel: DuelState = clone(initialState);
-	const commandHistory: CommandHistory = [];
+	const commandHistory: DuelCommandBundle[] = [];
 
-	const runMove = (f: () => MoveResult) => {
-		const { state, bundles } = f();
+	const runMove = (move: () => MoveResult) => {
+		const { state, commandBundles } = move();
 
 		mergeFragmentToState(duel, state);
-		bundles.forEach((bundle) => commandHistory.push(bundle));
+		commandBundles.forEach((bundle) => commandHistory.push(bundle));
 	};
 
-	runMove(() => move.distributeCards(duel, 5));
+	const runCommandBundles = (bundles: DuelCommandBundle[]) => {
+		bundles.forEach((bundle) => {
+			bundle.commands.forEach((command) => {
+				mergeFragmentToState(duel, runCommand({ duel, command }));
+			});
+
+			commandHistory.push(bundle);
+		});
+	};
+
+	runCommandBundles(require('./distribute.json'));
+	// runMove(() => move.distributeCards(duel, 5));
+
+	require('fs').writeFileSync(
+		'distribute.json',
+		JSON.stringify(commandHistory),
+	);
 
 	return {
 		duel,

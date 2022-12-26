@@ -1,0 +1,178 @@
+[
+	{
+		"turn": 0,
+		"phase": "Draw",
+		"phaseOf": "A",
+		"commands": [
+			{
+				"owner": "A",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "A",
+						"id": "000190006#1",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "A",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "A",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "A",
+						"id": "000040005#8",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "A",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "A",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "A",
+						"id": "000400002#12",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "A",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "A",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "A",
+						"id": "000260003#13",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "A",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "A",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "A",
+						"id": "000330007#27",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "A",
+						"place": "Hand"
+					}
+				}
+			}
+		]
+	},
+	{
+		"turn": 0,
+		"phase": "Draw",
+		"phaseOf": "B",
+		"commands": [
+			{
+				"owner": "B",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "B",
+						"id": "000370004#56",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "B",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "B",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "B",
+						"id": "000540002#46",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "B",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "B",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "B",
+						"id": "000160005#50",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "B",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "B",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "B",
+						"id": "000310001#64",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "B",
+						"place": "Hand"
+					}
+				}
+			},
+			{
+				"owner": "B",
+				"type": "CardMove",
+				"target": {
+					"from": {
+						"owner": "B",
+						"id": "000390003#61",
+						"place": "Deck"
+					},
+					"to": {
+						"owner": "B",
+						"place": "Hand"
+					}
+				}
+			}
+		]
+	},
+	{
+		"turn": 0,
+		"phase": "CleanUp",
+		"commands": [
+			{
+				"type": "DuelMutate",
+				"payload": {
+					"turn": 1
+				}
+			}
+		]
+	}
+]

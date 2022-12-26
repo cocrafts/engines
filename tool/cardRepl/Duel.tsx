@@ -86,11 +86,9 @@ export const Duel: FC<Props> = ({ history }) => {
 					</Box>
 					<Player state={firstPlayer} />
 					<Box justifyContent="center">
-						<Text color="#323232">(</Text>
-						<Text>
-							{turn} {debug ? 'DEBUG' : 'LIVE'}
-						</Text>
-						<Text color="#323232">)</Text>
+						<Text color="#323232">[</Text>
+						<Text>Turn: {turn}</Text>
+						<Text color="#323232">]</Text>
 					</Box>
 				</Box>
 			)}

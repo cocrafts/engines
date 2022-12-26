@@ -106,32 +106,3 @@ export const selectGround = (state: DuelState, owner: string): string[] => {
 export const selectGrave = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Grave);
 };
-
-export const mergeFragmentToState = (
-	state: DuelState,
-	fragment: Partial<DuelState>,
-): void => {
-	[
-		'uniqueCardCount',
-		'turn',
-		'phase',
-		'phaseOf',
-		'firstMover',
-		'firstPlayer',
-		'secondPlayer',
-		'firstDeck',
-		'secondDeck',
-		'firstHand',
-		'secondHand',
-		'firstGround',
-		'secondGround',
-		'firstGrave',
-		'secondGrave',
-	].forEach((key) => {
-		state[key] = fragment[key] || state[key];
-	});
-
-	Object.keys(fragment.stateMap || {}).forEach((id) => {
-		state.stateMap[id] = fragment.stateMap[id];
-	});
-};

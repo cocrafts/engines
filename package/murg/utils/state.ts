@@ -80,24 +80,28 @@ export const runAndMergeBundle = (
 
 export const createAndMergeBundle = (
 	duel: DuelState,
-	phase: DuelPhases,
 	commands: DuelCommand[],
+	options?: Partial<DuelCommandBundle>,
 ) => {
 	const bundle: DuelCommandBundle = {
 		turn: duel.turn,
-		phase,
-		phaseOf: duel.phaseOf,
+		phase: options?.phase || duel.phase,
+		phaseOf: options?.phaseOf || duel.phaseOf,
 		commands: [],
 	};
 
 	return runAndMergeBundle(duel, bundle, commands);
 };
 
-export const createBundle = (duel: DuelState, phase?: DuelPhases) => {
+export const createBundle = (
+	duel: DuelState,
+	phase?: DuelPhases,
+	phaseOf?: string,
+) => {
 	return {
 		turn: duel.turn,
 		phase: phase || duel.phase,
-		phaseOf: duel.phaseOf,
+		phaseOf: phaseOf || duel.phaseOf,
 		commands: [],
 	};
 };

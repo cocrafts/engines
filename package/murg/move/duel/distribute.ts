@@ -1,9 +1,5 @@
 import { createCommand } from '../../command';
-import {
-	createAndMergeBundle,
-	createBundle,
-	runAndMergeBundle,
-} from '../../utils/state';
+import { createAndMergeBundle } from '../../utils/state';
 import { DuelPhases, DuelState, MaybeMoveResult } from '../../utils/type';
 
 export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
@@ -12,7 +8,6 @@ export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
 	const { firstPlayer, secondPlayer } = duel;
 	const firstDrawBundle = createAndMergeBundle(
 		duel,
-		DuelPhases.Draw,
 		createCommand.cardDraw({
 			duel,
 			owner: firstPlayer.id,
@@ -22,7 +17,6 @@ export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
 
 	const secondDrawBundle = createAndMergeBundle(
 		duel,
-		DuelPhases.Draw,
 		createCommand.cardDraw({
 			duel,
 			owner: secondPlayer.id,
@@ -32,12 +26,42 @@ export const distributeInitialCards = (duel: DuelState): MaybeMoveResult => {
 
 	const cleanUpBundle = createAndMergeBundle(
 		duel,
-		DuelPhases.CleanUp,
 		createCommand.duelMutate({ payload: { turn: 1 } }),
 	);
 
 	return {
 		duel,
 		commandBundles: [firstDrawBundle, secondDrawBundle, cleanUpBundle],
+	};
+};
+
+export const distributeTurnCards = (duel: DuelState): MaybeMoveResult => {
+	if (duel.phase !== DuelPhases.Draw) return undefined;
+
+	const { firstPlayer, secondPlayer } = duel;
+
+	const firstDrawBundle = createAndMergeBundle(
+		duel,
+		createCommand.cardDraw({
+			duel,
+			owner: firstPlayer.id,
+			amount: firstPlayer.perTurnDraw,
+		}),
+		{ phaseOf: firstPlayer.id },
+	);
+
+	const secondDrawBundle = createAndMergeBundle(
+		duel,
+		createCommand.cardDraw({
+			duel,
+			owner: secondPlayer.id,
+			amount: secondPlayer.perTurnDraw,
+		}),
+		{ phaseOf: secondPlayer.id },
+	);
+
+	return {
+		duel,
+		commandBundles: [firstDrawBundle, secondDrawBundle],
 	};
 };

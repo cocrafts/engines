@@ -1,4 +1,5 @@
 import {
+	ActivationType,
 	Card,
 	CardState,
 	DuelState,
@@ -100,6 +101,20 @@ const templateStyles: Record<string, TemplateStyle> = {
 	},
 };
 
+const ActivationDisplays: Record<ActivationType, string> = {
+	[ActivationType.Summon]: 'Summon',
+	[ActivationType.Death]: 'Death',
+	[ActivationType.Passive]: 'Passive',
+	[ActivationType.Attack]: 'Attack',
+	[ActivationType.Defense]: 'Defense',
+	[ActivationType.Glory]: 'Glory',
+	[ActivationType.PreFight]: 'Pre Fight',
+	[ActivationType.PostFight]: 'Post Fight',
+	[ActivationType.Charge]: 'Charge',
+	[ActivationType.Inspire]: 'Inspire',
+	[ActivationType.Banner]: 'Banner',
+};
+
 export const interpolateTemplate = (text: string) => {
 	const template: TemplateFragment[] = [];
 	let start = 0;
@@ -149,8 +164,14 @@ export const interpolateTemplate = (text: string) => {
 export const interpolate = (card: Card): Card => {
 	if (!card.skill) return card;
 	const template = card.skill.template as never;
+	const activation = ActivationDisplays[card.skill.activation];
+	const charge = card.skill.charge ? ` (${card.skill.charge})` : '';
+	const triggerFragment: TemplateFragment = {
+		text: `${activation}${charge}: `,
+		type: FragmentType.TEXT,
+	};
 
-	card.skill.template = interpolateTemplate(template);
+	card.skill.template = [triggerFragment, ...interpolateTemplate(template)];
 	return card;
 };
 

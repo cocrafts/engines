@@ -1,6 +1,7 @@
 import {
 	CommandHistory,
 	DuelState,
+	getInitialState,
 	mergeFragmentToState,
 	move,
 	MoveResult,
@@ -9,10 +10,10 @@ import clone from 'lodash/cloneDeep';
 
 const cache = require('./0001.json');
 
-export const initialState = cache.state;
+export const initialState = getInitialState(cache.config);
 
 export const replay = async () => {
-	const duel: DuelState = clone(cache.state);
+	const duel: DuelState = clone(initialState);
 	const commandHistory: CommandHistory = [];
 
 	const runMove = (f: () => MoveResult) => {

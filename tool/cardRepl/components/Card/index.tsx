@@ -23,7 +23,6 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 	const card = cardMap[id.substring(0, 9)];
 	const state = stateMap[id];
 
-	console.log(stateMap);
 	return (
 		<Box
 			width={width}

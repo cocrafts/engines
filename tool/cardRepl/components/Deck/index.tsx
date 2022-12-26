@@ -19,7 +19,7 @@ export const CardDeck: FC<Props> = ({ color, cardIds }) => {
 		<Box borderStyle="round" borderColor="#333333">
 			{cardIds.map((id, i) => {
 				const cardState = stateMap[id];
-				console.log(cardState);
+
 				return <DeckCard key={id} item={cardState} index={i} color={color} />;
 			})}
 			<Text color="#323232"> • </Text>

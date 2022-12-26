@@ -161,7 +161,8 @@ export interface DuelCommand {
 }
 
 export interface DuelSetting {
-	playerHealth: number;
+	initialCardCount: number;
+	initialPlayerHealth: number;
 	handSize: number;
 	groundSize: number;
 	maxAttachment: number;
@@ -240,7 +241,7 @@ export interface DuelCommandBundle {
 }
 
 export interface MoveResult {
-	state: DuelState;
+	duel: DuelState;
 	commandBundles: DuelCommandBundle[];
 }
 

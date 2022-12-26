@@ -7,7 +7,7 @@ import {
 	MoveResult,
 } from '../../utils/type';
 
-export const distributeCards = (duel: DuelState, amount = 5): MoveResult => {
+export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const { firstPlayer, secondPlayer } = duel;
 	const firstDrawBundle: DuelCommandBundle = {
 		turn: duel.turn,
@@ -21,9 +21,8 @@ export const distributeCards = (duel: DuelState, amount = 5): MoveResult => {
 		phaseOf: secondPlayer.id,
 		commands: [],
 	};
-	const snapshot = { ...duel };
 
-	for (let i = 0; i < amount; i += 1) {
+	for (let i = 0; i < duel.setting.initialCardCount; i += 1) {
 		runAndMergeBundle(
 			duel,
 			firstDrawBundle,
@@ -44,7 +43,7 @@ export const distributeCards = (duel: DuelState, amount = 5): MoveResult => {
 	);
 
 	return {
-		state: snapshot,
+		duel,
 		commandBundles: [firstDrawBundle, secondDrawBundle, cleanUpBundle],
 	};
 };

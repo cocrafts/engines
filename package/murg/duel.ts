@@ -12,7 +12,8 @@ import {
 import { makeMeta } from './meta';
 
 export const defaultSetting: DuelSetting = {
-	playerHealth: 250,
+	initialCardCount: 5,
+	initialPlayerHealth: 250,
 	handSize: 9,
 	groundSize: 11,
 	maxAttachment: 2,
@@ -64,7 +65,7 @@ export const getInitialState = ({
 				id: player.id,
 				attack: 0,
 				defense: 0,
-				health: setting.playerHealth,
+				health: setting.initialPlayerHealth,
 				perTurnTroop: setting.perTurnTroop,
 				perTurnHero: setting.perTurnHero,
 			};

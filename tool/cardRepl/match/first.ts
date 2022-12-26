@@ -18,9 +18,9 @@ export const replay = async () => {
 	const commandHistory: DuelCommandBundle[] = [];
 
 	const runMove = (move: () => MoveResult) => {
-		const { state, commandBundles } = move();
+		const { duel, commandBundles } = move();
 
-		mergeFragmentToState(duel, state);
+		mergeFragmentToState(duel, duel);
 		commandBundles.forEach((bundle) => commandHistory.push(bundle));
 	};
 
@@ -34,8 +34,8 @@ export const replay = async () => {
 		});
 	};
 
-	runCommandBundles(require('./distribute.json'));
-	// runMove(() => move.distributeCards(duel, 5));
+	// runCommandBundles(require('./distribute.json'));
+	runMove(() => move.distributeInitialCards(duel));
 
 	require('fs').writeFileSync(
 		'distribute.json',

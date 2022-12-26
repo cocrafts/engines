@@ -1,16 +1,11 @@
-import {
-	clonePlayer,
-	createCommandResult,
-	selectPlayer,
-} from '../../utils/helper';
+import { clonePlayer, createCommandResult } from '../../utils/helper';
 import {
 	CommandRunner,
 	DuelCommandType,
-	StatefulCommand,
+	StatelessCommand,
 } from '../../utils/type';
 
-export const create: StatefulCommand<'target' | 'payload'> = ({
-	duel,
+export const create: StatelessCommand<'target' | 'payload'> = ({
 	target,
 	payload,
 }) => {
@@ -21,18 +16,6 @@ export const create: StatefulCommand<'target' | 'payload'> = ({
 		target,
 		payload,
 	});
-
-	if (payload.health) {
-		const player = selectPlayer(duel, target.to.owner);
-		const nextHealth = player.health;
-
-		if (nextHealth <= 0) {
-			registerCommand({
-				type: DuelCommandType.DuelMutate,
-				payload: { gameOver: true },
-			});
-		}
-	}
 
 	return commands;
 };

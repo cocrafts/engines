@@ -39,13 +39,13 @@ export const create: StatefulCommand<'owner' | 'target'> = ({
 	};
 
 	if (isHeroSummon) {
-		if (player.perTurnHero > 0) {
+		if (player.perTurnDraw > 0) {
 			registerCommand(moveCommand);
 			playerMutate
 				.create({
 					duel,
 					target: { to: { owner, place: DuelPlace.Player } },
-					payload: { perTurnHero: -1 },
+					payload: { perTurnDraw: -1 },
 				})
 				.forEach(registerCommand);
 		}

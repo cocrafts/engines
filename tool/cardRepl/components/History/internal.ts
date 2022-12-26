@@ -39,10 +39,10 @@ export const getCommandInfo = ({
 			result.id = '♥';
 			result.iconColor = payload.health > 0 ? 'green' : 'red';
 			result.icon = payload.health > 0 ? '' : '';
-		} else if (payload?.perTurnHero) {
+		} else if (payload?.perTurnDraw) {
 			result.id = '';
-			result.iconColor = payload.perTurnHero > 0 ? 'green' : 'red';
-			result.icon = payload.perTurnHero > 0 ? '' : '';
+			result.iconColor = payload.perTurnDraw > 0 ? 'green' : 'red';
+			result.icon = payload.perTurnDraw > 0 ? '' : '';
 		} else if (payload?.perTurnTroop) {
 			result.id = '﯑';
 			result.iconColor = payload.perTurnTroop > 0 ? 'green' : 'red';

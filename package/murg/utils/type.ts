@@ -132,7 +132,7 @@ export type DuelCommandPayload = Partial<Attribute> & {
 	turn?: number;
 	phase?: DuelPhases;
 	phaseOf?: string;
-	perTurnHero?: number;
+	perTurnDraw?: number;
 	perTurnTroop?: number;
 };
 
@@ -166,7 +166,7 @@ export interface DuelSetting {
 	handSize: number;
 	groundSize: number;
 	maxAttachment: number;
-	perTurnHero: number;
+	perTurnDraw: number;
 	perTurnTroop: number;
 }
 
@@ -189,7 +189,7 @@ export type CardState = Attribute & {
 
 export type PlayerState = Attribute & {
 	id: string;
-	perTurnHero: number;
+	perTurnDraw: number;
 	perTurnTroop: number;
 };
 
@@ -244,5 +244,7 @@ export interface MoveResult {
 	duel: DuelState;
 	commandBundles: DuelCommandBundle[];
 }
+
+export type MaybeMoveResult = MoveResult | null | undefined;
 
 export type CommandHistory = DuelCommandBundle[];

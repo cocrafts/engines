@@ -35,7 +35,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 				<Text>
 					<Text color="#333333">{index}</Text>
 					<Text color={color}>•</Text>
-					<Text color="#333333">{id.substring(3, 5)} </Text>
+					<Text color="#333333">{id.substring(10)} </Text>
 					<Text color={color}>{card.name}</Text>
 				</Text>
 			</Box>

@@ -45,7 +45,7 @@ export enum InspireSource {
 
 export type SkillIds = 'UnitStealer';
 
-export type SkillAttributes = Record<string, number | string> & {
+export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
 };
 
@@ -53,7 +53,7 @@ export type SkillRunner = (
 	duel: DuelState,
 	card: Card,
 	state: CardState,
-) => void;
+) => DuelCommand[];
 
 export interface Skill {
 	template: TemplateFragment[] | string;

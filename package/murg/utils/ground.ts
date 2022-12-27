@@ -1,5 +1,5 @@
 import { getEnemyId, selectGround } from './helper';
-import { CardIdentifier, DuelPlace, TargetSide } from './type';
+import { CardIdentifier, DuelPlace, DuelState, TargetSide } from './type';
 
 interface GroundSize {
 	centerIndex: number;
@@ -75,4 +75,31 @@ export const getFacingIdentifier = (
 		owner: enemyId,
 		place: DuelPlace.Ground,
 	};
+};
+
+export type GroundTraverseFunction = (cardId: string | undefined) => void;
+
+export const groundTraverse = (
+	duel: DuelState,
+	traverser: GroundTraverseFunction,
+) => {
+	getTraverseIndexes(duel.firstGround.length).forEach((index) => {
+		traverser(duel.firstGround[index]);
+		traverser(duel.secondGround[index]);
+	});
+};
+
+export const getTraverseIndexes = (length: number) => {
+	const radius = Math.floor(length / 2);
+	const result: number[] = [radius];
+	let velocity = 1;
+
+	for (let i = 1; i <= radius; i += 1) {
+		result.push(radius + i * velocity);
+		velocity *= -1;
+		result.push(radius + i * velocity);
+		velocity *= -1;
+	}
+
+	return result;
 };

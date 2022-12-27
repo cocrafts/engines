@@ -970,6 +970,7 @@ const cardList: Card[] = [
 			attribute: {
 				id: 'UnitStealer',
 				minHealth: 20,
+				unitTypes: [CardType.Troop],
 			},
 		},
 	},

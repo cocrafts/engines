@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { DuelCommandBundle } from '@metacraft/murg-engine';
-export const initialDistribute: DuelCommandBundle[] = [
+export const distributeInitialCards: DuelCommandBundle[] = [
 	{
 		turn: 0,
 		phase: 'Draw',
@@ -181,7 +181,7 @@ export const initialDistribute: DuelCommandBundle[] = [
 	},
 ];
 
-export const drawA1: DuelCommandBundle[] = [
+export const distributeB1Cards: DuelCommandBundle[] = [
 	{
 		turn: 1,
 		phase: 'Draw',
@@ -216,48 +216,37 @@ export const drawA1: DuelCommandBundle[] = [
 	},
 ];
 
-export const summonA1Hero: DuelCommandBundle[] = [
+export const distributeA1Cards: DuelCommandBundle[] = [
 	{
 		turn: 1,
-		phase: 'Setup',
-		phaseOf: 'B',
+		phase: 'Draw',
+		phaseOf: 'A',
 		commands: [
 			{
-				owner: 'B',
+				owner: 'A',
 				type: 'CardMove',
 				target: {
-					from: { owner: 'B', id: '000360001#72', place: 'Hand' },
-					to: { owner: 'B', place: 'Ground', index: 5 },
+					from: { owner: 'A', id: '000470007#31', place: 'Deck' },
+					to: { owner: 'A', place: 'Hand' },
 				},
 			},
 			{
-				type: 'PlayerMutate',
-				owner: 'B',
-				payload: { perTurnHero: 0, perTurnSpell: 2 },
-			},
-		],
-	},
-];
-
-export const summonA1Troop: DuelCommandBundle[] = [
-	{
-		turn: 1,
-		phase: 'Setup',
-		phaseOf: 'B',
-		commands: [
-			{
-				owner: 'B',
+				owner: 'A',
 				type: 'CardMove',
 				target: {
-					from: { owner: 'B', id: '999990000#73', place: 'Hand' },
-					to: { owner: 'B', place: 'Ground', index: 6 },
+					from: { owner: 'A', id: '000250002#34', place: 'Deck' },
+					to: { owner: 'A', place: 'Hand' },
 				},
 			},
 			{
-				type: 'PlayerMutate',
-				owner: 'B',
-				payload: { perTurnHero: 0, perTurnSpell: 2 },
+				owner: 'A',
+				type: 'CardMove',
+				target: {
+					from: { owner: 'A', id: '999990000', place: 'Player' },
+					to: { owner: 'A', place: 'Hand' },
+				},
 			},
+			{ type: 'DuelMutate', payload: { phase: 'Setup' } },
 		],
 	},
 ];

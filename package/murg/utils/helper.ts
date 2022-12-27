@@ -119,3 +119,11 @@ export const pickUniqueIds = (list: string[], amount: number) => {
 
 	return result;
 };
+
+export const getNextPlayerId = (duel: DuelState): string => {
+	if (duel.phaseOf === duel.firstPlayer.id) {
+		return duel.secondPlayer.id;
+	}
+
+	return duel.firstPlayer.id;
+};

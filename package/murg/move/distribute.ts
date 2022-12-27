@@ -24,7 +24,11 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const secondPicks = pickUniqueIds(secondDeck, setting.initialCardCount);
 
 	const firstDrawBundle = createCommandBundle(duel);
-	const secondDrawBundle = createCommandBundle(duel);
+	const secondDrawBundle = createCommandBundle(
+		duel,
+		DuelPhases.Draw,
+		secondPlayer.id,
+	);
 
 	for (let i = 0; i < setting.initialCardCount; i += 1) {
 		runAndMergeBundle(
@@ -69,8 +73,12 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const cleanUpBundle = createAndMergeBundle(
 		duel,
 		createCommand.duelMutate({
-			payload: { turn: 1 },
+			payload: { turn: duel.turn + 1 },
 		}),
+		{
+			phase: DuelPhases.CleanUp,
+			phaseOf: secondPlayer.id,
+		},
 	);
 
 	return {

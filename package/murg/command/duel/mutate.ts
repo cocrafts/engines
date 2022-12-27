@@ -1,4 +1,4 @@
-import { createCommandResult } from '../../utils/helper';
+import { createCommandResult, createDuelFragment } from '../../utils/helper';
 import {
 	CommandRunner,
 	DuelCommandType,
@@ -17,19 +17,19 @@ export const create: StatelessCommand<'payload'> = ({ payload }) => {
 };
 
 export const run: CommandRunner = ({ duel, command: { payload } }) => {
-	const updates = {};
+	const fragment = createDuelFragment(duel);
 
 	Object.keys(payload).forEach((key) => {
 		const value = payload[key];
 
 		if (isNaN(value)) {
-			updates[key] = value;
+			fragment[key] = value;
 		} else {
-			updates[key] = duel[key] + (value || 0);
+			fragment[key] = duel[key] + (value || 0);
 		}
 	});
 
-	return updates;
+	return fragment;
 };
 
 export const duelMutate = {

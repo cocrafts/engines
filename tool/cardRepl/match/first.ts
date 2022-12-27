@@ -1,5 +1,6 @@
 import {
 	DuelCommandBundle,
+	DuelPlace,
 	DuelState,
 	getInitialState,
 	mergeFragmentToState,
@@ -19,9 +20,9 @@ export const replay = async () => {
 	const commandHistory: DuelCommandBundle[] = [];
 
 	const runMove = (move: () => MoveResult) => {
-		const { duel, commandBundles } = move();
+		const { duel: fragment, commandBundles } = move();
 
-		mergeFragmentToState(duel, duel);
+		if (fragment) mergeFragmentToState(duel, fragment);
 		commandBundles.forEach((bundle) => commandHistory.push(bundle));
 	};
 

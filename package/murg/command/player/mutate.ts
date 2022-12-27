@@ -1,4 +1,8 @@
-import { clonePlayer, createCommandResult } from '../../utils/helper';
+import {
+	clonePlayer,
+	createCommandResult,
+	createDuelFragment,
+} from '../../utils/helper';
 import {
 	CommandRunner,
 	DuelCommandType,
@@ -21,6 +25,7 @@ export const create: StatelessCommand<'owner' | 'payload'> = ({
 };
 
 export const run: CommandRunner = ({ duel, command: { owner, payload } }) => {
+	const fragment = createDuelFragment(duel);
 	const playerClone = clonePlayer(duel, owner);
 
 	Object.keys(payload).forEach((key) => {
@@ -33,9 +38,9 @@ export const run: CommandRunner = ({ duel, command: { owner, payload } }) => {
 		}
 	});
 
-	return {
-		[playerClone.key]: playerClone.state,
-	};
+	fragment[playerClone.key] = playerClone.state;
+
+	return fragment;
 };
 
 export const playerMutate = {

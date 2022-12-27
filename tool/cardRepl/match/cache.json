@@ -8,6 +8,8 @@
 			"groundSize": 11,
 			"maxAttachment": 2,
 			"perTurnDraw": 2,
+			"perTurnHero": 1,
+			"perTurnSpell": 2,
 			"perTurnTroop": 1
 		},
 		"firstMover": "B",
@@ -18432,6 +18434,8 @@
 			"groundSize": 11,
 			"maxAttachment": 2,
 			"perTurnDraw": 2,
+			"perTurnHero": 1,
+			"perTurnSpell": 2,
 			"perTurnTroop": 1
 		},
 		"turn": 0,
@@ -18444,16 +18448,20 @@
 			"attack": 0,
 			"defense": 0,
 			"health": 250,
-			"perTurnTroop": 1,
-			"perTurnDraw": 1
+			"perTurnDraw": 2,
+			"perTurnHero": 1,
+			"perTurnSpell": 2,
+			"perTurnTroop": 1
 		},
 		"secondPlayer": {
 			"id": "B",
 			"attack": 0,
 			"defense": 0,
 			"health": 250,
-			"perTurnTroop": 1,
-			"perTurnDraw": 1
+			"perTurnDraw": 2,
+			"perTurnHero": 1,
+			"perTurnSpell": 2,
+			"perTurnTroop": 1
 		},
 		"firstDeck": [
 			"000080005#1",

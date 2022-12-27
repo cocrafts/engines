@@ -17,7 +17,9 @@ export const defaultSetting: DuelSetting = {
 	handSize: 9,
 	groundSize: 11,
 	maxAttachment: 2,
-	perTurnDraw: 1,
+	perTurnDraw: 2,
+	perTurnHero: 1,
+	perTurnSpell: 2,
 	perTurnTroop: 1,
 };
 
@@ -66,8 +68,10 @@ export const getInitialState = ({
 				attack: 0,
 				defense: 0,
 				health: setting.initialPlayerHealth,
-				perTurnTroop: setting.perTurnTroop,
 				perTurnDraw: setting.perTurnDraw,
+				perTurnHero: setting.perTurnHero,
+				perTurnSpell: setting.perTurnSpell,
+				perTurnTroop: setting.perTurnTroop,
 			};
 		},
 	);

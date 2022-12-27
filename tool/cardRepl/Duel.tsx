@@ -67,12 +67,12 @@ export const Duel: FC<Props> = ({ history }) => {
 						<GraveYard cards={secondGrave} />
 						<Deck color={secondColor} cardIds={secondDeck} />
 					</Box>
-					<Box justifyContent="center" height={cardHeight}>
+					<Box justifyContent="center" height={cardHeight + 1}>
 						{secondGround.map((id, i) => (
 							<Card color={secondColor} id={id} key={i} index={i} />
 						))}
 					</Box>
-					<Box justifyContent="center" height={cardHeight}>
+					<Box justifyContent="center" height={cardHeight + 1}>
 						{firstGround.map((id, i) => (
 							<Card color={firstColor} id={id} key={i} index={i} />
 						))}
@@ -91,7 +91,7 @@ export const Duel: FC<Props> = ({ history }) => {
 						<Box flexGrow={1} justifyContent="center">
 							<Player state={firstPlayer} />
 						</Box>
-						<Box width={40} alignItems="center" justifyContent="flex-end">
+						<Box width={40} alignItems="flex-end" justifyContent="flex-end">
 							<Text color="#323232">[</Text>
 							<Text color="#555555">
 								Turn: {turn} ({phaseOf} {phase})

@@ -31,14 +31,12 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 			alignItems="center"
 			borderColor="#333333"
 		>
-			<Box marginLeft={1} marginRight={1}>
+			<Box>
 				<Text>
-					<Text color="#333333">
-						{getPlaceDisplay(state.place)} {state.owner}{' '}
-					</Text>
-					<Text color={color}>
-						({index}) {card.name} ({id.substring(3, 5)})
-					</Text>
+					<Text color="#333333">({index}</Text>
+					<Text color={color}>#</Text>
+					<Text color="#333333">{id.substring(3, 5)})</Text>
+					<Text color={color}> {card.name}</Text>
 				</Text>
 			</Box>
 			<Box
@@ -50,20 +48,17 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 			>
 				<SkillDesc skill={card.skill} />
 			</Box>
-			<Box>
-				<Box width="33%" />
-				<Box width="34%" justifyContent="center">
-					<Text color="#323232">...</Text>
-				</Box>
-				<Box width="33%" justifyContent="center">
-					{!!card.skill.charge && (
-						<Box>
-							<Text color="#282828">(</Text>
-							<Text color="#666666">{state?.charge}</Text>
-							<Text color="#282828">)</Text>
-						</Box>
-					)}
-				</Box>
+			<Box alignItems="center" marginLeft={1} marginRight={1}>
+				<Text color="#323232">
+					{getPlaceDisplay(state.place)} {state.owner}
+				</Text>
+				{!!card.skill.charge && (
+					<Box>
+						<Text color="#282828"> (</Text>
+						<Text color="blue">{state?.charge}</Text>
+						<Text color="#282828">)</Text>
+					</Box>
+				)}
 			</Box>
 			<Box>
 				<Attribute pair={[state?.attack, card.attribute.attack]} />
@@ -76,7 +71,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 
 Card.defaultProps = {
 	color: '#ffffff',
-	width: 20,
+	width: 22,
 };
 
 export default Card;

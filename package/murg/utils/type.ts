@@ -51,8 +51,8 @@ export type SkillAttributes = Record<string, number | string> & {
 
 export type SkillRunner = (
 	duel: DuelState,
-	attribute: SkillAttributes,
-	cardId: string,
+	card: Card,
+	state: CardState,
 ) => void;
 
 export interface Skill {
@@ -201,13 +201,13 @@ export interface DuelConfig {
 	secondPlayer: PlayerConfig;
 }
 
-export interface CardContext {
+export interface CardIdentifier {
 	id: string;
 	owner: string;
 	place: DuelPlace;
 }
 
-export type CardState = Attribute & CardContext;
+export type CardState = Attribute & CardIdentifier;
 
 export type StatedCard = Card & {
 	state: CardState;

@@ -1,4 +1,5 @@
-import { TargetSide } from './type';
+import { getEnemyId, selectGround } from './helper';
+import { CardIdentifier, DuelPlace, TargetSide } from './type';
 
 interface GroundSize {
 	centerIndex: number;
@@ -57,4 +58,21 @@ export const getGroundSizes = (ground: string[]) => {
 	}
 
 	return size;
+};
+
+export const getFacingIdentifier = (
+	duel,
+	owner: string,
+	cardId: string,
+): CardIdentifier => {
+	const enemyId = getEnemyId(duel, owner);
+	const ground = selectGround(duel, owner);
+	const enemyGround = selectGround(duel, enemyId);
+	const cardIndex = ground.findIndex((id) => id === cardId);
+
+	return {
+		id: enemyGround[cardIndex],
+		owner: enemyId,
+		place: DuelPlace.Ground,
+	};
 };

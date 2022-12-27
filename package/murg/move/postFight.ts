@@ -3,38 +3,37 @@ import { getCard, getCardState } from '../utils/card';
 import { createCommandBundle } from '../utils/state';
 import {
 	ActivationType,
-	Card,
 	CardState,
 	DuelState,
 	MoveResult,
-	StatedCard,
 } from '../utils/type';
 
 export const postFight = (duel: DuelState): MoveResult => {
 	const bundle = createCommandBundle(duel);
 	const firstPostFightCards = extractPostFights(duel);
 
-	firstPostFightCards.forEach((card) => {
+	firstPostFightCards.forEach((state) => {
+		const card = getCard(duel.cardMap, state.id);
 		const skill = skillMap[card.skill?.attribute?.id];
-		skill?.(duel, card.skill.attribute, card.id);
+
+		skill?.(duel, card, state);
 	});
 
 	return {
 		duel,
-		commandBundles: [],
+		commandBundles: [bundle],
 	};
 };
 
-const extractPostFights = (duel: DuelState): StatedCard[] => {
+const extractPostFights = (duel: DuelState): CardState[] => {
 	return [...duel.firstGround, ...duel.secondGround]
-		.filter((id) => !!id)
-		.map((id) => ({
-			...getCard(duel.cardMap, id),
-			state: getCardState(duel.stateMap, id),
-		}))
-		.filter(filterPostFightCard);
+		.filter((id) => filterPostFightCard(duel, id))
+		.map((id) => getCardState(duel.stateMap, id));
 };
 
-const filterPostFightCard = (card: StatedCard) => {
-	return card.skill?.activation === ActivationType.PostFight;
+const filterPostFightCard = (duel: DuelState, cardId: string) => {
+	if (!cardId) return false;
+
+	const activation = getCard(duel.cardMap, cardId)?.skill?.activation;
+	return activation === ActivationType.PostFight;
 };

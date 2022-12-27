@@ -3,7 +3,7 @@ import { runCommand } from '../command';
 import { getCard } from './card';
 import {
 	Card,
-	CardContext,
+	CardIdentifier,
 	CardState,
 	DuelCommand,
 	DuelCommandBundle,
@@ -18,7 +18,7 @@ import {
 export const injectCardState = (
 	partial: Partial<DuelState>,
 	cardMap: Record<string, Card>,
-	context: CardContext,
+	context: CardIdentifier,
 ): CardState => {
 	const nextUniqueCount = partial.uniqueCardCount + 1;
 	const { attribute, skill } = getCard(cardMap, context.id);

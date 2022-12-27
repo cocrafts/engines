@@ -1,10 +1,10 @@
 import { createCommand } from '../command';
 import { getNextPlayerId } from '../utils/helper';
-import { createBundle, runAndMergeBundle } from '../utils/state';
+import { createCommandBundle, runAndMergeBundle } from '../utils/state';
 import { DuelPhases, DuelState, MoveResult } from '../utils/type';
 
 export const endTurn = (duel: DuelState): MoveResult => {
-	const endTurnBundle = createBundle(duel);
+	const endTurnBundle = createCommandBundle(duel);
 	const nextPlayerId = getNextPlayerId(duel);
 
 	runAndMergeBundle(
@@ -12,7 +12,10 @@ export const endTurn = (duel: DuelState): MoveResult => {
 		endTurnBundle,
 		createCommand.duelMutate({
 			payload: {
-				phase: DuelPhases.Draw,
+				phase:
+					duel.phaseOf === duel.firstMover
+						? DuelPhases.Draw
+						: DuelPhases.PostFight,
 				phaseOf: nextPlayerId,
 			},
 		}),

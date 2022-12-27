@@ -66,11 +66,11 @@ export const mergeFragmentToState = (
 	});
 };
 
-export const createBundle = (
+export const createCommandBundle = (
 	duel: DuelState,
 	phase?: DuelPhases,
 	phaseOf?: string,
-) => {
+): DuelCommandBundle => {
 	return {
 		turn: duel.turn,
 		phase: phase || duel.phase,

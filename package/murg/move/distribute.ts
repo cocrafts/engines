@@ -8,7 +8,7 @@ import {
 } from '../utils/helper';
 import {
 	createAndMergeBundle,
-	createBundle,
+	createCommandBundle,
 	emptyMoveResult,
 	runAndMergeBundle,
 } from '../utils/state';
@@ -23,8 +23,8 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const firstPicks = pickUniqueIds(firstDeck, setting.initialCardCount);
 	const secondPicks = pickUniqueIds(secondDeck, setting.initialCardCount);
 
-	const firstDrawBundle = createBundle(duel);
-	const secondDrawBundle = createBundle(duel);
+	const firstDrawBundle = createCommandBundle(duel);
+	const secondDrawBundle = createCommandBundle(duel);
 
 	for (let i = 0; i < setting.initialCardCount; i += 1) {
 		runAndMergeBundle(
@@ -89,7 +89,7 @@ export const distributeTurnCards = (duel: DuelState): MoveResult => {
 	const deckDrawAmount = Math.min(deck.length, player.perTurnDraw);
 	const troopDrawAmount = player.perTurnTroop - holdingTroopCount;
 	const cardPicks = pickUniqueIds(deck, deckDrawAmount);
-	const turnDistributeBundle = createBundle(duel);
+	const turnDistributeBundle = createCommandBundle(duel);
 
 	/* <-- Draw cards, does not exceed number of available card in Deck */
 	for (let i = 0; i < deckDrawAmount; i += 1) {

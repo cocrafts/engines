@@ -2,7 +2,7 @@ import { createCommand } from '../command';
 import { getCard } from '../utils/card';
 import { selectPlayer } from '../utils/helper';
 import {
-	createBundle,
+	createCommandBundle,
 	emptyMoveResult,
 	runAndMergeBundle,
 } from '../utils/state';
@@ -17,7 +17,7 @@ export const summonCard = (
 	duel: DuelState,
 	target: DuelCommandTarget,
 ): MoveResult => {
-	const summonBundle = createBundle(duel);
+	const summonBundle = createCommandBundle(duel);
 	const fromOwner = target.from.owner;
 	const player = selectPlayer(duel, fromOwner);
 	const card = getCard(duel.cardMap, target.from.id);

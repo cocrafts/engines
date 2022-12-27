@@ -244,11 +244,7 @@ export interface DuelState {
 
 type CommandFields = 'owner' | 'target' | 'payload';
 
-export type StatefulCommand<K extends keyof DuelCommand = CommandFields> = (
-	payload: Pick<DuelCommand, K> & { duel: DuelState },
-) => DuelCommand[];
-
-export type StatelessCommand<K extends keyof DuelCommand = CommandFields> = (
+export type CommandCreator<K extends keyof DuelCommand = CommandFields> = (
 	payload: Pick<DuelCommand, K>,
 ) => DuelCommand[];
 

@@ -4,12 +4,12 @@ import {
 	createDuelFragment,
 } from '../../utils/helper';
 import {
+	CommandCreator,
 	CommandRunner,
 	DuelCommandType,
-	StatelessCommand,
 } from '../../utils/type';
 
-export const create: StatelessCommand<'owner' | 'payload'> = ({
+export const create: CommandCreator<'owner' | 'payload'> = ({
 	owner,
 	payload,
 }) => {

@@ -5,13 +5,13 @@ import {
 } from '../../utils/helper';
 import { injectCardState } from '../../utils/state';
 import {
+	CommandCreator,
 	CommandRunner,
 	DuelCommandType,
 	DuelPlace,
-	StatelessCommand,
 } from '../../utils/type';
 
-export const create: StatelessCommand<'owner' | 'target'> = ({
+export const create: CommandCreator<'owner' | 'target'> = ({
 	owner,
 	target,
 }) => {

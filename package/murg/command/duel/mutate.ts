@@ -1,11 +1,11 @@
 import { createCommandResult, createDuelFragment } from '../../utils/helper';
 import {
+	CommandCreator,
 	CommandRunner,
 	DuelCommandType,
-	StatelessCommand,
 } from '../../utils/type';
 
-export const create: StatelessCommand<'payload'> = ({ payload }) => {
+export const create: CommandCreator<'payload'> = ({ payload }) => {
 	const { commands, registerCommand } = createCommandResult();
 
 	registerCommand({

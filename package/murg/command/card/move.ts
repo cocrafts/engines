@@ -67,12 +67,15 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 			const fromClone = cloneState(duel, target.from.owner, target.from.place);
 			const fromIndex = fromClone.state.findIndex(fromCardFilter);
 			const fromCardId = fromClone.state[fromIndex];
+			const isGroundSlotEmpty = !groundClone.state[target.to.index];
 
-			fromClone.state.splice(fromIndex, 1); /* <- fromClone is non-Ground */
-			groundClone.state[target.to.index] = fromCardId;
+			if (fromCardId && isGroundSlotEmpty) {
+				fromClone.state.splice(fromIndex, 1); /* <- fromClone is non-Ground */
+				groundClone.state[target.to.index] = fromCardId;
 
-			fragment[fromClone.key] = fromClone.state;
-			fragment[groundClone.key] = groundClone.state;
+				fragment[fromClone.key] = fromClone.state;
+				fragment[groundClone.key] = groundClone.state;
+			}
 		}
 	} else if (fromGround) {
 		/* <- Destruction, from Ground to non-Ground */
@@ -81,11 +84,13 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 		const fromIndex = groundClone.state.findIndex(fromCardFilter);
 		const fromCardId = groundClone.state[fromIndex];
 
-		toClone.state.push(fromCardId);
-		groundClone.state[fromIndex] = null;
+		if (fromCardId) {
+			toClone.state.push(fromCardId);
+			groundClone.state[fromIndex] = null;
 
-		fragment[toClone.key] = toClone.state;
-		fragment[groundClone.key] = groundClone.state;
+			fragment[toClone.key] = toClone.state;
+			fragment[groundClone.key] = groundClone.state;
+		}
 	} else {
 		/* <-- Generic move, both from and to is non-Ground */
 		const toClone = cloneState(duel, target.to.owner, target.to.place);

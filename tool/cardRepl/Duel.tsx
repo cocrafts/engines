@@ -60,7 +60,7 @@ export const Duel: FC<Props> = ({ history }) => {
 					<Player state={secondPlayer} />
 					<Box justifyContent="center" height={cardHeight}>
 						{secondHand.map((id, i) => (
-							<Card color={secondColor} id={id} key={i} />
+							<Card color={secondColor} id={id} key={i} index={i} />
 						))}
 					</Box>
 					<Box alignSelf="center">
@@ -83,7 +83,7 @@ export const Duel: FC<Props> = ({ history }) => {
 					</Box>
 					<Box justifyContent="center" height={cardHeight}>
 						{firstHand.map((id, i) => (
-							<Card color={firstColor} id={id} key={i} />
+							<Card color={firstColor} id={id} key={i} index={i} />
 						))}
 					</Box>
 					<Player state={firstPlayer} />

@@ -32,7 +32,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 			borderColor="#333333"
 		>
 			<Text color={color}>
-				({id.substring(3, 5)}) {card.name}
+				({index}) {card.name} ({id.substring(3, 5)})
 			</Text>
 			<Box
 				paddingLeft={1}

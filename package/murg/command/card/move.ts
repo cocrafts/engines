@@ -39,22 +39,56 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 		/* <- Relocation, including swap and steal/borrow */
 		if (target.from.owner === target.to.owner) {
 			const groundClone = cloneState(duel, target.to.owner, DuelPlace.Ground);
-			const toIndex = groundClone.state.findIndex(toCardFilter);
-			const toCardId = groundClone.state[toIndex];
 			const fromIndex = groundClone.state.findIndex(fromCardFilter);
 			const fromCardId = groundClone.state[fromIndex];
 
-			groundClone.state[fromIndex] = toCardId;
-			groundClone.state[toIndex] = fromCardId;
-			fragment.stateMap[toCardId] = {
-				...duel.stateMap[toCardId],
-				owner: target.to.owner,
-				place: target.to.place,
-			};
+			if (target.to.id) {
+				/* <- Swap card on the same Player's Ground */
+				const toIndex = groundClone.state.findIndex(toCardFilter);
+				const toCardId = groundClone.state[toIndex];
+
+				groundClone.state[toIndex] = fromCardId;
+				groundClone.state[fromIndex] = toCardId;
+			} else {
+				/* <- Move card to empty slot on the same Player's Ground */
+				groundClone.state[fromIndex] = null;
+				groundClone.state[target.to.index] = fromCardId;
+			}
 
 			fragment[groundClone.key] = groundClone.state;
 		} else {
-			/* <- TODO: Borrow/steal Unit from enemy */
+			const fromClone = cloneState(duel, target.from.owner, target.from.place);
+			const toClone = cloneState(duel, target.to.owner, target.to.place);
+			const fromIndex = fromClone.state.findIndex(fromCardFilter);
+			const fromCardId = fromClone.state[fromIndex];
+
+			if (target.to.id) {
+				/* <- Swap card between Player's Ground */
+				const toIndex = toClone.state.findIndex(toCardFilter);
+				const toCardId = toClone.state[toIndex];
+
+				toClone.state[toIndex] = fromCardId;
+				fromClone.state[fromIndex] = toCardId;
+
+				fragment.stateMap[fromCardId] = {
+					...duel.stateMap[fromCardId],
+					owner: target.to.owner,
+				};
+
+				fragment.stateMap[toCardId] = {
+					...duel.stateMap[toCardId],
+					owner: target.from.owner,
+				};
+			} else {
+				/* <- Steal card from another Player's Ground */
+				fromClone.state[fromIndex] = null;
+				toClone.state[target.to.index] = fromCardId;
+
+				fragment.stateMap[fromCardId] = {
+					...duel.stateMap[fromCardId],
+					owner: target.to.owner,
+				};
+			}
 		}
 	} else if (toGround) {
 		/* <- Construction/Summon, from non-Ground to Ground */

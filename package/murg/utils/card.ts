@@ -3,7 +3,9 @@ import Mustache from 'mustache';
 import {
 	ActivationType,
 	Card,
+	CardIdentifier,
 	CardState,
+	DuelState,
 	FragmentType,
 	TemplateFragment,
 	TemplateStyle,
@@ -193,4 +195,30 @@ export const getCardState = (
 	id: string,
 ) => {
 	return stateMap[id];
+};
+
+/* Impure that will mutate params, be careful! */
+export const injectCardState = (
+	partial: Partial<DuelState>,
+	cardMap: Record<string, Card>,
+	context: CardIdentifier,
+): CardState => {
+	const nextUniqueCount = partial.uniqueCardCount + 1;
+	const { attribute, skill } = getCard(cardMap, context.id);
+	const cardState: CardState = {
+		id: `${context.id}#${nextUniqueCount}`,
+		owner: context.owner,
+		place: context.place,
+		attack: attribute.attack,
+		health: attribute.health,
+		defense: attribute.defense,
+	};
+
+	if (skill?.charge) cardState.charge = skill.charge;
+	if (!partial.stateMap) partial.stateMap = {};
+
+	partial.uniqueCardCount = nextUniqueCount;
+	partial.stateMap[cardState.id] = cardState;
+
+	return cardState;
 };

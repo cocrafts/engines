@@ -181,41 +181,6 @@ export const distributeInitialCards: DuelCommandBundle[] = [
 	},
 ];
 
-export const distributeB1Cards: DuelCommandBundle[] = [
-	{
-		turn: 1,
-		phase: 'Draw',
-		phaseOf: 'B',
-		commands: [
-			{
-				owner: 'B',
-				type: 'CardMove',
-				target: {
-					from: { owner: 'B', id: '000340006#52', place: 'Deck' },
-					to: { owner: 'B', place: 'Hand' },
-				},
-			},
-			{
-				owner: 'B',
-				type: 'CardMove',
-				target: {
-					from: { owner: 'B', id: '000180003#60', place: 'Deck' },
-					to: { owner: 'B', place: 'Hand' },
-				},
-			},
-			{
-				owner: 'B',
-				type: 'CardMove',
-				target: {
-					from: { owner: 'B', id: '999990000', place: 'Player' },
-					to: { owner: 'B', place: 'Hand' },
-				},
-			},
-			{ type: 'DuelMutate', payload: { phase: 'Setup' } },
-		],
-	},
-];
-
 export const distributeA1Cards: DuelCommandBundle[] = [
 	{
 		turn: 1,
@@ -226,7 +191,7 @@ export const distributeA1Cards: DuelCommandBundle[] = [
 				owner: 'A',
 				type: 'CardMove',
 				target: {
-					from: { owner: 'A', id: '000470007#31', place: 'Deck' },
+					from: { owner: 'A', id: '000230001#3', place: 'Deck' },
 					to: { owner: 'A', place: 'Hand' },
 				},
 			},
@@ -244,6 +209,41 @@ export const distributeA1Cards: DuelCommandBundle[] = [
 				target: {
 					from: { owner: 'A', id: '999990000', place: 'Player' },
 					to: { owner: 'A', place: 'Hand' },
+				},
+			},
+			{ type: 'DuelMutate', payload: { phase: 'Setup' } },
+		],
+	},
+];
+
+export const distributeB1Cards: DuelCommandBundle[] = [
+	{
+		turn: 1,
+		phase: 'Draw',
+		phaseOf: 'B',
+		commands: [
+			{
+				owner: 'B',
+				type: 'CardMove',
+				target: {
+					from: { owner: 'B', id: '000020003#64', place: 'Deck' },
+					to: { owner: 'B', place: 'Hand' },
+				},
+			},
+			{
+				owner: 'B',
+				type: 'CardMove',
+				target: {
+					from: { owner: 'B', id: '000370001#53', place: 'Deck' },
+					to: { owner: 'B', place: 'Hand' },
+				},
+			},
+			{
+				owner: 'B',
+				type: 'CardMove',
+				target: {
+					from: { owner: 'B', id: '999990000', place: 'Player' },
+					to: { owner: 'B', place: 'Hand' },
 				},
 			},
 			{ type: 'DuelMutate', payload: { phase: 'Setup' } },

@@ -12,7 +12,7 @@
 			"perTurnSpell": 2,
 			"perTurnTroop": 1
 		},
-		"firstMover": "B",
+		"firstMover": "A",
 		"firstPlayer": {
 			"id": "A",
 			"deck": [

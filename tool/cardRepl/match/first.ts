@@ -47,43 +47,12 @@ export const replay = async () => {
 		runMove(move.distributeTurnCards(duel));
 	} else {
 		runCommandBundles(history.distributeInitialCards);
-		runCommandBundles(history.distributeB1Cards);
-		runMove(
-			move.summonCard(duel, {
-				from: {
-					owner: duel.secondPlayer.id,
-					id: duel.secondHand[1],
-					place: DuelPlace.Hand,
-				},
-				to: {
-					owner: duel.secondPlayer.id,
-					place: DuelPlace.Ground,
-					index: 5,
-				},
-			}),
-		);
-		runMove(
-			move.summonCard(duel, {
-				from: {
-					owner: duel.secondPlayer.id,
-					id: duel.secondHand[6],
-					place: DuelPlace.Hand,
-				},
-				to: {
-					owner: duel.secondPlayer.id,
-					place: DuelPlace.Ground,
-					index: 4,
-				},
-			}),
-		);
-		runMove(move.endTurn(duel));
-
 		runCommandBundles(history.distributeA1Cards);
 		runMove(
 			move.summonCard(duel, {
 				from: {
 					owner: duel.firstPlayer.id,
-					id: duel.firstHand[0],
+					id: duel.firstHand[3],
 					place: DuelPlace.Hand,
 				},
 				to: {
@@ -102,6 +71,37 @@ export const replay = async () => {
 				},
 				to: {
 					owner: duel.firstPlayer.id,
+					place: DuelPlace.Ground,
+					index: 4,
+				},
+			}),
+		);
+		runMove(move.endTurn(duel));
+
+		runCommandBundles(history.distributeB1Cards);
+		runMove(
+			move.summonCard(duel, {
+				from: {
+					owner: duel.secondPlayer.id,
+					id: duel.secondHand[0],
+					place: DuelPlace.Hand,
+				},
+				to: {
+					owner: duel.secondPlayer.id,
+					place: DuelPlace.Ground,
+					index: 5,
+				},
+			}),
+		);
+		runMove(
+			move.summonCard(duel, {
+				from: {
+					owner: duel.secondPlayer.id,
+					id: duel.secondHand[6],
+					place: DuelPlace.Hand,
+				},
+				to: {
+					owner: duel.secondPlayer.id,
 					place: DuelPlace.Ground,
 					index: 6,
 				},

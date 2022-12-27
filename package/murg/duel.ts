@@ -38,11 +38,14 @@ export const makeDuel = (
 };
 
 export const makeDuelConfig = (
-	[firstPlayer, secondPlayer]: [PlayerConfig, PlayerConfig],
+	[player1, player2]: [PlayerConfig, PlayerConfig],
 	version = '00001',
 	setting = defaultSetting,
 ): DuelConfig => {
-	const firstMover = Math.random() > 0.5 ? firstPlayer.id : secondPlayer.id;
+	const firstMover = Math.random() > 0.5 ? player1.id : player2.id;
+	const keepOrder = firstMover === player1.id;
+	const firstPlayer = keepOrder ? player1 : player2;
+	const secondPlayer = keepOrder ? player2 : player1;
 
 	return {
 		version,

@@ -51,7 +51,11 @@ export const getCommandInfo = ({
 			result.id = '';
 		}
 	} else if (type === DuelCommandType.DuelMutate) {
-		result.id = 'T';
+		if (payload?.turn) {
+			result.id = 'T';
+		} else if (payload?.phase) {
+			result.id = 'P';
+		}
 	}
 
 	return result;

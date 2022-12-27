@@ -11,11 +11,11 @@ interface Props {
 export const Player: FC<Props> = ({ state }) => {
 	return (
 		<Box justifyContent="center" alignItems="center">
-			<Text>[{state.perTurnDraw}]</Text>
+			<Text>[Hero: {state.perTurnHero}]</Text>
 			<Gradient name="pastel">
 				<BigText text={String(state.health)} />
 			</Gradient>
-			<Text>[{state.perTurnTroop}]</Text>
+			<Text>[Spell: {state.perTurnSpell}]</Text>
 		</Box>
 	);
 };

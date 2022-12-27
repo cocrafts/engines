@@ -1,3 +1,5 @@
+import Mustache from 'mustache';
+
 import {
 	ActivationType,
 	Card,
@@ -163,17 +165,15 @@ export const interpolateTemplate = (text: string) => {
 export const interpolate = (card: Card): Card => {
 	if (!card.skill) return card;
 
-	const { charge, activation, template } = card.skill;
+	const { charge, activation, template, attribute } = card.skill;
+	const interpolated = Mustache.render(template, attribute || {});
 	const charges = charge ? ` (${charge})` : '';
 	const triggerFragment: TemplateFragment = {
 		text: activation ? `${ActivationDisplays[activation]}${charges}: ` : '',
 		type: FragmentType.TEXT,
 	};
 
-	card.skill.template = [
-		triggerFragment,
-		...interpolateTemplate(template as never),
-	];
+	card.skill.template = [triggerFragment, ...interpolateTemplate(interpolated)];
 
 	return card;
 };

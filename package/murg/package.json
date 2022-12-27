@@ -12,6 +12,9 @@
 		"build": "rm -rf ./dist && tsc",
 		"release": "npm run build && npm publish --access public"
 	},
+	"dependencies": {
+		"mustache": "^4.2.0"
+	},
 	"devDependencies": {
 		"typescript": "^4.5.3"
 	}

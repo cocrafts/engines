@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@types/node": "^17.0.43",
-    "nanoid": "^3.0.0"
+    "mustache": "^4.2.0"
   },
   "resolutions": {
     "@types/react": "18.0.5"

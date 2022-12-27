@@ -110,6 +110,8 @@ export const replay = async () => {
 		runMove(move.endTurn(duel));
 	}
 
+	runMove(move.postFight(duel));
+
 	return {
 		duel,
 		history: commandHistory,

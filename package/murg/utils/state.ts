@@ -3,6 +3,7 @@ import { runCommand } from '../command';
 import { getCard } from './card';
 import {
 	Card,
+	CardContext,
 	CardState,
 	DuelCommand,
 	DuelCommandBundle,
@@ -17,12 +18,14 @@ import {
 export const injectCardState = (
 	partial: Partial<DuelState>,
 	cardMap: Record<string, Card>,
-	cardId: string,
+	context: CardContext,
 ): CardState => {
 	const nextUniqueCount = partial.uniqueCardCount + 1;
-	const { attribute, skill } = getCard(cardMap, cardId);
+	const { attribute, skill } = getCard(cardMap, context.id);
 	const cardState: CardState = {
-		id: `${cardId}#${nextUniqueCount}`,
+		id: `${context.id}#${nextUniqueCount}`,
+		owner: context.owner,
+		place: context.place,
 		attack: attribute.attack,
 		health: attribute.health,
 		defense: attribute.defense,

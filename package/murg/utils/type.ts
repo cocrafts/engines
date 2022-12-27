@@ -201,9 +201,13 @@ export interface DuelConfig {
 	secondPlayer: PlayerConfig;
 }
 
-export type CardState = Attribute & {
+export interface CardContext {
 	id: string;
-};
+	owner: string;
+	place: DuelPlace;
+}
+
+export type CardState = Attribute & CardContext;
 
 export type StatedCard = Card & {
 	state: CardState;

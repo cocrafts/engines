@@ -8,6 +8,25 @@ export const nanoId = () => {
 	});
 };
 
+export const getPlaceDisplay = (place: DuelPlace) => {
+	switch (place) {
+		case DuelPlace.Deck:
+			return 'Deck';
+		case DuelPlace.Hand:
+			return 'Hand';
+		case DuelPlace.Ground:
+			return 'Ground';
+		case DuelPlace.Grave:
+			return 'Graveyard';
+		case DuelPlace.Ability:
+			return 'Ability';
+		case DuelPlace.Player:
+			return 'Player';
+		default:
+			return 'Void';
+	}
+};
+
 export interface CommandResult {
 	commands: DuelCommand[];
 	registerCommand: (command: DuelCommand) => void;

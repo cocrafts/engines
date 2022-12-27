@@ -40,12 +40,17 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 		if (target.from.owner === target.to.owner) {
 			const groundClone = cloneState(duel, target.to.owner, DuelPlace.Ground);
 			const toIndex = groundClone.state.findIndex(toCardFilter);
-			const toCard = groundClone.state[toIndex];
+			const toCardId = groundClone.state[toIndex];
 			const fromIndex = groundClone.state.findIndex(fromCardFilter);
 			const fromCardId = groundClone.state[fromIndex];
 
-			groundClone.state[fromIndex] = toCard;
+			groundClone.state[fromIndex] = toCardId;
 			groundClone.state[toIndex] = fromCardId;
+			fragment.stateMap[toCardId] = {
+				...duel.stateMap[toCardId],
+				owner: target.to.owner,
+				place: target.to.place,
+			};
 
 			fragment[groundClone.key] = groundClone.state;
 		} else {
@@ -56,23 +61,29 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 		const groundClone = cloneState(duel, target.to.owner, DuelPlace.Ground);
 
 		if (fromAir) {
-			groundClone.state[target.to.index] = injectCardState(
-				fragment,
-				duel.cardMap,
-				target.from.id,
-			).id;
+			const targetIndex = target.to.index;
+			groundClone.state[targetIndex] = injectCardState(fragment, duel.cardMap, {
+				id: target.from.id,
+				owner: target.to.owner,
+				place: target.to.place,
+			}).id;
 
 			fragment[groundClone.key] = groundClone.state;
 		} else {
 			const fromClone = cloneState(duel, target.from.owner, target.from.place);
 			const fromIndex = fromClone.state.findIndex(fromCardFilter);
-			const fromCardId = fromClone.state[fromIndex];
+			const targetedCardId = fromClone.state[fromIndex];
 			const isGroundSlotEmpty = !groundClone.state[target.to.index];
 
-			if (fromCardId && isGroundSlotEmpty) {
+			if (targetedCardId && isGroundSlotEmpty) {
 				fromClone.state.splice(fromIndex, 1); /* <- fromClone is non-Ground */
-				groundClone.state[target.to.index] = fromCardId;
+				groundClone.state[target.to.index] = targetedCardId;
 
+				fragment.stateMap[targetedCardId] = {
+					...duel.stateMap[targetedCardId],
+					owner: target.to.owner,
+					place: target.to.place,
+				};
 				fragment[fromClone.key] = fromClone.state;
 				fragment[groundClone.key] = groundClone.state;
 			}
@@ -82,12 +93,17 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 		const toClone = cloneState(duel, target.to.owner, target.to.place);
 		const groundClone = cloneState(duel, target.from.owner, DuelPlace.Ground);
 		const fromIndex = groundClone.state.findIndex(fromCardFilter);
-		const fromCardId = groundClone.state[fromIndex];
+		const targetedCardId = groundClone.state[fromIndex];
 
-		if (fromCardId) {
-			toClone.state.push(fromCardId);
+		if (targetedCardId) {
+			toClone.state.push(targetedCardId);
 			groundClone.state[fromIndex] = null;
 
+			fragment.stateMap[targetedCardId] = {
+				...duel.stateMap[targetedCardId],
+				owner: target.to.owner,
+				place: target.to.place,
+			};
 			fragment[toClone.key] = toClone.state;
 			fragment[groundClone.key] = groundClone.state;
 		}
@@ -97,18 +113,27 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 
 		if (fromAir) {
 			toClone.state.push(
-				injectCardState(fragment, duel.cardMap, target.from.id).id,
+				injectCardState(fragment, duel.cardMap, {
+					id: target.from.id,
+					owner: target.to.owner,
+					place: target.to.place,
+				}).id,
 			);
 
 			fragment[toClone.key] = toClone.state;
 		} else {
 			const fromClone = cloneState(duel, target.from.owner, target.from.place);
 			const fromIndex = fromClone.state.findIndex(fromCardFilter);
-			const fromCardId = fromClone.state[fromIndex];
+			const targetedCardId = fromClone.state[fromIndex];
 
 			fromClone.state.splice(fromIndex, 1);
-			toClone.state.push(fromCardId);
+			toClone.state.push(targetedCardId);
 
+			fragment.stateMap[targetedCardId] = {
+				...duel.stateMap[targetedCardId],
+				owner: target.to.owner,
+				place: target.to.place,
+			};
 			fragment[fromClone.key] = fromClone.state;
 			fragment[toClone.key] = toClone.state;
 		}

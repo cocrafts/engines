@@ -86,13 +86,18 @@ export const Duel: FC<Props> = ({ history }) => {
 							<Card color={firstColor} id={id} key={i} index={i} />
 						))}
 					</Box>
-					<Player state={firstPlayer} />
-					<Box justifyContent="center">
-						<Text color="#323232">[</Text>
-						<Text>
-							Turn: {turn} ({phaseOf} {phase})
-						</Text>
-						<Text color="#323232">]</Text>
+					<Box>
+						<Box width={40} />
+						<Box flexGrow={1} justifyContent="center">
+							<Player state={firstPlayer} />
+						</Box>
+						<Box width={40} alignItems="center" justifyContent="flex-end">
+							<Text color="#323232">[</Text>
+							<Text color="#555555">
+								Turn: {turn} ({phaseOf} {phase})
+							</Text>
+							<Text color="#323232">]</Text>
+						</Box>
 					</Box>
 				</Box>
 			)}

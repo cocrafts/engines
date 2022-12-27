@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DuelState } from '@metacraft/murg-engine';
+import { DuelState, getPlaceDisplay } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 interface Props {
@@ -34,13 +34,16 @@ export const Player: FC<Props> = ({ duel }) => {
 						<Box width={15}>
 							<Text>{key}</Text>
 						</Box>
-						<Box>
+						<Box width={24}>
 							<Text color="red">{attack}</Text>
 							<Text color="gray"> | </Text>
 							<Text>{defense}</Text>
 							<Text color="gray"> | </Text>
 							<Text color="green">{health}</Text>
 							<Text color="blue">{charge}</Text>
+						</Box>
+						<Box>
+							<Text color="magenta">{getPlaceDisplay(state.place)}</Text>
 						</Box>
 					</Box>
 				);

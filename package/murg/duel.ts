@@ -4,6 +4,7 @@ import {
 	CardState,
 	DuelConfig,
 	DuelPhases,
+	DuelPlace,
 	DuelSetting,
 	DuelState,
 	PlayerConfig,
@@ -100,8 +101,14 @@ export const getInitialState = ({
 	[firstPlayer, secondPlayer].forEach(({ id: playerId, deck }) => {
 		const currentDeck = selectDeck(duel, playerId);
 
-		deck.forEach((cardId) => {
-			currentDeck.push(injectCardState(duel, cardMap, cardId).id);
+		deck.forEach((id) => {
+			currentDeck.push(
+				injectCardState(duel, cardMap, {
+					id,
+					owner: playerId,
+					place: DuelPlace.Deck,
+				}).id,
+			);
 		});
 	});
 

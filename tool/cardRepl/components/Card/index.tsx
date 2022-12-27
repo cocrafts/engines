@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DuelState, TemplateFragment } from '@metacraft/murg-engine';
+import { DuelState, getPlaceDisplay } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 import { useSnapshot } from 'valtio';
 
@@ -31,9 +31,16 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 			alignItems="center"
 			borderColor="#333333"
 		>
-			<Text color={color}>
-				({index}) {card.name} ({id.substring(3, 5)})
-			</Text>
+			<Box marginLeft={1} marginRight={1}>
+				<Text>
+					<Text color="#333333">
+						{getPlaceDisplay(state.place)} {state.owner}{' '}
+					</Text>
+					<Text color={color}>
+						({index}) {card.name} ({id.substring(3, 5)})
+					</Text>
+				</Text>
+			</Box>
 			<Box
 				paddingLeft={1}
 				paddingBottom={1}
@@ -73,8 +80,3 @@ Card.defaultProps = {
 };
 
 export default Card;
-
-export const extractSkillTemplate = (template: TemplateFragment[] | string) => {
-	if (typeof template === 'string') return template;
-	return template.map((i) => i.text).join('');
-};

@@ -21,12 +21,21 @@ export const summonCard = (
 	const fromOwner = target.from.owner;
 	const player = selectPlayer(duel, fromOwner);
 	const card = getCard(duel.cardMap, target.from.id);
-	const isOwnerInvalid = fromOwner === duel.phaseOf;
+	const isOwnerInvalid = fromOwner !== duel.phaseOf;
 	const isHeroCard = card.kind === CardType.Hero;
 	const isSpellCard = card.kind === CardType.Spell; /* <-- no spell-card yet */
 	const isHeroInvalid = isHeroCard && player.perTurnHero <= 0;
 
-	if (isOwnerInvalid || isHeroInvalid || isSpellCard) return emptyMoveResult;
+	if (isOwnerInvalid || isHeroInvalid || isSpellCard) {
+		const errorMessage = getErrorMessage(
+			isOwnerInvalid,
+			isHeroInvalid,
+			isSpellCard,
+		);
+
+		console.log(errorMessage);
+		return emptyMoveResult;
+	}
 
 	runAndMergeBundle(
 		duel,
@@ -53,4 +62,14 @@ export const summonCard = (
 		duel,
 		commandBundles: [summonBundle],
 	};
+};
+
+const getErrorMessage = (
+	ownerInvalid: boolean,
+	heroInvalid: boolean,
+	spellInvalid: boolean,
+) => {
+	if (ownerInvalid) return 'Invalid owner';
+	if (heroInvalid) return 'Out of Hero summon slot';
+	if (spellInvalid) return 'Out of Spell slot';
 };

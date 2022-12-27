@@ -21,6 +21,7 @@ export const run: CommandRunner = ({ duel, command: { payload } }) => {
 
 	Object.keys(payload).forEach((key) => {
 		const value = payload[key];
+
 		if (isNaN(value)) {
 			updates[key] = value;
 		} else {

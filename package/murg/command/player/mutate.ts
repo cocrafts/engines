@@ -24,8 +24,13 @@ export const run: CommandRunner = ({ duel, command: { owner, payload } }) => {
 	const playerClone = clonePlayer(duel, owner);
 
 	Object.keys(payload).forEach((key) => {
-		const diff = payload[key] || 0;
-		playerClone.state[key] = playerClone.state[key] + diff;
+		const value = payload[key];
+
+		if (isNaN(value)) {
+			playerClone.state[key] = value;
+		} else {
+			playerClone.state[key] = value || 0;
+		}
 	});
 
 	return {

@@ -89,6 +89,9 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 					owner: target.to.owner,
 				};
 			}
+
+			fragment[fromClone.key] = fromClone.state;
+			fragment[toClone.key] = toClone.state;
 		}
 	} else if (toGround) {
 		/* <- Construction/Summon, from non-Ground to Ground */

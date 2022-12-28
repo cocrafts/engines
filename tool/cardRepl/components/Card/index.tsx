@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import {
 	DuelState,
 	getElementalDisplay,
@@ -37,10 +37,13 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 		>
 			<Box>
 				<Text>
-					<Text color="#333333">{index}</Text>
+					<Text color="#333333">
+						{state.owner.substring(0, 1)}
+						{index}
+					</Text>
 					<Text color={color}>•</Text>
-					<Text color="#333333">{id.substring(10)} </Text>
-					<Text color={color}>{card.name}</Text>
+					<Text color="#333333">{id.substring(10)}</Text>
+					<Text color={color}> {card.name}</Text>
 				</Text>
 			</Box>
 			<Box
@@ -52,17 +55,22 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 			>
 				<SkillDesc skill={card.skill} />
 			</Box>
-			<Box alignItems="center" marginLeft={1} marginRight={1}>
-				<Text color="#323232">
-					{getPlaceDisplay(state.place)} {state.owner}
-				</Text>
-				{!!card.skill.charge && (
-					<Box>
-						<Text color="#282828"> (</Text>
-						<Text color="blue">{state?.charge}</Text>
-						<Text color="#282828">) {getElementalDisplay(card.elemental)}</Text>
-					</Box>
-				)}
+			<Box>
+				<Box width="33%" justifyContent="center">
+					<Text color="#323232">{getPlaceDisplay(state.place)}</Text>
+				</Box>
+				<Box width="34%" justifyContent="center">
+					{!!card.skill.charge && (
+						<Fragment>
+							<Text color="#282828"> (</Text>
+							<Text color="blue">{state?.charge}</Text>
+							<Text color="#282828">)</Text>
+						</Fragment>
+					)}
+				</Box>
+				<Box width="33%" justifyContent="center">
+					<Text color="#282828">{getElementalDisplay(card.elemental)}</Text>
+				</Box>
 			</Box>
 			<Box>
 				<Attribute pair={[state?.attack, card.attribute.attack]} />
@@ -75,7 +83,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 
 Card.defaultProps = {
 	color: '#ffffff',
-	width: 22,
+	width: 21,
 };
 
 export default Card;

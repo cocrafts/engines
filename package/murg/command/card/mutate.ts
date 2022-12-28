@@ -33,8 +33,13 @@ export const run: CommandRunner = ({
 	const targetedState = { ...duel.stateMap[targetedCardId] };
 
 	Object.keys(payload).forEach((key) => {
-		const diff = payload[key] || 0;
-		targetedState[key] = targetedState[key] + diff;
+		const value = payload[key];
+
+		if (isNaN(value)) {
+			targetedState[key] = value;
+		} else {
+			targetedState[key] = value || 0;
+		}
 	});
 
 	fragment.stateMap[targetedCardId] = targetedState;

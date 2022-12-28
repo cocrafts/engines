@@ -1,4 +1,10 @@
-import { DuelCommand, DuelPlace, DuelState, PlayerState } from './type';
+import {
+	DuelCommand,
+	DuelPlace,
+	DuelState,
+	ElementalType,
+	PlayerState,
+} from './type';
 
 export const nanoId = () => {
 	return 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -24,6 +30,27 @@ export const getPlaceDisplay = (place: DuelPlace) => {
 			return 'Player';
 		default:
 			return 'Void';
+	}
+};
+
+export const getElementalDisplay = (elemental: ElementalType) => {
+	switch (elemental) {
+		case ElementalType.Metal:
+			return 'Metal';
+		case ElementalType.Wood:
+			return 'Wood';
+		case ElementalType.Water:
+			return 'Water';
+		case ElementalType.Fire:
+			return 'Fire';
+		case ElementalType.Earth:
+			return 'Earth';
+		case ElementalType.Light:
+			return 'Light';
+		case ElementalType.Dark:
+			return 'Dark';
+		default:
+			return 'None';
 	}
 };
 

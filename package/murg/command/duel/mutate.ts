@@ -25,7 +25,7 @@ export const run: CommandRunner = ({ duel, command: { payload } }) => {
 		if (isNaN(value)) {
 			fragment[key] = value;
 		} else {
-			fragment[key] = duel[key] + (value || 0);
+			fragment[key] = value || 0;
 		}
 	});
 

@@ -1,5 +1,9 @@
 import { FC } from 'react';
-import { DuelState, getPlaceDisplay } from '@metacraft/murg-engine';
+import {
+	DuelState,
+	getElementalDisplay,
+	getPlaceDisplay,
+} from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 import { useSnapshot } from 'valtio';
 
@@ -56,7 +60,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 					<Box>
 						<Text color="#282828"> (</Text>
 						<Text color="blue">{state?.charge}</Text>
-						<Text color="#282828">)</Text>
+						<Text color="#282828">) {getElementalDisplay(card.elemental)}</Text>
 					</Box>
 				)}
 			</Box>

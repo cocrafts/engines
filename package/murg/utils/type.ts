@@ -179,6 +179,8 @@ export interface DuelCommand {
 export interface DuelSetting {
 	initialCardCount: number;
 	initialPlayerHealth: number;
+	generativeFactor: number;
+	destructiveFactor: number;
 	handSize: number;
 	groundSize: number;
 	maxAttachment: number;
@@ -208,10 +210,6 @@ export interface CardIdentifier {
 }
 
 export type CardState = Attribute & CardIdentifier;
-
-export type StatedCard = Card & {
-	state: CardState;
-};
 
 export type PlayerState = Attribute & {
 	id: string;

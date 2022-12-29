@@ -5,10 +5,10 @@ import {
 	createCommandBundle,
 	mergeFragmentToState,
 } from '../utils/state';
-import { DuelPhases, DuelState, MoveResult } from '../utils/type';
+import { BundleGroup, DuelPhases, DuelState, MoveResult } from '../utils/type';
 
 export const fight = (duel: DuelState): MoveResult => {
-	const fightBundle = createCommandBundle(duel);
+	const fightBundle = createCommandBundle(duel, BundleGroup.FightCombat);
 
 	for (let i = 0; i < duel.setting.groundSize; i++) {
 		runFightAt(duel, i).forEach((command) => {
@@ -19,9 +19,8 @@ export const fight = (duel: DuelState): MoveResult => {
 
 	const cleanUpBundle = createAndMergeBundle(
 		duel,
-		createCommand.duelMutate({
-			payload: { phase: DuelPhases.PostFight },
-		}),
+		BundleGroup.PhaseUpdate,
+		createCommand.duelMutate({ payload: { phase: DuelPhases.PostFight } }),
 	);
 
 	return {

@@ -1,10 +1,10 @@
 import { createCommand } from '../command';
 import { getEnemyId } from '../utils/helper';
 import { createCommandBundle, runAndMergeBundle } from '../utils/state';
-import { DuelPhases, DuelState, MoveResult } from '../utils/type';
+import { BundleGroup, DuelPhases, DuelState, MoveResult } from '../utils/type';
 
 export const endTurn = (duel: DuelState): MoveResult => {
-	const endTurnBundle = createCommandBundle(duel);
+	const endTurnBundle = createCommandBundle(duel, BundleGroup.EndTurn);
 	const nextPlayerId = getEnemyId(duel, duel.phaseOf);
 
 	runAndMergeBundle(

@@ -9,6 +9,7 @@ import {
 } from '../utils/state';
 import {
 	ActivationType,
+	BundleGroup,
 	DuelPhases,
 	DuelState,
 	MoveResult,
@@ -19,7 +20,7 @@ export const runFightHook = (
 	activation: ActivationType,
 	nextPhase: DuelPhases,
 ): MoveResult => {
-	const skillBundle = createCommandBundle(duel);
+	const skillBundle = createCommandBundle(duel, BundleGroup.FightSkill);
 
 	groundTraverse(duel, (cardId) => {
 		if (!cardId) return;
@@ -35,9 +36,8 @@ export const runFightHook = (
 
 	const cleanUpBundle = createAndMergeBundle(
 		duel,
-		createCommand.duelMutate({
-			payload: { phase: nextPhase },
-		}),
+		BundleGroup.PhaseUpdate,
+		createCommand.duelMutate({ payload: { phase: nextPhase } }),
 	);
 
 	return {

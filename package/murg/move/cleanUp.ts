@@ -3,6 +3,7 @@ import { getCardState } from '../utils/card';
 import { reinforceArray } from '../utils/ground';
 import { createCommandBundle, mergeFragmentToState } from '../utils/state';
 import {
+	BundleGroup,
 	CardState,
 	DuelCommandTarget,
 	DuelState,
@@ -10,7 +11,7 @@ import {
 } from '../utils/type';
 
 export const cleanUp = (duel: DuelState): MoveResult => {
-	const cleanUpBundle = createCommandBundle(duel);
+	const cleanUpBundle = createCommandBundle(duel, BundleGroup.CleanUp);
 	const { setting, firstGround, secondGround } = duel;
 	const firstReinforced = reinforceArray(firstGround);
 	const secondReinforced = reinforceArray(secondGround);

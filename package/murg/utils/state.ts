@@ -1,9 +1,9 @@
 import { runCommand } from '../command';
 
 import {
+	BundleGroup,
 	DuelCommand,
 	DuelCommandBundle,
-	DuelPhases,
 	DuelState,
 	MoveResult,
 } from './type';
@@ -42,13 +42,13 @@ export const mergeFragmentToState = (
 
 export const createCommandBundle = (
 	duel: DuelState,
-	phase?: DuelPhases,
-	phaseOf?: string,
+	group: BundleGroup,
 ): DuelCommandBundle => {
 	return {
 		turn: duel.turn,
-		phase: phase || duel.phase,
-		phaseOf: phaseOf || duel.phaseOf,
+		group,
+		phase: duel.phase,
+		phaseOf: duel.phaseOf,
 		commands: [],
 	};
 };
@@ -68,13 +68,13 @@ export const runAndMergeBundle = (
 
 export const createAndMergeBundle = (
 	duel: DuelState,
+	group: BundleGroup,
 	commands: DuelCommand[],
-	options?: Partial<DuelCommandBundle>,
 ) => {
 	const bundle: DuelCommandBundle = {
 		turn: duel.turn,
-		phase: options?.phase || duel.phase,
-		phaseOf: options?.phaseOf || duel.phaseOf,
+		phase: duel.phase,
+		phaseOf: duel.phaseOf,
 		commands: [],
 	};
 

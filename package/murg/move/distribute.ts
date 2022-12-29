@@ -12,7 +12,13 @@ import {
 	emptyMoveResult,
 	runAndMergeBundle,
 } from '../utils/state';
-import { DuelPhases, DuelPlace, DuelState, MoveResult } from '../utils/type';
+import {
+	BundleGroup,
+	DuelPhases,
+	DuelPlace,
+	DuelState,
+	MoveResult,
+} from '../utils/type';
 
 export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	if (duel.turn > 0) return emptyMoveResult;
@@ -23,12 +29,8 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const firstPicks = pickUniqueIds(firstDeck, setting.initialCardCount);
 	const secondPicks = pickUniqueIds(secondDeck, setting.initialCardCount);
 
-	const firstDrawBundle = createCommandBundle(duel);
-	const secondDrawBundle = createCommandBundle(
-		duel,
-		DuelPhases.Draw,
-		secondPlayer.id,
-	);
+	const firstDrawBundle = createCommandBundle(duel, BundleGroup.InitialDraw);
+	const secondDrawBundle = createCommandBundle(duel, BundleGroup.InitialDraw);
 
 	for (let i = 0; i < setting.initialCardCount; i += 1) {
 		runAndMergeBundle(
@@ -70,20 +72,26 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 		);
 	}
 
+	const phaseUpdateBundle = createAndMergeBundle(
+		duel,
+		BundleGroup.PhaseUpdate,
+		createCommand.duelMutate({ payload: { phaseOf: secondPlayer.id } }),
+	);
+
 	const cleanUpBundle = createAndMergeBundle(
 		duel,
-		createCommand.duelMutate({
-			payload: { turn: duel.turn + 1 },
-		}),
-		{
-			phase: DuelPhases.CleanUp,
-			phaseOf: secondPlayer.id,
-		},
+		BundleGroup.DuelUpdate,
+		createCommand.duelMutate({ payload: { turn: duel.turn + 1 } }),
 	);
 
 	return {
 		duel,
-		commandBundles: [firstDrawBundle, secondDrawBundle, cleanUpBundle],
+		commandBundles: [
+			firstDrawBundle,
+			phaseUpdateBundle,
+			secondDrawBundle,
+			cleanUpBundle,
+		],
 	};
 };
 
@@ -97,13 +105,13 @@ export const distributeTurnCards = (duel: DuelState): MoveResult => {
 	const deckDrawAmount = Math.min(deck.length, player.perTurnDraw);
 	const troopDrawAmount = player.perTurnTroop - holdingTroopCount;
 	const cardPicks = pickUniqueIds(deck, deckDrawAmount);
-	const turnDistributeBundle = createCommandBundle(duel);
+	const turnDrawBundle = createCommandBundle(duel, BundleGroup.TurnDraw);
 
 	/* <-- Draw cards, does not exceed number of available card in Deck */
 	for (let i = 0; i < deckDrawAmount; i += 1) {
 		runAndMergeBundle(
 			duel,
-			turnDistributeBundle,
+			turnDrawBundle,
 			createCommand.cardMove({
 				owner: player.id,
 				target: {
@@ -125,7 +133,7 @@ export const distributeTurnCards = (duel: DuelState): MoveResult => {
 	for (let i = 0; i < troopDrawAmount; i++) {
 		runAndMergeBundle(
 			duel,
-			turnDistributeBundle,
+			turnDrawBundle,
 			createCommand.cardMove({
 				owner: player.id,
 				target: {
@@ -143,9 +151,9 @@ export const distributeTurnCards = (duel: DuelState): MoveResult => {
 		);
 	}
 
-	runAndMergeBundle(
+	const phaseUpdateBundle = createAndMergeBundle(
 		duel,
-		turnDistributeBundle,
+		BundleGroup.PhaseUpdate,
 		createCommand.duelMutate({
 			payload: { phase: DuelPhases.Setup },
 		}),
@@ -153,6 +161,6 @@ export const distributeTurnCards = (duel: DuelState): MoveResult => {
 
 	return {
 		duel,
-		commandBundles: [turnDistributeBundle],
+		commandBundles: [turnDrawBundle, phaseUpdateBundle],
 	};
 };

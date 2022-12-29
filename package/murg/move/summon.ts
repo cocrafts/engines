@@ -7,6 +7,7 @@ import {
 	runAndMergeBundle,
 } from '../utils/state';
 import {
+	BundleGroup,
 	CardType,
 	DuelCommandTarget,
 	DuelState,
@@ -17,7 +18,7 @@ export const summonCard = (
 	duel: DuelState,
 	target: DuelCommandTarget,
 ): MoveResult => {
-	const summonBundle = createCommandBundle(duel);
+	const summonBundle = createCommandBundle(duel, BundleGroup.Summon);
 	const fromOwner = target.from.owner;
 	const player = selectPlayer(duel, fromOwner);
 	const card = getCard(duel.cardMap, target.from.id);

@@ -261,8 +261,22 @@ export type CommandRunner<T = RunCommandPayload> = (
 	payload: T,
 ) => Partial<DuelState>;
 
+export enum BundleGroup {
+	InitialDraw = 'InitialDraw',
+	TurnDraw = 'TurnDraw',
+	Summon = 'Summon',
+	EndTurn = 'EndTurn',
+	Setup = 'Setup' /* <-- setup hero/troop/spell,  skill, */,
+	FightSkill = 'FightSkill',
+	FightCombat = 'FightCombat',
+	PhaseUpdate = 'PhaseUpdate',
+	CleanUp = 'CleanUp',
+	DuelUpdate = 'DuelUpdate',
+}
+
 export interface DuelCommandBundle {
 	turn: number;
+	group?: BundleGroup;
 	phase: DuelPhases;
 	phaseOf?: string;
 	commands: DuelCommand[];

@@ -156,3 +156,19 @@ export const reinforceArray = (cardIds: string[]): string[] => {
 
 	return reinforcedArray;
 };
+
+export const getFirstEmptyLeft = (list: string[]): number => {
+	const radius = Math.floor(list.length / 2);
+
+	for (let i = radius; i >= 0; i -= 1) {
+		if (!list[i]) return i;
+	}
+};
+
+export const getFirstEmptyRight = (list: string[]): number => {
+	const radius = Math.floor(list.length / 2);
+
+	for (let i = radius; i < list.length; i += 1) {
+		if (!list[i]) return i;
+	}
+};

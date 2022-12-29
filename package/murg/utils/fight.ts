@@ -74,11 +74,11 @@ export const getGenerativeDamage = (
 	factor: number,
 ): number => {
 	if (isCounter) {
-		return damage * (1 + factor);
+		return Math.round(damage * (1 + factor));
 	} else if (isCountered) {
-		return damage * (1 - factor);
+		return Math.round(damage * (1 - factor));
 	} else {
-		return damage;
+		return Math.round(damage);
 	}
 };
 

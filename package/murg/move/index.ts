@@ -1,4 +1,5 @@
 import { distributeInitialCards, distributeTurnCards } from './distribute';
+import { cleanUp } from './duel';
 import { fight } from './fight';
 import { postFight, preFight } from './fightHook';
 import { reinforce } from './reinforce';
@@ -14,4 +15,5 @@ export const move = {
 	fight,
 	postFight,
 	reinforce,
+	cleanUp,
 };

@@ -1,5 +1,5 @@
 import { createCommand, runCommand } from '../command';
-import { getCard, getCardState } from '../utils/card';
+import { getCardState } from '../utils/card';
 import { createCommandResult } from '../utils/helper';
 import { createCommandBundle, mergeFragmentToState } from '../utils/state';
 import { BundleGroup, DuelState, MoveResult } from '../utils/type';
@@ -11,10 +11,9 @@ export const cleanUp = (duel: DuelState): MoveResult => {
 		if (!cardId) return;
 
 		const { commands, registerCommand } = createCommandResult();
-		const card = getCard(duel.cardMap, cardId);
 		const state = getCardState(duel.stateMap, cardId);
 
-		if (card.skill?.charge > 0) {
+		if (state.charge > 0) {
 			createCommand
 				.cardMutate({
 					owner: state.owner,

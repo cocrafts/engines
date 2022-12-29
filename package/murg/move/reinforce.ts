@@ -10,8 +10,8 @@ import {
 	MoveResult,
 } from '../utils/type';
 
-export const cleanUp = (duel: DuelState): MoveResult => {
-	const cleanUpBundle = createCommandBundle(duel, BundleGroup.CleanUp);
+export const reinforce = (duel: DuelState): MoveResult => {
+	const cleanUpBundle = createCommandBundle(duel, BundleGroup.Reinforce);
 	const { setting, firstGround, secondGround } = duel;
 	const firstReinforced = reinforceArray(firstGround);
 	const secondReinforced = reinforceArray(secondGround);

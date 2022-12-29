@@ -265,13 +265,15 @@ export enum BundleGroup {
 	InitialDraw = 'InitialDraw',
 	TurnDraw = 'TurnDraw',
 	Summon = 'Summon',
+	SkillActivation = 'SkillActivation',
+	SpellActivation = 'SpellActivation',
 	EndTurn = 'EndTurn',
-	Setup = 'Setup' /* <-- setup hero/troop/spell,  skill, */,
 	FightSkill = 'FightSkill',
 	FightCombat = 'FightCombat',
+	Reinforce = 'Reinforce',
 	PhaseUpdate = 'PhaseUpdate',
-	CleanUp = 'CleanUp',
 	DuelUpdate = 'DuelUpdate',
+	TurnCleanUp = 'TurnCleanUp',
 }
 
 export interface DuelCommandBundle {

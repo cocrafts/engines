@@ -153,7 +153,7 @@ export const selectGrave = (state: DuelState, owner: string): string[] => {
 	return selectState(state, owner, DuelPlace.Grave);
 };
 
-export const pickUniqueIds = (list: string[], amount: number) => {
+export const pickUniqueIds = (list: string[], amount: number): string[] => {
 	const result = [];
 	const listClone = [...list];
 

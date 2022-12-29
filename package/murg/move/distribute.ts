@@ -1,6 +1,7 @@
 import { createCommand } from '../command';
 import { troopId } from '../utils/card';
 import {
+	createCommandResult,
 	pickUniqueIds,
 	selectDeck,
 	selectHand,
@@ -29,53 +30,47 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const firstPicks = pickUniqueIds(firstDeck, setting.initialCardCount);
 	const secondPicks = pickUniqueIds(secondDeck, setting.initialCardCount);
 
-	const firstDrawBundle = createCommandBundle(duel, BundleGroup.InitialDraw);
-	const secondDrawBundle = createCommandBundle(duel, BundleGroup.InitialDraw);
+	const createDistributeCommands = (owner, picks: string[]) => {
+		const { commands, registerCommand } = createCommandResult();
 
-	for (let i = 0; i < setting.initialCardCount; i += 1) {
-		runAndMergeBundle(
-			duel,
-			firstDrawBundle,
-			createCommand.cardMove({
-				owner: firstPlayer.id,
-				target: {
-					from: {
-						owner: firstPlayer.id,
-						id: firstPicks[i],
-						place: DuelPlace.Deck,
+		for (let i = 0; i < picks.length; i += 1) {
+			createCommand
+				.cardMove({
+					owner,
+					target: {
+						from: {
+							owner,
+							id: picks[i],
+							place: DuelPlace.Deck,
+						},
+						to: {
+							owner,
+							place: DuelPlace.Hand,
+						},
 					},
-					to: {
-						owner: firstPlayer.id,
-						place: DuelPlace.Hand,
-					},
-				},
-			}),
-		);
+				})
+				.forEach(registerCommand);
+		}
 
-		runAndMergeBundle(
-			duel,
-			secondDrawBundle,
-			createCommand.cardMove({
-				owner: secondPlayer.id,
-				target: {
-					from: {
-						owner: secondPlayer.id,
-						id: secondPicks[i],
-						place: DuelPlace.Deck,
-					},
-					to: {
-						owner: secondPlayer.id,
-						place: DuelPlace.Hand,
-					},
-				},
-			}),
-		);
-	}
+		return commands;
+	};
+
+	const firstDrawBundle = createAndMergeBundle(
+		duel,
+		BundleGroup.InitialDraw,
+		createDistributeCommands(firstPlayer.id, firstPicks),
+	);
 
 	const phaseUpdateBundle = createAndMergeBundle(
 		duel,
 		BundleGroup.PhaseUpdate,
 		createCommand.duelMutate({ payload: { phaseOf: secondPlayer.id } }),
+	);
+
+	const secondDrawBundle = createAndMergeBundle(
+		duel,
+		BundleGroup.InitialDraw,
+		createDistributeCommands(secondPlayer.id, secondPicks),
 	);
 
 	const cleanUpBundle = createAndMergeBundle(

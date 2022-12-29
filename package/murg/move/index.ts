@@ -1,3 +1,4 @@
+import { cleanUp } from './cleanUp';
 import { distributeInitialCards, distributeTurnCards } from './distribute';
 import { fight } from './fight';
 import { postFight, preFight } from './fightHook';
@@ -12,4 +13,5 @@ export const move = {
 	preFight,
 	fight,
 	postFight,
+	cleanUp,
 };

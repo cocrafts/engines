@@ -64,7 +64,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 						<Fragment>
 							<Text color="#282828"> (</Text>
 							<Text color="blue">{state?.charge}</Text>
-							<Text color="#282828">)</Text>
+							<Text color="#282828">) </Text>
 						</Fragment>
 					)}
 				</Box>

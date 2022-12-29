@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { string } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 import GraveCard from './GraveCard';
@@ -12,8 +11,8 @@ interface Props {
 export const GraveYard: FC<Props> = ({ color, cards }) => {
 	return (
 		<Box alignSelf="center" borderStyle="round" borderColor="#323232">
-			{cards.map((item, i) => {
-				return <GraveCard item={item} key={i} />;
+			{cards.map((id, i) => {
+				return <GraveCard id={id} key={i} />;
 			})}
 			<Text color={color}> • </Text>
 		</Box>

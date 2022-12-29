@@ -103,3 +103,56 @@ export const getTraverseIndexes = (length: number) => {
 
 	return result;
 };
+
+export const reinforceArray = (cardIds: string[]): string[] => {
+	const reinforcedArray = [...cardIds];
+	const radius = Math.floor(cardIds.length / 2);
+	const leftItems = reinforcedArray.slice(0, radius);
+	const rightItems = reinforcedArray.slice(radius);
+	const leftWeight = leftItems.filter((i) => !!i).length;
+	const rightWeight = rightItems.filter((i) => !!i).length;
+
+	const reinforceLeft = () => {
+		const relocate = (offset: number): void => {
+			if (!reinforcedArray[offset]) return;
+
+			for (let i = radius; i >= offset; i -= 1) {
+				if (!reinforcedArray[i]) {
+					reinforcedArray[i] = reinforcedArray[offset];
+					reinforcedArray[offset] = null;
+				}
+			}
+		};
+
+		for (let i = radius - 1; i >= 0; i -= 1) {
+			relocate(i);
+		}
+	};
+
+	const reinforceRight = () => {
+		const relocate = (offset: number): void => {
+			if (!reinforcedArray[offset]) return;
+
+			for (let i = radius; i < offset; i += 1) {
+				if (!reinforcedArray[i]) {
+					reinforcedArray[i] = reinforcedArray[offset];
+					reinforcedArray[offset] = null;
+				}
+			}
+		};
+
+		for (let i = radius + 1; i < reinforcedArray.length; i += 1) {
+			relocate(i);
+		}
+	};
+
+	if (leftWeight > rightWeight) {
+		reinforceLeft();
+		reinforceRight();
+	} else {
+		reinforceRight();
+		reinforceLeft();
+	}
+
+	return reinforcedArray;
+};

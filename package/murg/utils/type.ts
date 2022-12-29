@@ -70,6 +70,13 @@ export interface Attribute {
 	charge?: number;
 }
 
+export interface GenerativeValue {
+	bare: number;
+	enhanced: number;
+	isCounter?: boolean;
+	isCountered: boolean;
+}
+
 export enum CardType {
 	Hero,
 	Troop,
@@ -179,8 +186,7 @@ export interface DuelCommand {
 export interface DuelSetting {
 	initialCardCount: number;
 	initialPlayerHealth: number;
-	generativeFactor: number;
-	destructiveFactor: number;
+	elementalFactor: number;
 	handSize: number;
 	groundSize: number;
 	maxAttachment: number;

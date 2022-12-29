@@ -128,7 +128,7 @@ export const run: CommandRunner = ({ duel, command: { target } }) => {
 	} else if (fromGround) {
 		/* <- Destruction, from Ground to non-Ground */
 		const toClone = cloneState(duel, target.to.owner, target.to.place);
-		const groundClone = cloneState(duel, target.from.owner, DuelPlace.Ground);
+		const groundClone = cloneState(duel, target.from.owner, target.from.place);
 		const fromIndex = groundClone.state.findIndex(fromCardFilter);
 		const targetedCardId = groundClone.state[fromIndex];
 

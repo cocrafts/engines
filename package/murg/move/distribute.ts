@@ -76,7 +76,12 @@ export const distributeInitialCards = (duel: DuelState): MoveResult => {
 	const cleanUpBundle = createAndMergeBundle(
 		duel,
 		BundleGroup.DuelUpdate,
-		createCommand.duelMutate({ payload: { turn: duel.turn + 1 } }),
+		createCommand.duelMutate({
+			payload: {
+				phaseOf: firstPlayer.id,
+				turn: duel.turn + 1,
+			},
+		}),
 	);
 
 	return {

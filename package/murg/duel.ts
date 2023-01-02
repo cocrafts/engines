@@ -19,7 +19,7 @@ export const defaultSetting: DuelSetting = {
 	handSize: 9,
 	groundSize: 11,
 	maxAttachment: 2,
-	perTurnDraw: 2,
+	perTurnDraw: 1,
 	perTurnHero: 1,
 	perTurnSpell: 2,
 	perTurnTroop: 1,

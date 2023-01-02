@@ -73,6 +73,7 @@ export const createAndMergeBundle = (
 ) => {
 	const bundle: DuelCommandBundle = {
 		turn: duel.turn,
+		group,
 		phase: duel.phase,
 		phaseOf: duel.phaseOf,
 		commands: [],

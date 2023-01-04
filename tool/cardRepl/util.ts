@@ -64,3 +64,57 @@ export const appConfig = proxy<AppConfig>({
 });
 
 export const replayGame = replay;
+
+interface MeasureCache {
+	time: number;
+	explains?: string;
+	callback?: MeasureCallback;
+}
+
+interface MeasureMetrics {
+	explains?: string;
+	startTime: number;
+	currentTime: number;
+	elapsedTime: number;
+}
+
+type MeasureCallback = (metrics: MeasureMetrics) => void;
+
+const measureExecutionCache: Record<string, MeasureCache> = {};
+
+export const measureExecutionTime = (
+	key: string,
+	explains?: string,
+	callback?: (metrics: MeasureMetrics) => void,
+) => {
+	if (explains !== undefined || callback !== undefined) {
+		measureExecutionCache[key] = {
+			time: new Date().getTime(),
+			explains,
+			callback,
+		};
+		return;
+	}
+
+	const cachedMeasure = measureExecutionCache[key];
+	if (!cachedMeasure) return;
+
+	const startTime = cachedMeasure.time;
+	const currentTime = new Date().getTime();
+	const elapsedTime = currentTime - startTime;
+	const explainText = ` to ${cachedMeasure.explains || key}`;
+
+	console.log(`[${key}] take ${elapsedTime}ms${explainText}`);
+
+	if (cachedMeasure.callback) {
+		cachedMeasure.callback({
+			startTime,
+			currentTime,
+			elapsedTime,
+			explains: cachedMeasure.explains,
+		});
+	}
+
+	delete measureExecutionCache[key];
+	return elapsedTime;
+};

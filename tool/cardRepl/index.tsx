@@ -1,7 +1,7 @@
 import { render } from 'ink';
 
 import Duel from './Duel';
-import { duel, generateDuel, replayGame } from './util';
+import { duel, generateDuel, measureExecutionTime, replayGame } from './util';
 
 const { rerender } = render(<Duel state={duel} />);
 
@@ -12,7 +12,9 @@ replayGame().then(({ duel: snapshot, history }) => {
 		duel[key] = snapshot[key];
 	});
 
+	measureExecutionTime('re-render', 'time to render terminal');
 	rerender(<Duel state={duel} history={slicedHistory} />);
+	measureExecutionTime('re-render');
 });
 
 // const duel = generateDuel();

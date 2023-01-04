@@ -97,8 +97,8 @@ export const runAndMergeHooks = (
 	recentCommands: DuelCommand[],
 ): DuelCommandBundle => {
 	const deathCommands = recentCommands.filter(({ target }) => {
-		const fromGround = target.from.place === DuelPlace.Ground;
-		const toGrave = target.to.place === DuelPlace.Grave;
+		const fromGround = target?.from?.place === DuelPlace.Ground;
+		const toGrave = target?.to?.place === DuelPlace.Grave;
 
 		return fromGround && toGrave;
 	});

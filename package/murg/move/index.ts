@@ -1,8 +1,8 @@
 import { distributeInitialCards, distributeTurnCards } from './distribute';
 import { turnCleanUp } from './duel';
-import { fight } from './fight';
-import { postFight, preFight } from './fightHook';
+import { fight, postFight, preFight } from './fight';
 import { reinforce } from './reinforce';
+import { activateChargeSkill } from './skill';
 import { summonCard } from './summon';
 import { endTurn } from './turn';
 
@@ -16,4 +16,5 @@ export const move = {
 	postFight,
 	reinforce,
 	turnCleanUp,
+	activateChargeSkill,
 };

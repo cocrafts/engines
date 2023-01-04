@@ -49,11 +49,14 @@ export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
 };
 
-export type SkillRunner = (
-	duel: DuelState,
-	card: Card,
-	state: CardState,
-) => DuelCommand[];
+export interface SkillRunnerPayload {
+	duel: DuelState;
+	cardId: string;
+	command?: DuelCommand;
+	target?: DuelCommandTarget;
+}
+
+export type SkillRunner = (payload: SkillRunnerPayload) => DuelCommand[];
 
 export interface Skill {
 	template: TemplateFragment[] | string;
@@ -265,6 +268,7 @@ export enum BundleGroup {
 	InitialDraw = 'InitialDraw',
 	TurnDraw = 'TurnDraw',
 	Summon = 'Summon',
+	HookActivation = 'HookActivation',
 	SkillActivation = 'SkillActivation',
 	SpellActivation = 'SpellActivation',
 	EndTurn = 'EndTurn',

@@ -9,8 +9,10 @@ interface Attributes {
 	unitTypes: CardType[];
 }
 
-export const runUnitStealer: SkillRunner = (duel, card, state) => {
+export const runUnitStealer: SkillRunner = ({ duel, cardId }) => {
 	const { commands, registerCommand } = createCommandResult();
+	const card = getCard(duel.cardMap, cardId);
+	const state = getCardState(duel.stateMap, cardId);
 	const facingIdentifier = getFacingIdentifier(duel, state.owner, state.id);
 	const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 	const facingCard = getCard(duel.cardMap, facingIdentifier.id);

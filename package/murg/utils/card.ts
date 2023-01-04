@@ -7,6 +7,7 @@ import {
 	CardState,
 	DuelState,
 	FragmentType,
+	InspireSource,
 	TemplateFragment,
 	TemplateStyle,
 } from './type';
@@ -118,6 +119,20 @@ const ActivationDisplays: Record<ActivationType, string> = {
 	[ActivationType.Banner]: 'Banner',
 };
 
+const InspireSourceDisplays: Record<InspireSource, string> = {
+	[InspireSource.Metal]: 'Metal',
+	[InspireSource.Wood]: 'Wood',
+	[InspireSource.Water]: 'Water',
+	[InspireSource.Fire]: 'Fire',
+	[InspireSource.Earth]: 'Earth',
+	[InspireSource.Dark]: 'Dark',
+	[InspireSource.Light]: 'Light',
+	[InspireSource.Summon]: 'Summon',
+	[InspireSource.Death]: 'Death',
+	[InspireSource.Spell]: 'Spell',
+	[InspireSource.Skill]: 'Skill',
+};
+
 export const interpolateTemplate = (text: string) => {
 	const template: TemplateFragment[] = [];
 	let start = 0;
@@ -167,9 +182,14 @@ export const interpolateTemplate = (text: string) => {
 export const interpolate = (card: Card): Card => {
 	if (!card.skill) return card;
 
-	const { charge, activation, template, attribute } = card.skill;
+	const { charge, activation, template, attribute, inspire } = card.skill;
 	const interpolated = Mustache.render(template, attribute || {});
-	const charges = charge ? ` (${charge})` : '';
+	const isInspire = activation === ActivationType.Inspire;
+	const charges = isInspire
+		? ` ${InspireSourceDisplays[inspire]}`
+		: charge
+		? ` (${charge})`
+		: '';
 	const triggerFragment: TemplateFragment = {
 		text: activation ? `${ActivationDisplays[activation]}${charges}: ` : '',
 		type: FragmentType.TEXT,

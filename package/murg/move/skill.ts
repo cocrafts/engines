@@ -4,6 +4,7 @@ import {
 	createAndMergeBundle,
 	createCommandBundle,
 	emptyMoveResult,
+	runAndMergeHooks,
 } from '../utils/state';
 import {
 	ActivationType,
@@ -12,8 +13,6 @@ import {
 	DuelState,
 	MoveResult,
 } from '../utils/type';
-
-import { runAndMergeHooks } from './hooks';
 
 export const activateChargeSkill = (
 	duel: DuelState,

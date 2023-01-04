@@ -1,14 +1,9 @@
-import { createCommand, runCommand } from '../command';
+import { createCommand } from '../command';
 import { skillMap } from '../skill';
 import { getCard } from '../utils/card';
 import { runFightAt } from '../utils/fight';
 import { groundTraverse } from '../utils/ground';
-import {
-	createAndMergeBundle,
-	createCommandBundle,
-	mergeFragmentToState,
-	runAndMergeBundle,
-} from '../utils/state';
+import { createAndMergeBundle, runAndMergeHooks } from '../utils/state';
 import {
 	ActivationType,
 	BundleGroup,
@@ -16,8 +11,6 @@ import {
 	DuelState,
 	MoveResult,
 } from '../utils/type';
-
-import { runAndMergeHooks } from './hooks';
 
 export const fight = (duel: DuelState): MoveResult => {
 	const commandBundles = [];

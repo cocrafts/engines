@@ -273,6 +273,7 @@ export enum BundleGroup {
 	Reinforce = 'Reinforce',
 	PhaseUpdate = 'PhaseUpdate',
 	DuelUpdate = 'DuelUpdate',
+	UnitCleanUp = 'UnitCleanUp',
 	TurnCleanUp = 'TurnCleanUp',
 }
 

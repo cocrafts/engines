@@ -1,11 +1,15 @@
 import { createCommand, runCommand } from '../command';
 import { getCardState } from '../utils/card';
 import { createCommandResult } from '../utils/helper';
-import { createCommandBundle, mergeFragmentToState } from '../utils/state';
-import { BundleGroup, DuelState, MoveResult } from '../utils/type';
+import {
+	createAndMergeBundle,
+	createCommandBundle,
+	mergeFragmentToState,
+} from '../utils/state';
+import { BundleGroup, DuelPhases, DuelState, MoveResult } from '../utils/type';
 
-export const cleanUp = (duel: DuelState): MoveResult => {
-	const cleanUpBundle = createCommandBundle(duel, BundleGroup.TurnCleanUp);
+export const turnCleanUp = (duel: DuelState): MoveResult => {
+	const unitCleanUpBundle = createCommandBundle(duel, BundleGroup.UnitCleanUp);
 
 	const createAndMergeCardMutate = (cardId: string) => {
 		if (!cardId) return;
@@ -30,7 +34,7 @@ export const cleanUp = (duel: DuelState): MoveResult => {
 		}
 
 		commands.forEach((command) => {
-			cleanUpBundle.commands.push(command);
+			unitCleanUpBundle.commands.push(command);
 			mergeFragmentToState(duel, runCommand({ duel, command }));
 		});
 	};
@@ -40,8 +44,20 @@ export const cleanUp = (duel: DuelState): MoveResult => {
 		createAndMergeCardMutate(duel.secondGround[i]);
 	}
 
+	const turnCleanUpBundle = createAndMergeBundle(
+		duel,
+		BundleGroup.TurnCleanUp,
+		createCommand.duelMutate({
+			payload: {
+				turn: duel.turn + 1,
+				phase: DuelPhases.Draw,
+				phaseOf: duel.firstMover,
+			},
+		}),
+	);
+
 	return {
 		duel,
-		commandBundles: [cleanUpBundle],
+		commandBundles: [unitCleanUpBundle, turnCleanUpBundle],
 	};
 };

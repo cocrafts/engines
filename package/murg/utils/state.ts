@@ -18,31 +18,21 @@ import {
 
 export const mergeFragmentToState = (
 	state: DuelState,
-	fragment: Partial<DuelState>,
+	{ stateMap, ...props }: Partial<DuelState>,
 ): void => {
-	[
-		'uniqueCardCount',
-		'turn',
-		'phase',
-		'phaseOf',
-		'firstMover',
-		'firstPlayer',
-		'secondPlayer',
-		'firstDeck',
-		'secondDeck',
-		'firstHand',
-		'secondHand',
-		'firstGround',
-		'secondGround',
-		'firstGrave',
-		'secondGrave',
-	].forEach((key) => {
-		state[key] = fragment[key] || state[key];
+	Object.keys(props).forEach((key) => {
+		if (state[key] !== props[key]) {
+			state[key] = props[key];
+		}
 	});
 
-	Object.keys(fragment.stateMap || {}).forEach((id) => {
-		state.stateMap[id] = fragment.stateMap[id];
-	});
+	if (stateMap) {
+		Object.keys(stateMap).forEach((id) => {
+			if (state.stateMap[id] !== stateMap[id]) {
+				state.stateMap[id] = stateMap[id];
+			}
+		});
+	}
 };
 
 export const createCommandBundle = (

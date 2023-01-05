@@ -1,7 +1,7 @@
 import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { createCommandResult } from '../utils/helper';
-import { SkillRunner } from '../utils/type';
+import { CommandSourceType, SkillRunner } from '../utils/type';
 
 interface Attributes {
 	attack: number;
@@ -9,15 +9,22 @@ interface Attributes {
 	health: number;
 }
 
-export const runMutate: SkillRunner = ({ duel, cardId }) => {
+export const runSelfMutate: SkillRunner = ({ duel, cardId }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
 	const { ...stats }: Attributes = card.skill.attribute as never;
+
 	createCommand
 		.cardMutate({
 			owner: state.owner,
 			target: {
+				source: {
+					type: CommandSourceType.Skill,
+					owner: state.owner,
+					place: state.place,
+					id: state.id,
+				},
 				to: {
 					owner: state.owner,
 					place: state.place,

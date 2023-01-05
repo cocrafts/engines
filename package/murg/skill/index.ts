@@ -1,11 +1,11 @@
 import { SkillIds, SkillRunner } from '../utils/type';
 
-import { runMutate } from './mutate';
+import { runSelfMutate } from './mutate';
 import { runUnitStealer } from './steal';
 
 export const skillMap: Record<SkillIds, SkillRunner> = {
 	UnitStealer: runUnitStealer,
-	Mutate: runMutate,
+	SelfMutate: runSelfMutate,
 };
 
 export default skillMap;

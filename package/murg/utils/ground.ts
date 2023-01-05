@@ -172,3 +172,17 @@ export const getFirstEmptyRight = (list: string[]): number => {
 		if (!list[i]) return i;
 	}
 };
+
+export const getClosestEmpty = (list: string[]): number => {
+	const radius = Math.floor(list.length / 2);
+	const leftIndex = getFirstEmptyLeft(list);
+	const rightIndex = getFirstEmptyRight(list);
+	const leftDistance = radius - leftIndex;
+	const rightDistance = rightIndex - radius;
+
+	if (leftDistance > rightDistance) {
+		return rightIndex;
+	} else {
+		return leftIndex;
+	}
+};

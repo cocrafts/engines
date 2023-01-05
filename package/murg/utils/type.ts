@@ -43,7 +43,7 @@ export enum InspireSource {
 	Skill = 'Skill',
 }
 
-export type SkillIds = 'UnitStealer' | 'Mutate';
+export type SkillIds = 'UnitStealer' | 'SelfMutate';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
@@ -174,7 +174,21 @@ export interface BoardTarget {
 	index?: number;
 }
 
+export enum CommandSourceType {
+	System = 'System',
+	Player = 'Player',
+	Skill = 'Skill',
+	Spell = 'Spell',
+	Unit = 'Unit',
+}
+
+export type CommandSource = Omit<BoardTarget, 'place'> & {
+	type: CommandSourceType;
+	place?: DuelPlace /* <-- override BoardTarget's, make this field optional */;
+};
+
 export interface DuelCommandTarget {
+	source?: CommandSource;
 	from?: BoardTarget;
 	to?: BoardTarget;
 }

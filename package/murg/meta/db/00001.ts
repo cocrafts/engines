@@ -252,7 +252,7 @@ const cardList: Card[] = [
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Death,
 			attribute: {
-				id: 'Mutate',
+				id: 'SelfMutate',
 				attack: 10,
 			},
 		},

@@ -27,7 +27,11 @@ export const activateChargeSkill = (
 	if (!isChargeSkill || !isChargeValid) return emptyMoveResult;
 
 	const skillFunc = skillMap[card.skill.attribute?.id];
-	const skillCommands = skillFunc?.({ duel, cardId, target });
+	const skillCommands = skillFunc?.({
+		duel,
+		cardId,
+		fromTarget: target,
+	});
 	const skillActivateBundle = createAndMergeBundle(
 		duel,
 		BundleGroup.SkillActivation,
@@ -35,7 +39,9 @@ export const activateChargeSkill = (
 	);
 
 	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
-	runAndMergeHooks(duel, hookBundle, skillCommands, { skill: true });
+	runAndMergeHooks(duel, hookBundle, skillCommands, {
+		castingCardId: cardId,
+	});
 
 	return {
 		duel,

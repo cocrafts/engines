@@ -30,17 +30,17 @@ export enum ActivationType {
 }
 
 export enum InspireSource {
-	Metal,
-	Wood,
-	Water,
-	Fire,
-	Earth,
-	Dark,
-	Light,
-	Summon,
-	Death,
-	Spell,
-	Skill,
+	Metal = '01',
+	Wood = '02',
+	Water = '03',
+	Fire = '04',
+	Earth = '05',
+	Light = '06',
+	Dark = '07',
+	Summon = 'Summon',
+	Death = 'Death',
+	Spell = 'Spell',
+	Skill = 'Skill',
 }
 
 export type SkillIds = 'UnitStealer' | 'Mutate';
@@ -52,8 +52,9 @@ export type SkillAttributes = Record<string, unknown> & {
 export interface SkillRunnerPayload {
 	duel: DuelState;
 	cardId: string;
-	command?: DuelCommand;
-	target?: DuelCommandTarget;
+	fromCardId?: string;
+	fromCommand?: DuelCommand;
+	fromTarget?: DuelCommandTarget;
 }
 
 export type SkillRunner = (payload: SkillRunnerPayload) => DuelCommand[];

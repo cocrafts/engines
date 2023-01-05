@@ -11,6 +11,7 @@ import {
 	DuelState,
 	InspireSource,
 	MoveResult,
+	SkillRunner,
 } from './type';
 
 /* This file is a collection of functions that uses to manage states
@@ -92,12 +93,27 @@ export const runAndMergeHooks = (
 	manualHooks?: ManualHooks,
 ): DuelCommandBundle => {
 	const castingCardId = manualHooks?.castingCardId;
-	const deathCommands = recentCommands.filter(({ target }) => {
+	const deathCommands: DuelCommand[] = [];
+	const summonCommands: DuelCommand[] = [];
+
+	for (let i = 0; i < recentCommands.length; i += 1) {
+		const command = recentCommands[i];
+		const { target } = command;
+		const fromHand = target?.from?.place === DuelPlace.Hand;
 		const fromGround = target?.from?.place === DuelPlace.Ground;
 		const toGrave = target?.to?.place === DuelPlace.Grave;
+		const toGround = target?.to?.place === DuelPlace.Ground;
+		const isDeath = fromGround && toGrave;
+		const isSummon = fromHand && toGround;
 
-		return fromGround && toGrave;
-	});
+		if (isDeath) {
+			deathCommands.push(command);
+		}
+
+		if (isSummon) {
+			summonCommands.push(command);
+		}
+	}
 
 	for (let i = 0; i < duel.setting.groundSize; i += 1) {
 		const firstCardId = duel.firstGround[i];
@@ -105,6 +121,8 @@ export const runAndMergeHooks = (
 
 		createAndMergeInspireDeath(duel, bundle, deathCommands, firstCardId);
 		createAndMergeInspireDeath(duel, bundle, deathCommands, secondCardId);
+		createAndMergeInspireSummon(duel, bundle, summonCommands, firstCardId);
+		createAndMergeInspireSummon(duel, bundle, summonCommands, secondCardId);
 
 		if (castingCardId) {
 			createAndMergeInspireSkill(duel, bundle, firstCardId, castingCardId);
@@ -135,7 +153,40 @@ export const createAndMergeInspireDeath = (
 
 	if (!skillFunc) return;
 
-	deathCommands.forEach((command) => {
+	recursiveRunAndMergeInspire(duel, bundle, deathCommands, skillFunc, cardId);
+};
+
+export const createAndMergeInspireSummon = (
+	duel: DuelState,
+	bundle: DuelCommandBundle,
+	summonCommands: DuelCommand[],
+	cardId: string,
+) => {
+	if (!cardId) return;
+
+	const card = getCard(duel.cardMap, cardId);
+	const skill = card?.skill;
+	const isInspireSummon =
+		skill?.activation === ActivationType.Inspire &&
+		skill?.inspire === InspireSource.Summon;
+
+	if (!isInspireSummon) return;
+
+	const skillFunc = skillMap[skill.attribute?.id];
+
+	if (!skillFunc) return;
+
+	recursiveRunAndMergeInspire(duel, bundle, summonCommands, skillFunc, cardId);
+};
+
+const recursiveRunAndMergeInspire = (
+	duel: DuelState,
+	bundle: DuelCommandBundle,
+	inspiringCommands: DuelCommand[],
+	skillFunc: SkillRunner,
+	cardId: string,
+) => {
+	inspiringCommands.forEach((command) => {
 		const skillCommands = skillFunc({
 			duel,
 			cardId,

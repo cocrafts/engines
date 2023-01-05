@@ -5,6 +5,7 @@ import {
 	createCommandBundle,
 	emptyMoveResult,
 	runAndMergeBundle,
+	runAndMergeHooks,
 } from '../utils/state';
 import {
 	BundleGroup,
@@ -19,9 +20,10 @@ export const summonCard = (
 	target: DuelCommandTarget,
 ): MoveResult => {
 	const summonBundle = createCommandBundle(duel, BundleGroup.Summon);
+	const cardId = target.from.id;
 	const fromOwner = target.from.owner;
 	const player = selectPlayer(duel, fromOwner);
-	const card = getCard(duel.cardMap, target.from.id);
+	const card = getCard(duel.cardMap, cardId);
 	const isOwnerInvalid = fromOwner !== duel.phaseOf;
 	const isHeroCard = card.kind === CardType.Hero;
 	const isSpellCard = card.kind === CardType.Spell; /* <-- no spell-card yet */
@@ -38,15 +40,8 @@ export const summonCard = (
 		return emptyMoveResult;
 	}
 
-	runAndMergeBundle(
-		duel,
-		summonBundle,
-		createCommand.cardMove({
-			owner: fromOwner,
-			target,
-		}),
-	);
-
+	const summonCommands = createCommand.cardMove({ owner: fromOwner, target });
+	runAndMergeBundle(duel, summonBundle, summonCommands);
 	runAndMergeBundle(
 		duel,
 		summonBundle,
@@ -58,6 +53,9 @@ export const summonCard = (
 			},
 		}),
 	);
+
+	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
+	runAndMergeHooks(duel, hookBundle, summonCommands);
 
 	return {
 		duel,

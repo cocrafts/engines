@@ -251,6 +251,10 @@ const cardList: Card[] = [
 			template: 'Gain [+10 Attack:Buff].',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Death,
+			attribute: {
+				id: 'Mutate',
+				attack: 10,
+			},
 		},
 	},
 	{

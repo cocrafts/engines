@@ -19,6 +19,7 @@ export const defaultSetting: DuelSetting = {
 	handSize: 9,
 	groundSize: 11,
 	maxAttachment: 2,
+	spellIncreaseCycle: 3,
 	perTurnDraw: 1,
 	perTurnHero: 1,
 	perTurnSpell: 2,

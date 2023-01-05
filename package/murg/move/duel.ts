@@ -5,10 +5,18 @@ import {
 	createAndMergeBundle,
 	createCommandBundle,
 	mergeFragmentToState,
+	runAndMergeBundle,
 } from '../utils/state';
-import { BundleGroup, DuelPhases, DuelState, MoveResult } from '../utils/type';
+import {
+	BundleGroup,
+	DuelCommandPayload,
+	DuelPhases,
+	DuelState,
+	MoveResult,
+} from '../utils/type';
 
 export const turnCleanUp = (duel: DuelState): MoveResult => {
+	const { setting, firstMover, firstGround, secondGround } = duel;
 	const unitCleanUpBundle = createCommandBundle(duel, BundleGroup.UnitCleanUp);
 
 	const createAndMergeCardMutate = (cardId: string) => {
@@ -39,20 +47,46 @@ export const turnCleanUp = (duel: DuelState): MoveResult => {
 		});
 	};
 
-	for (let i = 0; i < duel.setting.groundSize; i++) {
-		createAndMergeCardMutate(duel.firstGround[i]);
-		createAndMergeCardMutate(duel.secondGround[i]);
+	for (let i = 0; i < setting.groundSize; i++) {
+		createAndMergeCardMutate(firstGround[i]);
+		createAndMergeCardMutate(secondGround[i]);
 	}
+
+	const nextTurn = duel.turn + 1;
 
 	const turnCleanUpBundle = createAndMergeBundle(
 		duel,
 		BundleGroup.TurnCleanUp,
 		createCommand.duelMutate({
 			payload: {
-				turn: duel.turn + 1,
+				turn: nextTurn,
 				phase: DuelPhases.Draw,
-				phaseOf: duel.firstMover,
+				phaseOf: firstMover,
 			},
+		}),
+	);
+
+	const extendedSpellTurn = Math.floor(nextTurn / setting.spellIncreaseCycle);
+	const playerUpdates: DuelCommandPayload = {
+		perTurnHero: setting.perTurnHero,
+		perTurnSpell: setting.perTurnSpell + extendedSpellTurn,
+	};
+
+	runAndMergeBundle(
+		duel,
+		turnCleanUpBundle,
+		createCommand.playerMutate({
+			owner: duel.firstPlayer.id,
+			payload: playerUpdates,
+		}),
+	);
+
+	runAndMergeBundle(
+		duel,
+		turnCleanUpBundle,
+		createCommand.playerMutate({
+			owner: duel.secondPlayer.id,
+			payload: playerUpdates,
 		}),
 	);
 

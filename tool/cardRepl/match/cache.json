@@ -8,6 +8,7 @@
 			"handSize": 9,
 			"groundSize": 11,
 			"maxAttachment": 2,
+			"spellIncreaseCycle": 3,
 			"perTurnDraw": 2,
 			"perTurnHero": 1,
 			"perTurnSpell": 2,

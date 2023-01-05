@@ -194,6 +194,7 @@ export interface DuelSetting {
 	handSize: number;
 	groundSize: number;
 	maxAttachment: number;
+	spellIncreaseCycle: number;
 	perTurnDraw: number;
 	perTurnHero: number;
 	perTurnSpell: number;

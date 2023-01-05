@@ -91,10 +91,15 @@ export const emptyMoveResult: MoveResult = {
 	commandBundles: [],
 };
 
+export interface ManualHooks {
+	skill?: boolean;
+}
+
 export const runAndMergeHooks = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
 	recentCommands: DuelCommand[],
+	manualHooks?: ManualHooks,
 ): DuelCommandBundle => {
 	const deathCommands = recentCommands.filter(({ target }) => {
 		const fromGround = target?.from?.place === DuelPlace.Ground;
@@ -103,36 +108,77 @@ export const runAndMergeHooks = (
 		return fromGround && toGrave;
 	});
 
-	const createAndMergeInspireDeath = (cardId: string) => {
-		if (!cardId) return;
-
-		const card = getCard(duel.cardMap, cardId);
-		const isInspireDeath =
-			card?.skill?.activation === ActivationType.Inspire &&
-			card?.skill?.inspire === InspireSource.Death;
-
-		if (!isInspireDeath) return;
-
-		const skillFunc = skillMap[card.skill.attribute?.id];
-
-		deathCommands.forEach((command) => {
-			const skillCommands = skillFunc?.({ duel, cardId, command });
-
-			skillCommands.forEach((command) => {
-				bundle.commands.push(command);
-				mergeFragmentToState(duel, runCommand({ duel, command }));
-			});
-
-			if (skillCommands.length > 0) {
-				runAndMergeHooks(duel, bundle, skillCommands);
-			}
-		});
-	};
-
 	for (let i = 0; i < duel.setting.groundSize; i += 1) {
-		createAndMergeInspireDeath(duel.firstGround[i]);
-		createAndMergeInspireDeath(duel.secondGround[i]);
+		const firstCardId = duel.firstGround[i];
+		const secondCardId = duel.secondGround[i];
+
+		createAndMergeInspireDeath(duel, bundle, deathCommands, firstCardId);
+		createAndMergeInspireDeath(duel, bundle, deathCommands, secondCardId);
+
+		if (manualHooks?.skill === true) {
+			createAndMergeInspireSkill(duel, bundle, firstCardId);
+			createAndMergeInspireSkill(duel, bundle, secondCardId);
+		}
 	}
 
 	return bundle;
+};
+
+export const createAndMergeInspireDeath = (
+	duel: DuelState,
+	bundle: DuelCommandBundle,
+	deathCommands: DuelCommand[],
+	cardId: string,
+) => {
+	if (!cardId) return;
+
+	const card = getCard(duel.cardMap, cardId);
+	const isInspireDeath =
+		card?.skill?.activation === ActivationType.Inspire &&
+		card?.skill?.inspire === InspireSource.Death;
+
+	if (!isInspireDeath) return;
+
+	const skillFunc = skillMap[card.skill.attribute?.id];
+
+	if (!skillFunc) return;
+
+	deathCommands.forEach((command) => {
+		const skillCommands = skillFunc({ duel, cardId, command });
+
+		skillCommands.forEach((command) => {
+			bundle.commands.push(command);
+			mergeFragmentToState(duel, runCommand({ duel, command }));
+		});
+
+		if (skillCommands.length > 0) {
+			runAndMergeHooks(duel, bundle, skillCommands);
+		}
+	});
+};
+
+export const createAndMergeInspireSkill = (
+	duel: DuelState,
+	bundle: DuelCommandBundle,
+	cardId: string,
+) => {
+	if (!cardId) return;
+
+	const card = getCard(duel.cardMap, cardId);
+	const isInspireSkill =
+		card?.skill?.activation === ActivationType.Inspire &&
+		card?.skill?.inspire === InspireSource.Skill;
+
+	if (!isInspireSkill) return;
+
+	const skillFunc = skillMap[card.skill.attribute?.id];
+
+	if (!skillFunc) return;
+
+	const skillCommands = skillFunc({ duel, cardId });
+
+	skillCommands.forEach((command) => {
+		bundle.commands.push(command);
+		mergeFragmentToState(duel, runCommand({ duel, command }));
+	});
 };

@@ -35,7 +35,7 @@ export const activateChargeSkill = (
 	);
 
 	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
-	runAndMergeHooks(duel, hookBundle, skillCommands);
+	runAndMergeHooks(duel, hookBundle, skillCommands, { skill: true });
 
 	return {
 		duel,

@@ -43,7 +43,7 @@ export enum InspireSource {
 	Skill,
 }
 
-export type SkillIds = 'UnitStealer';
+export type SkillIds = 'UnitStealer' | 'Mutate';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;

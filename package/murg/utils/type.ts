@@ -178,6 +178,7 @@ export enum CommandSourceType {
 	System = 'System',
 	Player = 'Player',
 	Skill = 'Skill',
+	Inspire = 'Inspire',
 	Spell = 'Spell',
 	Unit = 'Unit',
 }

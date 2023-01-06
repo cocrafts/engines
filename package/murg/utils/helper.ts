@@ -1,4 +1,5 @@
 import {
+	CommandSourceType,
 	DuelCommand,
 	DuelPlace,
 	DuelState,
@@ -179,4 +180,10 @@ export const getEnemyId = (duel: DuelState, playerId: string) => {
 	}
 
 	return duel.firstPlayer.id;
+};
+
+export const sourceTypeFromCommand = (command: DuelCommand) => {
+	return command?.target?.source?.type === CommandSourceType.Skill
+		? CommandSourceType.Inspire
+		: CommandSourceType.Skill;
 };

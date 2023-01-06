@@ -83,6 +83,8 @@ export const emptyMoveResult: MoveResult = {
 	commandBundles: [],
 };
 
+const skillSources = [CommandSourceType.Skill, CommandSourceType.Inspire];
+
 export const runAndMergeHooks = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
@@ -101,7 +103,7 @@ export const runAndMergeHooks = (
 		const toGround = target?.to?.place === DuelPlace.Ground;
 		const isDeath = fromGround && toGrave;
 		const isSummon = fromHand && toGround;
-		const isSourceBySkill = target?.source?.type === CommandSourceType.Skill;
+		const isSourceBySkill = skillSources.indexOf(target?.source?.type) >= 0;
 
 		if (isDeath) {
 			deathCommands.push(command);
@@ -191,6 +193,8 @@ export const createAndMergeInspireSkill = (
 
 	skillCommands.forEach((command) => {
 		const fromCardId = command.target?.source?.id;
+		const isRecursive =
+			command.target?.source?.type !== CommandSourceType.Inspire;
 		const fromCard = getCard(duel.cardMap, fromCardId);
 		const isElementalInspire = fromCard?.elemental === (skill.inspire as never);
 		const isInspired = isSkillInspire || isElementalInspire;
@@ -208,7 +212,7 @@ export const createAndMergeInspireSkill = (
 			mergeFragmentToState(duel, runCommand({ duel, command }));
 		});
 
-		if (innerSkillCommands.length > 0) {
+		if (isRecursive && innerSkillCommands.length > 0) {
 			runAndMergeHooks(duel, bundle, innerSkillCommands);
 		}
 	});

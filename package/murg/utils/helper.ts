@@ -101,19 +101,26 @@ export const clonePlayer = (state: DuelState, owner: string): PlayerClone => {
 	};
 };
 
+export const selectStateKey = (
+	duel: DuelState,
+	owner: string,
+	source: DuelPlace = DuelPlace.Player,
+) => {
+	if (!owner) return;
+	if (duel.firstPlayer.id === owner) {
+		return `first${source}`;
+	}
+
+	return `second${source}`;
+};
+
 export const selectState = (
 	duel: DuelState,
 	owner: string,
 	source: DuelPlace,
 ): string[] => {
 	if (!owner) return;
-	const firstSource = `first${source}`;
-
-	if (duel.firstPlayer.id === owner) {
-		return duel[firstSource];
-	}
-
-	return duel[`second${source}`];
+	return duel[selectStateKey(duel, owner, source)];
 };
 
 export interface StateClone {

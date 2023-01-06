@@ -60,21 +60,47 @@ export const getGroundSizes = (ground: string[]) => {
 	return size;
 };
 
-export const getFacingIdentifier = (
-	duel,
+export const getFacingIdentifiers = (
+	duel: DuelState,
 	owner: string,
 	cardId: string,
-): CardIdentifier => {
+	radius = 0,
+) => {
+	const result = [];
 	const enemyId = getEnemyId(duel, owner);
 	const ground = selectGround(duel, owner);
 	const enemyGround = selectGround(duel, enemyId);
 	const cardIndex = ground.findIndex((id) => id === cardId);
 
-	return {
+	result.push({
 		id: enemyGround[cardIndex],
 		owner: enemyId,
 		place: DuelPlace.Ground,
-	};
+	});
+
+	for (let i = 0; i < radius; i += 1) {
+		result.push({
+			id: enemyGround[cardIndex - i],
+			owner: enemyId,
+			place: DuelPlace.Ground,
+		});
+
+		result.push({
+			id: enemyGround[cardIndex + i],
+			owner: enemyId,
+			place: DuelPlace.Ground,
+		});
+	}
+
+	return result;
+};
+
+export const getFacingIdentifier = (
+	duel: DuelState,
+	owner: string,
+	cardId: string,
+): CardIdentifier => {
+	return getFacingIdentifiers(duel, owner, cardId)[0];
 };
 
 export type GroundTraverseFunction = (cardId: string | undefined) => void;

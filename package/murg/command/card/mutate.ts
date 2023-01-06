@@ -1,8 +1,5 @@
-import {
-	cloneState,
-	createCommandResult,
-	createDuelFragment,
-} from '../../utils/helper';
+import { getCardState } from '../../utils/card';
+import { createCommandResult, createDuelFragment } from '../../utils/helper';
 import {
 	CommandCreator,
 	CommandRunner,
@@ -22,27 +19,22 @@ export const create: CommandCreator = ({ owner, target, payload }) => {
 	return commands;
 };
 
-export const run: CommandRunner = ({
-	duel,
-	command: { owner, target, payload },
-}) => {
+export const run: CommandRunner = ({ duel, command: { target, payload } }) => {
 	const fragment = createDuelFragment(duel);
-	const toClone = cloneState(duel, owner, target.to.place);
-	const targetedIndex = toClone.state.findIndex((id) => id === target.to.id);
-	const targetedCardId = toClone.state[targetedIndex];
-	const targetedState = { ...duel.stateMap[targetedCardId] };
+	const cardState = getCardState(duel.stateMap, target.to.id);
+	const cardStateClone = { ...cardState };
 
 	Object.keys(payload).forEach((key) => {
 		const value = payload[key];
 
 		if (isNaN(value)) {
-			targetedState[key] = value;
+			cardStateClone[key] = value;
 		} else {
-			targetedState[key] = value || 0;
+			cardStateClone[key] = value || 0;
 		}
 	});
 
-	fragment.stateMap[targetedCardId] = targetedState;
+	fragment.stateMap[target.to.id] = cardStateClone;
 	return fragment;
 };
 

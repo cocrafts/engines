@@ -129,33 +129,16 @@ export const afterHealthCommands = (
 	state: CardState,
 	health: number,
 ): DuelCommand[] => {
-	if (health > 0) {
-		return createCommand.cardMutate({
-			owner: state.owner,
-			target: {
-				to: {
-					owner: state.owner,
-					id: state.id,
-					place: state.place,
-				},
-			},
-			payload: { health },
-		});
-	}
-
-	return createCommand.cardMove({
+	return createCommand.cardMutate({
 		owner: state.owner,
 		target: {
-			from: {
+			to: {
 				owner: state.owner,
 				id: state.id,
 				place: state.place,
 			},
-			to: {
-				owner: state.owner,
-				place: DuelPlace.Grave,
-			},
 		},
+		payload: { health },
 	});
 };
 

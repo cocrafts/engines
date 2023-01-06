@@ -4,6 +4,7 @@ import {
 	CommandCreator,
 	CommandRunner,
 	DuelCommandType,
+	DuelPlace,
 } from '../../utils/type';
 
 export const create: CommandCreator = ({ owner, target, payload }) => {
@@ -15,6 +16,24 @@ export const create: CommandCreator = ({ owner, target, payload }) => {
 		target,
 		payload,
 	});
+
+	if (payload.health <= 0) {
+		registerCommand({
+			type: DuelCommandType.CardMove,
+			owner,
+			target: {
+				from: {
+					owner: target.to.owner,
+					place: target.to.place,
+					id: target.to.id,
+				},
+				to: {
+					owner: target.to.owner,
+					place: DuelPlace.Grave,
+				},
+			},
+		});
+	}
 
 	return commands;
 };

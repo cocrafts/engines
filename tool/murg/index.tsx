@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import {
-	DuelCommand,
 	DuelCommandBundle,
 	DuelState,
 	PlayerState,
@@ -19,9 +18,10 @@ const cardHeight = 13;
 interface Props {
 	duel: DuelState;
 	history?: Array<DuelCommandBundle>;
+	renderTime?: number;
 }
 
-export const Duel: FC<Props> = ({ duel, history }) => {
+export const MURG: FC<Props> = ({ duel, history, renderTime }) => {
 	const {
 		turn,
 		phase,
@@ -98,7 +98,8 @@ export const Duel: FC<Props> = ({ duel, history }) => {
 							<Text color="#555555">
 								Turn: {turn} ({phaseOf} {phase})
 							</Text>
-							<Text color="#323232">]</Text>
+							<Text color="#323232">] </Text>
+							<Text color="#888888">{renderTime}ms</Text>
 						</Box>
 					</Box>
 				</Box>
@@ -107,36 +108,8 @@ export const Duel: FC<Props> = ({ duel, history }) => {
 	);
 };
 
-Duel.defaultProps = {
+MURG.defaultProps = {
 	history: [],
 };
 
-export default Duel;
-
-const isHistoryBatch = (batch: DuelCommand[]) => {
-	for (let i = 0; i < batch.length; i += 1) {
-		if (!batch[i]?.target) return false;
-	}
-
-	return true;
-};
-
-const extractHistory = (history: Array<DuelCommandBundle>, limit = 40) => {
-	const result = [];
-	let currentSize = 0;
-
-	for (let i = history.length - 1; i >= 0; i -= 1) {
-		const { commands } = history[i];
-
-		if (isHistoryBatch(commands)) {
-			result.push(commands);
-			currentSize += commands.length;
-		}
-
-		if (currentSize >= limit) {
-			return result;
-		}
-	}
-
-	return result.reverse();
-};
+export default MURG;

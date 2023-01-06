@@ -13,10 +13,10 @@ import clone from 'lodash/cloneDeep';
 const cache = require('./cache.json');
 import * as history from './commands';
 
-const redistribute = false;
+const redistribute = true;
 export const initialState = getInitialState(cache.config);
 
-export const replay = async () => {
+export const replay = () => {
 	const duel: DuelState = clone(initialState);
 	const commandHistory: DuelCommandBundle[] = [];
 
@@ -39,11 +39,6 @@ export const replay = async () => {
 
 	if (redistribute) {
 		runMove(move.distributeInitialCards(duel));
-		require('fs').writeFileSync(
-			'distribute.json',
-			JSON.stringify(commandHistory),
-		);
-
 		runMove(move.distributeTurnCards(duel));
 	} else {
 		runCommandBundles(history.distributeInitialCards);

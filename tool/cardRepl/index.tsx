@@ -1,11 +1,12 @@
 import { render } from 'ink';
+import { throttle } from 'lodash';
 
 import Duel from './Duel';
 import { duel, generateDuel, measureExecutionTime, replayGame } from './util';
 
 const { rerender } = render(<Duel state={duel} />);
 
-replayGame().then(({ duel: snapshot, history }) => {
+const runReRender = ({ duel: snapshot, history }) => {
 	const slicedHistory = history.slice(0, 10);
 
 	Object.keys(snapshot).forEach((key) => {
@@ -15,7 +16,9 @@ replayGame().then(({ duel: snapshot, history }) => {
 	measureExecutionTime('re-render', 'time to render terminal');
 	rerender(<Duel state={duel} history={slicedHistory} />);
 	measureExecutionTime('re-render');
-});
+};
+
+replayGame().then(throttle(runReRender, 100));
 
 // const duel = generateDuel();
 // // // const command

@@ -1,11 +1,9 @@
 import {
 	CardType,
-	DuelState,
 	makeDuel,
 	makeMeta,
 	PlayerState,
 } from '@metacraft/murg-engine';
-import { proxy } from 'valtio';
 
 export const generateRandomDeck = (version = '00001', size = 36): string[] => {
 	let count = 0;
@@ -51,19 +49,9 @@ export const selectColor = (
 	return colors[players[0].id === owner ? 0 : 1];
 };
 
-import { initialState, replay } from './match/first';
-
-export const duel = proxy<DuelState>(initialState);
-
 export interface AppConfig {
 	debug: boolean;
 }
-
-export const appConfig = proxy<AppConfig>({
-	debug: false,
-});
-
-export const replayGame = replay;
 
 interface MeasureCache {
 	time: number;

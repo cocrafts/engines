@@ -1,18 +1,22 @@
 import { FC } from 'react';
+import { DuelState, getCard } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 import GraveCard from './GraveCard';
 
 interface Props {
+	duel: DuelState;
 	color?: string;
 	cards?: string[];
 }
 
-export const GraveYard: FC<Props> = ({ color, cards }) => {
+export const GraveYard: FC<Props> = ({ duel, cards, color }) => {
 	return (
 		<Box alignSelf="center" borderStyle="round" borderColor="#323232">
 			{cards.map((id, i) => {
-				return <GraveCard id={id} key={i} />;
+				const card = getCard(duel.cardMap, id);
+
+				return <GraveCard card={card} key={i} />;
 			})}
 			<Text color={color}> • </Text>
 		</Box>

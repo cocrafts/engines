@@ -1,13 +1,11 @@
 import { FC, Fragment } from 'react';
 import {
-	DuelState,
+	Card as ICard,
+	CardState,
 	getElementalDisplay,
 	getPlaceDisplay,
 } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
-import { useSnapshot } from 'valtio';
-
-import { duel } from '../../util';
 
 import Attribute from './Attribute';
 import EmptyCard from './Empty';
@@ -15,17 +13,14 @@ import SkillDesc from './SkillDesc';
 
 interface Props {
 	color?: string;
-	id: string;
+	card?: ICard;
+	state?: CardState;
 	index?: number;
 	width?: number;
 }
 
-export const Card: FC<Props> = ({ color, id, index, width }) => {
-	if (!id) return <EmptyCard width={width} index={index} />;
-
-	const { stateMap, cardMap } = useSnapshot(duel) as DuelState;
-	const card = cardMap[id.substring(0, 9)];
-	const state = stateMap[id];
+export const Card: FC<Props> = ({ color, index, card, state, width }) => {
+	if (!card?.id) return <EmptyCard width={width} index={index} />;
 
 	return (
 		<Box
@@ -42,7 +37,7 @@ export const Card: FC<Props> = ({ color, id, index, width }) => {
 						{index}
 					</Text>
 					<Text color={color}>•</Text>
-					<Text color="#333333">{id.substring(10)}</Text>
+					<Text color="#333333">{state?.id.substring(10)}</Text>
 					<Text color={color}> {card.name}</Text>
 				</Text>
 			</Box>

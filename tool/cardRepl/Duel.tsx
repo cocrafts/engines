@@ -6,24 +6,22 @@ import {
 	PlayerState,
 } from '@metacraft/murg-engine';
 import { Box, Text, useInput } from 'ink';
-import { useSnapshot } from 'valtio';
 
-import Card from './components/Card';
+import CardList from './components/CardList';
 import Deck from './components/Deck';
 import GraveYard from './components/GraveYard';
 import History from './components/History';
 import Player from './components/Player';
 import StateInspector from './components/StateInspector';
-import { duel } from './util';
 
 const cardHeight = 13;
 
 interface Props {
-	state: DuelState;
+	duel: DuelState;
 	history?: Array<DuelCommandBundle>;
 }
 
-export const Duel: FC<Props> = ({ history }) => {
+export const Duel: FC<Props> = ({ duel, history }) => {
 	const {
 		turn,
 		phase,
@@ -38,7 +36,7 @@ export const Duel: FC<Props> = ({ history }) => {
 		secondGround,
 		firstGrave,
 		secondGrave,
-	} = useSnapshot(duel) as DuelState;
+	} = duel;
 	const [debug, setDebug] = useState(false);
 	const players: [PlayerState, PlayerState] = [firstPlayer, secondPlayer];
 	const playerColors: [string, string] = ['blue', 'green'];
@@ -58,34 +56,38 @@ export const Duel: FC<Props> = ({ history }) => {
 			) : (
 				<Box flexGrow={1} flexDirection="column" paddingRight={1}>
 					<Player state={secondPlayer} />
-					<Box justifyContent="center" height={cardHeight}>
-						{secondHand.map((id, i) => (
-							<Card color={secondColor} id={id} key={i} index={i} />
-						))}
-					</Box>
+					<CardList
+						duel={duel}
+						items={secondHand}
+						color={secondColor}
+						height={cardHeight}
+					/>
 					<Box alignSelf="center">
-						<GraveYard cards={secondGrave} />
-						<Deck color={secondColor} cardIds={secondDeck} />
+						<GraveYard duel={duel} cards={secondGrave} />
+						<Deck duel={duel} color={secondColor} cardIds={secondDeck} />
 					</Box>
-					<Box justifyContent="center" height={cardHeight + 1}>
-						{secondGround.map((id, i) => (
-							<Card color={secondColor} id={id} key={i} index={i} />
-						))}
-					</Box>
-					<Box justifyContent="center" height={cardHeight + 1}>
-						{firstGround.map((id, i) => (
-							<Card color={firstColor} id={id} key={i} index={i} />
-						))}
-					</Box>
+					<CardList
+						duel={duel}
+						items={secondGround}
+						color={secondColor}
+						height={cardHeight + 1}
+					/>
+					<CardList
+						duel={duel}
+						items={firstGround}
+						color={firstColor}
+						height={cardHeight + 1}
+					/>
 					<Box alignSelf="center">
-						<Deck color={firstColor} cardIds={firstDeck} />
-						<GraveYard cards={firstGrave} />
+						<Deck duel={duel} color={firstColor} cardIds={firstDeck} />
+						<GraveYard duel={duel} cards={firstGrave} />
 					</Box>
-					<Box justifyContent="center" height={cardHeight}>
-						{firstHand.map((id, i) => (
-							<Card color={firstColor} id={id} key={i} index={i} />
-						))}
-					</Box>
+					<CardList
+						duel={duel}
+						items={firstHand}
+						color={firstColor}
+						height={cardHeight}
+					/>
 					<Box>
 						<Box width={40} />
 						<Box flexGrow={1} justifyContent="center">

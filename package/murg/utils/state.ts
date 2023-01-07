@@ -123,17 +123,17 @@ export const runAndMergeHooks = (
 		createAndMergeInspireSkill(duel, bundle, skillCommands, firstCardId);
 		createAndMergeInspireSkill(duel, bundle, skillCommands, secondCardId);
 
-		createAndMergeInspireSummon(duel, bundle, summonCommands, firstCardId);
-		createAndMergeInspireSummon(duel, bundle, summonCommands, secondCardId);
+		createAndMergeSummon(duel, bundle, summonCommands, firstCardId);
+		createAndMergeSummon(duel, bundle, summonCommands, secondCardId);
 
-		createAndMergeInspireDeath(duel, bundle, deathCommands, firstCardId);
-		createAndMergeInspireDeath(duel, bundle, deathCommands, secondCardId);
+		createAndMergeDeath(duel, bundle, deathCommands, firstCardId);
+		createAndMergeDeath(duel, bundle, deathCommands, secondCardId);
 	}
 
 	return bundle;
 };
 
-export const createAndMergeInspireDeath = (
+export const createAndMergeDeath = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
 	deathCommands: DuelCommand[],
@@ -143,17 +143,25 @@ export const createAndMergeInspireDeath = (
 
 	const card = getCard(duel.cardMap, cardId);
 	const skill = card?.skill;
+	const isActivationDeath = skill.activation === ActivationType.Death;
 	const isInspireDeath =
 		skill?.activation === ActivationType.Inspire &&
 		skill?.inspire === InspireSource.Death;
+	const isActivationValid = isActivationDeath || isInspireDeath;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (!isInspireDeath || !skillFunc) return;
+	if (!isActivationValid || !skillFunc) return;
 
-	recursiveRunAndMergeInspire(duel, bundle, deathCommands, skillFunc, cardId);
+	recursiveRunAndMergeSkillCommands(
+		duel,
+		bundle,
+		deathCommands,
+		skillFunc,
+		cardId,
+	);
 };
 
-export const createAndMergeInspireSummon = (
+export const createAndMergeSummon = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
 	summonCommands: DuelCommand[],
@@ -163,14 +171,22 @@ export const createAndMergeInspireSummon = (
 
 	const card = getCard(duel.cardMap, cardId);
 	const skill = card?.skill;
+	const isActivationSummon = skill.activation == ActivationType.Summon;
 	const isInspireSummon =
 		skill?.activation === ActivationType.Inspire &&
 		skill?.inspire === InspireSource.Summon;
+	const isActivationValid = isActivationSummon || isInspireSummon;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (!isInspireSummon || !skillFunc) return;
+	if (!isActivationValid || !skillFunc) return;
 
-	recursiveRunAndMergeInspire(duel, bundle, summonCommands, skillFunc, cardId);
+	recursiveRunAndMergeSkillCommands(
+		duel,
+		bundle,
+		summonCommands,
+		skillFunc,
+		cardId,
+	);
 };
 
 export const createAndMergeInspireSkill = (
@@ -214,7 +230,7 @@ export const createAndMergeInspireSkill = (
 	});
 };
 
-const recursiveRunAndMergeInspire = (
+const recursiveRunAndMergeSkillCommands = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
 	inspiringCommands: DuelCommand[],

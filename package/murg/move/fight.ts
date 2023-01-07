@@ -3,7 +3,11 @@ import { skillMap } from '../skill';
 import { getCard } from '../utils/card';
 import { runFightAt } from '../utils/fight';
 import { groundTraverse } from '../utils/ground';
-import { createAndMergeBundle, runAndMergeHooks } from '../utils/state';
+import {
+	createAndMergeBundle,
+	createCommandBundle,
+	runAndMergeHooks,
+} from '../utils/state';
 import {
 	ActivationType,
 	BundleGroup,
@@ -16,15 +20,13 @@ export const fight = (duel: DuelState): MoveResult => {
 	const commandBundles = [];
 
 	for (let i = 0; i < duel.setting.groundSize; i++) {
-		const fightCommands = runFightAt(duel, i);
-		const fightBundle = createAndMergeBundle(
-			duel,
-			BundleGroup.FightCombat,
-			fightCommands,
-		);
+		const fightBundle = createCommandBundle(duel, BundleGroup.FightCombat);
+		runFightAt(duel, fightBundle, i);
 
-		runAndMergeHooks(duel, fightBundle, fightCommands);
-		commandBundles.push(fightBundle);
+		if (fightBundle.commands.length > 0) {
+			runAndMergeHooks(duel, fightBundle, fightBundle.commands);
+			commandBundles.push(fightBundle);
+		}
 	}
 
 	const cleanUpBundle = createAndMergeBundle(
@@ -57,18 +59,22 @@ const runFightHook = (
 		if (!cardId) return;
 
 		const card = getCard(duel.cardMap, cardId);
+		const isFightHookActivation = card?.skill?.activation === activation;
 
-		if (card?.skill?.activation === activation) {
+		if (isFightHookActivation) {
 			const skillFunc = skillMap[card.skill.attribute?.id];
-			const commands = skillFunc?.({ duel, cardId });
-			const skillBundle = createAndMergeBundle(
-				duel,
-				BundleGroup.FightSkill,
-				commands,
-			);
+			const commands = skillFunc?.({ duel, cardId }) || [];
 
-			runAndMergeHooks(duel, skillBundle, commands);
-			commandBundles.push(skillBundle);
+			if (commands.length > 0) {
+				const skillBundle = createAndMergeBundle(
+					duel,
+					BundleGroup.FightSkill,
+					commands,
+				);
+
+				runAndMergeHooks(duel, skillBundle, commands);
+				commandBundles.push(skillBundle);
+			}
 		}
 	});
 

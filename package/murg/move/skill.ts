@@ -9,6 +9,7 @@ import {
 import {
 	ActivationType,
 	BundleGroup,
+	DuelCommandBundle,
 	DuelCommandTarget,
 	DuelState,
 	MoveResult,
@@ -18,6 +19,7 @@ export const activateChargeSkill = (
 	duel: DuelState,
 	target: DuelCommandTarget,
 ): MoveResult => {
+	const commandBundles: DuelCommandBundle[] = [];
 	const cardId = target.from.id;
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
@@ -27,22 +29,24 @@ export const activateChargeSkill = (
 	if (!isChargeSkill || !isChargeValid) return emptyMoveResult;
 
 	const skillFunc = skillMap[card.skill.attribute?.id];
-	const skillCommands = skillFunc?.({
-		duel,
-		cardId,
-		fromTarget: target,
-	});
-	const skillActivateBundle = createAndMergeBundle(
-		duel,
-		BundleGroup.SkillActivation,
-		skillCommands,
-	);
+	const skillCommands = skillFunc?.({ duel, cardId, fromTarget: target }) || [];
 
-	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
-	runAndMergeHooks(duel, hookBundle, skillCommands);
+	if (skillCommands.length > 0) {
+		const skillActivateBundle = createAndMergeBundle(
+			duel,
+			BundleGroup.SkillActivation,
+			skillCommands,
+		);
 
-	return {
-		duel,
-		commandBundles: [skillActivateBundle, hookBundle],
-	};
+		commandBundles.push(skillActivateBundle);
+
+		const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
+		runAndMergeHooks(duel, hookBundle, skillCommands);
+
+		if (hookBundle.commands.length > 0) {
+			commandBundles.push(hookBundle);
+		}
+	}
+
+	return { duel, commandBundles };
 };

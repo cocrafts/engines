@@ -213,11 +213,12 @@ export const createAndMergeInspireSkill = (
 
 		if (!isInspired) return;
 
-		const innerSkillCommands = skillFunc({
-			duel,
-			cardId,
-			fromCommand: command,
-		});
+		const innerSkillCommands =
+			skillFunc?.({
+				duel,
+				cardId,
+				fromCommand: command,
+			}) || [];
 
 		innerSkillCommands.forEach((command) => {
 			bundle.commands.push(command);

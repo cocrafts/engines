@@ -1,18 +1,17 @@
 import { createCommand } from '../command';
 import { passiveMap } from '../passive';
+import { skillMap } from '../skill';
 
 import { getCard, getCardState } from './card';
+import { emptyPassive, getEnemyId, selectPlayer } from './helper';
+import { runAndMergeBundle } from './state';
 import {
-	createCommandResult,
-	emptyPassive,
-	getEnemyId,
-	selectPlayer,
-} from './helper';
-import {
+	ActivationType,
 	Attribute,
 	Card,
 	CardState,
 	DuelCommand,
+	DuelCommandBundle,
 	DuelState,
 	ElementalType,
 	PassivePair,
@@ -38,58 +37,96 @@ type StatedCard = Card & {
 	state: CardState;
 };
 
-export const playerAttackCommands = (duel: DuelState, cardId: string) => {
-	const { commands, registerCommand } = createCommandResult();
+export const runPlayerAttack = (
+	duel: DuelState,
+	bundle: DuelCommandBundle,
+	cardId: string,
+): void => {
 	const cardState = getCardState(duel.stateMap, cardId);
-	const playerId = getEnemyId(duel, cardState.owner);
-	const playerState = selectPlayer(duel, playerId);
+	const [cardPassive] = extractPassivePair(duel, cardId, null);
+	const combinedState = combineAttribute(cardState, cardPassive);
+	const opponentId = getEnemyId(duel, cardState.owner);
+	const opponentState = selectPlayer(duel, opponentId);
 
-	createCommand
-		.playerMutate({
-			owner: playerId,
-			payload: { health: playerState.health - cardState.attack },
-		})
-		.forEach(registerCommand);
-
-	return commands;
+	runAndMergeBundle(
+		duel,
+		bundle,
+		createCommand.playerMutate({
+			owner: opponentId,
+			payload: { health: opponentState.health - combinedState.attack },
+		}),
+	);
 };
 
-export const runFightAt = (duel: DuelState, i: number): DuelCommand[] => {
-	const { commands, registerCommand } = createCommandResult();
+export const runFightAt = (
+	duel: DuelState,
+	bundle: DuelCommandBundle,
+	i: number,
+): DuelCommandBundle => {
 	const { firstGround, secondGround } = duel;
 	const firstId = firstGround[i];
 	const secondId = secondGround[i];
 
 	if (firstId && secondId) {
-		fightCommands(duel, firstId, secondId).forEach(registerCommand);
-		fightCommands(duel, secondId, firstId).forEach(registerCommand);
+		runCardAttack(duel, bundle, firstId, secondId);
+		runCardAttack(duel, bundle, secondId, firstId);
 	} else if (firstId && !secondId) {
-		playerAttackCommands(duel, firstId).forEach(registerCommand);
+		runPlayerAttack(duel, bundle, firstId);
 	} else if (!firstId && secondId) {
-		playerAttackCommands(duel, secondId).forEach(registerCommand);
+		runPlayerAttack(duel, bundle, secondId);
 	}
 
-	return commands;
+	return bundle;
 };
 
-export const fightCommands = (
+/* first Card getting attack from Second card, extract state after being attack
+ * and generate corresponding Move */
+export const runCardAttack = (
 	duel: DuelState,
+	bundle: DuelCommandBundle,
 	firstId: string,
 	secondId: string,
-) => {
-	const state = getStateAfterCombat(duel, firstId, secondId);
+): void => {
+	const firstCard = getCard(duel.cardMap, firstId);
+	const secondCard = getCard(duel.cardMap, secondId);
+	const isAttackActivation =
+		firstCard?.skill?.activation === ActivationType.Attack;
+	const isDefenseActivation =
+		secondCard?.skill?.activation === ActivationType.Defense;
 
-	return createCommand.cardMutate({
-		owner: state.owner,
-		target: {
-			to: {
+	if (isAttackActivation) {
+		const skillFunc = skillMap[firstCard.skill?.attribute?.id];
+		const skillCommands = skillFunc?.({ duel, cardId: secondId }) || [];
+
+		runAndMergeBundle(duel, bundle, skillCommands);
+	}
+
+	if (isDefenseActivation) {
+		const skillFunc = skillMap[secondCard.skill?.attribute?.id];
+		const skillCommands = skillFunc?.({ duel, cardId: firstId }) || [];
+
+		runAndMergeBundle(duel, bundle, skillCommands);
+	}
+
+	if (secondId) {
+		const state = getStateAfterCombat(duel, secondId, firstId);
+
+		runAndMergeBundle(
+			duel,
+			bundle,
+			createCommand.cardMutate({
 				owner: state.owner,
-				id: state.id,
-				place: state.place,
-			},
-		},
-		payload: { health: state.health },
-	});
+				target: {
+					to: {
+						owner: state.owner,
+						id: state.id,
+						place: state.place,
+					},
+				},
+				payload: { health: state.health },
+			}),
+		);
+	}
 };
 
 export const getStateAfterCombat = (

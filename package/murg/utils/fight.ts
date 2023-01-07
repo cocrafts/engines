@@ -1,8 +1,13 @@
 import { createCommand } from '../command';
-import { passiveMap } from '../skill';
+import { passiveMap } from '../passive';
 
 import { getCard, getCardState } from './card';
-import { createCommandResult, getEnemyId, selectPlayer } from './helper';
+import {
+	createCommandResult,
+	emptyPassive,
+	getEnemyId,
+	selectPlayer,
+} from './helper';
 import {
 	Attribute,
 	Card,
@@ -161,12 +166,6 @@ export const afterHealthCommands = (
 		},
 		payload: { health },
 	});
-};
-
-export const emptyPassive: Attribute = {
-	attack: 0,
-	defense: 0,
-	health: 0,
 };
 
 const emptyPassiveFunc = (): PassivePair => [emptyPassive, emptyPassive];

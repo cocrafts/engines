@@ -1,4 +1,5 @@
 import {
+	Attribute,
 	CommandSourceType,
 	DuelCommand,
 	DuelPlace,
@@ -186,4 +187,10 @@ export const sourceTypeFromCommand = (command: DuelCommand) => {
 	return command?.target?.source?.type === CommandSourceType.Skill
 		? CommandSourceType.Inspire
 		: CommandSourceType.Skill;
+};
+
+export const emptyPassive: Attribute = {
+	attack: 0,
+	defense: 0,
+	health: 0,
 };

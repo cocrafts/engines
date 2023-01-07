@@ -1,7 +1,7 @@
-import { getCardState } from '../../utils/card';
-import { emptyPassive } from '../../utils/fight';
-import { getFacingIdentifier } from '../../utils/ground';
-import { PassiveRunner } from '../../utils/type';
+import { getCardState } from '../utils/card';
+import { getFacingIdentifier } from '../utils/ground';
+import { emptyPassive } from '../utils/helper';
+import { PassiveRunner } from '../utils/type';
 
 export const gainAttackByEnemyDefense: PassiveRunner = ({ duel, cardId }) => {
 	const state = getCardState(duel.stateMap, cardId);

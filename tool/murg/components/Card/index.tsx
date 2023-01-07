@@ -37,7 +37,7 @@ export const Card: FC<Props> = ({ color, index, card, state, width }) => {
 						{index}
 					</Text>
 					<Text color={color}>•</Text>
-					<Text color="gray">{state?.id.substring(10)}!!</Text>
+					<Text color="gray">{state?.id.substring(10)}</Text>
 					<Text color={color}> {card.name}</Text>
 				</Text>
 			</Box>

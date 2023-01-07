@@ -185,13 +185,16 @@ export const interpolate = (card: Card): Card => {
 	const { charge, activation, template, attribute, inspire } = card.skill;
 	const interpolated = Mustache.render(template, attribute || {});
 	const isInspire = activation === ActivationType.Inspire;
-	const charges = isInspire
+	const suffix = isInspire
 		? ` ${InspireSourceDisplays[inspire]}`
 		: charge
 		? ` (${charge})`
 		: '';
 	const triggerFragment: TemplateFragment = {
-		text: activation ? `${ActivationDisplays[activation]}${charges}: ` : '',
+		text:
+			activation !== undefined
+				? `${ActivationDisplays[activation]}${suffix}: `
+				: '',
 		type: FragmentType.TEXT,
 	};
 

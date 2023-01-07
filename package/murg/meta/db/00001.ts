@@ -234,6 +234,10 @@ const cardList: Card[] = [
 			template: 'Gain [+10 Attack:Buff] on each activated [skill].',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Skill,
+			attribute: {
+				id: 'SelfMutate',
+				attack: 10,
+			},
 		},
 	},
 	{
@@ -789,7 +793,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 10,
 			defense: 0,
 			health: 60,
 		},
@@ -797,6 +801,10 @@ const cardList: Card[] = [
 			template: 'Deal [10 Damage:Danger] to facing enemy.',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Skill,
+			attribute: {
+				id: 'FrontMutate',
+				health: -10,
+			},
 		},
 	},
 	{

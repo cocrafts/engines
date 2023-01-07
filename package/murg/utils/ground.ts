@@ -78,7 +78,7 @@ export const getFacingIdentifiers = (
 		place: DuelPlace.Ground,
 	});
 
-	for (let i = 0; i < radius; i += 1) {
+	for (let i = 1; i <= radius; i += 1) {
 		result.push({
 			id: enemyGround[cardIndex - i],
 			owner: enemyId,

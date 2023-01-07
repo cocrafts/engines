@@ -13,7 +13,7 @@ import clone from 'lodash/cloneDeep';
 const cache = require('./cache.json');
 import * as history from './commands';
 
-const redistribute = true;
+const redistribute = false;
 export const initialState = getInitialState(cache.config);
 
 export const replay = () => {
@@ -42,13 +42,17 @@ export const replay = () => {
 		runMove(move.distributeTurnCards(duel));
 	} else {
 		runCommandBundles(history.distributeInitialCards);
-		runCommandBundles(history.distributeA1Cards);
+		/*
+		 * Turn 1
+		 * A
+		 */
+		runMove(move.distributeTurnCards(duel));
 		runMove(
 			move.summonCard(duel, {
 				from: {
 					owner: duel.firstPlayer.id,
-					id: duel.firstHand[3],
 					place: DuelPlace.Hand,
+					id: duel.firstHand[1],
 				},
 				to: {
 					owner: duel.firstPlayer.id,
@@ -57,12 +61,62 @@ export const replay = () => {
 				},
 			}),
 		);
+		runMove(move.endTurn(duel));
+
+		/*
+		 * B
+		 */
+		runMove(move.distributeTurnCards(duel));
+		runMove(
+			move.summonCard(duel, {
+				from: {
+					owner: duel.secondPlayer.id,
+					place: DuelPlace.Hand,
+					id: duel.secondHand[0],
+				},
+				to: {
+					owner: duel.secondPlayer.id,
+					place: DuelPlace.Ground,
+					index: 5,
+				},
+			}),
+		);
+		runMove(
+			move.summonCard(duel, {
+				from: {
+					owner: duel.secondPlayer.id,
+					place: DuelPlace.Hand,
+					id: duel.secondHand[6],
+				},
+				to: {
+					owner: duel.secondPlayer.id,
+					place: DuelPlace.Ground,
+					index: 4,
+				},
+			}),
+		);
+		runMove(move.endTurn(duel));
+
+		/*
+		 * Fight
+		 */
+		runMove(move.preFight(duel));
+		runMove(move.fight(duel));
+		runMove(move.postFight(duel));
+		runMove(move.reinforce(duel));
+		runMove(move.turnCleanUp(duel));
+
+		/*
+		 * Turn 2
+		 * A
+		 */
+		runMove(move.distributeTurnCards(duel));
 		runMove(
 			move.summonCard(duel, {
 				from: {
 					owner: duel.firstPlayer.id,
-					id: duel.firstHand[6],
 					place: DuelPlace.Hand,
+					id: duel.firstHand[0],
 				},
 				to: {
 					owner: duel.firstPlayer.id,
@@ -73,41 +127,21 @@ export const replay = () => {
 		);
 		runMove(move.endTurn(duel));
 
-		runCommandBundles(history.distributeB1Cards);
-		runMove(
-			move.summonCard(duel, {
-				from: {
-					owner: duel.secondPlayer.id,
-					id: duel.secondHand[0],
-					place: DuelPlace.Hand,
-				},
-				to: {
-					owner: duel.secondPlayer.id,
-					place: DuelPlace.Ground,
-					index: 5,
-				},
-			}),
-		);
-		runMove(
-			move.summonCard(duel, {
-				from: {
-					owner: duel.secondPlayer.id,
-					id: duel.secondHand[6],
-					place: DuelPlace.Hand,
-				},
-				to: {
-					owner: duel.secondPlayer.id,
-					place: DuelPlace.Ground,
-					index: 6,
-				},
-			}),
-		);
+		/*
+		 * B
+		 */
+		runMove(move.distributeTurnCards(duel));
 		runMove(move.endTurn(duel));
-	}
 
-	runMove(move.preFight(duel));
-	runMove(move.fight(duel));
-	runMove(move.postFight(duel));
+		/*
+		 * Fight
+		 */
+		runMove(move.preFight(duel));
+		runMove(move.fight(duel));
+		runMove(move.postFight(duel));
+		runMove(move.reinforce(duel));
+		runMove(move.turnCleanUp(duel));
+	}
 
 	return {
 		duel,

@@ -5,7 +5,7 @@ export const distributeInitialCards: DuelCommandBundle[] = [
 	{
 		turn: 0,
 		phase: 'Draw',
-		phaseOf: 'B',
+		phaseOf: 'A',
 		commands: [
 			{
 				owner: 'A',
@@ -95,7 +95,7 @@ export const distributeInitialCards: DuelCommandBundle[] = [
 				target: {
 					from: {
 						owner: 'B',
-						id: '000310007#43',
+						id: '000440007#43',
 						place: 'Deck',
 					},
 					to: {

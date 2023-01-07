@@ -13,7 +13,7 @@ export const GraveCard: FC<Props> = ({ card }) => {
 	return (
 		<Box>
 			<Text color={dotColor}> • </Text>
-			<Text color="gray">{card?.id.substring(2, 4)}</Text>
+			<Text color="gray">{card?.id.substring(10)}</Text>
 		</Box>
 	);
 };

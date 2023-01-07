@@ -18,7 +18,7 @@ export const DeckCard: FC<Props> = ({ card, state, index, color }) => {
 		<Box>
 			<Text color={dotColor}> • </Text>
 			<Text dimColor={dimColor} color={color}>
-				{state.id.substring(3, 5)}
+				{state.id.substring(10)}
 			</Text>
 		</Box>
 	);

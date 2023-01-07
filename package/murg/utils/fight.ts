@@ -42,11 +42,20 @@ export const runPlayerAttack = (
 	bundle: DuelCommandBundle,
 	cardId: string,
 ): void => {
+	const card = getCard(duel.cardMap, cardId);
+	const isGloryActivation = card?.skill?.activation === ActivationType.Glory;
 	const cardState = getCardState(duel.stateMap, cardId);
 	const [cardPassive] = extractPassivePair(duel, cardId, null);
 	const combinedState = combineAttribute(cardState, cardPassive);
 	const opponentId = getEnemyId(duel, cardState.owner);
 	const opponentState = selectPlayer(duel, opponentId);
+
+	if (isGloryActivation) {
+		const skillFunc = skillMap[card.skill?.attribute?.id];
+		const skillCommands = skillFunc?.({ duel, cardId });
+
+		runAndMergeBundle(duel, bundle, skillCommands);
+	}
 
 	runAndMergeBundle(
 		duel,
@@ -96,14 +105,14 @@ export const runCardAttack = (
 
 	if (isAttackActivation) {
 		const skillFunc = skillMap[firstCard.skill?.attribute?.id];
-		const skillCommands = skillFunc?.({ duel, cardId: secondId }) || [];
+		const skillCommands = skillFunc?.({ duel, cardId: firstId }) || [];
 
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}
 
 	if (isDefenseActivation) {
 		const skillFunc = skillMap[secondCard.skill?.attribute?.id];
-		const skillCommands = skillFunc?.({ duel, cardId: firstId }) || [];
+		const skillCommands = skillFunc?.({ duel, cardId: secondId }) || [];
 
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}

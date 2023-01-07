@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DuelState, getCard } from '@metacraft/murg-engine';
+import { DuelState, getCard, getCardState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 import GraveCard from './GraveCard';
@@ -15,8 +15,9 @@ export const GraveYard: FC<Props> = ({ duel, cards, color }) => {
 		<Box alignSelf="center" borderStyle="round" borderColor="gray">
 			{cards.map((id, i) => {
 				const card = getCard(duel.cardMap, id);
+				const state = getCardState(duel.stateMap, id);
 
-				return <GraveCard card={card} key={i} />;
+				return <GraveCard card={card} state={state} key={i} />;
 			})}
 			<Text color={color}> • </Text>
 		</Box>

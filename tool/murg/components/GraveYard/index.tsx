@@ -12,7 +12,7 @@ interface Props {
 
 export const GraveYard: FC<Props> = ({ duel, cards, color }) => {
 	return (
-		<Box alignSelf="center" borderStyle="round" borderColor="#323232">
+		<Box alignSelf="center" borderStyle="round" borderColor="gray">
 			{cards.map((id, i) => {
 				const card = getCard(duel.cardMap, id);
 
@@ -24,7 +24,7 @@ export const GraveYard: FC<Props> = ({ duel, cards, color }) => {
 };
 
 GraveYard.defaultProps = {
-	color: '#323232',
+	color: 'gray',
 };
 
 export default GraveYard;

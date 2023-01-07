@@ -110,7 +110,7 @@ export const distributeInitialCards: DuelCommandBundle[] = [
 				target: {
 					from: {
 						owner: 'B',
-						id: '000360001#72',
+						id: '000010001#72',
 						place: 'Deck',
 					},
 					to: {

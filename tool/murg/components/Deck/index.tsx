@@ -12,7 +12,7 @@ interface Props {
 
 export const CardDeck: FC<Props> = ({ duel, color, cardIds }) => {
 	return (
-		<Box borderStyle="round" borderColor="#333333">
+		<Box borderStyle="round" borderColor="gray">
 			{cardIds.map((id, i) => {
 				const card = getCard(duel.cardMap, id);
 				const state = getCardState(duel.stateMap, id);
@@ -28,7 +28,7 @@ export const CardDeck: FC<Props> = ({ duel, color, cardIds }) => {
 				);
 			})}
 			<Text color="yellow"> • {cardIds.length} cards </Text>
-			<Text color="#323232"> • </Text>
+			<Text color="gray"> • </Text>
 		</Box>
 	);
 };

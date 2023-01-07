@@ -13,11 +13,11 @@ import {
 } from './type';
 
 const colors: Record<string, string> = {
-	black: '#000000',
-	green: '#066922',
-	blue: '#1055BC',
-	red: '#AA1D21',
-	magenta: '#A61DAA',
+	black: 'black',
+	green: 'green',
+	blue: 'blue',
+	red: 'red',
+	magenta: 'magenta',
 };
 
 const keywordStyles: Record<string, TemplateStyle> = {

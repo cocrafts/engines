@@ -14,7 +14,7 @@ export const Player: FC<Props> = ({ duel }) => {
 		<Box
 			flexDirection="column"
 			borderStyle="round"
-			borderColor="#333333"
+			borderColor="gray"
 			flexGrow={1}
 			paddingRight={1}
 		>

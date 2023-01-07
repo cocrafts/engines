@@ -20,13 +20,13 @@ export const History: FC<Props> = ({ size, players, colors, history }) => {
 			flexDirection="column"
 			justifyContent="flex-start"
 			borderStyle="round"
-			borderColor="#323232"
+			borderColor="gray"
 		>
 			{history.map(({ commands }, i) => {
 				return (
 					<Box
 						key={i}
-						borderColor="#282828"
+						borderColor="black"
 						borderStyle="round"
 						flexDirection="column"
 						alignItems="center"
@@ -39,7 +39,7 @@ export const History: FC<Props> = ({ size, players, colors, history }) => {
 
 								return (
 									<Box key={z}>
-										<Text color={idColor || '#323232'}>{id}</Text>
+										<Text color={idColor || 'gray'}>{id}</Text>
 										<Text color={playerColor}>•</Text>
 										<Text color={iconColor || playerColor}>{icon}</Text>
 									</Box>

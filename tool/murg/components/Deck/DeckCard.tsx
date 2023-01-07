@@ -12,7 +12,7 @@ interface Props {
 export const DeckCard: FC<Props> = ({ card, state, index, color }) => {
 	const dimColor = index % 2 === 0;
 	const isSpell = card.kind === CardType.Spell;
-	const dotColor = isSpell ? 'green' : '#282828';
+	const dotColor = isSpell ? 'green' : 'black';
 
 	return (
 		<Box>
@@ -25,7 +25,7 @@ export const DeckCard: FC<Props> = ({ card, state, index, color }) => {
 };
 
 DeckCard.defaultProps = {
-	color: '#ffffff',
+	color: 'white',
 };
 
 export default DeckCard;

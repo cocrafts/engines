@@ -13,12 +13,12 @@ export const EmptyCard: FC<Props> = ({ index, width }) => {
 	return (
 		<Box
 			width={width}
-			borderColor="#333333"
+			borderColor="gray"
 			borderStyle="round"
 			alignItems="center"
 			justifyContent="center"
 		>
-			<BigText text={position} colors={['#20242d', '#20242d']} />
+			<BigText text={position} colors={['gray', 'gray']} />
 		</Box>
 	);
 };

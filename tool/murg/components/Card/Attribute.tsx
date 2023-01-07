@@ -12,7 +12,7 @@ export const Attribute: FC<Props> = ({ pair }) => {
 	const currentIcon = current > base ? '↑' : '↓';
 	const baseIcon = current !== base ? ' ' : '';
 	const currentColor = extractColor(pair);
-	const baseColor = hasDiff ? '#323232' : '#252525';
+	const baseColor = hasDiff ? 'gray' : 'black';
 
 	return (
 		<Box width="33%" flexDirection="column" alignItems="center">
@@ -29,7 +29,7 @@ export default Attribute;
 
 const extractColor = ([current, origin]) => {
 	if (current === 0) {
-		return '#323232';
+		return 'gray';
 	} else if (current === origin) {
 		return 'white';
 	} else if (current > origin) {

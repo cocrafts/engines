@@ -94,12 +94,12 @@ export const MURG: FC<Props> = ({ duel, history, renderTime }) => {
 							<Player state={firstPlayer} />
 						</Box>
 						<Box width={40} alignItems="flex-end" justifyContent="flex-end">
-							<Text color="#323232">[</Text>
-							<Text color="#555555">
+							<Text color="black">[</Text>
+							<Text color="gray">
 								Turn: {turn} ({phaseOf} {phase})
 							</Text>
-							<Text color="#323232">] </Text>
-							<Text color="#888888">{renderTime}ms</Text>
+							<Text color="black">] </Text>
+							<Text color="black">{renderTime}ms</Text>
 						</Box>
 					</Box>
 				</Box>

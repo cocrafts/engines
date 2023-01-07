@@ -13,7 +13,7 @@ export const SkillDesc: FC<Props> = ({ skill }) => {
 		<Text>
 			{fragments.map((fragment, i) => {
 				return (
-					<Text key={i} color={fragment.style?.color || '#888888'}>
+					<Text key={i} color={fragment.style?.color || 'gray'}>
 						{fragment.text}
 					</Text>
 				);

@@ -28,16 +28,16 @@ export const Card: FC<Props> = ({ color, index, card, state, width }) => {
 			flexDirection="column"
 			borderStyle="round"
 			alignItems="center"
-			borderColor="#333333"
+			borderColor="black"
 		>
 			<Box>
 				<Text>
-					<Text color="#333333">
+					<Text color="gray">
 						{state.owner.substring(0, 1)}
 						{index}
 					</Text>
 					<Text color={color}>•</Text>
-					<Text color="#333333">{state?.id.substring(10)}</Text>
+					<Text color="gray">{state?.id.substring(10)}!!</Text>
 					<Text color={color}> {card.name}</Text>
 				</Text>
 			</Box>
@@ -52,19 +52,19 @@ export const Card: FC<Props> = ({ color, index, card, state, width }) => {
 			</Box>
 			<Box>
 				<Box width="33%" justifyContent="center">
-					<Text color="#323232">{getPlaceDisplay(state.place)}</Text>
+					<Text color="gray">{getPlaceDisplay(state.place)}</Text>
 				</Box>
 				<Box width="34%" justifyContent="center">
 					{!!card.skill.charge && (
 						<Fragment>
-							<Text color="#282828"> (</Text>
+							<Text color="gray"> (</Text>
 							<Text color="blue">{state?.charge}</Text>
-							<Text color="#282828">) </Text>
+							<Text color="gray">) </Text>
 						</Fragment>
 					)}
 				</Box>
 				<Box width="33%" justifyContent="center">
-					<Text color="#282828">{getElementalDisplay(card.elemental)}</Text>
+					<Text color="gray">{getElementalDisplay(card.elemental)}</Text>
 				</Box>
 			</Box>
 			<Box>
@@ -77,7 +77,7 @@ export const Card: FC<Props> = ({ color, index, card, state, width }) => {
 };
 
 Card.defaultProps = {
-	color: '#ffffff',
+	color: 'white',
 	width: 21,
 };
 

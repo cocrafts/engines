@@ -92,7 +92,9 @@ export const measureExecutionTime = (
 	const elapsedTime = currentTime - startTime;
 	const explainText = ` to ${cachedMeasure.explains || key}`;
 
-	console.log(`[${key}] take ${elapsedTime}ms${explainText}`);
+	if (explains) {
+		console.log(`[${key}] take ${elapsedTime}ms${explainText}`);
+	}
 
 	if (cachedMeasure.callback) {
 		cachedMeasure.callback({

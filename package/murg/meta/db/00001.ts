@@ -84,6 +84,9 @@ const cardList: Card[] = [
 		skill: {
 			template: "[Gain Attack:Buff] equal to facing enemy's [Defense].",
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'GainAttackByEnemyDefense',
+			},
 		},
 	},
 	{

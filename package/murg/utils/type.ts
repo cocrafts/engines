@@ -44,20 +44,29 @@ export enum InspireSource {
 }
 
 export type SkillIds = 'UnitStealer' | 'SelfMutate' | 'FrontMutate';
-
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
 };
 
-export interface SkillRunnerPayload {
+export type SkillRunner = (payload: {
 	duel: DuelState;
 	cardId: string;
 	fromCardId?: string;
 	fromCommand?: DuelCommand;
 	fromTarget?: DuelCommandTarget;
-}
+}) => DuelCommand[];
 
-export type SkillRunner = (payload: SkillRunnerPayload) => DuelCommand[];
+export type PassivePair = [Attribute, Attribute];
+export type PassiveIds = 'GainAttackByEnemyDefense';
+export type PassiveAttributes = Record<string, unknown> & {
+	id: PassiveIds;
+};
+
+export type PassiveRunner = (payload: {
+	duel: DuelState;
+	cardId: string;
+	facingCardId?: string;
+}) => PassivePair;
 
 export interface Skill {
 	template: TemplateFragment[] | string;
@@ -65,6 +74,7 @@ export interface Skill {
 	activation?: ActivationType;
 	inspire?: InspireSource;
 	attribute?: SkillAttributes;
+	passiveAttribute?: PassiveAttributes;
 }
 
 export interface Attribute {

@@ -1,12 +1,20 @@
-import { SkillIds, SkillRunner } from '../utils/type';
+import {
+	PassiveIds,
+	PassiveRunner,
+	SkillIds,
+	SkillRunner,
+} from '../utils/type';
 
-import { runFrontMutate, runSelfMutate } from './mutate';
-import { runUnitStealer } from './steal';
+import { gainAttackByEnemyDefense } from './passive/gainAttackByEnemyDefense';
+import { frontMutate, selfMutate } from './mutate';
+import { unitStealer } from './steal';
 
 export const skillMap: Record<SkillIds, SkillRunner> = {
-	UnitStealer: runUnitStealer,
-	SelfMutate: runSelfMutate,
-	FrontMutate: runFrontMutate,
+	UnitStealer: unitStealer,
+	SelfMutate: selfMutate,
+	FrontMutate: frontMutate,
 };
 
-export default skillMap;
+export const passiveMap: Record<PassiveIds, PassiveRunner> = {
+	GainAttackByEnemyDefense: gainAttackByEnemyDefense,
+};

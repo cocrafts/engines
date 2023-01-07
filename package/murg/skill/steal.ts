@@ -13,7 +13,7 @@ interface Attributes {
 	unitTypes: CardType[];
 }
 
-export const runUnitStealer: SkillRunner = ({ duel, cardId, fromCommand }) => {
+export const unitStealer: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);

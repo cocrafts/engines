@@ -1,35 +1,17 @@
 import { createCommand } from '../command';
+import { passiveMap } from '../skill';
 
 import { getCard, getCardState } from './card';
 import { createCommandResult, getEnemyId, selectPlayer } from './helper';
 import {
+	Attribute,
 	Card,
 	CardState,
 	DuelCommand,
-	DuelPlace,
 	DuelState,
 	ElementalType,
-	GenerativeValue,
+	PassivePair,
 } from './type';
-
-export const runFightAt = (duel: DuelState, i: number): DuelCommand[] => {
-	const { commands, registerCommand } = createCommandResult();
-	const { firstGround, secondGround } = duel;
-	const firstCardId = firstGround[i];
-	const secondCardId = secondGround[i];
-
-	if (firstCardId && secondCardId) {
-		cardCombatCommands(duel, firstCardId, secondCardId).forEach(
-			registerCommand,
-		);
-	} else if (firstCardId && !secondCardId) {
-		playerAttackCommands(duel, firstCardId).forEach(registerCommand);
-	} else if (!firstCardId && secondCardId) {
-		playerAttackCommands(duel, secondCardId).forEach(registerCommand);
-	}
-
-	return commands;
-};
 
 const generativeCycle: ElementalType[] = [
 	ElementalType.Metal,
@@ -49,6 +31,88 @@ const destructiveCycle: ElementalType[] = [
 
 type StatedCard = Card & {
 	state: CardState;
+};
+
+export const playerAttackCommands = (duel: DuelState, cardId: string) => {
+	const { commands, registerCommand } = createCommandResult();
+	const cardState = getCardState(duel.stateMap, cardId);
+	const playerId = getEnemyId(duel, cardState.owner);
+	const playerState = selectPlayer(duel, playerId);
+
+	createCommand
+		.playerMutate({
+			owner: playerId,
+			payload: { health: playerState.health - cardState.attack },
+		})
+		.forEach(registerCommand);
+
+	return commands;
+};
+
+export const runFightAt = (duel: DuelState, i: number): DuelCommand[] => {
+	const { commands, registerCommand } = createCommandResult();
+	const { firstGround, secondGround } = duel;
+	const firstId = firstGround[i];
+	const secondId = secondGround[i];
+
+	if (firstId && secondId) {
+		fightCommands(duel, firstId, secondId).forEach(registerCommand);
+		fightCommands(duel, secondId, firstId).forEach(registerCommand);
+	} else if (firstId && !secondId) {
+		playerAttackCommands(duel, firstId).forEach(registerCommand);
+	} else if (!firstId && secondId) {
+		playerAttackCommands(duel, secondId).forEach(registerCommand);
+	}
+
+	return commands;
+};
+
+export const fightCommands = (
+	duel: DuelState,
+	firstId: string,
+	secondId: string,
+) => {
+	const state = getStateAfterCombat(duel, firstId, secondId);
+
+	return createCommand.cardMutate({
+		owner: state.owner,
+		target: {
+			to: {
+				owner: state.owner,
+				id: state.id,
+				place: state.place,
+			},
+		},
+		payload: { health: state.health },
+	});
+};
+
+export const getStateAfterCombat = (
+	duel: DuelState,
+	firstId: string,
+	secondId: string,
+): CardState => {
+	const passivePair = extractPassivePair(duel, firstId, secondId);
+	const firstCard = getCard(duel.cardMap, firstId);
+	const secondCard = getCard(duel.cardMap, secondId);
+	const firstState = getCardState(duel.stateMap, firstId);
+	const secondState = getCardState(duel.stateMap, secondId);
+	const isAttackerCounter = isDestructive(secondCard, firstCard);
+	const isAttackerCountered = isDestructive(firstCard, secondCard);
+	const firstCombine = combineAttribute(passivePair[0], firstState);
+	const secondCombine = combineAttribute(passivePair[1], secondState);
+	const enhancedDamage = getGenerativeDamage(
+		secondCombine.attack,
+		isAttackerCounter,
+		isAttackerCountered,
+		duel.setting.elementalFactor,
+	);
+	const damageAfterDefense = Math.max(0, enhancedDamage - firstCombine.defense);
+
+	return {
+		...firstState,
+		health: firstState.health - damageAfterDefense,
+	};
 };
 
 export const isGenerative = (
@@ -82,49 +146,6 @@ export const getGenerativeDamage = (
 	}
 };
 
-export const getDamage = (
-	duel: DuelState,
-	firstId: string,
-	secondId: string,
-): GenerativeValue => {
-	const firstCard = getCard(duel.cardMap, firstId);
-	const secondCard = getCard(duel.cardMap, secondId);
-	const firstState = getCardState(duel.stateMap, firstId);
-	const isCounter = isDestructive(firstCard, secondCard);
-	const isCountered = isDestructive(secondCard, firstCard);
-	const enhancedDamage = getGenerativeDamage(
-		firstState.attack,
-		isCounter,
-		isCountered,
-		duel.setting.elementalFactor,
-	);
-
-	return {
-		bare: firstState.attack,
-		enhanced: enhancedDamage,
-		isCounter,
-		isCountered,
-	};
-};
-
-export const getHealthAfterDamage = (
-	{ health, defense }: CardState,
-	{ enhanced }: GenerativeValue,
-): number => {
-	return health - Math.max(0, enhanced - defense);
-};
-
-export const getDamagePair = (
-	duel: DuelState,
-	firstId: string,
-	secondId: string,
-): [GenerativeValue, GenerativeValue] => {
-	return [
-		getDamage(duel, firstId, secondId),
-		getDamage(duel, secondId, firstId),
-	];
-};
-
 export const afterHealthCommands = (
 	state: CardState,
 	health: number,
@@ -142,36 +163,54 @@ export const afterHealthCommands = (
 	});
 };
 
-export const cardCombatCommands = (
-	duel: DuelState,
-	firstId: string,
-	secondId: string,
-) => {
-	const { commands, registerCommand } = createCommandResult();
-	const [firstDamage, secondDamage] = getDamagePair(duel, firstId, secondId);
-	const firstState = getCardState(duel.stateMap, firstId);
-	const secondState = getCardState(duel.stateMap, secondId);
-	const firstHealthAfter = getHealthAfterDamage(firstState, secondDamage);
-	const secondHealthAfter = getHealthAfterDamage(secondState, firstDamage);
-
-	afterHealthCommands(firstState, firstHealthAfter).forEach(registerCommand);
-	afterHealthCommands(secondState, secondHealthAfter).forEach(registerCommand);
-
-	return commands;
+export const emptyPassive: Attribute = {
+	attack: 0,
+	defense: 0,
+	health: 0,
 };
 
-export const playerAttackCommands = (duel: DuelState, cardId: string) => {
-	const { commands, registerCommand } = createCommandResult();
-	const cardState = getCardState(duel.stateMap, cardId);
-	const playerId = getEnemyId(duel, cardState.owner);
-	const playerState = selectPlayer(duel, playerId);
+const emptyPassiveFunc = (): PassivePair => [emptyPassive, emptyPassive];
 
-	createCommand
-		.playerMutate({
-			owner: playerId,
-			payload: { health: playerState.health - cardState.attack },
-		})
-		.forEach(registerCommand);
+const extractPassivePair = (
+	duel: DuelState,
+	firstCardId: string,
+	secondCardId: string,
+) => {
+	const firstCard = getCard(duel.cardMap, firstCardId);
+	const firstPassiveId = firstCard?.skill?.passiveAttribute?.id;
+	const firstPassiveFunc = passiveMap[firstPassiveId] || emptyPassiveFunc;
+	const secondCard = getCard(duel.cardMap, secondCardId);
+	const secondPassiveId = secondCard?.skill?.passiveAttribute?.id;
+	const secondPassiveFunc = passiveMap[secondPassiveId] || emptyPassiveFunc;
 
-	return commands;
+	return crossCombinePassivePair(
+		firstPassiveFunc({ duel, cardId: firstCardId }),
+		secondPassiveFunc({ duel, cardId: secondCardId }),
+	);
+};
+
+const crossCombinePassivePair = (
+	firstPair: PassivePair,
+	secondPair: PassivePair,
+): PassivePair => {
+	return [
+		{
+			attack: firstPair[0].attack + secondPair[1].attack,
+			defense: firstPair[0].defense + secondPair[1].defense,
+			health: firstPair[0].health + secondPair[1].health,
+		},
+		{
+			attack: firstPair[1].attack + secondPair[0].attack,
+			defense: firstPair[1].defense + secondPair[0].defense,
+			health: firstPair[1].health + secondPair[0].health,
+		},
+	];
+};
+
+const combineAttribute = (first: Attribute, second: Attribute): Attribute => {
+	return {
+		attack: first.attack + second.attack,
+		defense: first.defense + second.defense,
+		health: first.health + second.health,
+	};
 };

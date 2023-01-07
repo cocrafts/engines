@@ -11,7 +11,7 @@ interface Attributes {
 	radius?: number;
 }
 
-export const runSelfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
+export const selfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
@@ -44,7 +44,7 @@ export const runSelfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	return commands;
 };
 
-export const runFrontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
+export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);

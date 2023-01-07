@@ -44,6 +44,7 @@ export enum InspireSource {
 }
 
 export type SkillIds = 'UnitStealer' | 'SelfMutate' | 'FrontMutate';
+
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
 };
@@ -57,7 +58,12 @@ export type SkillRunner = (payload: {
 }) => DuelCommand[];
 
 export type PassivePair = [Attribute, Attribute];
-export type PassiveIds = 'GainAttackByEnemyDefense' | 'IgnoreEnemyDefense';
+
+export type PassiveIds =
+	| 'GainAttackByEnemyDefense'
+	| 'IgnoreEnemyDefense'
+	| 'GainAttackByEnemyMissingHealth';
+
 export type PassiveAttributes = Record<string, unknown> & {
 	id: PassiveIds;
 };

@@ -57,7 +57,7 @@ export type SkillRunner = (payload: {
 }) => DuelCommand[];
 
 export type PassivePair = [Attribute, Attribute];
-export type PassiveIds = 'GainAttackByEnemyDefense';
+export type PassiveIds = 'GainAttackByEnemyDefense' | 'IgnoreEnemyDefense';
 export type PassiveAttributes = Record<string, unknown> & {
 	id: PassiveIds;
 };

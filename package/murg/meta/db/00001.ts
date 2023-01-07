@@ -712,7 +712,7 @@ const cardList: Card[] = [
 		},
 		skill: {
 			template:
-				'For each unit on the battlefield, deal [10 Damage] to all enemies.',
+				'For each unit on the battlefield, deal [10 Damage:Danger] to all enemies.',
 			activation: ActivationType.Charge,
 			charge: 6,
 		},

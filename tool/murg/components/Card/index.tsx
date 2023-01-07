@@ -1,5 +1,6 @@
 import { FC, Fragment } from 'react';
 import {
+	Attribute as IAttribute,
 	Card as ICard,
 	CardState,
 	getElementalDisplay,
@@ -15,12 +16,23 @@ interface Props {
 	color?: string;
 	card?: ICard;
 	state?: CardState;
+	passiveAttribute: IAttribute;
 	index?: number;
 	width?: number;
 }
 
-export const Card: FC<Props> = ({ color, index, card, state, width }) => {
+export const Card: FC<Props> = ({
+	color,
+	index,
+	card,
+	state,
+	passiveAttribute,
+	width,
+}) => {
 	if (!card?.id) return <EmptyCard width={width} index={index} />;
+	const finalAttack = state.attack + passiveAttribute.attack;
+	const finalDefense = state.defense + passiveAttribute.defense;
+	const finalHealth = state.health + passiveAttribute.health;
 
 	return (
 		<Box
@@ -68,9 +80,9 @@ export const Card: FC<Props> = ({ color, index, card, state, width }) => {
 				</Box>
 			</Box>
 			<Box>
-				<Attribute pair={[state?.attack, card.attribute.attack]} />
-				<Attribute pair={[state?.defense, card.attribute.defense]} />
-				<Attribute pair={[state?.health, card.attribute.health]} />
+				<Attribute pair={[finalAttack, card.attribute.attack]} />
+				<Attribute pair={[finalDefense, card.attribute.defense]} />
+				<Attribute pair={[finalHealth, card.attribute.health]} />
 			</Box>
 		</Box>
 	);

@@ -170,11 +170,13 @@ export const afterHealthCommands = (
 
 const emptyPassiveFunc = (): PassivePair => [emptyPassive, emptyPassive];
 
-const extractPassivePair = (
+export const extractPassivePair = (
 	duel: DuelState,
 	firstCardId: string,
 	secondCardId: string,
-) => {
+): PassivePair => {
+	if (!firstCardId) return [emptyPassive, emptyPassive];
+
 	const firstCard = getCard(duel.cardMap, firstCardId);
 	const firstPassiveId = firstCard?.skill?.passiveAttribute?.id;
 	const firstPassiveFunc = passiveMap[firstPassiveId] || emptyPassiveFunc;
@@ -188,7 +190,7 @@ const extractPassivePair = (
 	);
 };
 
-const crossCombinePassivePair = (
+export const crossCombinePassivePair = (
 	firstPair: PassivePair,
 	secondPair: PassivePair,
 ): PassivePair => {
@@ -206,7 +208,10 @@ const crossCombinePassivePair = (
 	];
 };
 
-const combineAttribute = (first: Attribute, second: Attribute): Attribute => {
+export const combineAttribute = (
+	first: Attribute,
+	second: Attribute,
+): Attribute => {
 	return {
 		attack: first.attack + second.attack,
 		defense: first.defense + second.defense,

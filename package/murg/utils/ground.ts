@@ -66,6 +66,8 @@ export const getFacingIdentifiers = (
 	cardId: string,
 	radius = 0,
 ) => {
+	if (!owner) return [];
+
 	const result = [];
 	const enemyId = getEnemyId(duel, owner);
 	const ground = selectGround(duel, owner);

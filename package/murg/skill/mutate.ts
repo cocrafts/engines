@@ -2,13 +2,15 @@ import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { getFacingIdentifiers } from '../utils/ground';
 import { createCommandResult, sourceTypeFromCommand } from '../utils/helper';
-import { DuelPlace, SkillRunner } from '../utils/type';
+import { CardType, DuelPlace, SkillRunner } from '../utils/type';
 
 interface Attributes {
 	attack: number;
 	defense: number;
 	health: number;
 	radius?: number;
+	minHealth?: number;
+	unitTypes?: CardType[];
 }
 
 export const selfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
@@ -88,6 +90,56 @@ export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 			})
 			.forEach(registerCommand);
 	});
+
+	return commands;
+};
+
+export const destroyFacingMinHealth: SkillRunner = ({
+	duel,
+	cardId,
+	fromCommand,
+}) => {
+	const { commands, registerCommand } = createCommandResult();
+	const card = getCard(duel.cardMap, cardId);
+	const { minHealth, unitTypes }: Attributes = card.skill.attribute as never;
+	const state = getCardState(duel.stateMap, cardId);
+	const [facingIdentifier] = getFacingIdentifiers(
+		duel,
+		state.owner,
+		state.id,
+		0,
+	);
+
+	if (!facingIdentifier?.id) return commands;
+
+	const facingCard = getCard(duel.cardMap, facingIdentifier.id);
+	const facingState = getCardState(duel.stateMap, facingIdentifier.id);
+	const isMinHealthValid = facingState.health <= minHealth;
+	const isUnitValid = unitTypes.indexOf(facingCard.kind) >= 0;
+
+	if (isMinHealthValid && isUnitValid) {
+		createCommand
+			.cardMutate({
+				owner: state.owner,
+				target: {
+					source: {
+						type: sourceTypeFromCommand(fromCommand),
+						owner: state.owner,
+						place: state.place,
+						id: state.id,
+					},
+					to: {
+						owner: facingIdentifier.owner,
+						place: DuelPlace.Ground,
+						id: facingIdentifier.id,
+					},
+				},
+				payload: {
+					health: 0,
+				},
+			})
+			.forEach(registerCommand);
+	}
 
 	return commands;
 };

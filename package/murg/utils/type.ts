@@ -43,7 +43,11 @@ export enum InspireSource {
 	Skill = 'Skill',
 }
 
-export type SkillIds = 'UnitStealer' | 'SelfMutate' | 'FrontMutate';
+export type SkillIds =
+	| 'UnitStealer'
+	| 'SelfMutate'
+	| 'FrontMutate'
+	| 'DestroyFacingMinHealth';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
@@ -62,7 +66,8 @@ export type PassivePair = [Attribute, Attribute];
 export type PassiveIds =
 	| 'GainAttackByEnemyDefense'
 	| 'IgnoreEnemyDefense'
-	| 'GainAttackByEnemyMissingHealth';
+	| 'GainAttackByEnemyMissingHealth'
+	| 'GainAttackByRemainingHealth';
 
 export type PassiveAttributes = Record<string, unknown> & {
 	id: PassiveIds;

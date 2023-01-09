@@ -56,6 +56,8 @@ export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 		stats.radius || 0,
 	);
 
+	if (facingIdentifiers.length === 0) return commands;
+
 	facingIdentifiers.forEach((facingIdentifier, index) => {
 		const facingState = getCardState(
 			duel.stateMap,

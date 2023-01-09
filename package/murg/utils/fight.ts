@@ -13,6 +13,7 @@ import {
 	CommandSourceType,
 	DuelCommand,
 	DuelCommandBundle,
+	DuelPlace,
 	DuelState,
 	ElementalType,
 	PassivePair,
@@ -62,7 +63,18 @@ export const runPlayerAttack = (
 		duel,
 		bundle,
 		createCommand.playerMutate({
-			owner: opponentId,
+			target: {
+				source: {
+					type: CommandSourceType.Unit,
+					owner: cardState.owner,
+					place: cardState.place,
+					id: cardState.id,
+				},
+				to: {
+					owner: opponentId,
+					place: DuelPlace.Player,
+				},
+			},
 			payload: { health: opponentState.health - combinedState.attack },
 		}),
 	);

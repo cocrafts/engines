@@ -9,8 +9,10 @@ import {
 } from '../utils/state';
 import {
 	BundleGroup,
+	CommandSourceType,
 	DuelCommandPayload,
 	DuelPhases,
+	DuelPlace,
 	DuelState,
 	MoveResult,
 } from '../utils/type';
@@ -76,7 +78,15 @@ export const turnCleanUp = (duel: DuelState): MoveResult => {
 		duel,
 		turnCleanUpBundle,
 		createCommand.playerMutate({
-			owner: duel.firstPlayer.id,
+			target: {
+				source: {
+					type: CommandSourceType.System,
+				},
+				to: {
+					owner: duel.firstPlayer.id,
+					place: DuelPlace.Player,
+				},
+			},
 			payload: playerUpdates,
 		}),
 	);
@@ -85,7 +95,15 @@ export const turnCleanUp = (duel: DuelState): MoveResult => {
 		duel,
 		turnCleanUpBundle,
 		createCommand.playerMutate({
-			owner: duel.secondPlayer.id,
+			target: {
+				source: {
+					type: CommandSourceType.System,
+				},
+				to: {
+					owner: duel.secondPlayer.id,
+					place: DuelPlace.Player,
+				},
+			},
 			payload: playerUpdates,
 		}),
 	);

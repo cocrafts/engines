@@ -9,24 +9,24 @@ import {
 	DuelCommandType,
 } from '../../utils/type';
 
-export const create: CommandCreator<'owner' | 'payload'> = ({
-	owner,
+export const create: CommandCreator<'target' | 'payload'> = ({
+	target,
 	payload,
 }) => {
 	const { commands, registerCommand } = createCommandResult();
 
 	registerCommand({
 		type: DuelCommandType.PlayerMutate,
-		owner,
+		target,
 		payload,
 	});
 
 	return commands;
 };
 
-export const run: CommandRunner = ({ duel, command: { owner, payload } }) => {
+export const run: CommandRunner = ({ duel, command: { target, payload } }) => {
 	const fragment = createDuelFragment(duel);
-	const playerClone = clonePlayer(duel, owner);
+	const playerClone = clonePlayer(duel, target.to.owner);
 
 	Object.keys(payload).forEach((key) => {
 		const value = payload[key];

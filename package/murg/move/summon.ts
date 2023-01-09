@@ -10,7 +10,9 @@ import {
 import {
 	BundleGroup,
 	CardType,
+	CommandSourceType,
 	DuelCommandTarget,
+	DuelPlace,
 	DuelState,
 	MoveResult,
 } from '../utils/type';
@@ -46,7 +48,16 @@ export const summonCard = (
 		duel,
 		summonBundle,
 		createCommand.playerMutate({
-			owner: fromOwner,
+			target: {
+				source: {
+					type: CommandSourceType.Summon,
+					owner: fromOwner,
+				},
+				to: {
+					owner: fromOwner,
+					place: DuelPlace.Player,
+				},
+			},
 			payload: {
 				perTurnHero: player.perTurnHero - (isHeroCard ? 1 : 0),
 				perTurnSpell: player.perTurnSpell - (isSpellCard ? 1 : 0),

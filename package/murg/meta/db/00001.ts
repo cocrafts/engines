@@ -68,6 +68,11 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Destroy first facing [Hero].',
 			activation: ActivationType.Summon,
+			attribute: {
+				id: 'DestroyFacingMinHealth',
+				minHealth: 9999,
+				unitTypes: [CardType.Hero],
+			},
 		},
 	},
 	{
@@ -151,6 +156,11 @@ const cardList: Card[] = [
 		skill: {
 			template: '[Destroy:Danger] facing enemy if [30 or less] health.',
 			activation: ActivationType.PreFight,
+			attribute: {
+				id: 'DestroyFacingMinHealth',
+				minHealth: 30,
+				unitTypes: [CardType.Hero, CardType.Troop],
+			},
 		},
 	},
 	{
@@ -185,6 +195,9 @@ const cardList: Card[] = [
 		skill: {
 			template: '[Deal Damage:Danger] equal to remaining health.',
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'GainAttackByRemainingHealth',
+			},
 		},
 	},
 	{
@@ -220,6 +233,11 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Deal [200% damage:Danger] against [Hero].',
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'DamageMultiplier',
+				multiplyFactor: 2,
+				cardTypes: [CardType.Hero],
+			},
 		},
 	},
 	{
@@ -796,7 +814,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 10,
+			attack: 30,
 			defense: 0,
 			health: 60,
 		},

@@ -4,20 +4,26 @@ import { getFacingIdentifiers } from '../utils/ground';
 import { createCommandResult, sourceTypeFromCommand } from '../utils/helper';
 import { CardType, DuelPlace, SkillRunner } from '../utils/type';
 
-interface Attributes {
+interface BasicAttributes {
 	attack: number;
 	defense: number;
 	health: number;
+}
+
+interface FrontMutateAttributes extends BasicAttributes {
 	radius?: number;
-	minHealth?: number;
-	unitTypes?: CardType[];
+}
+
+interface DestroyMinHealthAttributes {
+	minHealth: number;
+	unitTypes: CardType[];
 }
 
 export const selfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
-	const { ...stats }: Attributes = card.skill.attribute as never;
+	const { ...stats }: BasicAttributes = card.skill.attribute as never;
 
 	createCommand
 		.cardMutate({
@@ -50,7 +56,7 @@ export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
-	const { ...stats }: Attributes = card.skill.attribute as never;
+	const { ...stats }: FrontMutateAttributes = card.skill.attribute as never;
 	const facingIdentifiers = getFacingIdentifiers(
 		duel,
 		state.owner,
@@ -101,7 +107,8 @@ export const destroyFacingMinHealth: SkillRunner = ({
 }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
-	const { minHealth, unitTypes }: Attributes = card.skill.attribute as never;
+	const { minHealth, unitTypes }: DestroyMinHealthAttributes = card.skill
+		.attribute as never;
 	const state = getCardState(duel.stateMap, cardId);
 	const [facingIdentifier] = getFacingIdentifiers(
 		duel,

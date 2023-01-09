@@ -67,7 +67,8 @@ export type PassiveIds =
 	| 'GainAttackByEnemyDefense'
 	| 'IgnoreEnemyDefense'
 	| 'GainAttackByEnemyMissingHealth'
-	| 'GainAttackByRemainingHealth';
+	| 'GainAttackByRemainingHealth'
+	| 'DamageMultiplier';
 
 export type PassiveAttributes = Record<string, unknown> & {
 	id: PassiveIds;

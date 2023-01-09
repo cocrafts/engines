@@ -233,6 +233,11 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Deal [200% damage:Danger] against [Hero].',
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'DamageMultiplier',
+				multiplyFactor: 2,
+				cardTypes: [CardType.Hero],
+			},
 		},
 	},
 	{
@@ -809,7 +814,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 10,
+			attack: 30,
 			defense: 0,
 			health: 60,
 		},

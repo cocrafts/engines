@@ -17,15 +17,13 @@ import {
 } from '../utils/type';
 
 export const fight = (duel: DuelState): MoveResult => {
-	const commandBundles = [];
+	const fightBundle = createCommandBundle(duel, BundleGroup.FightCombat);
 
 	for (let i = 0; i < duel.setting.groundSize; i++) {
-		const fightBundle = createCommandBundle(duel, BundleGroup.FightCombat);
 		runFightAt(duel, fightBundle, i);
 
 		if (fightBundle.commands.length > 0) {
 			runAndMergeHooks(duel, fightBundle, fightBundle.commands);
-			commandBundles.push(fightBundle);
 		}
 	}
 
@@ -35,9 +33,10 @@ export const fight = (duel: DuelState): MoveResult => {
 		createCommand.duelMutate({ payload: { phase: DuelPhases.PostFight } }),
 	);
 
-	commandBundles.push(cleanUpBundle);
-
-	return { duel, commandBundles };
+	return {
+		duel,
+		commandBundles: [fightBundle, cleanUpBundle],
+	};
 };
 
 export const preFight = (duel: DuelState): MoveResult => {

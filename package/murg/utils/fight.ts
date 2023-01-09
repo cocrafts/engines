@@ -10,6 +10,7 @@ import {
 	Attribute,
 	Card,
 	CardState,
+	CommandSourceType,
 	DuelCommand,
 	DuelCommandBundle,
 	DuelState,
@@ -97,6 +98,7 @@ export const runCardAttack = (
 	secondId: string,
 ): void => {
 	const firstCard = getCard(duel.cardMap, firstId);
+	const firstState = getCardState(duel.stateMap, firstId);
 	const secondCard = getCard(duel.cardMap, secondId);
 	const isAttackActivation =
 		firstCard?.skill?.activation === ActivationType.Attack;
@@ -126,10 +128,16 @@ export const runCardAttack = (
 			createCommand.cardMutate({
 				owner: state.owner,
 				target: {
+					source: {
+						type: CommandSourceType.Unit,
+						owner: firstState.owner,
+						place: firstState.place,
+						id: firstState.id,
+					},
 					to: {
 						owner: state.owner,
-						id: state.id,
 						place: state.place,
+						id: state.id,
 					},
 				},
 				payload: { health: state.health },

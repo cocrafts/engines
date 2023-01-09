@@ -7,10 +7,11 @@ export const gainAttackByEnemyDefense: PassiveRunner = ({ duel, cardId }) => {
 	const state = getCardState(duel.stateMap, cardId);
 	const facingIdentifier = getFacingIdentifier(duel, state.owner, cardId);
 	const facingState = getCardState(duel.stateMap, facingIdentifier.id);
+	const facingDefense = facingState?.defense || 0;
 
 	return [
 		{
-			attack: Math.max(facingState.defense, 0),
+			attack: Math.max(0, facingDefense),
 			health: 0,
 			defense: 0,
 		},

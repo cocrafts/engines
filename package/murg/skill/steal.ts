@@ -19,6 +19,9 @@ export const unitStealer: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	const state = getCardState(duel.stateMap, cardId);
 	const currentGround = selectGround(duel, state.owner);
 	const facingIdentifier = getFacingIdentifier(duel, state.owner, state.id);
+
+	if (!facingIdentifier?.id) return commands;
+
 	const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 	const facingCard = getCard(duel.cardMap, facingIdentifier.id);
 	const { minHealth, unitTypes }: Attributes = card.skill.attribute as never;

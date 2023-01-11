@@ -1,13 +1,11 @@
 import { SkillIds, SkillRunner } from '../utils/type';
 
-import {
-	destroyFacingMinHealth,
-	frontMutate,
-	lowestHealthAllyMutate,
-	randomEnemyMutate,
-	selfMutate,
-} from './mutate';
-import { unitStealer } from './steal';
+import { destroyFacingMinHealth } from './destroyFacingMinHealth';
+import { frontMutate } from './frontMutate';
+import { lowestHealthMutate } from './lowestHealthMutate';
+import { randomEnemyMutate } from './randomEnemyMutate';
+import { selfMutate } from './selfMutate';
+import { unitStealer } from './unitStealer';
 
 export const skillMap: Record<SkillIds, SkillRunner> = {
 	UnitStealer: unitStealer,
@@ -15,5 +13,5 @@ export const skillMap: Record<SkillIds, SkillRunner> = {
 	FrontMutate: frontMutate,
 	DestroyFacingMinHealth: destroyFacingMinHealth,
 	RandomEnemyMutate: randomEnemyMutate,
-	LowestHealthAllyMutate: lowestHealthAllyMutate,
+	LowestHealthMutate: lowestHealthMutate,
 };

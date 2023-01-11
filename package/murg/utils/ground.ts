@@ -94,7 +94,7 @@ export const getFacingIdentifiers = (
 		});
 	}
 
-	return result;
+	return result.filter((i) => !!i);
 };
 
 export const getFacingIdentifier = (

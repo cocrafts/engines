@@ -22,10 +22,10 @@ export const fight = (duel: DuelState): MoveResult => {
 
 	for (let i = 0; i < duel.setting.groundSize; i++) {
 		runFightAt(duel, fightBundle, i);
+	}
 
-		if (fightBundle.commands.length > 0) {
-			runAndMergeInspireHooks(duel, fightBundle, fightBundle.commands);
-		}
+	if (fightBundle.commands.length > 0) {
+		runAndMergeInspireHooks(duel, fightBundle, fightBundle.commands);
 	}
 
 	const cleanUpBundle = createAndMergeBundle(

@@ -49,7 +49,7 @@ export const run: CommandRunner = ({ duel, command: { target, payload } }) => {
 		if (isNaN(value)) {
 			cardStateClone[key] = value;
 		} else {
-			cardStateClone[key] = value || 0;
+			cardStateClone[key] = Math.max(0, value || 0);
 		}
 	});
 

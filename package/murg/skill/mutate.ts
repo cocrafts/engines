@@ -1,7 +1,7 @@
 import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { getFacingIdentifiers } from '../utils/ground';
-import { createCommandResult, sourceTypeFromCommand } from '../utils/helper';
+import { createCommandResult } from '../utils/helper';
 import { CardType, DuelPlace, SkillRunner } from '../utils/type';
 
 interface BasicAttributes {
@@ -19,7 +19,7 @@ interface DestroyMinHealthAttributes {
 	unitTypes: CardType[];
 }
 
-export const selfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
+export const selfMutate: SkillRunner = ({ duel, cardId, sourceType }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
@@ -30,7 +30,7 @@ export const selfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 			owner: state.owner,
 			target: {
 				source: {
-					type: sourceTypeFromCommand(fromCommand),
+					type: sourceType,
 					owner: state.owner,
 					place: state.place,
 					id: state.id,
@@ -52,16 +52,16 @@ export const selfMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 	return commands;
 };
 
-export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
+export const frontMutate: SkillRunner = ({ duel, cardId, sourceType }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
-	const { ...stats }: FrontMutateAttributes = card.skill.attribute as never;
+	const attr: FrontMutateAttributes = card.skill.attribute as never;
 	const facingIdentifiers = getFacingIdentifiers(
 		duel,
 		state.owner,
 		state.id,
-		stats.radius || 0,
+		attr.radius || 0,
 	);
 
 	if (facingIdentifiers.length === 0) return commands;
@@ -77,7 +77,7 @@ export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 				owner: state.owner,
 				target: {
 					source: {
-						type: sourceTypeFromCommand(fromCommand),
+						type: sourceType,
 						owner: state.owner,
 						place: state.place,
 						id: state.id,
@@ -89,9 +89,9 @@ export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 					},
 				},
 				payload: {
-					attack: facingState.attack + (stats.attack || 0),
-					defense: facingState.defense + (stats.defense || 0),
-					health: facingState.health + (stats.health || 0),
+					attack: facingState.attack + (attr.attack || 0),
+					defense: facingState.defense + (attr.defense || 0),
+					health: facingState.health + (attr.health || 0),
 				},
 			})
 			.forEach(registerCommand);
@@ -103,7 +103,7 @@ export const frontMutate: SkillRunner = ({ duel, cardId, fromCommand }) => {
 export const destroyFacingMinHealth: SkillRunner = ({
 	duel,
 	cardId,
-	fromCommand,
+	sourceType,
 }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
@@ -130,7 +130,7 @@ export const destroyFacingMinHealth: SkillRunner = ({
 				owner: state.owner,
 				target: {
 					source: {
-						type: sourceTypeFromCommand(fromCommand),
+						type: sourceType,
 						owner: state.owner,
 						place: state.place,
 						id: state.id,

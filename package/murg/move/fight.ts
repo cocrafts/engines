@@ -6,11 +6,12 @@ import { groundTraverse } from '../utils/ground';
 import {
 	createAndMergeBundle,
 	createCommandBundle,
-	runAndMergeHooks,
+	runAndMergeInspireHooks,
 } from '../utils/state';
 import {
 	ActivationType,
 	BundleGroup,
+	CommandSourceType,
 	DuelPhases,
 	DuelState,
 	MoveResult,
@@ -23,7 +24,7 @@ export const fight = (duel: DuelState): MoveResult => {
 		runFightAt(duel, fightBundle, i);
 
 		if (fightBundle.commands.length > 0) {
-			runAndMergeHooks(duel, fightBundle, fightBundle.commands);
+			runAndMergeInspireHooks(duel, fightBundle, fightBundle.commands);
 		}
 	}
 
@@ -40,16 +41,16 @@ export const fight = (duel: DuelState): MoveResult => {
 };
 
 export const preFight = (duel: DuelState): MoveResult => {
-	return runFightHook(duel, ActivationType.PreFight, DuelPhases.Fight);
+	return runFightHook(duel, true, DuelPhases.Fight);
 };
 
 export const postFight = (duel: DuelState): MoveResult => {
-	return runFightHook(duel, ActivationType.PostFight, DuelPhases.CleanUp);
+	return runFightHook(duel, false, DuelPhases.CleanUp);
 };
 
 const runFightHook = (
 	duel: DuelState,
-	activation: ActivationType,
+	isPreFight: boolean,
 	nextPhase: DuelPhases,
 ): MoveResult => {
 	const commandBundles = [];
@@ -58,20 +59,26 @@ const runFightHook = (
 		if (!cardId) return;
 
 		const card = getCard(duel.cardMap, cardId);
+		const activation = isPreFight
+			? ActivationType.PreFight
+			: ActivationType.PostFight;
 		const isFightHookActivation = card?.skill?.activation === activation;
 
 		if (isFightHookActivation) {
 			const skillFunc = skillMap[card.skill.attribute?.id];
-			const commands = skillFunc?.({ duel, cardId }) || [];
+			const sourceType = isPreFight
+				? CommandSourceType.PreFightSkill
+				: CommandSourceType.PostFightSkill;
+			const skillCommands = skillFunc?.({ duel, cardId, sourceType }) || [];
 
-			if (commands.length > 0) {
+			if (skillCommands.length > 0) {
 				const skillBundle = createAndMergeBundle(
 					duel,
 					BundleGroup.FightSkill,
-					commands,
+					skillCommands,
 				);
 
-				runAndMergeHooks(duel, skillBundle, commands);
+				runAndMergeInspireHooks(duel, skillBundle, skillCommands);
 				commandBundles.push(skillBundle);
 			}
 		}

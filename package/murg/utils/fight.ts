@@ -54,7 +54,11 @@ export const runPlayerAttack = (
 
 	if (isGloryActivation) {
 		const skillFunc = skillMap[card.skill?.attribute?.id];
-		const skillCommands = skillFunc?.({ duel, cardId });
+		const skillCommands = skillFunc?.({
+			duel,
+			cardId,
+			sourceType: CommandSourceType.GlorySkill,
+		});
 
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}
@@ -119,14 +123,24 @@ export const runCardAttack = (
 
 	if (isAttackActivation) {
 		const skillFunc = skillMap[firstCard.skill?.attribute?.id];
-		const skillCommands = skillFunc?.({ duel, cardId: firstId }) || [];
+		const skillCommands =
+			skillFunc?.({
+				duel,
+				cardId: firstId,
+				sourceType: CommandSourceType.AttackSkill,
+			}) || [];
 
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}
 
 	if (isDefenseActivation) {
 		const skillFunc = skillMap[secondCard.skill?.attribute?.id];
-		const skillCommands = skillFunc?.({ duel, cardId: secondId }) || [];
+		const skillCommands =
+			skillFunc?.({
+				duel,
+				cardId: secondId,
+				sourceType: CommandSourceType.DefenseSkill,
+			}) || [];
 
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}

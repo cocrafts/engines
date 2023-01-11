@@ -56,9 +56,7 @@ export type SkillAttributes = Record<string, unknown> & {
 export type SkillRunner = (payload: {
 	duel: DuelState;
 	cardId: string;
-	fromCardId?: string;
-	fromCommand?: DuelCommand;
-	fromTarget?: DuelCommandTarget;
+	sourceType?: CommandSourceType;
 }) => DuelCommand[];
 
 export type PassivePair = [Attribute, Attribute];
@@ -199,9 +197,14 @@ export interface BoardTarget {
 export enum CommandSourceType {
 	System = 'System',
 	Player = 'Player',
-	Skill = 'Skill',
-	Summon = 'Summon',
-	Inspire = 'Inspire',
+	ChargedSkill = 'ChargedSkill',
+	PreFightSkill = 'PreFightSkill',
+	PostFightSkill = 'PostFightSkill',
+	GlorySkill = 'GlorySkill',
+	AttackSkill = 'AttackSkill',
+	DefenseSkill = 'DefenseSkill',
+	InspiredSkill = 'InspiredSkill',
+	SummonMove = 'SummonMove',
 	Spell = 'Spell',
 	Unit = 'Unit',
 }

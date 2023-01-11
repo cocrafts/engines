@@ -5,7 +5,7 @@ import {
 	createCommandBundle,
 	emptyMoveResult,
 	runAndMergeBundle,
-	runAndMergeHooks,
+	runAndMergeInspireHooks,
 } from '../utils/state';
 import {
 	BundleGroup,
@@ -50,7 +50,7 @@ export const summonCard = (
 		createCommand.playerMutate({
 			target: {
 				source: {
-					type: CommandSourceType.Summon,
+					type: CommandSourceType.SummonMove,
 					owner: fromOwner,
 				},
 				to: {
@@ -66,7 +66,7 @@ export const summonCard = (
 	);
 
 	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
-	runAndMergeHooks(duel, hookBundle, summonCommands);
+	runAndMergeInspireHooks(duel, hookBundle, summonCommands);
 
 	return {
 		duel,

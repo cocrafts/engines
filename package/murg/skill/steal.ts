@@ -1,11 +1,7 @@
 import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { getClosestEmpty, getFacingIdentifier } from '../utils/ground';
-import {
-	createCommandResult,
-	selectGround,
-	sourceTypeFromCommand,
-} from '../utils/helper';
+import { createCommandResult, selectGround } from '../utils/helper';
 import { CardType, DuelPlace, SkillRunner } from '../utils/type';
 
 interface Attributes {
@@ -13,7 +9,7 @@ interface Attributes {
 	unitTypes: CardType[];
 }
 
-export const unitStealer: SkillRunner = ({ duel, cardId, fromCommand }) => {
+export const unitStealer: SkillRunner = ({ duel, cardId, sourceType }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
@@ -34,7 +30,7 @@ export const unitStealer: SkillRunner = ({ duel, cardId, fromCommand }) => {
 				owner: state.owner,
 				target: {
 					source: {
-						type: sourceTypeFromCommand(fromCommand),
+						type: sourceType,
 						owner: state.owner,
 						id: state.id,
 						place: state.place,

@@ -4,11 +4,12 @@ import {
 	createAndMergeBundle,
 	createCommandBundle,
 	emptyMoveResult,
-	runAndMergeHooks,
+	runAndMergeInspireHooks,
 } from '../utils/state';
 import {
 	ActivationType,
 	BundleGroup,
+	CommandSourceType,
 	DuelCommandBundle,
 	DuelCommandTarget,
 	DuelState,
@@ -29,7 +30,12 @@ export const activateChargeSkill = (
 	if (!isChargeSkill || !isChargeValid) return emptyMoveResult;
 
 	const skillFunc = skillMap[card.skill.attribute?.id];
-	const skillCommands = skillFunc?.({ duel, cardId, fromTarget: target }) || [];
+	const skillCommands =
+		skillFunc?.({
+			duel,
+			cardId,
+			sourceType: CommandSourceType.ChargedSkill,
+		}) || [];
 
 	if (skillCommands.length > 0) {
 		const skillActivateBundle = createAndMergeBundle(
@@ -41,7 +47,7 @@ export const activateChargeSkill = (
 		commandBundles.push(skillActivateBundle);
 
 		const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
-		runAndMergeHooks(duel, hookBundle, skillCommands);
+		runAndMergeInspireHooks(duel, hookBundle, skillCommands);
 
 		if (hookBundle.commands.length > 0) {
 			commandBundles.push(hookBundle);

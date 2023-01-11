@@ -1,9 +1,10 @@
+import { createCommand } from '../command';
 import { skillMap } from '../skill';
 import { getCard, getCardState } from '../utils/card';
 import {
-	createAndMergeBundle,
 	createCommandBundle,
 	emptyMoveResult,
+	runAndMergeBundle,
 	runAndMergeInspireHooks,
 } from '../utils/state';
 import {
@@ -20,7 +21,11 @@ export const activateChargeSkill = (
 	duel: DuelState,
 	target: DuelCommandTarget,
 ): MoveResult => {
-	const commandBundles: DuelCommandBundle[] = [];
+	const skillActivateBundle = createCommandBundle(
+		duel,
+		BundleGroup.SkillActivation,
+	);
+	const commandBundles: DuelCommandBundle[] = [skillActivateBundle];
 	const cardId = target.from.id;
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
@@ -38,21 +43,26 @@ export const activateChargeSkill = (
 		}) || [];
 
 	if (skillCommands.length > 0) {
-		const skillActivateBundle = createAndMergeBundle(
-			duel,
-			BundleGroup.SkillActivation,
-			skillCommands,
-		);
-
-		commandBundles.push(skillActivateBundle);
-
 		const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
+
+		runAndMergeBundle(duel, skillActivateBundle, skillCommands);
 		runAndMergeInspireHooks(duel, hookBundle, skillCommands);
 
 		if (hookBundle.commands.length > 0) {
 			commandBundles.push(hookBundle);
 		}
 	}
+
+	/* always reset Charge after skill activated, no matter it does something or not */
+	runAndMergeBundle(
+		duel,
+		skillActivateBundle,
+		createCommand.cardMutate({
+			owner: state.owner,
+			target,
+			payload: { charge: card.skill.charge },
+		}),
+	);
 
 	return { duel, commandBundles };
 };

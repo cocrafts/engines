@@ -1,7 +1,8 @@
 import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { getFacingIdentifiers } from '../utils/ground';
-import { createCommandResult } from '../utils/helper';
+import { createCommandResult, getEnemyId, selectGround } from '../utils/helper';
+import { pickGroundUnits, pickLowestHealth } from '../utils/skill';
 import { CardType, DuelPlace, SkillRunner } from '../utils/type';
 
 interface BasicAttributes {
@@ -147,6 +148,89 @@ export const destroyFacingMinHealth: SkillRunner = ({
 			})
 			.forEach(registerCommand);
 	}
+
+	return commands;
+};
+
+export const randomEnemyMutate: SkillRunner = ({
+	duel,
+	cardId,
+	sourceType,
+}) => {
+	const { commands, registerCommand } = createCommandResult();
+	const card = getCard(duel.cardMap, cardId);
+	const { ...stats }: BasicAttributes = card.skill.attribute as never;
+	const state = getCardState(duel.stateMap, cardId);
+	const enemyId = getEnemyId(duel, state.owner);
+	const enemyGround = selectGround(duel, enemyId);
+	const [randomEnemyCardId] = pickGroundUnits(enemyGround, 1);
+
+	if (!randomEnemyCardId) return commands;
+
+	const enemyState = getCardState(duel.stateMap, randomEnemyCardId);
+
+	createCommand
+		.cardMutate({
+			owner: state.owner,
+			target: {
+				source: {
+					type: sourceType,
+					owner: state.owner,
+					place: state.place,
+					id: state.id,
+				},
+				to: {
+					owner: enemyId,
+					place: enemyState.place,
+					id: enemyState.id,
+				},
+			},
+			payload: {
+				attack: enemyState.attack + (stats.attack || 0),
+				defense: enemyState.defense + (stats.defense || 0),
+				health: enemyState.health + (stats.health || 0),
+			},
+		})
+		.forEach(registerCommand);
+
+	return commands;
+};
+
+export const lowestHealthAllyMutate: SkillRunner = ({
+	duel,
+	cardId,
+	sourceType,
+}) => {
+	const { commands, registerCommand } = createCommandResult();
+	const card = getCard(duel.cardMap, cardId);
+	const { ...stats }: BasicAttributes = card.skill.attribute as never;
+	const state = getCardState(duel.stateMap, cardId);
+	const myGround = selectGround(duel, state.owner);
+	const allyLowestHealth = pickLowestHealth(duel, myGround);
+
+	createCommand
+		.cardMutate({
+			owner: state.owner,
+			target: {
+				source: {
+					type: sourceType,
+					owner: state.owner,
+					place: state.place,
+					id: state.id,
+				},
+				to: {
+					owner: state.owner,
+					place: DuelPlace.Ground,
+					id: allyLowestHealth.id,
+				},
+			},
+			payload: {
+				attack: allyLowestHealth.attack + (stats.attack || 0),
+				defense: allyLowestHealth.defense + (stats.defense || 0),
+				health: allyLowestHealth.health + (stats.health || 0),
+			},
+		})
+		.forEach(registerCommand);
 
 	return commands;
 };

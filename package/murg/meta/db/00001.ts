@@ -108,6 +108,10 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Permanently [-10 Defense:Danger].',
 			activation: ActivationType.Attack,
+			attribute: {
+				id: 'FrontMutate',
+				defense: -10,
+			},
 		},
 	},
 	{
@@ -216,6 +220,10 @@ const cardList: Card[] = [
 			template: 'Deal [10 damage:Danger] to random enemy.',
 			activation: ActivationType.Charge,
 			charge: 1,
+			attribute: {
+				id: 'RandomEnemyMutate',
+				health: -10,
+			},
 		},
 	},
 	{
@@ -296,6 +304,10 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Deal additional [+20 damage].',
 			activation: ActivationType.Glory,
+			attribute: {
+				id: 'SelfMutate',
+				attack: 20,
+			},
 		},
 	},
 	{
@@ -346,6 +358,10 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Ignore [10 Defense:Danger] on hit.',
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'IgnoreEnemyDefense',
+				defense: 10,
+			},
 		},
 	},
 	{
@@ -396,6 +412,11 @@ const cardList: Card[] = [
 			template: 'Deal [30 damage:Danger] to [5] front enemies',
 			activation: ActivationType.Charge,
 			charge: 4,
+			attribute: {
+				id: 'FrontMutate',
+				health: -30,
+				radius: 2,
+			},
 		},
 	},
 	{
@@ -447,6 +468,10 @@ const cardList: Card[] = [
 			template: 'Self heal [+20 Health:Buff].',
 			activation: ActivationType.Charge,
 			charge: 3,
+			attribute: {
+				id: 'SelfMutate',
+				health: 20,
+			},
 		},
 	},
 	{
@@ -499,6 +524,10 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Gain [+10 Defense:Buff].',
 			activation: ActivationType.Defense,
+			attribute: {
+				id: 'SelfMutate',
+				defense: 10,
+			},
 		},
 	},
 	{
@@ -532,6 +561,10 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Permanently [-10 Attack:Danger] of attacker.',
 			activation: ActivationType.Defense,
+			attribute: {
+				id: 'FrontMutate',
+				attack: -10,
+			},
 		},
 	},
 	{
@@ -565,6 +598,10 @@ const cardList: Card[] = [
 		skill: {
 			template: '[20%:Buff] [Lifesteal].',
 			activation: ActivationType.Attack,
+			attribute: {
+				id: 'SelfMutate',
+				health: 10,
+			},
 		},
 	},
 	{
@@ -581,6 +618,9 @@ const cardList: Card[] = [
 		skill: {
 			template: '[+1 Defense:Buff] for each missing health.',
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'GainDefenseByMissingHealth',
+			},
 		},
 	},
 	{
@@ -770,6 +810,10 @@ const cardList: Card[] = [
 			template: 'Heal [+30 Health:Buff] for lowest health ally.',
 			activation: ActivationType.Charge,
 			charge: 3,
+			attribute: {
+				id: 'LowestHealthAllyMutate',
+				health: 20,
+			},
 		},
 	},
 	{

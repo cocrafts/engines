@@ -4,6 +4,7 @@ import { damageMultiplier } from './damageMultiplier';
 import { gainAttackByEnemyDefense } from './gainAttackByEnemyDefense';
 import { gainAttackByEnemyMissingHealth } from './gainAttackByEnemyMissingHealth';
 import { gainAttackByRemainingHealth } from './gainAttackByRemainingHealth';
+import { gainDefenseByEnemyMissingHealth } from './gainDefenseByMissingHealth';
 import { ignoreEnemyDefense } from './ignoreEnemyDefense';
 
 export const passiveMap: Record<PassiveIds, PassiveRunner> = {
@@ -12,4 +13,5 @@ export const passiveMap: Record<PassiveIds, PassiveRunner> = {
 	GainAttackByEnemyMissingHealth: gainAttackByEnemyMissingHealth,
 	GainAttackByRemainingHealth: gainAttackByRemainingHealth,
 	DamageMultiplier: damageMultiplier,
+	GainDefenseByMissingHealth: gainDefenseByEnemyMissingHealth,
 };

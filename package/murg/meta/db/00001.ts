@@ -128,6 +128,9 @@ const cardList: Card[] = [
 		skill: {
 			template: "Ignore enemy's [Defense].",
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'IgnoreEnemyDefense',
+			},
 		},
 	},
 	{
@@ -144,6 +147,9 @@ const cardList: Card[] = [
 		skill: {
 			template: "[Gain Attack:Buff] equal to facing enemy's missing [Health].",
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'GainAttackByEnemyMissingHealth',
+			},
 		},
 	},
 	{
@@ -811,7 +817,8 @@ const cardList: Card[] = [
 			activation: ActivationType.Charge,
 			charge: 3,
 			attribute: {
-				id: 'LowestHealthAllyMutate',
+				id: 'LowestHealthMutate',
+				isTargetEnemy: false,
 				health: 20,
 			},
 		},

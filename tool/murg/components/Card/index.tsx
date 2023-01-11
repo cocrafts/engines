@@ -80,9 +80,9 @@ export const Card: FC<Props> = ({
 				</Box>
 			</Box>
 			<Box>
-				<Attribute pair={[finalAttack, card.attribute.attack]} />
-				<Attribute pair={[finalDefense, card.attribute.defense]} />
 				<Attribute pair={[finalHealth, card.attribute.health]} />
+				<Attribute pair={[finalDefense, card.attribute.defense]} />
+				<Attribute pair={[finalAttack, card.attribute.attack]} />
 			</Box>
 		</Box>
 	);

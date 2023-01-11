@@ -59,7 +59,12 @@ export const activateChargeSkill = (
 		skillActivateBundle,
 		createCommand.cardMutate({
 			owner: state.owner,
-			target,
+			target: {
+				source: {
+					type: CommandSourceType.System,
+				},
+				to: target.from,
+			},
 			payload: { charge: card.skill.charge },
 		}),
 	);

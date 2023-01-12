@@ -311,8 +311,9 @@ const cardList: Card[] = [
 			template: 'Deal additional [+20 damage].',
 			activation: ActivationType.Glory,
 			attribute: {
-				id: 'SelfMutate',
-				attack: 20,
+				id: 'PlayerMutate',
+				health: -20,
+				isTargetEnemyPlayer: true,
 			},
 		},
 	},
@@ -457,6 +458,12 @@ const cardList: Card[] = [
 			template:
 				'Take extra [10 damage:Danger] against [Assassin:Type] or [Wizard:Type].',
 			activation: ActivationType.Passive,
+			passiveAttribute: {
+				id: 'MutateByClass',
+				isTargetEnemy: true,
+				classTypes: [ClassType.Assassin, ClassType.Wizard],
+				attack: 10,
+			},
 		},
 	},
 	{

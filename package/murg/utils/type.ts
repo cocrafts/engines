@@ -177,6 +177,7 @@ export enum DuelPhases {
 }
 
 export type DuelCommandPayload = Partial<Attribute> & {
+	effectMap?: EffectMap;
 	gameOver?: boolean;
 	turn?: number;
 	phase?: DuelPhases;
@@ -219,10 +220,13 @@ export type CommandSource = Omit<BoardTarget, 'place'> & {
 	place?: DuelPlace /* <-- override BoardTarget's, make this field optional */;
 };
 
+export type TargetOptions = Attribute;
+
 export interface DuelCommandTarget {
 	source?: CommandSource;
 	from?: BoardTarget;
 	to?: BoardTarget;
+	options?: TargetOptions;
 }
 
 export interface DuelCommand {
@@ -266,7 +270,59 @@ export interface CardIdentifier {
 	place: DuelPlace;
 }
 
-export type CardState = Attribute & CardIdentifier;
+export type EffectIds =
+	| 'Reborn'
+	| 'Illusion'
+	| 'Clone'
+	| 'Immune'
+	| 'Shield'
+	| 'Froze'
+	| 'Seal'
+	| 'AttributeStack'
+	| 'RepeatAttack'
+	| 'CleaverAttack'
+	| 'IgnoreDefense'
+	| 'ExplodeTimer';
+
+export type CleaverType = 'Fixed' | 'Factor';
+
+export interface Effect {
+	id: EffectIds;
+	life?: number;
+	reborn?: {
+		count?: number;
+	};
+	attributeStack?: {
+		targetId: string;
+		attribute: Attribute;
+		count: number;
+	};
+	cleaverAttack?: {
+		type: CleaverType;
+		radius: number;
+		damage?: number;
+		damageFactor?: number;
+	};
+	repeatAttack?: {
+		count: number;
+	};
+	ignoreDefense?: {
+		defense: number;
+		defenseFactor?: number;
+	};
+	explodeTimer?: {
+		radius: number;
+		damage: number;
+	};
+	attribute?: Attribute;
+}
+
+export type EffectMap = Partial<Record<EffectIds, Effect>>;
+
+export type CardState = Attribute &
+	CardIdentifier & {
+		effectMap: EffectMap;
+	};
 
 export type PlayerState = Attribute & {
 	id: string;

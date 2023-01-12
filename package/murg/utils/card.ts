@@ -226,6 +226,7 @@ export const injectCardState = (
 	const { id, attribute, skill } = getCard(cardMap, context.id);
 	const cardState: CardState = {
 		id: `${id}#${nextUniqueCount}`,
+		effectMap: {},
 		owner: context.owner,
 		place: context.place,
 		attack: attribute.attack,

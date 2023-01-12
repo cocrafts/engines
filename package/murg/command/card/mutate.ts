@@ -1,4 +1,5 @@
 import { getCardState } from '../../utils/card';
+import { mergeEffects } from '../../utils/effect';
 import { createCommandResult, createDuelFragment } from '../../utils/helper';
 import {
 	CommandCreator,
@@ -46,7 +47,12 @@ export const run: CommandRunner = ({ duel, command: { target, payload } }) => {
 	Object.keys(payload).forEach((key) => {
 		const value = payload[key];
 
-		if (isNaN(value)) {
+		if (key === 'effectMap') {
+			cardStateClone['effectMap'] = mergeEffects(
+				cardStateClone.effectMap,
+				payload.effectMap,
+			);
+		} else if (isNaN(value)) {
 			cardStateClone[key] = value;
 		} else {
 			cardStateClone[key] = Math.max(0, value || 0);

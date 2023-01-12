@@ -49,7 +49,8 @@ export type SkillIds =
 	| 'FrontMutate'
 	| 'DestroyFacingMinHealth'
 	| 'RandomEnemyMutate'
-	| 'LowestHealthMutate';
+	| 'LowestHealthMutate'
+	| 'PlayerMutate';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
@@ -69,7 +70,8 @@ export type PassiveIds =
 	| 'GainAttackByEnemyMissingHealth'
 	| 'GainAttackByRemainingHealth'
 	| 'DamageMultiplier'
-	| 'GainDefenseByMissingHealth';
+	| 'GainDefenseByMissingHealth'
+	| 'MutateByClass';
 
 export type PassiveAttributes = Record<string, unknown> & {
 	id: PassiveIds;

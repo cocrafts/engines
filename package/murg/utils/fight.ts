@@ -52,17 +52,6 @@ export const runPlayerAttack = (
 	const opponentId = getEnemyId(duel, cardState.owner);
 	const opponentState = selectPlayer(duel, opponentId);
 
-	if (isGloryActivation) {
-		const skillFunc = skillMap[card.skill?.attribute?.id];
-		const skillCommands = skillFunc?.({
-			duel,
-			cardId,
-			sourceType: CommandSourceType.GlorySkill,
-		});
-
-		runAndMergeBundle(duel, bundle, skillCommands);
-	}
-
 	runAndMergeBundle(
 		duel,
 		bundle,
@@ -82,6 +71,17 @@ export const runPlayerAttack = (
 			payload: { health: opponentState.health - combinedState.attack },
 		}),
 	);
+
+	if (isGloryActivation) {
+		const skillFunc = skillMap[card.skill?.attribute?.id];
+		const skillCommands = skillFunc?.({
+			duel,
+			cardId,
+			sourceType: CommandSourceType.GlorySkill,
+		});
+
+		runAndMergeBundle(duel, bundle, skillCommands);
+	}
 };
 
 export const runFightAt = (

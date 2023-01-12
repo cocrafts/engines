@@ -223,9 +223,9 @@ export const injectCardState = (
 	context: CardIdentifier,
 ): CardState => {
 	const nextUniqueCount = partial.uniqueCardCount + 1;
-	const { attribute, skill } = getCard(cardMap, context.id);
+	const { id, attribute, skill } = getCard(cardMap, context.id);
 	const cardState: CardState = {
-		id: `${context.id}#${nextUniqueCount}`,
+		id: `${id}#${nextUniqueCount}`,
 		owner: context.owner,
 		place: context.place,
 		attack: attribute.attack,

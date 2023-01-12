@@ -349,10 +349,6 @@ const cardList: Card[] = [
 			template: 'Double attack.',
 			activation: ActivationType.Charge,
 			charge: 3,
-			attribute: {
-				id: 'DamageMultiplier',
-				multiplyFactor: 2,
-			},
 		},
 	},
 	{

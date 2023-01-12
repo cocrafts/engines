@@ -50,8 +50,7 @@ export type SkillIds =
 	| 'DestroyFacingMinHealth'
 	| 'RandomEnemyMutate'
 	| 'LowestHealthMutate'
-	| 'PlayerMutate'
-	| 'DamageMultiplier';
+	| 'PlayerMutate';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;

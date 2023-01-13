@@ -521,6 +521,9 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Create [10/0/10:Type] [Illusion] on nearest position.',
 			activation: ActivationType.Attack,
+			attribute: {
+				id: 'CreateIllusion',
+			},
 		},
 	},
 	{

@@ -1,5 +1,6 @@
 import { SkillIds, SkillRunner } from '../utils/type';
 
+import { createIllusion } from './createIllusion';
 import { destroyFacingMinHealth } from './destroyFacingMinHealth';
 import { frontMutate } from './frontMutate';
 import { lowestHealthMutate } from './lowestHealthMutate';
@@ -16,4 +17,5 @@ export const skillMap: Record<SkillIds, SkillRunner> = {
 	RandomEnemyMutate: randomEnemyMutate,
 	LowestHealthMutate: lowestHealthMutate,
 	PlayerMutate: playerMutate,
+	CreateIllusion: createIllusion,
 };

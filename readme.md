@@ -6,6 +6,9 @@ Single repository that hold opensource algorithm for Metacraft Games.
 - Install `metacraft cli` via `npm i --location=global metacraft` or via yarn `yarn global add metacraft` 
 
 ## Development:
-Run `metacraft` under project's root directory for Development - if success you would see something like following:
+Run `yarn client` under project's root directory for Development - if success you would see something like following:
+
+## Game Server
+There is an sample implementation under `tool/murg-sever`, launch it with `yarn server`.
 
 ![](assets/demo.png)

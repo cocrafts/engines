@@ -150,5 +150,5 @@ export const replay = () => {
 };
 
 const printMove = (move: MoveResult): void => {
-	console.log(JSON.stringify(move.commandBundles));
+	console.log(JSON.stringify(move.commandBundles, null, 2));
 };

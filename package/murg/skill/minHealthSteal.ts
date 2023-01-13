@@ -2,14 +2,14 @@ import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { getClosestEmpty, getFacingIdentifier } from '../utils/ground';
 import { createCommandResult, selectGround } from '../utils/helper';
-import { CardType, DuelPlace, SkillRunner } from '../utils/type';
+import { Attribute, CardType, DuelPlace, SkillRunner } from '../utils/type';
 
-interface Attributes {
-	minHealth?: number;
-	unitTypes: CardType[];
-}
+type SkillOptions = Omit<Attribute, 'charge'> & {
+	minHealth: number;
+	cardTypes: CardType[];
+};
 
-export const unitStealer: SkillRunner = ({ duel, cardId, sourceType }) => {
+export const minHealthSteal: SkillRunner = ({ duel, cardId, sourceType }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
@@ -20,8 +20,8 @@ export const unitStealer: SkillRunner = ({ duel, cardId, sourceType }) => {
 
 	const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 	const facingCard = getCard(duel.cardMap, facingIdentifier.id);
-	const { minHealth, unitTypes }: Attributes = card.skill.attribute as never;
-	const isCardTypeValid = unitTypes?.indexOf(facingCard.kind) >= 0;
+	const { minHealth, cardTypes }: SkillOptions = card.skill.attribute as never;
+	const isCardTypeValid = cardTypes?.indexOf(facingCard.kind) >= 0;
 	const isHealthValid = facingState.health <= minHealth;
 
 	if (isCardTypeValid && isHealthValid) {

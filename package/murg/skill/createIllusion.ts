@@ -10,7 +10,6 @@ export const createIllusion: SkillRunner = ({ duel, cardId, sourceType }) => {
 	const myGround = selectGround(duel, state.owner);
 	const closestIndex = getClosestEmpty(myGround);
 	const generatedId = `${cardId.substring(0, 9)}#${duel.uniqueCardCount + 1}`;
-	console.log(generatedId);
 
 	createCommand
 		.cardMove({

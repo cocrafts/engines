@@ -44,7 +44,7 @@ export enum InspireSource {
 }
 
 export type SkillIds =
-	| 'UnitStealer'
+	| 'MinHealthSteal'
 	| 'SelfMutate'
 	| 'FrontMutate'
 	| 'DestroyFacingMinHealth'

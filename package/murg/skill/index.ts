@@ -4,13 +4,13 @@ import { createIllusion } from './createIllusion';
 import { destroyFacingMinHealth } from './destroyFacingMinHealth';
 import { frontMutate } from './frontMutate';
 import { lowestHealthMutate } from './lowestHealthMutate';
+import { minHealthSteal } from './minHealthSteal';
 import { playerMutate } from './playerMutate';
 import { randomEnemyMutate } from './randomEnemyMutate';
 import { selfMutate } from './selfMutate';
-import { unitStealer } from './unitStealer';
 
 export const skillMap: Record<SkillIds, SkillRunner> = {
-	UnitStealer: unitStealer,
+	MinHealthSteal: minHealthSteal,
 	SelfMutate: selfMutate,
 	FrontMutate: frontMutate,
 	DestroyFacingMinHealth: destroyFacingMinHealth,

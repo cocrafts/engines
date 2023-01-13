@@ -40,7 +40,7 @@ const cardList: Card[] = [
 	},
 	{
 		id: '999970000',
-		name: 'Troop',
+		name: 'Snake',
 		kind: CardType.Troop,
 		rarity: 0,
 		class: ClassType.Beast,
@@ -1062,9 +1062,9 @@ const cardList: Card[] = [
 				'[Steal] facing [Troop] if it have [{{minHealth}} or less] Health.',
 			activation: ActivationType.PostFight,
 			attribute: {
-				id: 'UnitStealer',
+				id: 'MinHealthSteal',
 				minHealth: 20,
-				unitTypes: [CardType.Troop],
+				cardTypes: [CardType.Troop],
 			},
 		},
 	},
@@ -1082,6 +1082,11 @@ const cardList: Card[] = [
 		skill: {
 			template: '[Steal] facing enemy.',
 			activation: ActivationType.Death,
+			attribute: {
+				id: 'MinHealthSteal',
+				minHealth: 9999,
+				cardTypes: [CardType.Hero, CardType.Troop],
+			},
 		},
 	},
 	{

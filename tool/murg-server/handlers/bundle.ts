@@ -24,7 +24,7 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 	const autoBundles = fillAndRunBundles(duel, incomingBundles);
 
 	autoBundles.forEach((bundle) => history.push(bundle));
-	await send({ level: history.length, bundles: autoBundles });
+	await send({ level: history.length - 1, bundles: autoBundles });
 };
 
 export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {

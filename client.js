@@ -9,8 +9,8 @@ const { render } = require('ink');
 
 addAlias('@metacraft/murg-engine', resolve(__dirname, './package/murg'));
 
-const { measureExecutionTime } = require('./tool/murg/util');
-let App = require('./tool/murg').MURG;
+const { measureExecutionTime } = require('./tool/murg-client/util');
+let App = require('./tool/murg-client').MURG;
 let lastRenderTime = 0;
 
 const makeElement = (el, duel, history) => {
@@ -24,7 +24,7 @@ const makeElement = (el, duel, history) => {
 	return React.createElement(el, props);
 };
 
-const { duel, history } = require('./tool/murg/state').replay();
+const { duel, history } = require('./tool/murg-client/state').replay();
 
 measureExecutionTime('initial-render', 'time to render App');
 const { rerender } = render(makeElement(App, duel, history));
@@ -42,12 +42,12 @@ watch(process.cwd(), {
 
 	measureExecutionTime('render', 'time to render App');
 	if (relativeUri.startsWith('tool/murg/state')) {
-		const { duel, history } = require('./tool/murg/state').replay();
+		const { duel, history } = require('./tool/murg-client/state').replay();
 		element = makeElement(App, duel, history);
 	}
 
 	if (relativeUri.endsWith('.tsx')) {
-		App = require('./tool/murg').MURG;
+		App = require('./tool/murg-client').MURG;
 		element = makeElement(App, duel, history);
 	}
 

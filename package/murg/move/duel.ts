@@ -27,7 +27,7 @@ export const turnCleanUp = (duel: DuelState): MoveResult => {
 		const { commands, registerCommand } = createCommandResult();
 		const state = getCardState(duel.stateMap, cardId);
 
-		if (state.charge > 0) {
+		if (state.charge > 0 && !state.effectMap.Illusion) {
 			createCommand
 				.cardMutate({
 					owner: state.owner,

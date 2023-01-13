@@ -1,7 +1,7 @@
 import { runCommand } from '../command';
 import { skillMap } from '../skill';
 
-import { getCard } from './card';
+import { getCard, getCardState } from './card';
 import {
 	ActivationType,
 	BundleGroup,
@@ -173,7 +173,9 @@ export const createAndMergeDeathInspire = (
 	if (!cardId) return;
 
 	const card = getCard(duel.cardMap, cardId);
+	const cardState = getCardState(duel.stateMap, cardId);
 	const skill = card?.skill;
+	const isIllusion = !!cardState.effectMap.Illusion;
 	const isActivationDeath = skill.activation === ActivationType.Death;
 	const isInspireDeath =
 		skill?.activation === ActivationType.Inspire &&
@@ -181,7 +183,7 @@ export const createAndMergeDeathInspire = (
 	const isActivationValid = isActivationDeath || isInspireDeath;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (!isActivationValid || !skillFunc) return;
+	if (isIllusion || !isActivationValid || !skillFunc) return;
 
 	recursiveRunAndMergeInspiredCommands(
 		duel,
@@ -201,7 +203,9 @@ export const createAndMergeSummonInspire = (
 	if (!cardId) return;
 
 	const card = getCard(duel.cardMap, cardId);
+	const cardState = getCardState(duel.stateMap, cardId);
 	const skill = card?.skill;
+	const isIllusion = !!cardState.effectMap.Illusion;
 	const isActivationSummon = skill.activation == ActivationType.Summon;
 	const isInspireSummon =
 		skill?.activation === ActivationType.Inspire &&
@@ -209,7 +213,7 @@ export const createAndMergeSummonInspire = (
 	const isActivationValid = isActivationSummon || isInspireSummon;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (!isActivationValid || !skillFunc) return;
+	if (isIllusion || !isActivationValid || !skillFunc) return;
 
 	recursiveRunAndMergeInspiredCommands(
 		duel,
@@ -229,12 +233,14 @@ export const createAndMergeSkillInspire = (
 	if (!cardId) return;
 
 	const card = getCard(duel.cardMap, cardId);
+	const cardState = getCardState(duel.stateMap, cardId);
 	const skill = card?.skill;
+	const isIllusion = !!cardState.effectMap.Illusion;
 	const isInspire = skill?.activation === ActivationType.Inspire;
 	const isSkillInspire = skill?.inspire === InspireSource.Skill;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (!isInspire || !skillFunc) return;
+	if (isIllusion || !isInspire || !skillFunc) return;
 
 	skillCommands.forEach((command) => {
 		const fromCardId = command.target?.source?.id;

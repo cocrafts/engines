@@ -121,7 +121,7 @@ export const runCardAttack = (
 	const isDefenseActivation =
 		secondCard?.skill?.activation === ActivationType.Defense;
 
-	if (isAttackActivation) {
+	if (isAttackActivation && !firstState.effectMap.Illusion) {
 		const skillFunc = skillMap[firstCard.skill?.attribute?.id];
 		const skillCommands =
 			skillFunc?.({
@@ -133,7 +133,7 @@ export const runCardAttack = (
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}
 
-	if (isDefenseActivation) {
+	if (isDefenseActivation && !firstState.effectMap.Illusion) {
 		const skillFunc = skillMap[secondCard.skill?.attribute?.id];
 		const skillCommands =
 			skillFunc?.({

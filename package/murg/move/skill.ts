@@ -29,10 +29,11 @@ export const activateChargeSkill = (
 	const cardId = target.from.id;
 	const card = getCard(duel.cardMap, cardId);
 	const state = getCardState(duel.stateMap, cardId);
+	const isIllusion = !!state.effectMap.Illusion;
 	const isChargeSkill = card?.skill?.activation === ActivationType.Charge;
 	const isChargeValid = state.charge <= 0;
 
-	if (!isChargeSkill || !isChargeValid) return emptyMoveResult;
+	if (!isChargeSkill || !isChargeValid || isIllusion) return emptyMoveResult;
 
 	const skillFunc = skillMap[card.skill.attribute?.id];
 	const skillCommands =

@@ -1,4 +1,11 @@
-import { makeDuel, makeMeta, move, PlayerConfig } from '@metacraft/murg-engine';
+import {
+	defaultSetting,
+	DuelConfig,
+	getInitialState,
+	makeMeta,
+	move,
+	PlayerConfig,
+} from '@metacraft/murg-engine';
 
 import { generateRandomDeck } from '../util/deck';
 import { DuelRecord } from '../util/type';
@@ -16,7 +23,20 @@ export const fetchDuel = (id: string, version = '00001'): DuelRecord => {
 			id: 'B',
 			deck: generateRandomDeck(meta),
 		};
-		const { config, state } = makeDuel([firstPlayer, secondPlayer], version);
+		const config: DuelConfig = {
+			version,
+			setting: defaultSetting,
+			firstMover: firstPlayer.id,
+			firstPlayer: firstPlayer,
+			secondPlayer: secondPlayer,
+		};
+		const state = getInitialState({
+			version,
+			setting: config.setting,
+			firstMover: firstPlayer.id,
+			firstPlayer: config.firstPlayer,
+			secondPlayer: config.secondPlayer,
+		});
 		const { duel, commandBundles } = move.distributeInitialCards(state);
 
 		move.distributeTurnCards(duel).commandBundles.forEach((bundle) => {

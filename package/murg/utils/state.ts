@@ -267,3 +267,30 @@ export const createAndMergeSkillInspire = (
 		}
 	});
 };
+
+export const getWinner = ({
+	stateMap,
+	firstPlayer,
+	secondPlayer,
+	firstGround,
+	secondGround,
+}: DuelState) => {
+	if (firstPlayer.health <= 0 || secondPlayer.health <= 0) {
+		if (firstPlayer.health === secondPlayer.health) {
+			const extractPower = (ground: string[]) =>
+				ground.reduce((sum, cardId) => {
+					if (!cardId) return sum;
+					const state = getCardState(stateMap, cardId);
+					return sum + state.health + state.defense + state.attack;
+				}, 0);
+			const firstPower = extractPower(firstGround);
+			const secondPower = extractPower(secondGround);
+
+			return firstPower > secondPower ? firstPlayer.id : secondPlayer.id;
+		}
+
+		return firstPlayer.health > secondPlayer.health
+			? firstPlayer.id
+			: secondPlayer.id;
+	}
+};

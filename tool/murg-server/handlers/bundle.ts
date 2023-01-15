@@ -3,13 +3,14 @@ import {
 	DuelCommandBundle,
 	DuelState,
 	getInitialState,
+	getWinner,
 	mergeFragmentToState,
 	move,
 	MoveResult,
 	runCommand,
 } from '@metacraft/murg-engine';
 
-import { CommandHandler } from '../util/type';
+import { CommandHandler, DuelCommands } from '../util/type';
 
 import { fetchDuel } from './internal';
 
@@ -17,15 +18,22 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 	{ duelId, send },
 	incomingBundles,
 ) => {
-	const { config, history } = fetchDuel(duelId);
+	const duelRecord = fetchDuel(duelId);
+	const { config, history } = duelRecord;
 	const level = history.length;
 	const duel = getInitialState(config);
 
 	runBundles(duel, history);
 	const autoBundles = fillAndRunBundles(duel, incomingBundles);
+	const winner = getWinner(duel);
 
 	autoBundles.forEach((bundle) => history.push(bundle));
 	await send({ level, bundles: autoBundles });
+
+	if (winner) {
+		duelRecord.winner = winner;
+		await send({ winner }, DuelCommands.GameOver);
+	}
 };
 
 export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {

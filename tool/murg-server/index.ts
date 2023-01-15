@@ -26,12 +26,12 @@ app.ws('/', (ws) => {
 			const players = duelClients[duelId] || [];
 			const findPlayer = (i) => i.player === userId;
 			const playerIndex = players.findIndex(findPlayer);
-			const send: ResponseSender = async (payload): Promise<void> => {
+			const send: ResponseSender = async (payload, command): Promise<void> => {
 				const clients = socket.getWss().clients;
 
 				clients.forEach((client) => {
 					const response: CommandResponse = {
-						command: data.command,
+						command: command || data.command,
 						isMyCommand: client === ws,
 						timestamp: new Date().getTime(),
 						payload,

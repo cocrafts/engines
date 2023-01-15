@@ -3,6 +3,7 @@ import { DuelCommandBundle, DuelConfig } from '@metacraft/murg-engine';
 export enum DuelCommands {
 	ConnectMatch = 'ConnectMatch',
 	SendBundle = 'SendBundle',
+	GameOver = 'GameOver',
 }
 
 export interface JwtPayload {
@@ -19,6 +20,7 @@ export interface CommandPayload<T = never> {
 
 export type ResponseSender = (
 	payload: Record<string, unknown>,
+	command?: DuelCommands,
 ) => Promise<void>;
 
 export interface Context {
@@ -41,6 +43,7 @@ export interface CommandResponse<T = Record<string, unknown>> {
 }
 
 export interface DuelRecord {
+	winner?: string;
 	config: DuelConfig;
 	history: DuelCommandBundle[];
 }

@@ -1109,4 +1109,11 @@ const cardList: Card[] = [
 	},
 ];
 
-export default cardList.map(interpolate);
+const filterImplemented = (card: Card) => {
+	return (
+		!card.skill.activation ||
+		card.skill?.attribute ||
+		card.skill?.passiveAttribute
+	);
+};
+export default cardList.filter(filterImplemented).map(interpolate);

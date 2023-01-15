@@ -1,6 +1,6 @@
 import { CardMeta, CardType } from '@metacraft/murg-engine';
 
-export const generateRandomDeck = ({ map, entities }: CardMeta, size = 36) => {
+export const generateRandomDeck = ({ map, entities }: CardMeta, size = 30) => {
 	const sources = [...entities];
 	const results: string[] = [];
 	let count = 0;

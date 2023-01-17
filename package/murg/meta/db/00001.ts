@@ -1044,6 +1044,9 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Summon [20/0/10:Type] [Snake:Type] to nearest place.',
 			activation: ActivationType.Attack,
+			attribute: {
+				id: 'SummonSnake',
+			},
 		},
 	},
 	{

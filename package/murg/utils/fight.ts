@@ -11,7 +11,6 @@ import {
 	Card,
 	CardState,
 	CommandSourceType,
-	DuelCommand,
 	DuelCommandBundle,
 	DuelPlace,
 	DuelState,
@@ -229,23 +228,6 @@ export const getGenerativeDamage = (
 	} else {
 		return Math.round(damage);
 	}
-};
-
-export const afterHealthCommands = (
-	state: CardState,
-	health: number,
-): DuelCommand[] => {
-	return createCommand.cardMutate({
-		owner: state.owner,
-		target: {
-			to: {
-				owner: state.owner,
-				id: state.id,
-				place: state.place,
-			},
-		},
-		payload: { health },
-	});
 };
 
 const emptyPassiveFunc = (): PassivePair => [emptyPassive, emptyPassive];

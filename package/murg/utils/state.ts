@@ -89,7 +89,7 @@ const skillInspires: CommandSourceType[] = [
 	CommandSourceType.PostFightSkill,
 ];
 
-export const runAndMergeInspireHooks = (
+export const runAndMergeHooks = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
 	recentCommands: DuelCommand[],
@@ -122,6 +122,51 @@ export const runAndMergeInspireHooks = (
 		}
 	}
 
+	/* <- Summon hooks */
+	summonCommands.forEach((command) => {
+		const cardId = command.target.from.id;
+		const card = getCard(duel.cardMap, cardId);
+		const isSummonActivation = card.skill?.activation === ActivationType.Summon;
+		const skillFunc = skillMap[card.skill?.attribute?.id];
+
+		if (isSummonActivation && skillFunc) {
+			const skillCommands = skillFunc({
+				duel,
+				cardId,
+				sourceType: CommandSourceType.SummonSkill,
+			});
+
+			runAndMergeBundle(duel, bundle, skillCommands);
+
+			if (skillCommands.length > 0) {
+				runAndMergeHooks(duel, bundle, skillCommands);
+			}
+		}
+	});
+
+	/* <- Death hooks */
+	deathCommands.forEach((command) => {
+		const cardId = command.target.from.id;
+		const card = getCard(duel.cardMap, cardId);
+		const isDeathActivation = card.skill?.activation === ActivationType.Death;
+		const skillFunc = skillMap[card.skill?.attribute?.id];
+
+		if (isDeathActivation && skillFunc) {
+			const skillCommands = skillFunc({
+				duel,
+				cardId,
+				sourceType: CommandSourceType.SummonSkill,
+			});
+
+			runAndMergeBundle(duel, bundle, skillCommands);
+
+			if (skillCommands.length > 0) {
+				runAndMergeHooks(duel, bundle, skillCommands);
+			}
+		}
+	});
+
+	/* <-- Inspire hooks */
 	for (let i = 0; i < duel.setting.groundSize; i += 1) {
 		const firstCardId = duel.firstGround[i];
 		const secondCardId = duel.secondGround[i];
@@ -153,13 +198,10 @@ const recursiveRunAndMergeInspiredCommands = (
 			sourceType: CommandSourceType.InspiredSkill,
 		});
 
-		skillCommands.forEach((command) => {
-			bundle.commands.push(command);
-			mergeFragmentToState(duel, runCommand({ duel, command }));
-		});
+		runAndMergeBundle(duel, bundle, skillCommands);
 
 		if (skillCommands.length > 0) {
-			runAndMergeInspireHooks(duel, bundle, skillCommands);
+			runAndMergeHooks(duel, bundle, skillCommands);
 		}
 	});
 };
@@ -253,13 +295,10 @@ export const createAndMergeSkillInspire = (
 				sourceType: CommandSourceType.InspiredSkill,
 			}) || [];
 
-		innerSkillCommands.forEach((command) => {
-			bundle.commands.push(command);
-			mergeFragmentToState(duel, runCommand({ duel, command }));
-		});
+		runAndMergeBundle(duel, bundle, innerSkillCommands);
 
 		if (innerSkillCommands.length > 0) {
-			runAndMergeInspireHooks(duel, bundle, innerSkillCommands);
+			runAndMergeHooks(duel, bundle, innerSkillCommands);
 		}
 	});
 };

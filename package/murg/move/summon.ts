@@ -1,16 +1,13 @@
 import { createCommand } from '../command';
-import { skillMap } from '../skill';
 import { getCard } from '../utils/card';
 import { selectPlayer } from '../utils/helper';
 import {
 	createAndMergeBundle,
 	createCommandBundle,
 	emptyMoveResult,
-	runAndMergeBundle,
-	runAndMergeInspireHooks,
+	runAndMergeHooks,
 } from '../utils/state';
 import {
-	ActivationType,
 	BundleGroup,
 	CardType,
 	CommandSourceType,
@@ -34,8 +31,6 @@ export const summonCard = (
 	const isHeroCard = card.kind === CardType.Hero;
 	const isSpellCard = card.kind === CardType.Spell; /* <-- no spell-card yet */
 	const isHeroInvalid = isHeroCard && player.perTurnHero <= 0;
-	const isSummonActivation = card.skill?.activation === ActivationType.Summon;
-	const skillFunc = skillMap[card.skill?.attribute?.id];
 
 	if (isOwnerInvalid || isHeroInvalid || isSpellCard) {
 		const errorMessage = getErrorMessage(
@@ -48,33 +43,16 @@ export const summonCard = (
 		return emptyMoveResult;
 	}
 
-	const summonBundle = createCommandBundle(duel, BundleGroup.Summon);
-	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
-
-	runAndMergeBundle(
+	const summonBundle = createAndMergeBundle(
 		duel,
-		summonBundle,
+		BundleGroup.Summon,
 		createCommand.cardMove({ owner: fromOwner, target }),
 	);
 	commandBundles.push(summonBundle);
 
-	if (isSummonActivation && skillFunc) {
-		const skillCommands = skillFunc({
-			duel,
-			cardId,
-			sourceType: CommandSourceType.SummonSkill,
-		});
-
-		if (skillCommands.length > 0) {
-			runAndMergeBundle(duel, hookBundle, skillCommands);
-			commandBundles.push(hookBundle);
-		}
-	}
-
-	runAndMergeInspireHooks(duel, hookBundle, [
-		...summonBundle.commands,
-		...hookBundle.commands,
-	]);
+	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
+	runAndMergeHooks(duel, hookBundle, summonBundle.commands);
+	if (hookBundle.commands.length > 0) commandBundles.push(hookBundle);
 
 	commandBundles.push(
 		createAndMergeBundle(

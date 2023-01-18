@@ -6,7 +6,7 @@ import { groundTraverse } from '../utils/ground';
 import {
 	createAndMergeBundle,
 	createCommandBundle,
-	runAndMergeInspireHooks,
+	runAndMergeHooks,
 } from '../utils/state';
 import {
 	ActivationType,
@@ -25,7 +25,7 @@ export const fight = (duel: DuelState): MoveResult => {
 	}
 
 	if (fightBundle.commands.length > 0) {
-		runAndMergeInspireHooks(duel, fightBundle, fightBundle.commands);
+		runAndMergeHooks(duel, fightBundle, fightBundle.commands);
 	}
 
 	const cleanUpBundle = createAndMergeBundle(
@@ -81,7 +81,7 @@ const runFightHook = (
 					skillCommands,
 				);
 
-				runAndMergeInspireHooks(duel, skillBundle, skillCommands);
+				runAndMergeHooks(duel, skillBundle, skillCommands);
 				commandBundles.push(skillBundle);
 			}
 		}

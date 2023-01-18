@@ -5,7 +5,7 @@ import {
 	createCommandBundle,
 	emptyMoveResult,
 	runAndMergeBundle,
-	runAndMergeInspireHooks,
+	runAndMergeHooks,
 } from '../utils/state';
 import {
 	ActivationType,
@@ -47,7 +47,7 @@ export const activateChargeSkill = (
 		const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
 
 		runAndMergeBundle(duel, skillActivateBundle, skillCommands);
-		runAndMergeInspireHooks(duel, hookBundle, skillCommands);
+		runAndMergeHooks(duel, hookBundle, skillCommands);
 
 		if (hookBundle.commands.length > 0) {
 			commandBundles.push(hookBundle);

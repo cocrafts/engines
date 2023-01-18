@@ -206,14 +206,12 @@ export const createAndMergeSummonInspire = (
 	const cardState = getCardState(duel.stateMap, cardId);
 	const skill = card?.skill;
 	const isIllusion = !!cardState.effectMap.Illusion;
-	const isActivationSummon = skill.activation == ActivationType.Summon;
 	const isInspireSummon =
 		skill?.activation === ActivationType.Inspire &&
 		skill?.inspire === InspireSource.Summon;
-	const isActivationValid = isActivationSummon || isInspireSummon;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (isIllusion || !isActivationValid || !skillFunc) return;
+	if (isIllusion || !isInspireSummon || !skillFunc) return;
 
 	recursiveRunAndMergeInspiredCommands(
 		duel,

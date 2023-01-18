@@ -278,7 +278,7 @@ export const combineAttribute = (
 ): Attribute => {
 	return {
 		attack: first.attack + second.attack,
-		defense: first.defense + second.defense,
+		defense: Math.max(0, first.defense + second.defense),
 		health: first.health + second.health,
 	};
 };

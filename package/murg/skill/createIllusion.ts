@@ -24,7 +24,7 @@ export const createIllusion: SkillRunner = ({ duel, cardId, sourceType }) => {
 				from: {
 					owner: state.owner,
 					place: DuelPlace.Ability,
-					id: state.id,
+					id: generatedId,
 				},
 				to: {
 					owner: state.owner,

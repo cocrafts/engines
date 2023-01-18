@@ -1,3 +1,4 @@
+import { getCardState } from './card';
 import { getEnemyId, selectGround } from './helper';
 import { CardIdentifier, DuelPlace, DuelState, TargetSide } from './type';
 
@@ -94,7 +95,7 @@ export const getFacingIdentifiers = (
 		});
 	}
 
-	return result.filter((i) => !!i);
+	return result.filter((i) => getCardState(duel.stateMap, i)?.id);
 };
 
 export const getFacingIdentifier = (

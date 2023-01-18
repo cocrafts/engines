@@ -15,7 +15,7 @@ export const endTurn = (duel: DuelState): MoveResult => {
 				phase:
 					duel.phaseOf === duel.firstMover
 						? DuelPhases.Draw
-						: DuelPhases.PostFight,
+						: DuelPhases.PreFight,
 				phaseOf: nextPlayerId,
 			},
 		}),

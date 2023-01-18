@@ -533,15 +533,15 @@ const cardList: Card[] = [
 		rarity: 0,
 		attribute: {
 			attack: 40,
-			defense: 10,
-			health: 60,
+			defense: 0,
+			health: 80,
 		},
 		skill: {
-			template: 'Gain [+10 Defense:Buff].',
+			template: 'Gain [+{{defense}} Defense:Buff].',
 			activation: ActivationType.Defense,
 			attribute: {
 				id: 'SelfMutate',
-				defense: 10,
+				defense: 5,
 			},
 		},
 	},
@@ -1042,7 +1042,7 @@ const cardList: Card[] = [
 		},
 		skill: {
 			template: 'Summon [20/0/10:Type] [Snake:Type] to nearest place.',
-			activation: ActivationType.Attack,
+			activation: ActivationType.PreFight,
 			attribute: {
 				id: 'SummonSnake',
 			},

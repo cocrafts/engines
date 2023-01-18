@@ -2,8 +2,8 @@ import { Effect, EffectMap } from './type';
 
 export const mergeEffects = (first: EffectMap, second: EffectMap) => {
 	Object.keys(second).forEach((key) => {
-		const existingEffect = first[key];
-		const targetEffect: Effect = second[key];
+		const existingEffect = first?.[key];
+		const targetEffect: Effect = second?.[key];
 
 		if (existingEffect) {
 			if (targetEffect.id === 'Reborn') {

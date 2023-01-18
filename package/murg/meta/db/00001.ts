@@ -383,8 +383,7 @@ const cardList: Card[] = [
 			health: 40,
 		},
 		skill: {
-			template:
-				'Like the Great Fire, we sweep through the battlefield like an unstoppable force',
+			template: '',
 		},
 	},
 	{
@@ -651,7 +650,7 @@ const cardList: Card[] = [
 			health: 60,
 		},
 		skill: {
-			template: 'Bjorn mountain is our home, and we protect it with our lives',
+			template: '',
 		},
 	},
 	{
@@ -1114,9 +1113,11 @@ const cardList: Card[] = [
 
 const filterImplemented = (card: Card) => {
 	return (
-		!card.skill.activation ||
+		card.skill?.activation === undefined ||
 		card.skill?.attribute ||
 		card.skill?.passiveAttribute
 	);
 };
 export default cardList.filter(filterImplemented).map(interpolate);
+
+console.log(cardList.filter(filterImplemented).length);

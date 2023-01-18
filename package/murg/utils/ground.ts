@@ -112,9 +112,12 @@ export const groundTraverse = (
 	duel: DuelState,
 	traverser: GroundTraverseFunction,
 ) => {
-	getTraverseIndexes(duel.firstGround.length).forEach((index) => {
-		traverser(duel.firstGround[index]);
-		traverser(duel.secondGround[index]);
+	const firstGroundClone = [...duel.firstGround];
+	const secondGroundClone = [...duel.secondGround];
+
+	getTraverseIndexes(duel.setting.groundSize).forEach((index) => {
+		traverser(firstGroundClone[index]);
+		traverser(secondGroundClone[index]);
 	});
 };
 

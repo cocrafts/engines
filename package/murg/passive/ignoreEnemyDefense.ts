@@ -22,7 +22,7 @@ export const ignoreEnemyDefense: PassiveRunner = ({ duel, cardId }) => {
 		const state = getCardState(duel.stateMap, cardId);
 		const facingIdentifier = getFacingIdentifier(duel, state.owner, cardId);
 
-		if (!facingIdentifier.id) return [emptyPassive, emptyPassive];
+		if (!facingIdentifier?.id) return [emptyPassive, emptyPassive];
 
 		const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 		const facingDefense = facingState?.defense || 0;

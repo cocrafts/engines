@@ -2,15 +2,16 @@ import { createCommand } from '../command';
 import { getCard } from '../utils/card';
 import { selectPlayer } from '../utils/helper';
 import {
+	createAndMergeBundle,
 	createCommandBundle,
 	emptyMoveResult,
-	runAndMergeBundle,
 	runAndMergeInspireHooks,
 } from '../utils/state';
 import {
 	BundleGroup,
 	CardType,
 	CommandSourceType,
+	DuelCommandBundle,
 	DuelCommandTarget,
 	DuelPlace,
 	DuelState,
@@ -21,7 +22,7 @@ export const summonCard = (
 	duel: DuelState,
 	target: DuelCommandTarget,
 ): MoveResult => {
-	const summonBundle = createCommandBundle(duel, BundleGroup.Summon);
+	const commandBundles: DuelCommandBundle[] = [];
 	const cardId = target.from.id;
 	const fromOwner = target.from.owner;
 	const player = selectPlayer(duel, fromOwner);
@@ -43,34 +44,43 @@ export const summonCard = (
 	}
 
 	const summonCommands = createCommand.cardMove({ owner: fromOwner, target });
-	runAndMergeBundle(duel, summonBundle, summonCommands);
-	runAndMergeBundle(
-		duel,
-		summonBundle,
-		createCommand.playerMutate({
-			target: {
-				source: {
-					type: CommandSourceType.SummonMove,
-					owner: fromOwner,
-				},
-				to: {
-					owner: fromOwner,
-					place: DuelPlace.Player,
-				},
-			},
-			payload: {
-				perTurnHero: player.perTurnHero - (isHeroCard ? 1 : 0),
-				perTurnSpell: player.perTurnSpell - (isSpellCard ? 1 : 0),
-			},
-		}),
+	commandBundles.push(
+		createAndMergeBundle(duel, BundleGroup.Summon, summonCommands),
 	);
 
 	const hookBundle = createCommandBundle(duel, BundleGroup.SkillActivation);
 	runAndMergeInspireHooks(duel, hookBundle, summonCommands);
 
+	if (hookBundle.commands.length > 0) {
+		commandBundles.push(hookBundle);
+	}
+
+	commandBundles.push(
+		createAndMergeBundle(
+			duel,
+			BundleGroup.PlayerUpdate,
+			createCommand.playerMutate({
+				target: {
+					source: {
+						type: CommandSourceType.SummonMove,
+						owner: fromOwner,
+					},
+					to: {
+						owner: fromOwner,
+						place: DuelPlace.Player,
+					},
+				},
+				payload: {
+					perTurnHero: player.perTurnHero - (isHeroCard ? 1 : 0),
+					perTurnSpell: player.perTurnSpell - (isSpellCard ? 1 : 0),
+				},
+			}),
+		),
+	);
+
 	return {
 		duel,
-		commandBundles: [summonBundle],
+		commandBundles,
 	};
 };
 

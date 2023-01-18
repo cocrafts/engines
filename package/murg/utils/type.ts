@@ -381,6 +381,7 @@ export enum BundleGroup {
 	FightSkill = 'FightSkill',
 	FightCombat = 'FightCombat',
 	Reinforce = 'Reinforce',
+	PlayerUpdate = 'PlayerUpdate',
 	PhaseUpdate = 'PhaseUpdate',
 	DuelUpdate = 'DuelUpdate',
 	UnitCleanUp = 'UnitCleanUp',

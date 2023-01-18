@@ -1111,13 +1111,4 @@ const cardList: Card[] = [
 	},
 ];
 
-const filterImplemented = (card: Card) => {
-	return (
-		card.skill?.activation === undefined ||
-		card.skill?.attribute ||
-		card.skill?.passiveAttribute
-	);
-};
-export default cardList.filter(filterImplemented).map(interpolate);
-
-console.log(cardList.filter(filterImplemented).length);
+export default cardList.map(interpolate);

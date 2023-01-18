@@ -1,6 +1,6 @@
 import { createCommand } from '../command';
 import { skillMap } from '../skill';
-import { getCard } from '../utils/card';
+import { getCard, getCardState } from '../utils/card';
 import { runFightAt } from '../utils/fight';
 import { groundTraverse } from '../utils/ground';
 import {
@@ -63,15 +63,18 @@ const runFightHook = (
 			? ActivationType.PreFight
 			: ActivationType.PostFight;
 		const isFightHookActivation = card?.skill?.activation === activation;
+		const state = getCardState(duel.stateMap, cardId);
+		const isIllusion = !!state.effectMap.Illusion;
+		const isActivationValid = isFightHookActivation && !isIllusion;
 
-		if (isFightHookActivation) {
+		if (isActivationValid) {
 			const skillFunc = skillMap[card.skill.attribute?.id];
 			const sourceType = isPreFight
 				? CommandSourceType.PreFightSkill
 				: CommandSourceType.PostFightSkill;
 			const skillCommands = skillFunc?.({ duel, cardId, sourceType }) || [];
 
-			if (skillCommands.length > 0) {
+			if (skillCommands.length > 0 && !isIllusion) {
 				const skillBundle = createAndMergeBundle(
 					duel,
 					BundleGroup.FightSkill,

@@ -46,6 +46,7 @@ export const runPlayerAttack = (
 	const card = getCard(duel.cardMap, cardId);
 	const isGloryActivation = card?.skill?.activation === ActivationType.Glory;
 	const cardState = getCardState(duel.stateMap, cardId);
+	const isIllusion = !!cardState.effectMap?.Illusion;
 	const [cardPassive] = extractPassivePair(duel, cardId, null);
 	const combinedState = combineAttribute(cardState, cardPassive);
 	const opponentId = getEnemyId(duel, cardState.owner);
@@ -71,7 +72,7 @@ export const runPlayerAttack = (
 		}),
 	);
 
-	if (isGloryActivation) {
+	if (isGloryActivation && !isIllusion) {
 		const skillFunc = skillMap[card.skill?.attribute?.id];
 		const skillCommands = skillFunc?.({
 			duel,
@@ -115,6 +116,7 @@ export const runCardAttack = (
 	const firstCard = getCard(duel.cardMap, firstId);
 	const firstState = getCardState(duel.stateMap, firstId);
 	const secondCard = getCard(duel.cardMap, secondId);
+	const secondState = getCardState(duel.stateMap, secondId);
 	const isAttackActivation =
 		firstCard?.skill?.activation === ActivationType.Attack;
 	const isDefenseActivation =
@@ -132,7 +134,7 @@ export const runCardAttack = (
 		runAndMergeBundle(duel, bundle, skillCommands);
 	}
 
-	if (isDefenseActivation && !firstState.effectMap.Illusion) {
+	if (isDefenseActivation && !secondState.effectMap.Illusion) {
 		const skillFunc = skillMap[secondCard.skill?.attribute?.id];
 		const skillCommands =
 			skillFunc?.({

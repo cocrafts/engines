@@ -9,6 +9,9 @@ export const gainAttackByEnemyMissingHealth: PassiveRunner = ({
 }) => {
 	const state = getCardState(duel.stateMap, cardId);
 	const facingIdentifier = getFacingIdentifier(duel, state.owner, cardId);
+
+	if (!facingIdentifier?.id) return [emptyPassive, emptyPassive];
+
 	const facingCard = getCard(duel.cardMap, facingIdentifier.id);
 	const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 	const missingHealth = !facingState?.id

@@ -20,11 +20,8 @@ export const frontMutate: SkillRunner = ({ duel, cardId, sourceType }) => {
 
 	if (facingIdentifiers.length === 0) return commands;
 
-	facingIdentifiers.forEach((facingIdentifier, index) => {
-		const facingState = getCardState(
-			duel.stateMap,
-			facingIdentifiers[index].id,
-		);
+	facingIdentifiers.forEach((facingIdentifier) => {
+		const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 
 		createCommand
 			.cardMutate({

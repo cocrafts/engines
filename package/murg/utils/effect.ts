@@ -19,6 +19,11 @@ export const mergeEffects = (first: EffectMap, second: EffectMap) => {
 			}
 		} else {
 			first[key] = targetEffect;
+
+			/* <- first Stack effect also assign initial attribute */
+			if (targetEffect.id === 'AttributeStack') {
+				first[key].attribute = targetEffect.attributeStack.attribute;
+			}
 		}
 	});
 

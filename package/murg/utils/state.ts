@@ -176,14 +176,12 @@ export const createAndMergeDeathInspire = (
 	const cardState = getCardState(duel.stateMap, cardId);
 	const skill = card?.skill;
 	const isIllusion = !!cardState.effectMap.Illusion;
-	const isActivationDeath = skill.activation === ActivationType.Death;
 	const isInspireDeath =
 		skill?.activation === ActivationType.Inspire &&
 		skill?.inspire === InspireSource.Death;
-	const isActivationValid = isActivationDeath || isInspireDeath;
 	const skillFunc = skillMap[skill.attribute?.id];
 
-	if (isIllusion || !isActivationValid || !skillFunc) return;
+	if (isIllusion || !isInspireDeath || !skillFunc) return;
 
 	recursiveRunAndMergeInspiredCommands(
 		duel,

@@ -665,7 +665,7 @@ const cardList: Card[] = [
 			health: 70,
 		},
 		skill: {
-			template: 'We are shield of the Tanker Guild',
+			template: '',
 		},
 	},
 	{

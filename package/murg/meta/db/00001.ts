@@ -20,7 +20,7 @@ const cardList: Card[] = [
 			health: 40,
 		},
 		skill: {
-			template: 'A proud warrior.',
+			template: '',
 		},
 	},
 	{
@@ -35,7 +35,7 @@ const cardList: Card[] = [
 			health: 20,
 		},
 		skill: {
-			template: 'A ware wolf.',
+			template: '',
 		},
 	},
 	{
@@ -50,7 +50,7 @@ const cardList: Card[] = [
 			health: 20,
 		},
 		skill: {
-			template: 'Small snake.',
+			template: '',
 		},
 	},
 	/* <-- end of Troop cards */

@@ -209,6 +209,7 @@ export enum CommandSourceType {
 	PreFightSkill = 'PreFightSkill',
 	PostFightSkill = 'PostFightSkill',
 	GlorySkill = 'GlorySkill',
+	SummonSkill = 'SummonSkill',
 	AttackSkill = 'AttackSkill',
 	DefenseSkill = 'DefenseSkill',
 	InspiredSkill = 'InspiredSkill',

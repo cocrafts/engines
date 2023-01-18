@@ -17,7 +17,7 @@ export const ignoreEnemyDefense: PassiveRunner = ({ duel, cardId }) => {
 	};
 
 	if (defense) {
-		enemyPassive.defense = Math.max(0, -defense);
+		enemyPassive.defense = Math.min(0, -defense);
 	} else {
 		const state = getCardState(duel.stateMap, cardId);
 		const facingIdentifier = getFacingIdentifier(duel, state.owner, cardId);
@@ -27,7 +27,7 @@ export const ignoreEnemyDefense: PassiveRunner = ({ duel, cardId }) => {
 		const facingState = getCardState(duel.stateMap, facingIdentifier.id);
 		const facingDefense = facingState?.defense || 0;
 
-		enemyPassive.defense = Math.max(0, -facingDefense);
+		enemyPassive.defense = Math.min(0, -facingDefense);
 	}
 
 	return [emptyPassive, enemyPassive];

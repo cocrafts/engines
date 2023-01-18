@@ -4,13 +4,12 @@ import { getClosestEmpty } from '../utils/ground';
 import { createCommandResult, selectGround } from '../utils/helper';
 import { DuelPlace, SkillRunner } from '../utils/type';
 
-export const SnakeId = '999970000';
-
 export const summonSnake: SkillRunner = ({ duel, cardId, sourceType }) => {
 	const { commands, registerCommand } = createCommandResult();
 	const state = getCardState(duel.stateMap, cardId);
 	const myGround = selectGround(duel, state.owner);
 	const closestIndex = getClosestEmpty(myGround);
+	const generatedId = `999970000#${duel.uniqueCardCount + 1}`;
 
 	if (!closestIndex) return commands;
 
@@ -26,7 +25,7 @@ export const summonSnake: SkillRunner = ({ duel, cardId, sourceType }) => {
 				from: {
 					owner: state.owner,
 					place: DuelPlace.Ability,
-					id: SnakeId,
+					id: generatedId,
 				},
 				to: {
 					owner: state.owner,

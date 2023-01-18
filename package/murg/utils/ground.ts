@@ -69,7 +69,7 @@ export const getFacingIdentifiers = (
 ) => {
 	if (!owner) return [];
 
-	const result = [];
+	const result: CardIdentifier[] = [];
 	const enemyId = getEnemyId(duel, owner);
 	const ground = selectGround(duel, owner);
 	const enemyGround = selectGround(duel, enemyId);
@@ -95,7 +95,7 @@ export const getFacingIdentifiers = (
 		});
 	}
 
-	return result.filter((i) => getCardState(duel.stateMap, i)?.id);
+	return result.filter((i) => getCardState(duel.stateMap, i.id)?.id);
 };
 
 export const getFacingIdentifier = (

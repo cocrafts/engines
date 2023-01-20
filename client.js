@@ -41,7 +41,7 @@ watch(process.cwd(), {
 	require(resolve(filename));
 
 	measureExecutionTime('render', 'time to render App');
-	if (relativeUri.startsWith('tool/murg/state')) {
+	if (relativeUri.startsWith('tool/murg-client/state')) {
 		const { duel, history } = require('./tool/murg-client/state').replay();
 		element = makeElement(App, duel, history);
 	}

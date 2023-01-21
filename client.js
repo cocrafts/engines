@@ -13,21 +13,20 @@ const { measureExecutionTime } = require('./tool/murg-client/util');
 let App = require('./tool/murg-client').MURG;
 let lastRenderTime = 0;
 
-const makeElement = (el, duel, history) => {
-	const slicedHistory = history.slice(0, 10);
+const makeElement = (el, config, history) => {
 	const props = {
-		duel,
-		history: slicedHistory,
+		config,
+		history,
 		renderTime: lastRenderTime,
 	};
 
 	return React.createElement(el, props);
 };
 
-const { duel, history } = require('./tool/murg-client/state').replay();
+const { config, history } = require('./tool/murg-client/duels').default;
 
 measureExecutionTime('initial-render', 'time to render App');
-const { rerender } = render(makeElement(App, duel, history));
+const { rerender } = render(makeElement(App, config, history));
 lastRenderTime = measureExecutionTime('initial-render');
 
 watch(process.cwd(), {
@@ -35,20 +34,20 @@ watch(process.cwd(), {
 	ignored: ['**/node_modules/**/*', '**/.git/**/*', '**/.idea/**/*'],
 }).on('all', (event, filename) => {
 	const relativeUri = relative(process.cwd(), filename);
-	let element = makeElement(App, duel, history);
+	let element = makeElement(App, config, history);
 
 	invalidate(resolve(filename));
 	require(resolve(filename));
 
 	measureExecutionTime('render', 'time to render App');
-	if (relativeUri.startsWith('tool/murg-client/state')) {
-		const { duel, history } = require('./tool/murg-client/state').replay();
-		element = makeElement(App, duel, history);
+	if (relativeUri.startsWith('tool/murg-client/duels')) {
+		const { config, history } = require('./tool/murg-client/duels').default;
+		element = makeElement(App, config, history);
 	}
 
 	if (relativeUri.endsWith('.tsx')) {
 		App = require('./tool/murg-client').MURG;
-		element = makeElement(App, duel, history);
+		element = makeElement(App, config, history);
 	}
 
 	rerender(element);

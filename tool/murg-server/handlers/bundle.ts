@@ -34,6 +34,15 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 		duelRecord.winner = winner;
 		await send({ winner }, DuelCommands.GameOver);
 	}
+
+	try {
+		require('fs').writeFileSync(
+			'duel.json',
+			JSON.stringify(duelRecord, null, 2),
+		);
+	} catch (e) {
+		console.log(e);
+	}
 };
 
 export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {
@@ -59,8 +68,9 @@ export const fillAndRunBundles = (
 		}
 	};
 
-	const injectMove = (move: MoveResult) => {
-		move.commandBundles.forEach(registerBundle);
+	const injectMove = ({ duel: fragment, commandBundles }: MoveResult) => {
+		mergeFragmentToState(duel, fragment);
+		commandBundles.forEach((bundle) => responseBundles.push(bundle));
 	};
 
 	bundles.forEach((bundle) => {

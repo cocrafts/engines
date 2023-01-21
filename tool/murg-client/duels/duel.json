@@ -1,0 +1,5595 @@
+{
+  "config": {
+    "version": "00001",
+    "setting": {
+      "initialCardCount": 5,
+      "initialPlayerHealth": 250,
+      "elementalFactor": 0.1,
+      "handSize": 9,
+      "groundSize": 11,
+      "maxAttachment": 2,
+      "spellIncreaseCycle": 3,
+      "perTurnDraw": 1,
+      "perTurnHero": 1,
+      "perTurnSpell": 2,
+      "perTurnTroop": 1
+    },
+    "firstMover": "A",
+    "firstPlayer": {
+      "id": "A",
+      "deck": [
+        "000220007",
+        "000270001",
+        "000320002",
+        "000130006",
+        "000160003",
+        "000170002",
+        "000530001",
+        "000080005",
+        "000060005",
+        "000090003",
+        "000030006",
+        "000250001",
+        "000100004",
+        "000540002",
+        "000290003",
+        "000110005",
+        "000550007",
+        "000240004",
+        "000210003",
+        "000440005",
+        "000040002",
+        "000010007",
+        "000050002",
+        "000120004",
+        "000300007",
+        "000190007",
+        "000410001",
+        "000020004",
+        "000310005"
+      ]
+    },
+    "secondPlayer": {
+      "id": "B",
+      "deck": [
+        "000190005",
+        "000080002",
+        "000290006",
+        "000320002",
+        "000030004",
+        "000090005",
+        "000210007",
+        "000440005",
+        "000240006",
+        "000270003",
+        "000410001",
+        "000550006",
+        "000120006",
+        "000530003",
+        "000100003",
+        "000540003",
+        "000300002",
+        "000110005",
+        "000040007",
+        "000220003",
+        "000020002",
+        "000170004",
+        "000060004",
+        "000050006",
+        "000160005",
+        "000130003",
+        "000310007",
+        "000010002",
+        "000250004"
+      ]
+    }
+  },
+  "history": [
+    {
+      "turn": 0,
+      "group": "InitialDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000190007#26",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000120004#24",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000100004#13",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000080005#8",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000440005#20",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 0,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 0,
+      "group": "InitialDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000250004#58",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000530003#43",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000110005#47",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000100003#44",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000040007#48",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 0,
+      "group": "DuelUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phaseOf": "A",
+            "turn": 1
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000270001#2",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000100004#13",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#59",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000050006#53",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000110005#47",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#60",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 1,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#60"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 230
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000110005#47"
+            }
+          },
+          "payload": {
+            "health": -30
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000110005#47"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "000110005#47"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#59"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 230
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#60",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 1,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 1,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 1,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 2,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 2
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000160003#5",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000190007#26",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#61",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000160005#54",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000050006#53",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#62",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 2
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 2,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000190007#26"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 200
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#60"
+            }
+          },
+          "payload": {
+            "health": -4
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#60"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "999990000#60"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            }
+          },
+          "payload": {
+            "health": 2
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#59"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000050006#53"
+            }
+          },
+          "payload": {
+            "health": 30
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000050006#53"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#59"
+            }
+          },
+          "payload": {
+            "health": 10
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#61"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#62"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#62"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#61"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000050006#53",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#62",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 2,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "to": {
+              "owner": "A",
+              "id": "000190007#26",
+              "place": "Ground"
+            }
+          },
+          "payload": {
+            "charge": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 3,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000050002#23",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000160003#5",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 3,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#63",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 8,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000090005#35",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000100003#44",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#64",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 3,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000160003#5"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 150
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000190007#26"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000100003#44"
+            }
+          },
+          "payload": {
+            "health": 10
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000100003#44"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000190007#26"
+            }
+          },
+          "payload": {
+            "health": -20
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000190007#26"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000050006#53"
+            }
+          },
+          "payload": {
+            "health": -50
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000050006#53"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "000050006#53"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            }
+          },
+          "payload": {
+            "health": -28
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000100004#13"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#59"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#62"
+            }
+          },
+          "payload": {
+            "health": 0
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#62"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "999990000#62"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#59"
+            }
+          },
+          "payload": {
+            "health": -10
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#59"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#61"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#64"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#64"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#61"
+            }
+          },
+          "payload": {
+            "health": 0
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#61"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#63"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 130
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000160003#5",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#63",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#64",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 3,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 3,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 3,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 4,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000040002#21",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000120004#24",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#65",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000120006#42",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000250004#58",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#66",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 4,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000160003#5"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000100003#44"
+            }
+          },
+          "payload": {
+            "health": -40
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000100003#44"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "000100003#44"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000160003#5"
+            }
+          },
+          "payload": {
+            "health": 30
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#63"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#64"
+            }
+          },
+          "payload": {
+            "health": 0
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#64"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "999990000#64"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#63"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "DefenseSkill",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "attack": 40,
+            "defense": 5,
+            "health": 80
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "health": 55
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            }
+          },
+          "payload": {
+            "health": 10
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#65"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#66"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#66"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#65"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "InspiredSkill",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            }
+          },
+          "payload": {
+            "attack": 40,
+            "defense": 0,
+            "health": 10
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "InspiredSkill",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            }
+          },
+          "payload": {
+            "attack": 50,
+            "defense": 0,
+            "health": 10
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000250004#58",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#66",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 4,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 4,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 4,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 5,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000320002#3",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000320002#3",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 3,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#67",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 8,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000010002#57",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000010002#57",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "SkillActivation",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "SummonSkill",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000160003#5"
+            }
+          },
+          "payload": {
+            "health": 0
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000160003#5"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "InspiredSkill",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            }
+          },
+          "payload": {
+            "attack": 60,
+            "defense": 0,
+            "health": 10
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#68",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 3
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000320002#3",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000320002#3"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000320002#3"
+            }
+          },
+          "payload": {
+            "health": 70
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "DefenseSkill",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "attack": 40,
+            "defense": 10,
+            "health": 55
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#63"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "health": 47
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#63"
+            }
+          },
+          "payload": {
+            "health": -24
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#63"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#66"
+            }
+          },
+          "payload": {
+            "health": -46
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#66"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "999990000#66"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            }
+          },
+          "payload": {
+            "health": -8
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000120004#24"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#65"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#68"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#68"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#65"
+            }
+          },
+          "payload": {
+            "health": 0
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#65"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#67"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 110
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#67",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#68",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 5,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 5,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 5,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 6,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 4
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000240004#18",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000240004#18",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#69",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000290006#32",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000160005#54",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#70",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 8,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 6,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000320002#3"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            }
+          },
+          "payload": {
+            "health": 10
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000320002#3"
+            }
+          },
+          "payload": {
+            "health": 70
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "DefenseSkill",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "attack": 40,
+            "defense": 15,
+            "health": 47
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#67"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "health": 44
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#67"
+            }
+          },
+          "payload": {
+            "health": -4
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#67"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#18"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#68"
+            }
+          },
+          "payload": {
+            "health": -24
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#68"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "999990000#68"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#18"
+            }
+          },
+          "payload": {
+            "health": 22
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#69"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000160005#54"
+            }
+          },
+          "payload": {
+            "health": 50
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000160005#54"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#69"
+            }
+          },
+          "payload": {
+            "health": -10
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#69"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#70"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 210
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000240004#18",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000160005#54",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#70",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "FightSkill",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "000240004#18",
+          "type": "CardMove",
+          "target": {
+            "source": {
+              "type": "PostFightSkill",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#18"
+            },
+            "from": {
+              "owner": "A",
+              "place": "Ability",
+              "id": "000240004#71"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "index": 6
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#71"
+            }
+          },
+          "payload": {
+            "attack": 10,
+            "defense": 0,
+            "health": 10,
+            "effectMap": {
+              "Illusion": {
+                "id": "Illusion"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 6,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 6,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 6,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 7,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 4
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000210003#19",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000270001#2",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 3,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#72",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "A",
+              "index": 7,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "A"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Draw",
+            "phaseOf": "B"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000190005#30",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000290006#32",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 3,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Summon",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "999990000#73",
+              "place": "Hand"
+            },
+            "to": {
+              "owner": "B",
+              "index": 8,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PlayerUpdate",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "SummonMove",
+              "owner": "B"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 0,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "EndTurn",
+      "phase": "Setup",
+      "phaseOf": "B",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PreFight",
+            "phaseOf": "A"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PhaseUpdate",
+      "phase": "PreFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Fight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Reinforce",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 7,
+      "group": "FightCombat",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000270001#2"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000290006#32"
+            }
+          },
+          "payload": {
+            "health": 23
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "AttackSkill",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000290006#32"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000290006#32"
+            }
+          },
+          "payload": {
+            "attack": 50,
+            "defense": 10,
+            "health": 33
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "DefenseSkill",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000270001#2"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000290006#32"
+            }
+          },
+          "payload": {
+            "attack": 40,
+            "defense": 10,
+            "health": 33
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000290006#32"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000270001#2"
+            }
+          },
+          "payload": {
+            "health": 56
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000320002#3"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            }
+          },
+          "payload": {
+            "health": 0
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "B",
+          "target": {
+            "from": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000010002#57"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Grave",
+              "id": "000010002#57"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000320002#3"
+            }
+          },
+          "payload": {
+            "health": 70
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "DefenseSkill",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "attack": 40,
+            "defense": 20,
+            "health": 44
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#18"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            }
+          },
+          "payload": {
+            "health": 24
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000250004#58"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#18"
+            }
+          },
+          "payload": {
+            "health": -18
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#18"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#71"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "000160005#54"
+            }
+          },
+          "payload": {
+            "health": 40
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "000160005#54"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#71"
+            }
+          },
+          "payload": {
+            "health": -40
+          }
+        },
+        {
+          "type": "CardMove",
+          "owner": "A",
+          "target": {
+            "from": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "000240004#71"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Grave"
+            }
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "B",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#72"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#70"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "CardMutate",
+          "owner": "A",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#70"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Ground",
+              "id": "999990000#72"
+            }
+          },
+          "payload": {
+            "health": 20
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "Unit",
+              "owner": "B",
+              "place": "Ground",
+              "id": "999990000#73"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "health": 190
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PhaseUpdate",
+      "phase": "Fight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "PostFight"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Reinforce",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000270001#2",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "B",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "B",
+              "id": "000290006#32",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "B",
+              "index": 4,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000320002#3",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#72",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 6,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "PhaseUpdate",
+      "phase": "PostFight",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "CleanUp"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "Reinforce",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000#72",
+              "place": "Ground"
+            },
+            "to": {
+              "owner": "A",
+              "index": 5,
+              "place": "Ground"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 7,
+      "group": "UnitCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": []
+    },
+    {
+      "turn": 7,
+      "group": "TurnCleanUp",
+      "phase": "CleanUp",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "turn": 8,
+            "phase": "Draw",
+            "phaseOf": "A"
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 4
+          }
+        },
+        {
+          "type": "PlayerMutate",
+          "target": {
+            "source": {
+              "type": "System"
+            },
+            "to": {
+              "owner": "B",
+              "place": "Player"
+            }
+          },
+          "payload": {
+            "perTurnHero": 1,
+            "perTurnSpell": 4
+          }
+        }
+      ]
+    },
+    {
+      "turn": 8,
+      "group": "TurnDraw",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "000110005#16",
+              "place": "Deck"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        },
+        {
+          "owner": "A",
+          "type": "CardMove",
+          "target": {
+            "from": {
+              "owner": "A",
+              "id": "999990000",
+              "place": "Player"
+            },
+            "to": {
+              "owner": "A",
+              "place": "Hand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "turn": 8,
+      "group": "PhaseUpdate",
+      "phase": "Draw",
+      "phaseOf": "A",
+      "commands": [
+        {
+          "type": "DuelMutate",
+          "payload": {
+            "phase": "Setup"
+          }
+        }
+      ]
+    }
+  ]
+}

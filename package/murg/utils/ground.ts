@@ -106,7 +106,10 @@ export const getFacingIdentifier = (
 	return getFacingIdentifiers(duel, owner, cardId)[0];
 };
 
-export type GroundTraverseFunction = (cardId: string | undefined) => void;
+export type GroundTraverseFunction = (
+	cardId: string | undefined,
+	index: number,
+) => void;
 
 export const groundTraverse = (
 	duel: DuelState,
@@ -116,8 +119,8 @@ export const groundTraverse = (
 	const secondGroundClone = [...duel.secondGround];
 
 	getTraverseIndexes(duel.setting.groundSize).forEach((index) => {
-		traverser(firstGroundClone[index]);
-		traverser(secondGroundClone[index]);
+		traverser(firstGroundClone[index], index);
+		traverser(secondGroundClone[index], index);
 	});
 };
 

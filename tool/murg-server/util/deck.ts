@@ -12,9 +12,8 @@ export const generateRandomDeck = (meta: CardMeta, size = 36) => {
 		const randomId = sources[randomIndex];
 		const sku = randomId.substring(0, 5);
 		const existedCard = results.find((id) => id.startsWith(sku));
-		const card = meta.map[randomId];
 
-		if (!existedCard && card.kind !== CardType.Troop) {
+		if (!existedCard) {
 			results.push(randomId);
 			count++;
 		}

@@ -5,6 +5,7 @@ selfsigned.*
 
 .idea
 dist
+duel.json
 
 node_modules
 npm-debug.log

@@ -27,7 +27,6 @@ for (let i = 0; i < slicedHistory.length; i += 1) {
 }
 
 runMove(move.reinforce(duel));
-// console.log(JSON.stringify(slicedHistory[161], null, 2));
 
 export default {
 	config: config,

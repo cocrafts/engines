@@ -1,6 +1,6 @@
 import { createCommand, runCommand } from '../command';
 import { getCardState } from '../utils/card';
-import { reinforceArray } from '../utils/ground';
+import { getTraverseIndexes, reinforceArray } from '../utils/ground';
 import { createCommandBundle, mergeFragmentToState } from '../utils/state';
 import {
 	BundleGroup,
@@ -41,7 +41,7 @@ export const reinforce = (duel: DuelState): MoveResult => {
 			});
 	};
 
-	for (let i = 0; i < setting.groundSize; i++) {
+	getTraverseIndexes(setting.groundSize).forEach((i) => {
 		const firstCardId = firstReinforced[i];
 		const secondCardId = secondReinforced[i];
 
@@ -54,7 +54,7 @@ export const reinforce = (duel: DuelState): MoveResult => {
 			const state = getCardState(duel.stateMap, secondCardId);
 			registerCardMove(state, secondGround, i);
 		}
-	}
+	});
 
 	return {
 		duel,

@@ -1062,7 +1062,7 @@ const cardList: Card[] = [
 		skill: {
 			template:
 				'[Steal] facing [Troop] if it have [{{minHealth}} or less] Health.',
-			activation: ActivationType.PostFight,
+			activation: ActivationType.PreFight,
 			attribute: {
 				id: 'MinHealthSteal',
 				minHealth: 20,

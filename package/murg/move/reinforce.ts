@@ -11,7 +11,7 @@ import {
 } from '../utils/type';
 
 export const reinforce = (duel: DuelState): MoveResult => {
-	const reinforceUpBundle = createCommandBundle(duel, BundleGroup.Reinforce);
+	const reinforceBundle = createCommandBundle(duel, BundleGroup.Reinforce);
 	const { setting, firstGround, secondGround } = duel;
 	const firstReinforced = reinforceArray(firstGround);
 	const secondReinforced = reinforceArray(secondGround);
@@ -36,7 +36,7 @@ export const reinforce = (duel: DuelState): MoveResult => {
 		createCommand
 			.cardMove({ owner: state.owner, target })
 			.forEach((command) => {
-				reinforceUpBundle.commands.push(command);
+				reinforceBundle.commands.push(command);
 				mergeFragmentToState(duel, runCommand({ duel, command }));
 			});
 	};
@@ -58,6 +58,6 @@ export const reinforce = (duel: DuelState): MoveResult => {
 
 	return {
 		duel,
-		commandBundles: [reinforceUpBundle],
+		commandBundles: [reinforceBundle],
 	};
 };

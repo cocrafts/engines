@@ -69,14 +69,18 @@ export const fillAndRunBundles = (
 	};
 
 	const injectMove = ({ duel: fragment, commandBundles }: MoveResult) => {
-		mergeFragmentToState(duel, fragment);
-		commandBundles.forEach((bundle) => responseBundles.push(bundle));
+		if (commandBundles.length > 0) {
+			mergeFragmentToState(duel, fragment);
+			commandBundles.forEach((bundle) => responseBundles.push(bundle));
+		}
 	};
 
 	bundles.forEach((bundle) => {
 		registerBundle(bundle);
 
-		if (bundle.group === BundleGroup.EndTurn) {
+		if (bundle.group === BundleGroup.Summon) {
+			injectMove(move.reinforce(duel));
+		} else if (bundle.group === BundleGroup.EndTurn) {
 			if (bundle.phaseOf === duel.firstPlayer.id) {
 				injectMove(move.distributeTurnCards(duel));
 			} else {

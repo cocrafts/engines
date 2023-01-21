@@ -1,21 +1,18 @@
 import { FC } from 'react';
 import { PlayerState } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
-import BigText from 'ink-big-text';
-import Gradient from 'ink-gradient';
 
 interface Props {
+	color: string;
 	state: PlayerState;
 }
 
-export const Player: FC<Props> = ({ state }) => {
+export const Player: FC<Props> = ({ color, state }) => {
 	return (
 		<Box justifyContent="center" alignItems="center">
-			<Text>[Hero: {state.perTurnHero}]</Text>
-			<Gradient name="pastel">
-				<BigText text={String(state.health)} />
-			</Gradient>
-			<Text>[Spell: {state.perTurnSpell}]</Text>
+			<Text color="gray">Hero: {state.perTurnHero} (</Text>
+			<Text color={color}>{String(state.health)}</Text>
+			<Text color="gray">) Spell: {state.perTurnSpell}</Text>
 		</Box>
 	);
 };

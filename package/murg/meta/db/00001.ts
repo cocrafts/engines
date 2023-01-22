@@ -82,9 +82,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 60,
 			defense: 0,
-			health: 60,
+			health: 30,
 		},
 		skill: {
 			template: "[Gain Attack:Buff] equal to facing enemy's [Defense].",
@@ -415,13 +415,13 @@ const cardList: Card[] = [
 			health: 60,
 		},
 		skill: {
-			template: 'Deal [30 damage:Danger] to [5] front enemies',
+			template: 'Deal [{{health}} damage:Danger] to [3] front enemies',
 			activation: ActivationType.Charge,
-			charge: 4,
+			charge: 3,
 			attribute: {
 				id: 'FrontMutate',
 				health: -30,
-				radius: 2,
+				radius: 1,
 			},
 		},
 	},

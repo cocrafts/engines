@@ -34,10 +34,6 @@ const destructiveCycle: ElementalType[] = [
 	ElementalType.Fire,
 ];
 
-type StatedCard = Card & {
-	state: CardState;
-};
-
 export const runPlayerAttack = (
 	duel: DuelState,
 	bundle: DuelCommandBundle,
@@ -201,20 +197,27 @@ export const getStateAfterCombat = (
 	};
 };
 
-export const isGenerative = (
-	from: Card | StatedCard,
-	to: Card | StatedCard,
-) => {
+export const isGenerative = (from: Card, to: Card) => {
 	const fromIndex = generativeCycle.indexOf(from.elemental);
 	return generativeCycle[fromIndex + 1] === to.elemental;
 };
 
-export const isDestructive = (
-	from: Card | StatedCard,
-	to: Card | StatedCard,
-) => {
+export const superiorElements = [ElementalType.Light, ElementalType.Dark];
+
+export const isDestructive = (from: Card, to: Card) => {
+	const isSuperior = superiorElements.indexOf(from.elemental) >= 0;
+	const isAgainstSuperior = superiorElements.indexOf(to.elemental) >= 0;
+
+	if (isAgainstSuperior) return false;
+	if (isSuperior) return true;
+
 	const fromIndex = destructiveCycle.indexOf(from.elemental);
-	return destructiveCycle[fromIndex + 1] === to.elemental;
+
+	if (fromIndex >= 0) {
+		return destructiveCycle[fromIndex + 1] === to.elemental;
+	}
+
+	return false;
 };
 
 export const getGenerativeDamage = (

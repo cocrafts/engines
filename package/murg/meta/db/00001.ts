@@ -101,12 +101,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 50,
 			defense: 0,
 			health: 50,
 		},
 		skill: {
-			template: 'Permanently [-10 Defense:Danger].',
+			template: 'Permanently [{{defense}} Defense:Danger].',
 			activation: ActivationType.Attack,
 			attribute: {
 				id: 'FrontMutate',
@@ -121,9 +121,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 60,
 			defense: 0,
-			health: 20,
+			health: 40,
 		},
 		skill: {
 			template: "Ignore enemy's [Defense].",
@@ -142,7 +142,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 50,
+			health: 60,
 		},
 		skill: {
 			template: "[Gain Attack:Buff] equal to facing enemy's missing [Health].",
@@ -164,7 +164,8 @@ const cardList: Card[] = [
 			health: 60,
 		},
 		skill: {
-			template: '[Destroy:Danger] facing enemy if [30 or less] health.',
+			template:
+				'[Destroy:Danger] facing enemy if [{{minHealth}} or less] health.',
 			activation: ActivationType.PreFight,
 			attribute: {
 				id: 'DestroyFacingMinHealth',
@@ -218,17 +219,20 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 30,
 			defense: 0,
 			health: 60,
 		},
 		skill: {
-			template: 'Deal [10 damage:Danger] to random enemy.',
+			template: 'Deal [{{damage}} Damage:Danger] to random enemy.',
 			activation: ActivationType.Charge,
 			charge: 1,
 			attribute: {
 				id: 'RandomEnemyMutate',
-				health: -10,
+				health: -40,
+				damage() {
+					return Math.abs(this.health);
+				},
 			},
 		},
 	},
@@ -245,12 +249,15 @@ const cardList: Card[] = [
 			health: 40,
 		},
 		skill: {
-			template: 'Deal [200% damage:Danger] against [Hero].',
+			template: 'Deal [{{percentage}}% damage:Danger] against [Hero].',
 			activation: ActivationType.Passive,
 			passiveAttribute: {
 				id: 'DamageMultiplier',
 				multiplyFactor: 2,
 				cardTypes: [CardType.Hero],
+				percentage() {
+					return this.multiplyFactor * 100;
+				},
 			},
 		},
 	},
@@ -266,7 +273,7 @@ const cardList: Card[] = [
 			health: 50,
 		},
 		skill: {
-			template: 'Gain [+10 Attack:Buff] on each activated [skill].',
+			template: 'Gain [+{{attack}} Attack:Buff] on each activated [skill].',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Skill,
 			attribute: {
@@ -282,12 +289,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 40,
 			defense: 0,
-			health: 50,
+			health: 60,
 		},
 		skill: {
-			template: 'Gain [+10 Attack:Buff].',
+			template: 'Gain [+{{attack}} Attack:Buff].',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Death,
 			attribute: {
@@ -308,12 +315,15 @@ const cardList: Card[] = [
 			health: 40,
 		},
 		skill: {
-			template: 'Deal additional [+20 damage].',
+			template: 'Deal additional [+{{damage}} Damage:Danger].',
 			activation: ActivationType.Glory,
 			attribute: {
 				id: 'PlayerMutate',
 				health: -20,
 				isTargetEnemyPlayer: true,
+				damage() {
+					return Math.abs(this.health);
+				},
 			},
 		},
 	},
@@ -360,10 +370,10 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 50,
 			defense: 0,
-			health: 70,
+			health: 50,
 		},
 		skill: {
-			template: 'Ignore [10 Defense:Danger] on hit.',
+			template: 'Ignore [{{defense}} Defense:Danger] on hit.',
 			activation: ActivationType.Passive,
 			passiveAttribute: {
 				id: 'IgnoreEnemyDefense',
@@ -380,7 +390,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 60,
 			defense: 0,
-			health: 40,
+			health: 50,
 		},
 		skill: {
 			template: '',
@@ -415,13 +425,19 @@ const cardList: Card[] = [
 			health: 60,
 		},
 		skill: {
-			template: 'Deal [{{health}} damage:Danger] to [3] front enemies',
+			template: 'Deal [{{damage}} damage:Danger] to [{{range}}] front enemies',
 			activation: ActivationType.Charge,
 			charge: 3,
 			attribute: {
 				id: 'FrontMutate',
 				health: -30,
 				radius: 1,
+				damage() {
+					return Math.abs(this.health);
+				},
+				range() {
+					return this.radius * 2 + 1;
+				},
 			},
 		},
 	},
@@ -455,7 +471,7 @@ const cardList: Card[] = [
 		},
 		skill: {
 			template:
-				'Take extra [10 damage:Danger] against [Assassin:Type] or [Wizard:Type].',
+				'Take extra [+{{attack}} Damage:Danger] against [Assassin:Type] or [Wizard:Type].',
 			activation: ActivationType.Passive,
 			passiveAttribute: {
 				id: 'MutateByClass',
@@ -473,11 +489,11 @@ const cardList: Card[] = [
 		rarity: 0,
 		attribute: {
 			attack: 30,
-			defense: 0,
+			defense: 10,
 			health: 50,
 		},
 		skill: {
-			template: 'Self heal [+20 Health:Buff].',
+			template: 'Self heal [+{{health}} Health:Buff].',
 			activation: ActivationType.Charge,
 			charge: 3,
 			attribute: {
@@ -574,7 +590,7 @@ const cardList: Card[] = [
 			health: 100,
 		},
 		skill: {
-			template: 'Permanently [-10 Attack:Danger] of attacker.',
+			template: 'Permanently [{{attack}} Attack:Danger] of attacker.',
 			activation: ActivationType.Defense,
 			attribute: {
 				id: 'FrontMutate',
@@ -817,18 +833,18 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 30,
 			defense: 0,
-			health: 40,
+			health: 60,
 		},
 		skill: {
-			template: 'Heal [+30 Health:Buff] for lowest health ally.',
+			template: 'Heal [+{{health}} Health:Buff] for lowest health ally.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 			attribute: {
 				id: 'LowestHealthMutate',
 				isTargetEnemy: false,
-				health: 20,
+				health: 30,
 			},
 		},
 	},
@@ -876,15 +892,18 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 60,
+			health: 70,
 		},
 		skill: {
-			template: 'Deal [10 Damage:Danger] to facing enemy.',
+			template: 'Deal [{{damage}} Damage:Danger] to facing enemy.',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Skill,
 			attribute: {
 				id: 'FrontMutate',
 				health: -10,
+				damage() {
+					return Math.abs(this.health);
+				},
 			},
 		},
 	},
@@ -1079,7 +1098,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 50,
+			health: 10,
 		},
 		skill: {
 			template: '[Steal] facing enemy.',

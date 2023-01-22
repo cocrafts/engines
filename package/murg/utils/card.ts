@@ -182,8 +182,10 @@ export const interpolateTemplate = (text: string) => {
 export const interpolate = (card: Card): Card => {
 	if (!card.skill) return card;
 
-	const { charge, activation, template, attribute, inspire } = card.skill;
-	const interpolated = Mustache.render(template, attribute || {});
+	const { charge, activation, template, attribute, passiveAttribute, inspire } =
+		card.skill;
+	const scope = attribute || passiveAttribute || {};
+	const interpolated = Mustache.render(template, scope);
 	const isInspire = activation === ActivationType.Inspire;
 	const suffix = isInspire
 		? ` ${InspireSourceDisplays[inspire]}`

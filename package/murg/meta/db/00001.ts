@@ -422,7 +422,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 60,
+			health: 80,
 		},
 		skill: {
 			template: 'Deal [{{damage}} damage:Danger] to [{{range}}] front enemies',
@@ -430,7 +430,7 @@ const cardList: Card[] = [
 			charge: 3,
 			attribute: {
 				id: 'FrontMutate',
-				health: -30,
+				health: -50,
 				radius: 1,
 				damage() {
 					return Math.abs(this.health);
@@ -495,10 +495,10 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Self heal [+{{health}} Health:Buff].',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 			attribute: {
 				id: 'SelfMutate',
-				health: 20,
+				health: 25,
 			},
 		},
 	},

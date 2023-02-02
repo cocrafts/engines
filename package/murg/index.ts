@@ -6,5 +6,6 @@ export * from './utils/card';
 export * from './utils/fight';
 export * from './utils/ground';
 export * from './utils/helper';
+export * from './utils/prediction';
 export * from './utils/state';
 export * from './utils/type';

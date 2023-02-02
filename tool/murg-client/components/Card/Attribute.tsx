@@ -1,38 +1,36 @@
 import { FC } from 'react';
 import { Box, Text } from 'ink';
 
+type AttributePair = [origin: number, dynamic: number, predict?: number];
+
 interface Props {
-	pair: [number, number];
+	pair: AttributePair;
 }
 
 export const Attribute: FC<Props> = ({ pair }) => {
-	const [current, base] = pair;
-	const hasDiff = current !== base;
-	const diff = Math.abs(current - base);
-	const currentIcon = current > base ? '↑' : '↓';
-	const baseIcon = current !== base ? ' ' : '';
-	const currentColor = extractColor(pair);
-	const baseColor = hasDiff ? 'gray' : 'black';
+	const [origin, dynamic, predict] = pair;
+	const originDiff = dynamic - origin;
+	const predictDiff = predict - dynamic;
+	const currentIcon = dynamic > origin ? '↑' : '↓';
+	const dynamicColor = extractColor(origin, dynamic);
 
 	return (
 		<Box width="33%" flexDirection="column" alignItems="center">
-			<Text color={currentColor}>
-				{current}
-				{diff > 0 && currentIcon}
+			<Text color={dynamicColor}>
+				{dynamic}
+				{originDiff > 0 && currentIcon}
 			</Text>
-			<Text color={baseColor}>{hasDiff ? `${diff}${baseIcon}` : '.'}</Text>
+			<Text color="gray">{predictDiff !== 0 ? `${predictDiff}` : '.'}</Text>
 		</Box>
 	);
 };
 
 export default Attribute;
 
-const extractColor = ([current, origin]) => {
-	if (current === 0) {
-		return 'gray';
-	} else if (current === origin) {
+const extractColor = (before: number, after: number) => {
+	if (before === after) {
 		return 'white';
-	} else if (current > origin) {
+	} else if (before < after) {
 		return 'green';
 	} else {
 		return 'red';

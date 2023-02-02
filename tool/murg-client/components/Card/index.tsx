@@ -1,8 +1,9 @@
 import { FC, Fragment } from 'react';
 import {
-	Attribute as IAttribute,
-	Card as ICard,
-	CardState,
+	DuelState,
+	getCard,
+	getCardState,
+	getDynamicAttribute,
 	getElementalDisplay,
 	getPlaceDisplay,
 } from '@metacraft/murg-engine';
@@ -13,26 +14,24 @@ import EmptyCard from './Empty';
 import SkillDesc from './SkillDesc';
 
 interface Props {
+	duel: DuelState;
 	color?: string;
-	card?: ICard;
-	state?: CardState;
-	passiveAttribute: IAttribute;
+	id?: string;
+
 	index?: number;
 	width?: number;
 }
 
-export const Card: FC<Props> = ({
-	color,
-	index,
-	card,
-	state,
-	passiveAttribute,
-	width,
-}) => {
-	if (!card?.id) return <EmptyCard width={width} index={index} />;
-	const finalAttack = state.attack + passiveAttribute.attack;
-	const finalDefense = state.defense + passiveAttribute.defense;
-	const finalHealth = state.health + passiveAttribute.health;
+export const Card: FC<Props> = ({ duel, color, index, id, width }) => {
+	const card = getCard(duel.cardMap, id);
+	const state = getCardState(duel.stateMap, id);
+
+	if (!card?.id || !state?.id) return <EmptyCard width={width} index={index} />;
+
+	const origin = card.attribute;
+	const dynamic = getDynamicAttribute(duel, id);
+	const { base, predict } = dynamic;
+	const borderColor = predict?.health <= 0 ? 'red' : 'gray';
 
 	return (
 		<Box
@@ -40,7 +39,7 @@ export const Card: FC<Props> = ({
 			flexDirection="column"
 			borderStyle="round"
 			alignItems="center"
-			borderColor="black"
+			borderColor={borderColor}
 		>
 			<Box>
 				<Text>
@@ -80,9 +79,9 @@ export const Card: FC<Props> = ({
 				</Box>
 			</Box>
 			<Box>
-				<Attribute pair={[finalHealth, card.attribute.health]} />
-				<Attribute pair={[finalDefense, card.attribute.defense]} />
-				<Attribute pair={[finalAttack, card.attribute.attack]} />
+				<Attribute pair={[origin.health, base.health, predict.health]} />
+				<Attribute pair={[origin.defense, base.defense, predict.defense]} />
+				<Attribute pair={[origin.attack, base.attack, predict.attack]} />
 			</Box>
 		</Box>
 	);

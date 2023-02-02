@@ -243,7 +243,7 @@ const emptyPassiveFunc = (): PassivePair => [emptyPassive, emptyPassive];
 export const extractPassivePair = (
 	duel: DuelState,
 	firstCardId: string,
-	secondCardId: string,
+	secondCardId?: string,
 ): PassivePair => {
 	if (!firstCardId) return [emptyPassive, emptyPassive];
 

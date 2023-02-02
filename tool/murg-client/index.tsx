@@ -81,7 +81,7 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 		<StateInspector duel={duel} />
 	) : (
 		<Box flexGrow={1} flexDirection="column" paddingRight={1}>
-			<Player color={firstColor} state={secondPlayer} />
+			<Player color={firstColor} duel={duel} state={secondPlayer} />
 			<CardList
 				duel={duel}
 				items={secondHand}
@@ -117,7 +117,7 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 			<Box>
 				<Box width={40} />
 				<Box flexGrow={1} justifyContent="center">
-					<Player color={firstColor} state={firstPlayer} />
+					<Player color={firstColor} duel={duel} state={firstPlayer} />
 				</Box>
 				<Box width={40} alignItems="flex-end" justifyContent="flex-end">
 					<Text color="black">[</Text>

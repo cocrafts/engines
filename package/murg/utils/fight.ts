@@ -207,9 +207,12 @@ export const superiorElements = [ElementalType.Light, ElementalType.Dark];
 export const isDestructive = (from: Card, to: Card) => {
 	const isSuperior = superiorElements.indexOf(from.elemental) >= 0;
 	const isAgainstSuperior = superiorElements.indexOf(to.elemental) >= 0;
+	const isBare = !from.elemental;
+	const isAgainstBare = !to.elemental;
 
 	if (isAgainstSuperior) return false;
 	if (isSuperior) return true;
+	if (isBare || isAgainstBare) return false;
 
 	const fromIndex = destructiveCycle.indexOf(from.elemental);
 

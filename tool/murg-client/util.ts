@@ -1,8 +1,12 @@
 import {
 	CardType,
+	DuelCommandBundle,
+	DuelState,
 	makeDuel,
 	makeMeta,
+	mergeFragmentToState,
 	PlayerState,
+	runCommand,
 } from '@metacraft/murg-engine';
 
 export const generateRandomDeck = (version = '00001', size = 36): string[] => {
@@ -107,4 +111,12 @@ export const measureExecutionTime = (
 
 	delete measureExecutionCache[key];
 	return elapsedTime;
+};
+
+export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {
+	bundles.forEach((bundle) => {
+		bundle.commands.forEach((command) => {
+			mergeFragmentToState(duel, runCommand({ duel, command }));
+		});
+	});
 };

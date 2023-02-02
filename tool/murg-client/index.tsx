@@ -5,9 +5,11 @@ import {
 	DuelState,
 	getInitialState,
 	mergeFragmentToState,
+	move,
 	runCommand,
 } from '@metacraft/murg-engine';
 import { Box, Text, useInput } from 'ink';
+import { cloneDeep } from 'lodash';
 
 import CardList from './components/CardList';
 import Deck from './components/Deck';
@@ -27,6 +29,7 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 	const [debug, setDebug] = useState(false);
 	const [level, setLevel] = useState<number>(history.length);
 	const [duel, setDuel] = useState<DuelState>();
+	const [predict, setPredict] = useState<DuelState>();
 	const {
 		turn,
 		phase,
@@ -56,6 +59,7 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 		}
 
 		setDuel(duel);
+		setPredict(move.fight(cloneDeep(duel)).duel);
 	}, [level]);
 
 	useInput((input, key) => {
@@ -81,9 +85,15 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 		<StateInspector duel={duel} />
 	) : (
 		<Box flexGrow={1} flexDirection="column" paddingRight={1}>
-			<Player color={firstColor} duel={duel} state={secondPlayer} />
+			<Player
+				color={firstColor}
+				id={secondPlayer.id}
+				duel={duel}
+				predict={predict}
+			/>
 			<CardList
 				duel={duel}
+				predict={predict}
 				items={secondHand}
 				color={secondColor}
 				height={cardHeight}
@@ -94,12 +104,14 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 			</Box>
 			<CardList
 				duel={duel}
+				predict={predict}
 				items={secondGround}
 				color={secondColor}
 				height={cardHeight + 1}
 			/>
 			<CardList
 				duel={duel}
+				predict={predict}
 				items={firstGround}
 				color={firstColor}
 				height={cardHeight + 1}
@@ -110,6 +122,7 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 			</Box>
 			<CardList
 				duel={duel}
+				predict={predict}
 				items={firstHand}
 				color={firstColor}
 				height={cardHeight}
@@ -117,7 +130,12 @@ export const MURG: FC<Props> = ({ config, history, renderTime }) => {
 			<Box>
 				<Box width={40} />
 				<Box flexGrow={1} justifyContent="center">
-					<Player color={firstColor} duel={duel} state={firstPlayer} />
+					<Player
+						color={firstColor}
+						id={firstPlayer.id}
+						duel={duel}
+						predict={predict}
+					/>
 				</Box>
 				<Box width={40} alignItems="flex-end" justifyContent="flex-end">
 					<Text color="black">[</Text>

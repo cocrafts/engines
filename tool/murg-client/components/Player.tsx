@@ -1,20 +1,18 @@
 import { FC } from 'react';
-import {
-	DuelState,
-	getPlayerPredict,
-	PlayerState,
-} from '@metacraft/murg-engine';
+import { DuelState, selectPlayer } from '@metacraft/murg-engine';
 import { Box, Text } from 'ink';
 
 interface Props {
 	color: string;
 	duel: DuelState;
-	state: PlayerState;
+	predict: DuelState;
+	id: string;
 }
 
-export const Player: FC<Props> = ({ color, duel, state }) => {
-	const predict = getPlayerPredict(duel, state.id);
-	const healthDiff = predict.health - state.health;
+export const Player: FC<Props> = ({ color, duel, predict, id }) => {
+	const state = selectPlayer(duel, id);
+	const future = selectPlayer(predict, id);
+	const healthDiff = future.health - state.health;
 	const diffColor = healthDiff > 0 ? 'green' : 'red';
 
 	return (

@@ -3,7 +3,7 @@ import {
 	DuelState,
 	getCard,
 	getCardState,
-	getDynamicAttribute,
+	getComputedAttribute,
 	getElementalDisplay,
 	getPlaceDisplay,
 } from '@metacraft/murg-engine';
@@ -15,23 +15,23 @@ import SkillDesc from './SkillDesc';
 
 interface Props {
 	duel: DuelState;
+	predict: DuelState;
 	color?: string;
 	id?: string;
-
 	index?: number;
 	width?: number;
 }
 
-export const Card: FC<Props> = ({ duel, color, index, id, width }) => {
+export const Card: FC<Props> = ({ duel, predict, color, index, id, width }) => {
 	const card = getCard(duel.cardMap, id);
 	const state = getCardState(duel.stateMap, id);
+	const future = getCardState(predict.stateMap, id);
 
 	if (!card?.id || !state?.id) return <EmptyCard width={width} index={index} />;
 
 	const origin = card.attribute;
-	const dynamic = getDynamicAttribute(duel, id);
-	const { base, predict } = dynamic;
-	const borderColor = predict?.health <= 0 ? 'red' : 'gray';
+	const computed = getComputedAttribute(duel, id);
+	const borderColor = future?.health <= 0 ? 'red' : 'gray';
 
 	return (
 		<Box
@@ -79,9 +79,9 @@ export const Card: FC<Props> = ({ duel, color, index, id, width }) => {
 				</Box>
 			</Box>
 			<Box>
-				<Attribute pair={[origin.health, base.health, predict.health]} />
-				<Attribute pair={[origin.defense, base.defense, predict.defense]} />
-				<Attribute pair={[origin.attack, base.attack, predict.attack]} />
+				<Attribute pair={[origin.health, computed.health, future.health]} />
+				<Attribute pair={[origin.defense, computed.defense, future.defense]} />
+				<Attribute pair={[origin.attack, computed.attack, future.attack]} />
 			</Box>
 		</Box>
 	);

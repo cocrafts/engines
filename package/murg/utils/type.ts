@@ -327,11 +327,6 @@ export type CardState = Attribute &
 		effectMap: EffectMap;
 	};
 
-export interface DynamicAttribute {
-	base: Attribute;
-	predict: Attribute;
-}
-
 export type PlayerState = Attribute & {
 	id: string;
 	perTurnDraw: number;

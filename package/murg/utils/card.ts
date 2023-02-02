@@ -1,7 +1,10 @@
 import Mustache from 'mustache';
 
+import { combineAttribute, extractPassivePair } from './fight';
+import { getFacingIdentifier } from './ground';
 import {
 	ActivationType,
+	Attribute,
 	Card,
 	CardIdentifier,
 	CardState,
@@ -216,6 +219,17 @@ export const getCardState = (
 	id: string,
 ) => {
 	return stateMap[id];
+};
+
+export const getComputedAttribute = (
+	duel: DuelState,
+	id: string,
+): Attribute => {
+	const state = getCardState(duel.stateMap, id);
+	const facing = getFacingIdentifier(duel, state?.owner, state?.id);
+	const [passive] = extractPassivePair(duel, id, facing?.id);
+
+	return combineAttribute(state, passive);
 };
 
 /* Impure that will mutate params, be careful! */

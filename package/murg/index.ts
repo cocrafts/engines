@@ -9,4 +9,4 @@ export * from './utils/helper';
 export * from './utils/state';
 export * from './utils/type';
 
-export const version = '0.0.68';
+export const version = '0.0.70';

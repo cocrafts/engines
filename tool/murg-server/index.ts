@@ -11,7 +11,11 @@ import {
 	JwtPayload,
 	ResponseSender,
 } from './util/type';
-import { onIncomingBundle, onIncomingConnect } from './handlers';
+import {
+	onIncomingBundle,
+	onIncomingConnect,
+	onInComingHover,
+} from './handlers';
 
 const app = express();
 const socket = injectSocket(app);
@@ -51,6 +55,8 @@ app.ws('/', (ws) => {
 				await onIncomingConnect(context, data.payload);
 			} else if (data.command === DuelCommands.SendBundle) {
 				await onIncomingBundle(context, data.payload);
+			} else if (data.command === DuelCommands.CardHover) {
+				await onInComingHover(context, data.payload);
 			}
 		} catch (e) {
 			await ws.send(JSON.stringify({ message: 'error' }));

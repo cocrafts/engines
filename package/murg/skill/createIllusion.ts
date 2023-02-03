@@ -13,7 +13,7 @@ export const createIllusion: SkillRunner = ({ duel, cardId, sourceType }) => {
 
 	createCommand
 		.cardMove({
-			owner: state.id,
+			owner: state.owner,
 			target: {
 				source: {
 					type: sourceType,

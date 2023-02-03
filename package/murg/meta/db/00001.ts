@@ -1,9 +1,11 @@
 import { interpolate } from '../../utils/card';
 import {
 	ActivationType,
+	Attribute,
 	Card,
 	CardType,
 	ClassType,
+	CleaverAttackEffect,
 	InspireSource,
 } from '../../utils/type';
 
@@ -190,6 +192,20 @@ const cardList: Card[] = [
 				'Self buff [+20 Attack:Buff], [+20 Cleaver:Danger] damage in [2] turns.',
 			activation: ActivationType.Charge,
 			charge: 3,
+			attribute: {
+				id: 'SelfBuffAndCleaver',
+				life: 2,
+				buff: {
+					health: 0,
+					defense: 0,
+					attack: 20,
+				} as Attribute,
+				cleaver: {
+					type: 'Fixed',
+					damage: 20,
+					radius: 1,
+				} as CleaverAttackEffect,
+			},
 		},
 	},
 	{
@@ -1062,9 +1078,9 @@ const cardList: Card[] = [
 		skill: {
 			template: 'Summon [20/0/10:Type] [Snake:Type] to nearest place.',
 			activation: ActivationType.PreFight,
-			attribute: {
-				id: 'SummonSnake',
-			},
+			// attribute: {
+			// 	id: 'SummonSnake',
+			// },
 		},
 	},
 	{

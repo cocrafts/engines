@@ -52,7 +52,8 @@ export type SkillIds =
 	| 'LowestHealthMutate'
 	| 'PlayerMutate'
 	| 'CreateIllusion'
-	| 'SummonSnake';
+	| 'SummonSnake'
+	| 'SelfBuffAndCleaver';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;
@@ -281,6 +282,8 @@ export type EffectIds =
 	| 'Shield'
 	| 'Froze'
 	| 'Seal'
+	| 'SelfBuff'
+	| 'SpellBuff'
 	| 'AttributeStack'
 	| 'RepeatAttack'
 	| 'CleaverAttack'
@@ -289,34 +292,48 @@ export type EffectIds =
 
 export type CleaverType = 'Fixed' | 'Factor';
 
+export interface RebornEffect {
+	count?: number;
+}
+
+export interface CleaverAttackEffect {
+	type: CleaverType;
+	radius: number;
+	damage?: number;
+	damageFactor?: number;
+}
+
+export interface AttributeStackEffect {
+	targetId: string;
+	attribute: Attribute;
+	count: number;
+}
+
+export interface RepeatAttackEffect {
+	count: number;
+}
+
+export interface IgnoreDefenseEffect {
+	defense: number;
+	defenseFactor?: number;
+}
+
+export interface ExplodeTimerEffect {
+	radius: number;
+	damage: number;
+}
+
 export interface Effect {
 	id: EffectIds;
 	life?: number;
-	reborn?: {
-		count?: number;
-	};
-	attributeStack?: {
-		targetId: string;
-		attribute: Attribute;
-		count: number;
-	};
-	cleaverAttack?: {
-		type: CleaverType;
-		radius: number;
-		damage?: number;
-		damageFactor?: number;
-	};
-	repeatAttack?: {
-		count: number;
-	};
-	ignoreDefense?: {
-		defense: number;
-		defenseFactor?: number;
-	};
-	explodeTimer?: {
-		radius: number;
-		damage: number;
-	};
+	reborn?: RebornEffect;
+	selfBuff?: Attribute;
+	spellBuff?: Attribute;
+	attributeStack?: AttributeStackEffect;
+	cleaverAttack?: CleaverAttackEffect;
+	repeatAttack?: RepeatAttackEffect;
+	ignoreDefense?: IgnoreDefenseEffect;
+	explodeTimer?: ExplodeTimerEffect;
 	attribute?: Attribute;
 }
 

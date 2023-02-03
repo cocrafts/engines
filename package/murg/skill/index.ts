@@ -7,6 +7,7 @@ import { lowestHealthMutate } from './lowestHealthMutate';
 import { minHealthSteal } from './minHealthSteal';
 import { playerMutate } from './playerMutate';
 import { randomEnemyMutate } from './randomEnemyMutate';
+import { selfBuffAndCleaver } from './selfBuffAndCleaver';
 import { selfMutate } from './selfMutate';
 import { summonSnake } from './summonSnake';
 
@@ -20,4 +21,5 @@ export const skillMap: Record<SkillIds, SkillRunner> = {
 	PlayerMutate: playerMutate,
 	CreateIllusion: createIllusion,
 	SummonSnake: summonSnake,
+	SelfBuffAndCleaver: selfBuffAndCleaver,
 };

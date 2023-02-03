@@ -84,7 +84,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 60,
+			attack: 40,
 			defense: 0,
 			health: 30,
 		},
@@ -103,9 +103,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 50,
+			attack: 40,
 			defense: 0,
-			health: 50,
+			health: 30,
 		},
 		skill: {
 			template: 'Permanently [{{defense}} Defense:Danger].',
@@ -125,7 +125,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 60,
 			defense: 0,
-			health: 40,
+			health: 20,
 		},
 		skill: {
 			template: "Ignore enemy's [Defense].",
@@ -144,7 +144,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 60,
+			health: 40,
 		},
 		skill: {
 			template: "[Gain Attack:Buff] equal to facing enemy's missing [Health].",
@@ -161,9 +161,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 10,
-			health: 60,
+			attack: 20,
+			defense: 5,
+			health: 35,
 		},
 		skill: {
 			template:
@@ -185,16 +185,16 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 50,
+			health: 40,
 		},
 		skill: {
 			template:
-				'Self buff [+20 Attack:Buff], [+20 Cleaver:Danger] damage in [2] turns.',
+				'Self buff [+{{buff.attack}} Attack:Buff], [+{{cleaver.damage}} Cleaver:Danger] damage in [2] turns.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 1,
 			attribute: {
 				id: 'SelfBuffAndCleaver',
-				life: 2,
+				life: 1,
 				buff: {
 					health: 0,
 					defense: 0,
@@ -217,7 +217,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 0,
 			defense: 0,
-			health: 90,
+			health: 60,
 		},
 		skill: {
 			template: '[Deal Damage:Danger] equal to remaining health.',
@@ -235,9 +235,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 15,
 			defense: 0,
-			health: 60,
+			health: 50,
 		},
 		skill: {
 			template: 'Deal [{{damage}} Damage:Danger] to random enemy.',
@@ -245,7 +245,7 @@ const cardList: Card[] = [
 			charge: 1,
 			attribute: {
 				id: 'RandomEnemyMutate',
-				health: -40,
+				health: -30,
 				damage() {
 					return Math.abs(this.health);
 				},
@@ -260,7 +260,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 20,
 			defense: 0,
 			health: 40,
 		},
@@ -269,7 +269,7 @@ const cardList: Card[] = [
 			activation: ActivationType.Passive,
 			passiveAttribute: {
 				id: 'DamageMultiplier',
-				multiplyFactor: 2,
+				multiplyFactor: 2.5,
 				cardTypes: [CardType.Hero],
 				percentage() {
 					return this.multiplyFactor * 100;
@@ -284,17 +284,17 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 30,
 			defense: 0,
-			health: 50,
+			health: 40,
 		},
 		skill: {
-			template: 'Gain [+{{attack}} Attack:Buff] on each activated [skill].',
+			template: 'Permanently gain [+{{attack}} Attack:Buff].',
 			activation: ActivationType.Inspire,
 			inspire: InspireSource.Skill,
 			attribute: {
 				id: 'SelfMutate',
-				attack: 10,
+				attack: 5,
 			},
 		},
 	},
@@ -305,9 +305,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 30,
 			defense: 0,
-			health: 60,
+			health: 40,
 		},
 		skill: {
 			template: 'Gain [+{{attack}} Attack:Buff].',
@@ -315,7 +315,7 @@ const cardList: Card[] = [
 			inspire: InspireSource.Death,
 			attribute: {
 				id: 'SelfMutate',
-				attack: 10,
+				attack: 5,
 			},
 		},
 	},
@@ -326,16 +326,16 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
-			defense: 0,
-			health: 40,
+			attack: 25,
+			defense: 5,
+			health: 50,
 		},
 		skill: {
 			template: 'Deal additional [+{{damage}} Damage:Danger].',
 			activation: ActivationType.Glory,
 			attribute: {
 				id: 'PlayerMutate',
-				health: -20,
+				health: -25,
 				isTargetEnemyPlayer: true,
 				damage() {
 					return Math.abs(this.health);
@@ -352,7 +352,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 20,
 			defense: 0,
-			health: 60,
+			health: 50,
 		},
 		skill: {
 			template:
@@ -367,14 +367,14 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 30,
 			defense: 0,
-			health: 60,
+			health: 40,
 		},
 		skill: {
 			template: 'Double attack.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 		},
 	},
 	{
@@ -384,7 +384,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 50,
+			attack: 25,
 			defense: 0,
 			health: 50,
 		},
@@ -404,9 +404,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 60,
-			defense: 0,
-			health: 50,
+			attack: 30,
+			defense: 5,
+			health: 55,
 		},
 		skill: {
 			template: '',
@@ -419,9 +419,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 35,
 			defense: 0,
-			health: 50,
+			health: 35,
 		},
 		skill: {
 			template: '[Immune:Special], and gain [+20 Attack:Buff] next turn.',
@@ -438,15 +438,15 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 80,
+			health: 40,
 		},
 		skill: {
 			template: 'Deal [{{damage}} damage:Danger] to [{{range}}] front enemies',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 			attribute: {
 				id: 'FrontMutate',
-				health: -50,
+				health: -30,
 				radius: 1,
 				damage() {
 					return Math.abs(this.health);
@@ -464,14 +464,14 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
-			defense: 0,
-			health: 90,
+			attack: 15,
+			defense: 5,
+			health: 50,
 		},
 		skill: {
 			template: 'Transform [Damage:Danger] to [Heals:Buff].',
 			activation: ActivationType.Charge,
-			charge: 4,
+			charge: 3,
 		},
 	},
 	{
@@ -481,9 +481,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
-			defense: 20,
-			health: 90,
+			attack: 25,
+			defense: 10,
+			health: 40,
 		},
 		skill: {
 			template:
@@ -493,7 +493,7 @@ const cardList: Card[] = [
 				id: 'MutateByClass',
 				isTargetEnemy: true,
 				classTypes: [ClassType.Assassin, ClassType.Wizard],
-				attack: 10,
+				attack: 15,
 			},
 		},
 	},
@@ -504,9 +504,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 20,
 			defense: 10,
-			health: 50,
+			health: 40,
 		},
 		skill: {
 			template: 'Self heal [+{{health}} Health:Buff].',
@@ -514,7 +514,7 @@ const cardList: Card[] = [
 			charge: 2,
 			attribute: {
 				id: 'SelfMutate',
-				health: 25,
+				health: 20,
 			},
 		},
 	},
@@ -526,13 +526,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 0,
-			health: 60,
+			attack: 10,
+			defense: 10,
+			health: 50,
 		},
 		skill: {
-			template:
-				'Heal [+10 Health:Buff] for lowest health ally, and deal [10 damage:Danger] to facing enemy.',
+			template: 'Heal [+10 Health:Buff] for lowest health ally.',
 			activation: ActivationType.Charge,
 			charge: 2,
 		},
@@ -545,9 +544,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
-			defense: 0,
-			health: 40,
+			attack: 10,
+			defense: 5,
+			health: 50,
 		},
 		skill: {
 			template: 'Create [10/0/10:Type] [Illusion] on nearest position.',
@@ -564,9 +563,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 15,
 			defense: 0,
-			health: 80,
+			health: 55,
 		},
 		skill: {
 			template: 'Gain [+{{defense}} Defense:Buff].',
@@ -585,12 +584,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
-			defense: 0,
-			health: 80,
+			attack: 5,
+			defense: 10,
+			health: 60,
 		},
 		skill: {
-			template: '[+20 Defense:Buff] for [2] nearby allies.',
+			template: '[+10 Defense:Buff] for [2] nearby allies.',
 			activation: ActivationType.Banner,
 		},
 	},
@@ -601,9 +600,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 20,
 			defense: 0,
-			health: 100,
+			health: 50,
 		},
 		skill: {
 			template: 'Permanently [{{attack}} Attack:Danger] of attacker.',
@@ -621,9 +620,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 0,
-			health: 60,
+			attack: 25,
+			defense: 5,
+			health: 35,
 		},
 		skill: {
 			template: '[Reborn!] (once).',
@@ -638,12 +637,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 50,
-			defense: 10,
-			health: 40,
+			attack: 20,
+			defense: 0,
+			health: 50,
 		},
 		skill: {
-			template: '[20%:Buff] [Lifesteal].',
+			template: '[50%:Buff] [Lifesteal].',
 			activation: ActivationType.Attack,
 			attribute: {
 				id: 'SelfMutate',
@@ -658,9 +657,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 35,
 			defense: 0,
-			health: 50,
+			health: 35,
 		},
 		skill: {
 			template: '[+1 Defense:Buff] for each missing health.',
@@ -677,9 +676,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
-			defense: 20,
-			health: 60,
+			attack: 5,
+			defense: 15,
+			health: 65,
 		},
 		skill: {
 			template: '',
@@ -692,9 +691,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 10,
-			defense: 30,
-			health: 70,
+			attack: 25,
+			defense: 10,
+			health: 60,
 		},
 		skill: {
 			template: '',
@@ -707,15 +706,15 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 10,
-			health: 60,
+			attack: 15,
+			defense: 5,
+			health: 50,
 		},
 		skill: {
 			template:
 				'[Toss] highest and lowest health enemies, deal [30 damage:Danger] to each.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 		},
 	},
 	{
@@ -725,15 +724,15 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
-			defense: 0,
+			attack: 15,
+			defense: 5,
 			health: 50,
 		},
 		skill: {
 			template:
 				'Self buff [Shield] with [20 Defense:Buff], deal [10 Damage:Danger] to 3 front enemies.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 		},
 	},
 	{
@@ -743,14 +742,14 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 15,
 			defense: 0,
-			health: 40,
+			health: 55,
 		},
 		skill: {
 			template: 'Reduce [1] [Charge] for allies, exclude this unit.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 		},
 	},
 	{
@@ -761,15 +760,15 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
+			attack: 15,
 			defense: 0,
-			health: 60,
+			health: 55,
 		},
 		skill: {
 			template:
 				'Heal [+30 Health:Buff] for lowest heath ally, and deal [10 Damage:Danger] to 3 front enemies.',
 			activation: ActivationType.Charge,
-			charge: 3,
+			charge: 2,
 		},
 	},
 	{
@@ -779,9 +778,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 20,
 			defense: 0,
-			health: 30,
+			health: 50,
 		},
 		skill: {
 			template:
@@ -798,12 +797,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 0,
+			attack: 5,
+			defense: 5,
 			health: 50,
 		},
 		skill: {
-			template: '[+10 Attack:Buff] for ally units.',
+			template: '[+5 Attack:Buff] for ally units.',
 			activation: ActivationType.Banner,
 		},
 	},
@@ -814,15 +813,15 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
-			defense: 0,
+			attack: 5,
+			defense: 5,
 			health: 60,
 		},
 		skill: {
 			template:
 				'For each unit on the battlefield, deal [10 Damage:Danger] to all enemies.',
 			activation: ActivationType.Charge,
-			charge: 6,
+			charge: 3,
 		},
 	},
 	{
@@ -833,9 +832,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 25,
 			defense: 0,
-			health: 50,
+			health: 45,
 		},
 		skill: {
 			template: '[Froze] attacker in 1 turn.',
@@ -849,9 +848,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 25,
 			defense: 0,
-			health: 60,
+			health: 45,
 		},
 		skill: {
 			template: 'Heal [+{{health}} Health:Buff] for lowest health ally.',
@@ -871,9 +870,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 25,
 			defense: 0,
-			health: 50,
+			health: 45,
 		},
 		skill: {
 			template: 'Heal [+30 Health:Buff] for lowest health ally [Troop].',
@@ -888,14 +887,14 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 20,
-			defense: 20,
+			attack: 15,
+			defense: 5,
 			health: 50,
 		},
 		skill: {
-			template: 'Repeat one activated spell.',
+			template: 'Repeat last activated spell.',
 			activation: ActivationType.Charge,
-			charge: 2,
+			charge: 3,
 		},
 	},
 	{
@@ -908,7 +907,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 70,
+			health: 40,
 		},
 		skill: {
 			template: 'Deal [{{damage}} Damage:Danger] to facing enemy.',
@@ -931,12 +930,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 10,
 			defense: 0,
 			health: 60,
 		},
 		skill: {
-			template: 'Deal [20 Damage:Danger] to all units on the battlefield.',
+			template: 'Deal [25 Damage:Danger] to all units on the battlefield.',
 			activation: ActivationType.Charge,
 			charge: 3,
 		},
@@ -950,7 +949,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 30,
 			defense: 0,
-			health: 60,
+			health: 40,
 		},
 		skill: {
 			template:
@@ -965,7 +964,7 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 40,
+			attack: 20,
 			defense: 0,
 			health: 50,
 		},
@@ -983,9 +982,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 25,
 			defense: 0,
-			health: 40,
+			health: 45,
 		},
 		skill: {
 			template:
@@ -1001,9 +1000,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 25,
 			defense: 0,
-			health: 40,
+			health: 45,
 		},
 		skill: {
 			template:
@@ -1019,9 +1018,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 15,
 			defense: 0,
-			health: 40,
+			health: 55,
 		},
 		skill: {
 			template: 'Create [Illusion] of this unit, which live in 2 turns.',
@@ -1037,15 +1036,15 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 20,
 			defense: 0,
-			health: 70,
+			health: 50,
 		},
 		skill: {
 			template:
 				'[Steal] and buff [+20 Health:Buff], [+20 Attack:Buff] to closest enemy [Troop].',
 			activation: ActivationType.Charge,
-			charge: 2,
+			charge: 3,
 		},
 	},
 	{
@@ -1055,12 +1054,12 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 0,
-			health: 60,
+			attack: 15,
+			defense: 5,
+			health: 55,
 		},
 		skill: {
-			template: '[+20 Attack:Buff] for ally [Troops]</span>.',
+			template: '[+10 Attack:Buff] for ally [Troops].',
 			activation: ActivationType.Banner,
 		},
 	},
@@ -1071,9 +1070,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 10,
+			attack: 25,
 			defense: 0,
-			health: 50,
+			health: 45,
 		},
 		skill: {
 			template: 'Summon [20/0/10:Type] [Snake:Type] to nearest place.',
@@ -1090,9 +1089,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
-			defense: 0,
-			health: 40,
+			attack: 10,
+			defense: 5,
+			health: 55,
 		},
 		skill: {
 			template:
@@ -1112,9 +1111,9 @@ const cardList: Card[] = [
 		kind: CardType.Hero,
 		rarity: 0,
 		attribute: {
-			attack: 30,
+			attack: 25,
 			defense: 0,
-			health: 10,
+			health: 15,
 		},
 		skill: {
 			template: '[Steal] facing enemy.',
@@ -1136,7 +1135,7 @@ const cardList: Card[] = [
 		attribute: {
 			attack: 20,
 			defense: 0,
-			health: 40,
+			health: 50,
 		},
 		skill: {
 			template: '[Summon] two [20/0/20:Type] [Wolves].',

@@ -191,7 +191,7 @@ const cardList: Card[] = [
 			template:
 				'Self buff [+{{buff.attack}} Attack:Buff], [+{{cleaver.damage}} Cleaver:Danger] damage in [2] turns.',
 			activation: ActivationType.Charge,
-			charge: 1,
+			charge: 2,
 			attribute: {
 				id: 'SelfBuffAndCleaver',
 				life: 1,

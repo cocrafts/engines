@@ -40,7 +40,7 @@ export const selfBuffAndCleaver: SkillRunner = ({
 					SelfBuff: {
 						id: 'SelfBuff',
 						life: options.life,
-						selfBuff: options.buff,
+						attribute: options.buff,
 					},
 					CleaverAttack: {
 						id: 'CleaverAttack',

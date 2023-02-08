@@ -306,7 +306,6 @@ export interface CleaverAttackEffect {
 export interface AttributeStackEffect {
 	targetId: string;
 	attribute: Attribute;
-	count: number;
 }
 
 export interface RepeatAttackEffect {
@@ -327,8 +326,6 @@ export interface Effect {
 	id: EffectIds;
 	life?: number;
 	reborn?: RebornEffect;
-	selfBuff?: Attribute;
-	spellBuff?: Attribute;
 	attributeStack?: AttributeStackEffect;
 	cleaverAttack?: CleaverAttackEffect;
 	repeatAttack?: RepeatAttackEffect;

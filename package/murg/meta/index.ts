@@ -35,3 +35,7 @@ export const makeMeta = (version = '00001'): CardMeta => {
 
 	return { version, entities, map };
 };
+
+export const getCardList = (version = '00001'): Card[] => {
+	return metaHash[`ver${version}`] || ver00001;
+};

@@ -53,7 +53,8 @@ export type SkillIds =
 	| 'PlayerMutate'
 	| 'CreateIllusion'
 	| 'SummonSnake'
-	| 'SelfBuffAndCleaver';
+	| 'SelfBuffAndCleaver'
+	| 'AttributeStack';
 
 export type SkillAttributes = Record<string, unknown> & {
 	id: SkillIds;

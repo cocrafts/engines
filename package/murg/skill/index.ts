@@ -1,5 +1,6 @@
 import { SkillIds, SkillRunner } from '../utils/type';
 
+import { attributeStack } from './attributeStack';
 import { createIllusion } from './createIllusion';
 import { destroyFacingMinHealth } from './destroyFacingMinHealth';
 import { frontMutate } from './frontMutate';
@@ -22,4 +23,5 @@ export const skillMap: Record<SkillIds, SkillRunner> = {
 	CreateIllusion: createIllusion,
 	SummonSnake: summonSnake,
 	SelfBuffAndCleaver: selfBuffAndCleaver,
+	AttributeStack: attributeStack,
 };

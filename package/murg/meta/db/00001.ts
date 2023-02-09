@@ -358,6 +358,10 @@ const cardList: Card[] = [
 			template:
 				'Stack [+10 Attack:Buff] against same enemy. Reset when facing new enemy.',
 			activation: ActivationType.Attack,
+			attribute: {
+				id: 'AttributeStack',
+				attack: 10,
+			},
 		},
 	},
 	{

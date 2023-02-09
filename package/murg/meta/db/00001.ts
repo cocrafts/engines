@@ -859,6 +859,7 @@ const cardList: Card[] = [
 			attribute: {
 				id: 'LowestHealthMutate',
 				isTargetEnemy: false,
+				cardTypes: [CardType.Hero, CardType.Troop],
 				health: 30,
 			},
 		},
@@ -878,6 +879,12 @@ const cardList: Card[] = [
 			template: 'Heal [+30 Health:Buff] for lowest health ally [Troop].',
 			activation: ActivationType.Charge,
 			charge: 2,
+			attribute: {
+				id: 'LowestHealthMutate',
+				isTargetEnemy: false,
+				cardTypes: [CardType.Troop],
+				health: 30,
+			},
 		},
 	},
 	{

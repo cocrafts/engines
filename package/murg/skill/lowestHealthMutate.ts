@@ -2,14 +2,12 @@ import { createCommand } from '../command';
 import { getCard, getCardState } from '../utils/card';
 import { createCommandResult, getEnemyId, selectGround } from '../utils/helper';
 import { pickLowestHealth } from '../utils/skill';
-import { DuelPlace, SkillRunner } from '../utils/type';
+import { Attribute, CardType, DuelPlace, SkillRunner } from '../utils/type';
 
-interface SkillOptions {
+type SkillOptions = Omit<Attribute, 'charge'> & {
 	isTargetEnemy: boolean;
-	attack: number;
-	defense: number;
-	health: number;
-}
+	cardTypes: CardType[];
+};
 
 export const lowestHealthMutate: SkillRunner = ({
 	duel,
@@ -24,7 +22,12 @@ export const lowestHealthMutate: SkillRunner = ({
 		? getEnemyId(duel, state.owner)
 		: state.owner;
 	const targetedGround = selectGround(duel, targetedOwner);
-	const lowestHeathUnit = pickLowestHealth(duel, targetedGround);
+	const lowestHeathUnit = pickLowestHealth(
+		cardId,
+		duel,
+		targetedGround,
+		options.cardTypes,
+	);
 
 	createCommand
 		.cardMutate({

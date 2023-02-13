@@ -36,6 +36,28 @@ export const makeMeta = (version = '00001'): CardMeta => {
 	return { version, entities, map };
 };
 
+const galleryTypes = [CardType.Hero, CardType.Spell];
+
 export const getCardList = (version = '00001'): Card[] => {
-	return metaHash[`ver${version}`] || ver00001;
+	const originalCards = metaHash[`ver${version}`] || ver00001;
+	const generatedCards: Card[] = [];
+
+	for (const card of originalCards) {
+		if (galleryTypes.indexOf(card.kind) >= 0) {
+			for (let elementalId = 1; elementalId < 8; elementalId += 1) {
+				const padElementalId = String(elementalId).padStart(2, '0');
+				const sku = `${card.id}00${padElementalId}`;
+				const generatedCard: Card = {
+					...card,
+					id: sku,
+					rarity: 0,
+					elemental: padElementalId as ElementalType,
+				};
+
+				generatedCards.push(generatedCard);
+			}
+		}
+	}
+
+	return generatedCards;
 };

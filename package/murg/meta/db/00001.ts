@@ -1129,11 +1129,6 @@ const cardList: Card[] = [
 		skill: {
 			template: '[Steal] facing enemy.',
 			activation: ActivationType.Death,
-			attribute: {
-				id: 'MinHealthSteal',
-				minHealth: 9999,
-				cardTypes: [CardType.Hero, CardType.Troop],
-			},
 		},
 	},
 	{

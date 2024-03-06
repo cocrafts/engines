@@ -25,17 +25,17 @@ function possibleStates(cards) { // bốc 2 lá
 }
 
 function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) { // Hiện tại chỉ mơiiws thêm move, 2 tham số is not full để kiểm tra nếu trên bàn chỉ còn 1 slot
-    
+
     const currentState = clone(curDuel)
 
     const runMove = (move: MoveResult) => {
         const { duel: fragment, commandBundles } = move;
-    
+
         if (fragment) mergeFragmentToState(currentState, fragment);
     };
-    
 
-    if(isNotFull1) {
+
+    if (isNotFull1) {
         runMove(move.summonCard(currentState, {
             from: {
                 owner: currentState.secondPlayer.id,
@@ -68,27 +68,29 @@ function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) 
 
 function getNullIndex(arr) { // Lấy các index trống trên ground
     let res = []
-    if (arr[5] !== null) {
+    if (arr[5] === null) {
         res.push(5)
         return res
     }
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === null)
-            res.push(i)
+    else {
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] === null)
+                res.push(i)
+        }
+        return res
     }
-    return res
 }
 
 function generateStates(duel: DuelState) {
     let allStates = []
-    let condition = true
     const botHand = clone(duel.secondHand)
     let get2RandomCards = possibleStates(botHand)
     for (let i = 0; i < get2RandomCards.length - 1; i++) {
         let stateTemp = clone(duel)
         let allPossibleIndex = getNullIndex(stateTemp.secondGround)
-        for (let j = 0; j < allPossibleIndex.length - 1; j++) {
-            if(allPossibleIndex[j] === 5 && allPossibleIndex.length < 1) {
+        for (let j = 0; j < allPossibleIndex.length; j++) {
+            if (allPossibleIndex[j] === 5 && allPossibleIndex.length === 1) {
+                console.log("I did go to number 5 with one element")
                 let state = addMove(stateTemp, get2RandomCards[i], 5, 6, true, true)
                 allStates.push(state)
                 state = addMove(stateTemp, get2RandomCards[i], 6, 5, true, true)
@@ -98,22 +100,21 @@ function generateStates(duel: DuelState) {
                 state = addMove(stateTemp, get2RandomCards[i], 4, 5, true, true)
                 allStates.push(state)
             }
-            if (allPossibleIndex.length === 1) {
+            else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length === 1) {
                 let state = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], 1, true, false)
                 allStates.push(state)
                 state = addMove(stateTemp, get2RandomCards[i], 1, allPossibleIndex[j], false, true)
                 allStates.push(state)
             }
 
-            else {
-                let state = addMove(stateTemp, get2RandomCards[i], j, j + 1, true, true)
+            else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length > 1) {
+                let state = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], allPossibleIndex[j + 1], true, true)
                 allStates.push(state)
-                let state2 = addMove(stateTemp, get2RandomCards[i], j + 1, j, true, true)
+                let state2 = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j + 1], allPossibleIndex[j], true, true)
                 allStates.push(state2)
             }
         }
-        condition = false
-        if(condition === false) {
+        if(true){
             return allStates;
         }
     }
@@ -122,7 +123,6 @@ function generateStates(duel: DuelState) {
 
 const evaluateDuelState = (duelState: DuelState): number => {
     let score = 0;
-    
 
     for (const cardId of Object.keys(duelState.stateMap)) {
         const card = duelState.stateMap[cardId];
@@ -145,7 +145,7 @@ const evaluateDuelState = (duelState: DuelState): number => {
 };
 
 function checkWinning(duel: DuelState) {
-    if(duel.firstPlayer.health === 0 || duel.secondPlayer.health === 0) {
+    if (duel.firstPlayer.health === 0 || duel.secondPlayer.health === 0) {
         return true;
     }
     else {
@@ -160,6 +160,7 @@ const minimax = (node: DuelState, depth: number, alpha: number, beta: number, ma
 
     let allStates = generateStates(clone(node))
     if (maxState) {
+
         let maxEva = -Infinity;
         for (let i = 0; i < allStates.length; i++) {
             let childState = allStates[i]
@@ -190,28 +191,19 @@ const minimax = (node: DuelState, depth: number, alpha: number, beta: number, ma
 export const selectBestMove = (duel: DuelState, depth: number): DuelState | undefined => {
     let bestScore = -Infinity;
     let bestMove;
-    console.log("Cards in hand", duel.secondHand.length)
-    let botHand = clone(duel.secondHand)
-    let arrCards = possibleStates(botHand)
-    for (let i = 0; i < arrCards.length - 1; i++) {
-        console.log(i, "\n")
-        let childState = clone(duel);
-        const botMove = generateStates(childState);
+    let childState = clone(duel);
+    const botMove = generateStates(childState);
 
-        for (let j = 0; i < botMove.length - 1; i++) {
-            const score = minimax(botMove[j], depth - 1, -Infinity, Infinity, true);
-            console.log("The score is", score, i)
-            if (score > bestScore) {
-                bestScore = score;
-                console.log("Best score is", bestScore)
-                bestMove = botMove[i];
-                console.log("I passed here")
-            }
+    for (let j = 0; j < botMove.length - 1; j++) {
+        const score = minimax(botMove[j], depth - 1, -Infinity, Infinity, false);
+        if (score > bestScore) {
+            bestScore = score;
+            console.log("Best score is", bestScore)
+            bestMove = botMove[j];
+            console.log("I passed here")
         }
     }
-    console.log("did i go here")
-    console.log("this is best score", bestScore)
-    console.log("This is best move", bestMove.secondGround)
+
     return bestMove;
 };
 

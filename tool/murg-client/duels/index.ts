@@ -65,7 +65,7 @@ runMove(move.distributeTurnCards(duel));
 // mergeFragmentToState(duel, curCommand)
 // console.log(duel.secondGround)
 let tmp = clone(duel)
-duel = selectBestMove(tmp, 1)
+duel = selectBestMove(tmp, 2)
 console.log("Duel ground is here", duel.firstGround, duel.secondGround)
 runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));

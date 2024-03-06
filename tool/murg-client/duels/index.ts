@@ -69,7 +69,7 @@ duel = selectBestMove(tmp, 1)
 console.log("Duel ground is here", duel.firstGround, duel.secondGround)
 runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));
-console.log('Go here man')
+
 runMove(
 	move.activateChargeSkill(duel, {
 		from: {

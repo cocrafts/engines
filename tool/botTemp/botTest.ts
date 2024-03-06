@@ -197,13 +197,14 @@ export const selectBestMove = (duel: DuelState, depth: number): DuelState | unde
 
     for (let j = 0; j < botMove.length - 1; j++) {
         const score = minimax(botMove[j], depth - 1, -Infinity, Infinity, false);
+        console.log("I have score here", score)
         if (score > bestScore) {
             bestScore = score;
-            console.log("Best score is", bestScore)
+
             bestMove = botMove[j];
-            console.log("I passed here")
         }
     }
+    console.log("Best score isssssssssssssssssssssssssssssssss", bestScore)
 
     return bestMove;
 };

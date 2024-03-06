@@ -85,7 +85,8 @@ function generateStates(duel: DuelState) {
     let allStates = []
     const botHand = clone(duel.secondHand)
     let get2RandomCards = possibleStates(botHand)
-    for (let i = 0; i < get2RandomCards.length - 1; i++) {
+    console.log("This is all 2 random Cards", get2RandomCards.length)
+    for (let i = 0; i < get2RandomCards.length; i++) {
         let stateTemp = clone(duel)
         let allPossibleIndex = getNullIndex(stateTemp.secondGround)
         for (let j = 0; j < allPossibleIndex.length; j++) {
@@ -114,9 +115,9 @@ function generateStates(duel: DuelState) {
                 allStates.push(state2)
             }
         }
-        if(true){
-            return allStates;
-        }
+        // if(true){
+        //     return allStates;
+        // }
     }
     return allStates
 }

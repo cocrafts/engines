@@ -6,11 +6,13 @@ import {
 	MoveResult,
 	runCommand,
 } from '@metacraft/murg-engine';
+import clone from 'lodash/cloneDeep';
+import { selectBestMove } from '../../botTemp/botTest';
 
 const { config, history } = require('./duel.json');
 
 const slicedHistory = history.slice(0, 162);
-const duel = getInitialState(config);
+let duel = getInitialState(config);
 
 const runMove = (move: MoveResult) => {
 	const { duel: fragment, commandBundles } = move;
@@ -59,40 +61,15 @@ runMove(
 
 runMove(move.endTurn(duel));
 runMove(move.distributeTurnCards(duel));
-
-runMove(
-	move.summonCard(duel, {
-		from: {
-			owner: 'B',
-			place: DuelPlace.Hand,
-			id: '999990000#60',
-		},
-		to: {
-			owner: 'B',
-			place: DuelPlace.Ground,
-			index: 5,
-		},
-	}),
-);
-
-runMove(
-	move.summonCard(duel, {
-		from: {
-			owner: 'B',
-			place: DuelPlace.Hand,
-			id: '000250004#58',
-		},
-		to: {
-			owner: 'B',
-			place: DuelPlace.Ground,
-			index: 4,
-		},
-	}),
-);
-
+// let curCommand = selectBestMove(duel, 1)
+// mergeFragmentToState(duel, curCommand)
+// console.log(duel.secondGround)
+let tmp = clone(duel)
+duel = selectBestMove(tmp, 1)
+console.log("Duel ground is here", duel.firstGround, duel.secondGround)
 runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));
-
+console.log('Go here man')
 runMove(
 	move.activateChargeSkill(duel, {
 		from: {

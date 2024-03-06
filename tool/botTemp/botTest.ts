@@ -194,9 +194,12 @@ export const selectBestMove = (duel: DuelState, depth: number): DuelState | unde
     let bestMove;
     let childState = clone(duel);
     const botMove = generateStates(childState);
+    console.log("This is bot move length", botMove.length)
+    let count = 0;
 
-    for (let j = 0; j < botMove.length - 1; j++) {
+    for (let j = 0; j < botMove.length; j++) {
         const score = minimax(botMove[j], depth - 1, -Infinity, Infinity, false);
+        count++
         console.log("I have score here", score)
         if (score > bestScore) {
             bestScore = score;
@@ -205,7 +208,7 @@ export const selectBestMove = (duel: DuelState, depth: number): DuelState | unde
         }
     }
     console.log("Best score isssssssssssssssssssssssssssssssss", bestScore)
-
+    console.log("Total", count)
     return bestMove;
 };
 

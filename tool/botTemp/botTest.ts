@@ -24,19 +24,23 @@ function possibleStates(cards) { // bốc 2 lá
     return pairs;
 }
 
+
+
 function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) { // Hiện tại chỉ mơiiws thêm move, 2 tham số is not full để kiểm tra nếu trên bàn chỉ còn 1 slot
 
     const currentState = clone(curDuel)
-
+    let allCurMoveBundle = []
+    let curMove
+    let curMove2
     const runMove = (move: MoveResult) => {
         const { duel: fragment, commandBundles } = move;
-
         if (fragment) mergeFragmentToState(currentState, fragment);
+        return commandBundles
     };
 
 
     if (isNotFull1) {
-        runMove(move.summonCard(currentState, {
+        curMove = runMove(move.summonCard(currentState, {
             from: {
                 owner: currentState.secondPlayer.id,
                 place: DuelPlace.Hand,
@@ -48,9 +52,10 @@ function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) 
                 index: pos1,
             },
         }))
+        allCurMoveBundle.push(curMove)
     }
     if (isNotFull2) {
-        runMove(move.summonCard(currentState, {
+        curMove2 = runMove(move.summonCard(currentState, {
             from: {
                 owner: currentState.secondPlayer.id,
                 place: DuelPlace.Hand,
@@ -62,8 +67,10 @@ function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) 
                 index: pos2,
             },
         }))
+        allCurMoveBundle.push(curMove2)
     }
-    return currentState
+    //console.log("snvnsvonvndsovndsnidu", currentState)
+    return [currentState, allCurMoveBundle]
 }
 
 function getNullIndex(arr) { // Lấy các index trống trên ground
@@ -73,8 +80,10 @@ function getNullIndex(arr) { // Lấy các index trống trên ground
         return res
     }
     else {
-        for (let i = 0; i < arr.length - 1; i++) {
-            if (arr[i] === null)
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === null && arr[i + 1] != null) // ở đây sẽ có trường hợp arr[-1] là undefined, nhưng mà nó không phải null, nên ta chỉ so sánh != thay vì !==
+                res.push(i)
+            else if (arr[i] === null && arr[i - 1] != null)
                 res.push(i)
         }
         return res
@@ -83,43 +92,52 @@ function getNullIndex(arr) { // Lấy các index trống trên ground
 
 function generateStates(duel: DuelState) {
     let allStates = []
+    let allMove = []
     const botHand = clone(duel.secondHand)
     let get2RandomCards = possibleStates(botHand)
-    console.log("This is all 2 random Cards", get2RandomCards.length)
+    //console.log("This is all 2 random Cards", get2RandomCards.length)
     for (let i = 0; i < get2RandomCards.length; i++) {
         let stateTemp = clone(duel)
         let allPossibleIndex = getNullIndex(stateTemp.secondGround)
         for (let j = 0; j < allPossibleIndex.length; j++) {
             if (allPossibleIndex[j] === 5 && allPossibleIndex.length === 1) {
-                console.log("I did go to number 5 with one element")
-                let state = addMove(stateTemp, get2RandomCards[i], 5, 6, true, true)
+                //console.log("I did go to number 5 with one element")
+                let [state, move] = addMove(stateTemp, get2RandomCards[i], 5, 6, true, true)
                 allStates.push(state)
-                state = addMove(stateTemp, get2RandomCards[i], 6, 5, true, true)
-                allStates.push(state)
-                state = addMove(stateTemp, get2RandomCards[i], 5, 4, true, true)
-                allStates.push(state)
-                state = addMove(stateTemp, get2RandomCards[i], 4, 5, true, true)
-                allStates.push(state)
+                allMove.push(move)
+                let [state2, move2] = addMove(stateTemp, get2RandomCards[i], 6, 5, true, true)
+                allStates.push(state2)
+                allMove.push(move2)
+                let [state3, move3] = addMove(stateTemp, get2RandomCards[i], 5, 4, true, true)
+                allStates.push(state3)
+                allMove.push(move3)
+                let [state4, move4] = addMove(stateTemp, get2RandomCards[i], 4, 5, true, true)
+                allStates.push(state4)
+                allMove.push(move4)
             }
             else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length === 1) {
-                let state = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], 1, true, false)
+                let [state, move] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], 1, true, false)
                 allStates.push(state)
-                state = addMove(stateTemp, get2RandomCards[i], 1, allPossibleIndex[j], false, true)
-                allStates.push(state)
+                allMove.push(move)
+                let [state2, move2] = addMove(stateTemp, get2RandomCards[i], 1, allPossibleIndex[j], false, true)
+                allStates.push(state2)
+                allMove.push(move2)
             }
 
             else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length > 1) {
-                let state = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], allPossibleIndex[j + 1], true, true)
+                let [state, move] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], allPossibleIndex[j + 1], true, true)
                 allStates.push(state)
-                let state2 = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j + 1], allPossibleIndex[j], true, true)
+                allMove.push(move)
+                let [state2, move2] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j + 1], allPossibleIndex[j], true, true)
                 allStates.push(state2)
+                allMove.push(move2)
             }
         }
         // if(true){
         //     return allStates;
         // }
     }
-    return allStates
+    return [allStates, allMove]
 }
 
 const evaluateDuelState = (duelState: DuelState): number => {
@@ -159,7 +177,7 @@ const minimax = (node: DuelState, depth: number, alpha: number, beta: number, ma
         return evaluateDuelState(node);
     }
 
-    let allStates = generateStates(clone(node))
+    let [allStates, allMove] = generateStates(clone(node))
     if (maxState) {
 
         let maxEva = -Infinity;
@@ -188,13 +206,19 @@ const minimax = (node: DuelState, depth: number, alpha: number, beta: number, ma
     }
 };
 
+type Result = {
+    bestMove: DuelState;
+    currentMoveBundle: DuelCommand;
+}
 
-export const selectBestMove = (duel: DuelState, depth: number): DuelState | undefined => {
+export const selectBestMove = (duel: DuelState, depth: number): Result => {
     let bestScore = -Infinity;
     let bestMove;
+    let currentMoveBundle;
     let childState = clone(duel);
-    const botMove = generateStates(childState);
-    console.log("This is bot move length", botMove.length)
+    let [botMove, allMove] = generateStates(childState);
+    //console.log("this is adnsdvndslknvlsdnvn", allMove[0], "sdkvnvnsnvnsvnvl2", allMove[1], "dsbvsbsbsv3", allMove[2])
+    //console.log("The bot Length", botMove.length)
     let count = 0;
 
     for (let j = 0; j < botMove.length; j++) {
@@ -203,13 +227,12 @@ export const selectBestMove = (duel: DuelState, depth: number): DuelState | unde
         console.log("I have score here", score)
         if (score > bestScore) {
             bestScore = score;
-
+            currentMoveBundle = allMove[j]
             bestMove = botMove[j];
         }
     }
-    console.log("Best score isssssssssssssssssssssssssssssssss", bestScore)
-    console.log("Total", count)
-    return bestMove;
+    //console.log("This is commandBundle", JSON.stringify(currentMove[1].commands, null, 2))
+    return {bestMove, currentMoveBundle};
 };
 
 

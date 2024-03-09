@@ -65,23 +65,76 @@ runMove(move.distributeTurnCards(duel));
 // mergeFragmentToState(duel, curCommand)
 // console.log(duel.secondGround)
 let tmp = clone(duel)
-duel = selectBestMove(tmp, 1)
-console.log("Duel ground is here", duel.firstGround, duel.secondGround)
+let {bestMove, currentMoveBundle} = selectBestMove(tmp, 1)
+
+mergeFragmentToState(duel, bestMove)
+currentMoveBundle.forEach(moves => {
+	//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", move)
+	moves.forEach(move => {
+		slicedHistory.push(move)
+	});
+});
+console.log("First ground", duel.secondGround)
+// slicedHistory.push(currentMove.commands)
+
+
+
+//console.log("Duel ground is here", duel.firstGround, duel.secondGround)
+runMove(move.endTurn(duel));
+
+//Fight
+runMove(move.preFight(duel));
+runMove(move.fight(duel));
+runMove(move.postFight(duel));
+runMove(move.reinforce(duel));
+runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));
 
+
+
+// runMove(
+// 	move.activateChargeSkill(duel, {
+// 		from: {
+// 			owner: 'A',
+// 			place: DuelPlace.Ground,
+// 			id: '000070007#26',
+// 		},
+// 	}),
+// );
+// console.log(duel.stateMap['000070007#26']);
+
+runMove(move.distributeTurnCards(duel));
 runMove(
-	move.activateChargeSkill(duel, {
+	move.summonCard(duel, {
 		from: {
 			owner: 'A',
+			place: DuelPlace.Hand,
+			id: duel.firstHand[0],
+		},
+		to: {
+			owner: duel.firstPlayer.id,
 			place: DuelPlace.Ground,
-			id: '000070007#26',
+			index: 4,
 		},
 	}),
 );
-console.log(duel.stateMap['000070007#26']);
+runMove(move.endTurn(duel));
 
-runMove(move.reinforce(duel));
+runMove(move.distributeTurnCards(duel));
+tmp = clone(duel)
+let {bestMove: a, currentMoveBundle: b} = selectBestMove(tmp, 1)
+
+mergeFragmentToState(duel, a)
+b.forEach(moves => {
+	//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", move)
+	moves.forEach(move => {
+		slicedHistory.push(move)
+	});
+});
+console.log("First ground", duel.secondGround)
+
+// //runMove(move.reinforce(duel));
 
 export default {
 	config: config,

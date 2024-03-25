@@ -7,13 +7,13 @@ import {
     move,
     PlayerConfig,
     DuelCommandBundle,
-    runCommand,
-    mergeFragmentToState
+    mergeFragmentToState,
+    runCommand
 } from '@metacraft/murg-engine';
 import clone from 'lodash/cloneDeep';
 import { generateRandomDeck } from '../util/deck';
 
-export const getState = (id: string, history: DuelCommandBundle, version = '00001'): DuelState => {
+export const getState = (id: string, history: DuelCommandBundle[], version = '00001'): DuelState => {
     const meta = makeMeta(version);
     const firstPlayer: PlayerConfig = {
         id: 'A',
@@ -37,15 +37,18 @@ export const getState = (id: string, history: DuelCommandBundle, version = '0000
         firstPlayer: config.firstPlayer,
         secondPlayer: config.secondPlayer,
     });
-    let { duel, commandBundles } = move.distributeInitialCards(state);
 
-    move.distributeTurnCards(duel).commandBundles.forEach((bundle) => {
+    let { duel, commandBundles } = move.distributeInitialCards(state);
+    move.distributeTurnCards(duel).commandBundles.forEach((bundle) => { // không hiểu lắm ?
         commandBundles.push(bundle);
     });
+
     history.forEach((bundle) => {
         bundle.commands.forEach((command) => {
             mergeFragmentToState(duel, runCommand({ duel, command }));
         });
     });
-    return state
+    // console.log("History la:", history)
+    // console.log("1 vài demo", duel.firstGround, "Card cua 2 nguoi choi", duel.firstHand, "Cua nguoi choi b aka Bot", duel.secondHand) // khong the get card
+    return duel
 };

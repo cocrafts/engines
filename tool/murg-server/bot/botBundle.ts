@@ -93,13 +93,16 @@ function getNullIndex(arr) {
 }
 
 function generateStates(duel: DuelState) {
+    console.log("I want to this generate States")
     let allStates = []
     let allMove = []
     const botHand = clone(duel.secondHand)
+    //console.log("I summon it", botHand)
     let get2RandomCards = possibleStates(botHand)
+    //console.log("Let see what we got here", get2RandomCards) // error here
     for (let i = 0; i < get2RandomCards.length; i++) {
         let flag = true;
-        get2RandomCards.forEach(element => {
+        get2RandomCards[i].forEach(element => {
             if (element === undefined) {
                 flag = false
             }
@@ -141,6 +144,7 @@ function generateStates(duel: DuelState) {
                 }
             }
         }
+        //console.log("In bot bundle, for generate move", allMove)
 
     }
     return [allStates, allMove]
@@ -213,31 +217,33 @@ const minimax = (node: DuelState, depth: number, alpha: number, beta: number, ma
 
 
 
-export const selectBestMove = (duelId: string, depth: number): DuelCommand => {
+export const selectBestMove = (duelId: string, depth: number): DuelCommand[] => {
     let bestScore = -Infinity;
     let bestMove;
     let currentMoveBundle;
     let currentRecord = clone(fetchDuel(duelId));
-    console.log("This is currentRecord hisotryyyyyyyy", currentRecord.history)
-    let childState = getState(duelId, currentRecord.history)
-    console.log("I guessssssss", childState.firstGround, "gsgsgsd", childState.secondGround)
-    console.log(" 1")
-    let [botMove, allMove] = generateStates(childState);
-    console.log("I got here")
-    console.log(botMove)
-    let count = 0;
+   // console.log("This is currentRecord hisotryyyyyyyy")
+    let childState = clone(getState(duelId, currentRecord.history))
+   // console.log("I guessssssss", childState.firstGround, "gsgsgsd", childState.secondGround)
+    //console.log(" 1")
+    let [botMove, allMove] = generateStates(childState);// check lai
+    //console.log("I got here")
+    //console.log(botMove)
+    //let count = 0;
 
     for (let j = 0; j < botMove.length; j++) {
         const score = minimax(botMove[j], depth - 1, -Infinity, Infinity, false);
-        count++
-        console.log("I have score here", count)
+        //count++
+        //console.log("I have score here", count)
         if (score > bestScore) {
             bestScore = score;
             currentMoveBundle = allMove[j]
             bestMove = botMove[j];
         }
     }
-    console.log("2") // chay toi day
+
+    // console.log("this is what we got", bestMove.firstGround, "And", bestMove.secondGround)
+    // //console.log("2") // chay toi day
 
     // let payload = {}
     // let turn
@@ -255,8 +261,10 @@ export const selectBestMove = (duelId: string, depth: number): DuelCommand => {
     //     phaseOf: 'B',
     //     commands: [ { type: 'DuelMutate', payload: { phase: 'Draw', phaseOf: 'A' } } ]
     // }
-    // console.log("3")
+    // //console.log("3")
     // currentMoveBundle.push(payload)
+
+    // how to add end turn
     return currentMoveBundle;
 };
 

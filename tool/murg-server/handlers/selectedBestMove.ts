@@ -12,8 +12,6 @@ import {
 import clone from 'lodash/cloneDeep';
 import { run } from 'package/card/engine/abilities';
 
-
-
 function get2Cards(cards) { 
     let pairs = [];
     for (let i = 0; i < cards.length; i++) {
@@ -24,10 +22,7 @@ function get2Cards(cards) {
     return pairs;
 }
 
-
-
 function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) { 
-
     const currentState = clone(curDuel)
     let allCurMoveBundle = []
     let curMove
@@ -37,7 +32,6 @@ function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) 
         if (fragment) mergeFragmentToState(currentState, fragment);
         return commandBundles
     };
-
 
     if (isNotFull1) {
         curMove = runMove(move.summonCard(currentState, {
@@ -89,7 +83,6 @@ function getNullIndex(arr) {
         return res
     }
 }
-
 function generateStates(duel: DuelState) {
     let allStates = []
     let allMoveBundle = []
@@ -121,7 +114,6 @@ function generateStates(duel: DuelState) {
                 allStates.push(state2)
                 allMoveBundle.push(move2)
             }
-
             else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length > 1) {
                 let [state, move] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], allPossibleIndex[j + 1], true, true)
                 allStates.push(state)
@@ -137,7 +129,6 @@ function generateStates(duel: DuelState) {
 
 const evaluateDuelState = (duelState: DuelState): number => {
     let score = 0;
-
     for (const cardId of Object.keys(duelState.stateMap)) {
         const card = duelState.stateMap[cardId];
         if (card.place === DuelPlace.Ground) {
@@ -151,9 +142,7 @@ const evaluateDuelState = (duelState: DuelState): number => {
             score += card.attack + card.defense + card.health;
         }
     }
-
     score += duelState.firstPlayer.health + duelState.secondPlayer.health;
-
     return score;
 };
 
@@ -200,21 +189,17 @@ const minimax = (node: DuelState, depth: number, alpha: number, beta: number, ma
     }
 };
 
-
-
 export const selectBestMove = (duel: DuelState, depth: number): DuelCommandBundle[] => {
     let bestScore = -Infinity;
-    let bestMove;
     let currentMoveBundle;
     let childState = clone(duel);
-    let [botMove, allMove] = generateStates(childState);
+    let [botStates, allMoves] = generateStates(childState);
 
-    for (let j = 0; j < botMove.length; j++) {
-        const score = minimax(botMove[j], depth - 1, -Infinity, Infinity, false);
+    for (let j = 0; j < botStates.length; j++) {
+        const score = minimax(botStates[j], depth - 1, -Infinity, Infinity, false);
         if (score > bestScore) {
             bestScore = score;
-            currentMoveBundle = allMove[j]
-            bestMove = botMove[j];
+            currentMoveBundle = allMoves[j]
         }
     }
     let payload = []

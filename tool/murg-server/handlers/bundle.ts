@@ -18,6 +18,7 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 	{ duelId, send },
 	incomingBundles,
 ) => {
+	console.log("fgjsngjfnvsnsvsndvjsdnvsnvdisnfvpwern", incomingBundles)
 	const duelRecord = fetchDuel(duelId);
 	const { config, history } = duelRecord;
 	const level = history.length;
@@ -27,9 +28,8 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 	const winner = getWinner(duel);
 
 	autoBundles.forEach((bundle) => history.push(bundle));
-
 	await send({ level, bundles: autoBundles });
-
+	console.log("3")
 	if (winner) {
 		duelRecord.winner = winner;
 		await send({ winner }, DuelCommands.GameOver);
@@ -75,6 +75,7 @@ export const fillAndRunBundles = (
 	};
 
 	bundles.forEach((bundle) => {
+		console.log("I got the bundles here", bundle)
 		registerBundle(bundle);
 
 		if (bundle.group === BundleGroup.Summon) { 

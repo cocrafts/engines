@@ -50,7 +50,6 @@ app.ws('/', (ws) => {
 				players.push({ player: userId, ws });
 				duelClients[duelId] = players;
 			}
-
 			if (data.command === DuelCommands.ConnectMatch) {
 				await onIncomingConnect(context, data.payload);
 			} else if (data.command === DuelCommands.SendBundle) {

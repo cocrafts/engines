@@ -40,7 +40,7 @@ export const fetchDuel = (id: string, version = '00001'): DuelRecord => {
 			});
 			const { duel, commandBundles } = move.distributeInitialCards(state);
 
-			move.distributeTurnCards(duel).commandBundles.forEach((bundle) => { // không hiểu lắm ?
+			move.distributeTurnCards(duel).commandBundles.forEach((bundle) => {
 				commandBundles.push(bundle);
 			});
 

@@ -22,12 +22,12 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 	const { config, history } = duelRecord;
 	const level = history.length;
 	const duel = getInitialState(config);
-
 	runBundles(duel, history);
 	const autoBundles = fillAndRunBundles(duel, incomingBundles);
 	const winner = getWinner(duel);
 
 	autoBundles.forEach((bundle) => history.push(bundle));
+
 	await send({ level, bundles: autoBundles });
 
 	if (winner) {
@@ -53,12 +53,11 @@ export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {
 	});
 };
 
-export const fillAndRunBundles = (
+export const fillAndRunBundles = ( 
 	duel: DuelState,
 	bundles: DuelCommandBundle[],
 ) => {
 	const responseBundles: DuelCommandBundle[] = [];
-
 	const registerBundle = (bundle: DuelCommandBundle) => {
 		if (bundle.commands.length > 0) {
 			responseBundles.push(bundle);
@@ -78,7 +77,7 @@ export const fillAndRunBundles = (
 	bundles.forEach((bundle) => {
 		registerBundle(bundle);
 
-		if (bundle.group === BundleGroup.Summon) {
+		if (bundle.group === BundleGroup.Summon) { 
 			injectMove(move.reinforce(duel));
 		} else if (bundle.group === BundleGroup.EndTurn) {
 			if (bundle.phaseOf === duel.firstPlayer.id) {

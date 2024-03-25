@@ -18,18 +18,20 @@ export const onIncomingBundle: CommandHandler<DuelCommandBundle[]> = async (
 	{ duelId, send },
 	incomingBundles,
 ) => {
+	console.log("fgjsngjfnvsnsvsndvjsdnvsnvdisnfvpwern", incomingBundles)
 	const duelRecord = fetchDuel(duelId);
 	const { config, history } = duelRecord;
 	const level = history.length;
 	const duel = getInitialState(config);
-
+	console.log("1")
 	runBundles(duel, history);
 	const autoBundles = fillAndRunBundles(duel, incomingBundles);
 	const winner = getWinner(duel);
 
 	autoBundles.forEach((bundle) => history.push(bundle));
+	console.log("2")
 	await send({ level, bundles: autoBundles });
-
+	console.log("3")
 	if (winner) {
 		duelRecord.winner = winner;
 		await send({ winner }, DuelCommands.GameOver);
@@ -53,12 +55,11 @@ export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {
 	});
 };
 
-export const fillAndRunBundles = (
+export const fillAndRunBundles = ( // Phần này sẽ xử lý các move của 2 người
 	duel: DuelState,
 	bundles: DuelCommandBundle[],
 ) => {
 	const responseBundles: DuelCommandBundle[] = [];
-
 	const registerBundle = (bundle: DuelCommandBundle) => {
 		if (bundle.commands.length > 0) {
 			responseBundles.push(bundle);
@@ -76,13 +77,14 @@ export const fillAndRunBundles = (
 	};
 
 	bundles.forEach((bundle) => {
+		console.log("I got the bundles here", bundle)
 		registerBundle(bundle);
 
-		if (bundle.group === BundleGroup.Summon) {
+		if (bundle.group === BundleGroup.Summon) { // Các thao tác move ở đây
 			injectMove(move.reinforce(duel));
 		} else if (bundle.group === BundleGroup.EndTurn) {
 			if (bundle.phaseOf === duel.firstPlayer.id) {
-				injectMove(move.distributeTurnCards(duel));
+				injectMove(move.distributeTurnCards(duel));// chia bài cho thằng B
 			} else {
 				injectMove(move.preFight(duel));
 				injectMove(move.reinforce(duel));

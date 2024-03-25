@@ -2,7 +2,7 @@ import { nanoId } from '@metacraft/murg-engine';
 import express from 'express';
 import injectSocket from 'express-ws';
 import { sign, verify } from 'jsonwebtoken';
-import { selectBestMove } from './bot/botBundle';
+import { selectBestMove } from './Bot/botBundle';
 import { DuelCommandBundle } from '@metacraft/murg-engine';
 import {
 	CommandPayload,

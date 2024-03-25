@@ -14,7 +14,7 @@ import { run } from 'package/card/engine/abilities';
 
 
 
-function possibleStates(cards) { // bốc 2 lá
+function get2Cards(cards) { // bốc 2 lá
     let pairs = [];
     for (let i = 0; i < cards.length; i++) {
         for (let j = i + 1; j < cards.length; j++) {
@@ -69,7 +69,7 @@ function addMove(curDuel: DuelState, cards, pos1, pos2, isNotFull1, isNotFull2) 
         }))
         allCurMoveBundle.push(curMove2)
     }
-    //console.log("snvnsvonvndsovndsnidu", currentState)
+
     return [currentState, allCurMoveBundle]
 }
 
@@ -92,52 +92,47 @@ function getNullIndex(arr) { // Lấy các index trống trên ground
 
 function generateStates(duel: DuelState) {
     let allStates = []
-    let allMove = []
+    let allMoveBundle = []
     const botHand = clone(duel.secondHand)
-    let get2RandomCards = possibleStates(botHand)
-    //console.log("This is all 2 random Cards", get2RandomCards.length)
+    let get2RandomCards = get2Cards(botHand)
     for (let i = 0; i < get2RandomCards.length; i++) {
         let stateTemp = clone(duel)
         let allPossibleIndex = getNullIndex(stateTemp.secondGround)
         for (let j = 0; j < allPossibleIndex.length; j++) {
             if (allPossibleIndex[j] === 5 && allPossibleIndex.length === 1) {
-                //console.log("I did go to number 5 with one element")
                 let [state, move] = addMove(stateTemp, get2RandomCards[i], 5, 6, true, true)
                 allStates.push(state)
-                allMove.push(move)
+                allMoveBundle.push(move)
                 let [state2, move2] = addMove(stateTemp, get2RandomCards[i], 6, 5, true, true)
                 allStates.push(state2)
-                allMove.push(move2)
+                allMoveBundle.push(move2)
                 let [state3, move3] = addMove(stateTemp, get2RandomCards[i], 5, 4, true, true)
                 allStates.push(state3)
-                allMove.push(move3)
+                allMoveBundle.push(move3)
                 let [state4, move4] = addMove(stateTemp, get2RandomCards[i], 4, 5, true, true)
                 allStates.push(state4)
-                allMove.push(move4)
+                allMoveBundle.push(move4)
             }
             else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length === 1) {
                 let [state, move] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], 1, true, false)
                 allStates.push(state)
-                allMove.push(move)
+                allMoveBundle.push(move)
                 let [state2, move2] = addMove(stateTemp, get2RandomCards[i], 1, allPossibleIndex[j], false, true)
                 allStates.push(state2)
-                allMove.push(move2)
+                allMoveBundle.push(move2)
             }
 
             else if (allPossibleIndex[j] !== 5 && allPossibleIndex.length > 1) {
                 let [state, move] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j], allPossibleIndex[j + 1], true, true)
                 allStates.push(state)
-                allMove.push(move)
+                allMoveBundle.push(move)
                 let [state2, move2] = addMove(stateTemp, get2RandomCards[i], allPossibleIndex[j + 1], allPossibleIndex[j], true, true)
                 allStates.push(state2)
-                allMove.push(move2)
+                allMoveBundle.push(move2)
             }
         }
-        // if(true){
-        //     return allStates;
-        // }
     }
-    return [allStates, allMove]
+    return [allStates, allMoveBundle]
 }
 
 const evaluateDuelState = (duelState: DuelState): number => {
@@ -217,8 +212,6 @@ export const selectBestMove = (duel: DuelState, depth: number): Result => {
     let currentMoveBundle;
     let childState = clone(duel);
     let [botMove, allMove] = generateStates(childState);
-    //console.log("this is adnsdvndslknvlsdnvn", allMove[0], "sdkvnvnsnvnsvnvl2", allMove[1], "dsbvsbsbsv3", allMove[2])
-    //console.log("The bot Length", botMove.length)
     let count = 0;
 
     for (let j = 0; j < botMove.length; j++) {
@@ -231,9 +224,7 @@ export const selectBestMove = (duel: DuelState, depth: number): Result => {
             bestMove = botMove[j];
         }
     }
-    //console.log("This is commandBundle", JSON.stringify(currentMove[1].commands, null, 2))
     return {bestMove, currentMoveBundle};
 };
-
 
 

@@ -1,5 +1,6 @@
 import {
     DuelPlace,
+    Card,
     move,
     runCommand,
     DuelCommand,
@@ -8,6 +9,9 @@ import {
     mergeFragmentToState,
     MoveResult,
     DuelCommandBundle,
+    getCard,
+    getCardList,
+    getCardState,
 } from '@metacraft/murg-engine';
 import clone from 'lodash/cloneDeep';
 import { run } from 'package/card/engine/abilities';
@@ -123,37 +127,42 @@ function generateStates(duel: DuelState) {
     let allIndexArr = []
     for (let i = 0; i < botHand.length; i++) {
         for (let j = 0; j < botHand.length; j++) {
-            if (botHand[i] === botHand[j]) {
-                continue;
-            }
-            else {
-                let posArr = []
-                if (allPosIndex.length === 1) {
-                    posArr = [allPosIndex[0] - 1, allPosIndex[0], allPosIndex[0] + 1]
+            let firstCard = botHand[i].slice(0, 4)
+            let secondCard = botHand[j].slice(0, 4)
+            //console.log("First is", firstCard, "Second is", secondCard)
+            if((firstCard !== "9999" && secondCard === "9999") || (firstCard === "9999" && secondCard !== "9999")) {
+                if (botHand[i] === botHand[j]) {
+                    continue;
                 }
                 else {
-                    posArr = [allPosIndex[0] - 1, allPosIndex[0], allPosIndex[1], allPosIndex[1] + 1]
-                }
-
-                for (let k = 1; k < posArr.length - 1; k++) {
-                    let stateTemp = clone(duel)
-                    for (let m = 0; m < posArr.length; m++) {
-                        if (posArr[m] != null) {
-                            if (posArr[k] === posArr[m]) {
-                                continue
-                            }
-                            else {
-                                let subarray = [-1, -1, -1, -1]
-                                let [state, bundle] = addMove(stateTemp, botHand[i], botHand[j], posArr[k], posArr[m])
-                                subarray[k] = i
-                                subarray[m] = j
-                                if (isSubarrayExist(allIndexArr, subarray)) {
-                                    break;
+                    let posArr = []
+                    if (allPosIndex.length === 1) {
+                        posArr = [allPosIndex[0] - 1, allPosIndex[0], allPosIndex[0] + 1]
+                    }
+                    else {
+                        posArr = [allPosIndex[0] - 1, allPosIndex[0], allPosIndex[1], allPosIndex[1] + 1]
+                    }
+    
+                    for (let k = 1; k < posArr.length - 1; k++) {
+                        let stateTemp = clone(duel)
+                        for (let m = 0; m < posArr.length; m++) {
+                            if (posArr[m] != null) {
+                                if (posArr[k] === posArr[m]) {
+                                    continue
                                 }
                                 else {
-                                    allIndexArr.push(subarray)
-                                    allStates.push(state)
-                                    allMoveBundle.push(bundle)
+                                    let subarray = [-1, -1, -1, -1]
+                                    let [state, bundle] = addMove(stateTemp, botHand[i], botHand[j], posArr[k], posArr[m])
+                                    subarray[k] = i
+                                    subarray[m] = j
+                                    if (isSubarrayExist(allIndexArr, subarray)) {
+                                        break;
+                                    }
+                                    else {
+                                        allIndexArr.push(subarray)
+                                        allStates.push(state)
+                                        allMoveBundle.push(bundle)
+                                    }
                                 }
                             }
                         }

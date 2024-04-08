@@ -129,7 +129,6 @@ function generateStates(duel: DuelState) {
         for (let j = 0; j < botHand.length; j++) {
             let firstCard = botHand[i].slice(0, 4)
             let secondCard = botHand[j].slice(0, 4)
-            //console.log("First is", firstCard, "Second is", secondCard)
             if((firstCard !== "9999" && secondCard === "9999") || (firstCard === "9999" && secondCard !== "9999")) {
                 if (botHand[i] === botHand[j]) {
                     continue;

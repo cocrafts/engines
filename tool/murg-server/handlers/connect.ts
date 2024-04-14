@@ -9,10 +9,9 @@ export const onIncomingConnect: CommandHandler = async ({
 }) => {
 	const context = { userId, duelId };
 	const duel = fetchDuel(duelId);
-
 	await send({ context, duel });
-
 	if (duel.winner) {
 		await send({ winner: duel.winner }, DuelCommands.GameOver);
 	}
 };
+				

@@ -6,11 +6,13 @@ import {
 	MoveResult,
 	runCommand,
 } from '@metacraft/murg-engine';
+import clone from 'lodash/cloneDeep';
+import { selectBestMove } from '../../botTemp/botTest';
 
 const { config, history } = require('./duel.json');
 
 const slicedHistory = history.slice(0, 162);
-const duel = getInitialState(config);
+let duel = getInitialState(config);
 
 const runMove = (move: MoveResult) => {
 	const { duel: fragment, commandBundles } = move;
@@ -59,52 +61,80 @@ runMove(
 
 runMove(move.endTurn(duel));
 runMove(move.distributeTurnCards(duel));
+// let curCommand = selectBestMove(duel, 1)
+// mergeFragmentToState(duel, curCommand)
+// console.log(duel.secondGround)
+let tmp = clone(duel)
+let {bestMove, currentMoveBundle} = selectBestMove(tmp, 1)
 
+mergeFragmentToState(duel, bestMove)
+currentMoveBundle.forEach(moves => {
+	//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", move)
+	moves.forEach(move => {
+		slicedHistory.push(move)
+	});
+});
+console.log("First ground", duel.secondGround)
+// slicedHistory.push(currentMove.commands)
+
+
+
+//console.log("Duel ground is here", duel.firstGround, duel.secondGround)
+runMove(move.endTurn(duel));
+
+//Fight
+runMove(move.preFight(duel));
+runMove(move.fight(duel));
+runMove(move.postFight(duel));
+runMove(move.reinforce(duel));
+runMove(move.turnCleanUp(duel));
+runMove(move.turnCleanUp(duel));
+runMove(move.turnCleanUp(duel));
+
+
+
+// runMove(
+// 	move.activateChargeSkill(duel, {
+// 		from: {
+// 			owner: 'A',
+// 			place: DuelPlace.Ground,
+// 			id: '000070007#26',
+// 		},
+// 	}),
+// );
+// console.log(duel.stateMap['000070007#26']);
+
+runMove(move.distributeTurnCards(duel));
 runMove(
 	move.summonCard(duel, {
 		from: {
-			owner: 'B',
+			owner: 'A',
 			place: DuelPlace.Hand,
-			id: '999990000#60',
+			id: duel.firstHand[0],
 		},
 		to: {
-			owner: 'B',
-			place: DuelPlace.Ground,
-			index: 5,
-		},
-	}),
-);
-
-runMove(
-	move.summonCard(duel, {
-		from: {
-			owner: 'B',
-			place: DuelPlace.Hand,
-			id: '000250004#58',
-		},
-		to: {
-			owner: 'B',
+			owner: duel.firstPlayer.id,
 			place: DuelPlace.Ground,
 			index: 4,
 		},
 	}),
 );
+runMove(move.endTurn(duel));
 
-runMove(move.turnCleanUp(duel));
-runMove(move.turnCleanUp(duel));
+runMove(move.distributeTurnCards(duel));
+tmp = clone(duel)
+let {bestMove: a, currentMoveBundle: b} = selectBestMove(tmp, 1)
 
-runMove(
-	move.activateChargeSkill(duel, {
-		from: {
-			owner: 'A',
-			place: DuelPlace.Ground,
-			id: '000070007#26',
-		},
-	}),
-);
-console.log(duel.stateMap['000070007#26']);
+mergeFragmentToState(duel, a)
+b.forEach(moves => {
+	//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", move)
+	moves.forEach(move => {
+		slicedHistory.push(move)
+	});
+});
+console.log("First ground", duel.secondGround)
 
-runMove(move.reinforce(duel));
+// //runMove(move.reinforce(duel));
 
 export default {
 	config: config,

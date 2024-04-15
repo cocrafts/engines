@@ -51,7 +51,7 @@ export const runBundles = (duel: DuelState, bundles: DuelCommandBundle[]) => {
 	});
 };
 
-export const fillAndRunBundles = ( 
+export const fillAndRunBundles = (
 	duel: DuelState,
 	bundles: DuelCommandBundle[],
 ) => {
@@ -75,7 +75,7 @@ export const fillAndRunBundles = (
 	bundles.forEach((bundle) => {
 		registerBundle(bundle);
 
-		if (bundle.group === BundleGroup.Summon) { 
+		if (bundle.group === BundleGroup.Summon) {
 			injectMove(move.reinforce(duel));
 		} else if (bundle.group === BundleGroup.EndTurn) {
 			if (bundle.phaseOf === duel.firstPlayer.id) {

@@ -14,4 +14,3 @@ export const onIncomingConnect: CommandHandler = async ({
 		await send({ winner: duel.winner }, DuelCommands.GameOver);
 	}
 };
-				

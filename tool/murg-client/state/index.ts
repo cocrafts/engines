@@ -149,6 +149,7 @@ export const replay = () => {
 	};
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const printMove = (move: MoveResult): void => {
 	console.log(JSON.stringify(move.commandBundles, null, 2));
 };

@@ -2,7 +2,8 @@ import { nanoId } from '@metacraft/murg-engine';
 import express from 'express';
 import injectSocket from 'express-ws';
 import { sign, verify } from 'jsonwebtoken';
-import { DuelCommandBundle } from '@metacraft/murg-engine';
+
+import { injectBotMove } from './handlers/ai';
 import {
 	CommandPayload,
 	CommandResponse,
@@ -16,12 +17,10 @@ import {
 	onIncomingConnect,
 	onInComingHover,
 } from './handlers';
-import { injectBotMove } from './handlers/ai';
 const app = express();
 const socket = injectSocket(app);
 const duelClients: Record<string, Array<{ player: string; ws: unknown }>> = {};
 const jwtSecret = 'shh!!';
-
 
 app.ws('/', (ws) => {
 	ws.on('message', async (rawData) => {
@@ -54,13 +53,14 @@ app.ws('/', (ws) => {
 				await onIncomingConnect(context, data.payload);
 			} else if (data.command === DuelCommands.SendBundle) {
 				await onIncomingBundle(context, data.payload);
-				const botContext: Context = { duelId, userId: 'B', command: DuelCommands.SendBundle, send }
-				const botBundle = injectBotMove(duelId, data.payload)
-				if(botBundle !== undefined) {
-					for(let i = 0; i < botBundle.length; i++) {
-						await onIncomingBundle(botContext, botBundle[i])
-					}
-				}
+				const botContext: Context = {
+					duelId,
+					userId: 'B',
+					command: DuelCommands.SendBundle,
+					send,
+				};
+				const botBundle = injectBotMove(duelId, data.payload);
+				await onIncomingBundle(botContext, botBundle);
 			} else if (data.command === DuelCommands.CardHover) {
 				await onInComingHover(context, data.payload);
 			}

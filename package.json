@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "client": "node client.js",
     "server": "node server.js"
   },

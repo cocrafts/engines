@@ -7,12 +7,13 @@ import {
 	runCommand,
 } from '@metacraft/murg-engine';
 import clone from 'lodash/cloneDeep';
+
 import { selectBestMove } from '../../botTemp/botTest';
 
 const { config, history } = require('./duel.json');
 
 const slicedHistory = history.slice(0, 162);
-let duel = getInitialState(config);
+const duel = getInitialState(config);
 
 const runMove = (move: MoveResult) => {
 	const { duel: fragment, commandBundles } = move;
@@ -64,20 +65,18 @@ runMove(move.distributeTurnCards(duel));
 // let curCommand = selectBestMove(duel, 1)
 // mergeFragmentToState(duel, curCommand)
 // console.log(duel.secondGround)
-let tmp = clone(duel)
-let {bestMove, currentMoveBundle} = selectBestMove(tmp, 1)
+let tmp = clone(duel);
+const { bestMove, currentMoveBundle } = selectBestMove(tmp, 1);
 
-mergeFragmentToState(duel, bestMove)
-currentMoveBundle.forEach(moves => {
+mergeFragmentToState(duel, bestMove);
+currentMoveBundle.forEach((moves) => {
 	//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", move)
-	moves.forEach(move => {
-		slicedHistory.push(move)
+	moves.forEach((move) => {
+		slicedHistory.push(move);
 	});
 });
-console.log("First ground", duel.secondGround)
+console.log('First ground', duel.secondGround);
 // slicedHistory.push(currentMove.commands)
-
-
 
 //console.log("Duel ground is here", duel.firstGround, duel.secondGround)
 runMove(move.endTurn(duel));
@@ -90,8 +89,6 @@ runMove(move.reinforce(duel));
 runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));
 runMove(move.turnCleanUp(duel));
-
-
 
 // runMove(
 // 	move.activateChargeSkill(duel, {
@@ -122,17 +119,17 @@ runMove(
 runMove(move.endTurn(duel));
 
 runMove(move.distributeTurnCards(duel));
-tmp = clone(duel)
-let {bestMove: a, currentMoveBundle: b} = selectBestMove(tmp, 1)
+tmp = clone(duel);
+const { bestMove: a, currentMoveBundle: b } = selectBestMove(tmp, 1);
 
-mergeFragmentToState(duel, a)
-b.forEach(moves => {
+mergeFragmentToState(duel, a);
+b.forEach((moves) => {
 	//console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>", move)
-	moves.forEach(move => {
-		slicedHistory.push(move)
+	moves.forEach((move) => {
+		slicedHistory.push(move);
 	});
 });
-console.log("First ground", duel.secondGround)
+console.log('First ground', duel.secondGround);
 
 // //runMove(move.reinforce(duel));
 

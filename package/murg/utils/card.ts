@@ -211,7 +211,6 @@ export const interpolate = (card: Card): Card => {
 export const troopId = '999990000';
 
 export const getCard = (cardMap: Record<string, Card>, id: string) => {
-
 	return cardMap[id?.substring(0, 9)];
 };
 
@@ -256,6 +255,6 @@ export const injectCardState = (
 
 	partial.uniqueCardCount = nextUniqueCount;
 	partial.stateMap[cardState.id] = cardState;
-	
+
 	return cardState;
 };

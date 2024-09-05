@@ -1,3 +1,6 @@
+# Important! This repo has been relocated:
+This repo will keep as-is with current implementation. Further upgrade will happen under [Under Realm](https://github.com/cocrafts/UnderRealm) mono repo.
+
 # Mono repo for Games algorithm:
 Single repository that hold opensource algorithm for Metacraft Games.
 
